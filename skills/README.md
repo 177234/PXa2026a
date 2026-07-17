@@ -31,7 +31,8 @@
 | `core/04-data-cleaning-planner` | 清洗计划、merge 检查、EDA 建议 | 第 2 讲 |
 | `core/05-regression-interpreter` | 回归表解读、因果表述检查 | 第 4、5 讲 |
 | `core/06-repro-logger` | 复现日志、变量字典、样本筛选日志 | 第 1、2、6 讲 |
-| `core/07-stata-runner`（引用型） | 让 agent 本地运行 Stata（Stata All in One 附带） | 全程 |
+| `core/07-stata-runner`(引用型) | 让 agent 本地运行 Stata(Stata All in One 附带) | 全程 |
+| `core/08-data-audit` | 数据审计员：拿红线清单审查清洗结果，只审不改 (防 agent 为结果做手脚) | 第 2、6 讲 |
 
 > `01`–`06` 由写作窗口随章自研，`07-stata-runner`（引用型）与 setup 脚本由基建窗口维护。
 > 入库前须通过 `scripts/validate-skills.py`，并在 Claude Code 与 Codex 双端测试自动触发、

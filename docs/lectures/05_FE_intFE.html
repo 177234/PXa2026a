@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; FWL、虚拟变量、交乘项与固定效应：理解条件比较 – AI 时代的实证研究基础</title>
+<title>5&nbsp; FWL、虚拟变量与固定效应：理解条件比较 – AI 时代的实证研究基础</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -72,6 +106,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -85,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/01_replication.html"><strong>讲义</strong></a></li><li class="breadcrumb-item"><a href="../lectures/05_FE_intFE.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FWL、虚拟变量、交乘项与固定效应：理解条件比较</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/01_replication.html"><strong>讲义</strong></a></li><li class="breadcrumb-item"><a href="../lectures/05_FE_intFE.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FWL、虚拟变量与固定效应：理解条件比较</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -127,6 +190,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🏠 前言</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../usage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📦 课件使用</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -183,7 +252,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/05_FE_intFE.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FWL、虚拟变量、交乘项与固定效应：理解条件比较</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FWL、虚拟变量与固定效应：理解条件比较</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -233,12 +302,100 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">FAQ：环境与 agent 常见问题</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">第 1 讲配套：Lane (2025) 阅读笔记</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_reading_notes/01_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">整体介绍</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_reading_notes/02_methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">实证方法与识别</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_reading_notes/03_replication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">复现材料导览</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_reading_notes/04_literature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">迷你文献定位</span></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/F_akcigit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">扩展案例：Akcigit et al.&nbsp;(2022)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">扩展案例：Akcigit et al.&nbsp;(2022)</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">第 1 讲 · 进阶选读（助教多角度精读，选读）</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_student_notes/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">K</span>&nbsp; <span class="chapter-title">进阶参照：一位博士生的 Lane (2025) 多角度精读</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_student_notes/framing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">L</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions: Industrial Policy and Industrialization in South Korea — 论文Framing分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_student_notes/summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">M</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions 综合分析摘要</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_student_notes/methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">N</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions — 研究方法拆解</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_student_notes/derivation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">O</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions — 研究设计与估计方程推导</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_student_notes/replication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">P</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions — 复现材料审计与运行说明</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_student_notes/codex-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">Q</span>&nbsp; <span class="chapter-title">codex-workflow.html</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
       </ul>
   </li>
     </ul>
@@ -251,22 +408,51 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#案例情境" id="toc-案例情境" class="nav-link active" data-scroll-target="#案例情境"><span class="header-section-number">5.1</span> 案例情境</a></li>
-  <li><a href="#概念讲解" id="toc-概念讲解" class="nav-link" data-scroll-target="#概念讲解"><span class="header-section-number">5.2</span> 概念讲解</a></li>
-  <li><a href="#代码实操" id="toc-代码实操" class="nav-link" data-scroll-target="#代码实操"><span class="header-section-number">5.3</span> 代码实操</a></li>
-  <li><a href="#ai-协作" id="toc-ai-协作" class="nav-link" data-scroll-target="#ai-协作"><span class="header-section-number">5.4</span> AI 协作</a></li>
-  <li><a href="#python-附录" id="toc-python-附录" class="nav-link" data-scroll-target="#python-附录"><span class="header-section-number">5.5</span> Python 附录</a></li>
-  <li><a href="#小结与练习" id="toc-小结与练习" class="nav-link" data-scroll-target="#小结与练习"><span class="header-section-number">5.6</span> 小结与练习</a></li>
-  <li><a href="#延伸阅读" id="toc-延伸阅读" class="nav-link" data-scroll-target="#延伸阅读"><span class="header-section-number">5.7</span> 延伸阅读</a></li>
+  <li><a href="#案例情境三家公司的一张图" id="toc-案例情境三家公司的一张图" class="nav-link active" data-scroll-target="#案例情境三家公司的一张图"><span class="header-section-number">5.1</span> 案例情境：三家公司的一张图</a></li>
+  <li><a href="#从常数项到虚拟变量残差化的第一课" id="toc-从常数项到虚拟变量残差化的第一课" class="nav-link" data-scroll-target="#从常数项到虚拟变量残差化的第一课"><span class="header-section-number">5.2</span> 从常数项到虚拟变量：残差化的第一课</a>
+  <ul class="collapse">
+  <li><a href="#常数项回归里最容易被忽略的那一项" id="toc-常数项回归里最容易被忽略的那一项" class="nav-link" data-scroll-target="#常数项回归里最容易被忽略的那一项"><span class="header-section-number">5.2.1</span> 常数项：回归里最容易被忽略的那一项</a></li>
+  <li><a href="#fwl-定理先剔除再回归" id="toc-fwl-定理先剔除再回归" class="nav-link" data-scroll-target="#fwl-定理先剔除再回归"><span class="header-section-number">5.2.2</span> FWL 定理：先剔除，再回归</a></li>
+  <li><a href="#遗漏变量坏控制与过度控制" id="toc-遗漏变量坏控制与过度控制" class="nav-link" data-scroll-target="#遗漏变量坏控制与过度控制"><span class="header-section-number">5.2.3</span> 遗漏变量、坏控制与过度控制</a></li>
+  <li><a href="#虚拟变量基准组与虚拟变量陷阱" id="toc-虚拟变量基准组与虚拟变量陷阱" class="nav-link" data-scroll-target="#虚拟变量基准组与虚拟变量陷阱"><span class="header-section-number">5.2.4</span> 虚拟变量、基准组与虚拟变量陷阱</a></li>
+  </ul></li>
+  <li><a href="#固定效应模型从虚拟变量到组内去心" id="toc-固定效应模型从虚拟变量到组内去心" class="nav-link" data-scroll-target="#固定效应模型从虚拟变量到组内去心"><span class="header-section-number">5.3</span> 固定效应模型：从虚拟变量到组内去心</a>
+  <ul class="collapse">
+  <li><a href="#三类变量三个下标" id="toc-三类变量三个下标" class="nav-link" data-scroll-target="#三类变量三个下标"><span class="header-section-number">5.3.1</span> 三类变量、三个下标</a></li>
+  <li><a href="#组内去心不用观测也能控制" id="toc-组内去心不用观测也能控制" class="nav-link" data-scroll-target="#组内去心不用观测也能控制"><span class="header-section-number">5.3.2</span> 组内去心：不用观测，也能控制</a></li>
+  <li><a href="#个体时间与双向固定效应" id="toc-个体时间与双向固定效应" class="nav-link" data-scroll-target="#个体时间与双向固定效应"><span class="header-section-number">5.3.3</span> 个体、时间与双向固定效应</a></li>
+  </ul></li>
+  <li><a href="#高维固定效应的基本思想" id="toc-高维固定效应的基本思想" class="nav-link" data-scroll-target="#高维固定效应的基本思想"><span class="header-section-number">5.4</span> 高维固定效应的基本思想</a></li>
+  <li><a href="#双向固定效应与-did" id="toc-双向固定效应与-did" class="nav-link" data-scroll-target="#双向固定效应与-did"><span class="header-section-number">5.5</span> 双向固定效应与 DID</a>
+  <ul class="collapse">
+  <li><a href="#每加一组固定效应就换一次比较对象" id="toc-每加一组固定效应就换一次比较对象" class="nav-link" data-scroll-target="#每加一组固定效应就换一次比较对象"><span class="header-section-number">5.5.1</span> 每加一组固定效应，就换一次比较对象</a></li>
+  <li><a href="#did看清两次差分" id="toc-did看清两次差分" class="nav-link" data-scroll-target="#did看清两次差分"><span class="header-section-number">5.5.2</span> 2×2 DID：看清「两次差分」</a></li>
+  <li><a href="#从两期到多期事件研究与平行趋势" id="toc-从两期到多期事件研究与平行趋势" class="nav-link" data-scroll-target="#从两期到多期事件研究与平行趋势"><span class="header-section-number">5.5.3</span> 从两期到多期：事件研究与平行趋势</a></li>
+  </ul></li>
+  <li><a href="#如何理解带固定效应和交乘项的系数" id="toc-如何理解带固定效应和交乘项的系数" class="nav-link" data-scroll-target="#如何理解带固定效应和交乘项的系数"><span class="header-section-number">5.6</span> 如何理解带固定效应和交乘项的系数</a></li>
+  <li><a href="#代码实操" id="toc-代码实操" class="nav-link" data-scroll-target="#代码实操"><span class="header-section-number">5.7</span> 代码实操</a></li>
+  <li><a href="#ai-协作" id="toc-ai-协作" class="nav-link" data-scroll-target="#ai-协作"><span class="header-section-number">5.8</span> AI 协作</a>
+  <ul class="collapse">
+  <li><a href="#训练-1让-ai-解释含-fwl虚拟变量和交乘项的回归式" id="toc-训练-1让-ai-解释含-fwl虚拟变量和交乘项的回归式" class="nav-link" data-scroll-target="#训练-1让-ai-解释含-fwl虚拟变量和交乘项的回归式"><span class="header-section-number">5.8.1</span> 训练 1：让 AI 解释含 FWL、虚拟变量和交乘项的回归式</a></li>
+  <li><a href="#训练-2让-ai-检查-did-型回归中每个变量和交乘项的含义" id="toc-训练-2让-ai-检查-did-型回归中每个变量和交乘项的含义" class="nav-link" data-scroll-target="#训练-2让-ai-检查-did-型回归中每个变量和交乘项的含义"><span class="header-section-number">5.8.2</span> 训练 2：让 AI 检查 DID 型回归中每个变量和交乘项的含义</a></li>
+  <li><a href="#训练-3让-ai-检查固定效应模型中的系数是否可以被识别" id="toc-训练-3让-ai-检查固定效应模型中的系数是否可以被识别" class="nav-link" data-scroll-target="#训练-3让-ai-检查固定效应模型中的系数是否可以被识别"><span class="header-section-number">5.8.3</span> 训练 3：让 AI 检查固定效应模型中的系数是否可以被识别</a></li>
+  <li><a href="#训练-4让-ai-把复杂回归式改写成变量含义-比较对象-系数解释三列表" id="toc-训练-4让-ai-把复杂回归式改写成变量含义-比较对象-系数解释三列表" class="nav-link" data-scroll-target="#训练-4让-ai-把复杂回归式改写成变量含义-比较对象-系数解释三列表"><span class="header-section-number">5.8.4</span> 训练 4：让 AI 把复杂回归式改写成「变量含义 + 比较对象 + 系数解释」三列表</a></li>
+  </ul></li>
+  <li><a href="#python-附录" id="toc-python-附录" class="nav-link" data-scroll-target="#python-附录"><span class="header-section-number">5.9</span> Python 附录</a></li>
+  <li><a href="#小结与练习" id="toc-小结与练习" class="nav-link" data-scroll-target="#小结与练习"><span class="header-section-number">5.10</span> 小结与练习</a>
+  <ul class="collapse">
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">5.10.1</span> 练习</a></li>
+  </ul></li>
+  <li><a href="#延伸阅读" id="toc-延伸阅读" class="nav-link" data-scroll-target="#延伸阅读"><span class="header-section-number">5.11</span> 延伸阅读</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/lianxhcn/PXa2026a/edit/main/lectures/05_FE_intFE.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/lianxhcn/PXa2026a/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/01_replication.html"><strong>讲义</strong></a></li><li class="breadcrumb-item"><a href="../lectures/05_FE_intFE.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FWL、虚拟变量、交乘项与固定效应：理解条件比较</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/01_replication.html"><strong>讲义</strong></a></li><li class="breadcrumb-item"><a href="../lectures/05_FE_intFE.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FWL、虚拟变量与固定效应：理解条件比较</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-05" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FWL、虚拟变量、交乘项与固定效应：理解条件比较</span></span></h1>
+<h1 class="title"><span id="sec-05" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FWL、虚拟变量与固定效应：理解条件比较</span></span></h1>
 </div>
 
 
@@ -299,55 +485,728 @@ ul.task-list li input[type="checkbox"] {
 <li>虚拟变量、分类变量、基准组和虚拟变量陷阱；</li>
 <li>个体固定效应、时间固定效应和双向固定效应；</li>
 <li>高维固定效应的基本思想；</li>
-<li>交乘项、条件效应、调节效应和异质性分析；</li>
 <li>DID 中的组别、时间和处理交乘项；</li>
-<li>RDD 中的阈值虚拟变量、运行变量、趋势项和交乘项；</li>
 <li>如何理解带固定效应和交乘项模型中的系数。</li>
 <li>本讲用到的 skills：<a href="../appendix/B_skills_index.html"><code>core/05-regression-interpreter</code></a>；</li>
-<li>可运行伴生文件：<code>examples/ch05/ch05_main.do</code>、<code>examples/ch05/ch05_python.ipynb</code>。</li>
+<li>可运行伴生文件：<code>examples/ch05/ch05_main.do</code>(Stata)、<code>examples/ch05/ch05_python.ipynb</code>(Python)。</li>
 </ul>
 </div>
 </div>
-<!-- W1 写作窗口（接力）负责本章。以下为统一模板骨架，逐节填充。 -->
-<section id="案例情境" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="案例情境"><span class="header-section-number">5.1</span> 案例情境</h2>
-<!-- TODO -->
+<!-- 契约追溯：大纲 A5 中「一般交乘项/条件/调节/异质性分析」与「RDD」两项，按老师 2026-07-18 讲义调整移至第 4 讲交付，本讲不设专节、不做跳转软链，由老师课堂口头交代大纲调整。DID 的组别×时间×处理交乘项属 DID 本身，仍在本讲。交互固定效应 (IntFE) 超出初级班大纲，不讲。 -->
+<!-- 状态 (W1)：第一批初稿 = 全章骨架 + 七节正文 + AI 协作 + 练习。图先直链老师图床，自绘图与冻结输出为后续批次；ch05_main.do / ch05_python.ipynb 随后派生。 -->
+<p>本讲的主线只有一句话：<strong>回归系数从来不是「影响」，而是「在控制了别的东西之后，拿谁跟谁比」</strong>。把这句话讲透，就能从最基本的一元回归，一步步走到面板数据的固定效应模型，再走到政策评估里最常用的双重差分 (DID)。串起这条路的，是一条叫 FWL 的定理——它告诉我们，多元回归的每个系数，本质上都是一次「先把别的变量剔除干净，再拿残差去比」的操作。理解了残差化，虚拟变量、固定效应和 DID 就都是同一件事的不同说法。</p>
+<section id="案例情境三家公司的一张图" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="案例情境三家公司的一张图"><span class="header-section-number">5.1</span> 案例情境：三家公司的一张图</h2>
+<p>先看一个上课时常用的例子。横轴是公司规模 (<span class="math inline">\(Size=\ln(\text{总资产})\)</span>)，纵轴是总资产回报率 (ROA)。图 <a href="#fig-fe-simpson" class="quarto-xref">图&nbsp;<span>5.1</span></a> 上半部分有三家公司：左上角那家起步时规模小、ROA 相对较高；右下角那家起步时规模就大、ROA 相对较低。这种公司之间的差异，与所处行业、所有权属性有关，基本不随时间变化。</p>
+<p>我们想问的是：<strong>一家公司规模变大以后，它的 ROA 会怎么变</strong>。可要是无视三家公司之间的差异，把所有点混在一起回归，得到的斜率是负的——「规模越大，ROA 越低」。图的下半部分给出组内去心 (de-mean，把每家公司的均值减掉) 之后的结果：公司之间的差异被减掉，三家公司各自内部的正向关系显露出来，斜率翻正。</p>
+<div id="fig-fe-simpson" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fe-simpson-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/Fig_OLS_FE_01.png" class="img-fluid figure-img" style="width:85.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fe-simpson-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;5.1: 辛普森悖论：混合回归得到负斜率，组内去心之后每家公司内部的关系为正
+</figcaption>
+</figure>
+</div>
+<p>差别不在数据，而在<strong>拿谁跟谁比</strong>：混合回归回答的是「大公司是不是比小公司 ROA 低」，用的是公司之间的差异；组内去心回答的是「同一家公司变大以后 ROA 怎么变」，只用每家公司内部的变化。两个问题都可以研究，但它们不是同一个问题；把前者的答案当成后者的答案，就是遗漏变量偏误。</p>
+<p>本讲要做的，就是把「换一次控制、就换一次比较对象」这件事，从这张图出发，一路讲到固定效应和 DID。</p>
 </section>
-<section id="概念讲解" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="概念讲解"><span class="header-section-number">5.2</span> 概念讲解</h2>
-<p>FWL 残差化直觉 → 虚拟变量与陷阱 → 个体/时间/双向固定效应 → 高维固定效应思想 → 交乘项与 异质性 → 从”虚拟变量 × 时间 × 处理交乘项”视角理解 DID、从阈值局部比较理解 RDD。</p>
-<!-- TODO: 大量可直接取材自 ci-policy 第 4 章（FE）+ 附录 F 实操；DDML/现代 DID 估计量只放延伸链接 -->
+<section id="从常数项到虚拟变量残差化的第一课" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="从常数项到虚拟变量残差化的第一课"><span class="header-section-number">5.2</span> 从常数项到虚拟变量：残差化的第一课</h2>
+<section id="常数项回归里最容易被忽略的那一项" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="常数项回归里最容易被忽略的那一项"><span class="header-section-number">5.2.1</span> 常数项：回归里最容易被忽略的那一项</h3>
+<p>从最简单的一元回归讲起：</p>
+<p><span id="eq-fe-simple"><span class="math display">\[
+Y_i = \alpha + \beta X_i + u_i
+\tag{5.1}\]</span></span></p>
+<p>这里的常数项 <span class="math inline">\(\alpha\)</span> 看着不起眼，却藏着理解后面一切的钥匙。把 <a href="#eq-fe-simple" class="quarto-xref">式&nbsp;<span>5.1</span></a> 两边取均值：</p>
+<p><span class="math display">\[
+\bar{Y} = \alpha + \beta\bar{X} + \bar{u}
+\]</span></p>
+<p>两式相减，常数项 <span class="math inline">\(\alpha\)</span> 就被消掉了：</p>
+<p><span id="eq-fe-demean-const"><span class="math display">\[
+Y_i - \bar{Y} = (X_i - \bar{X})\beta + (u_i - \bar{u})
+\tag{5.2}\]</span></span></p>
+<p>这说明一件事：<strong>带常数项的回归，等价于先把 <span class="math inline">\(Y\)</span> 和 <span class="math inline">\(X\)</span> 都减去各自的均值，再做一次不带常数项的回归</strong>。常数项在这里扮演的角色，就是「把样本均值这一层信息吸走」。换句话说，<span class="math inline">\(\beta\)</span> 度量的从来不是 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(Y\)</span> 的绝对水平关系，而是<strong>两者相对各自均值的偏离</strong>之间的关系。</p>
+<p>常数项还有几件不显眼却要紧的活儿：吸收 <span class="math inline">\(X\)</span>、<span class="math inline">\(Y\)</span> 量纲与平移缩放带来的影响，保证 <span class="math inline">\(R^2\in[0,1]\)</span>；在 DID 和 RDD 里，常数项本身还带明确的经济含义。这里先记住最核心的一点：<strong>回归系数度量的是「去掉某个基准之后」的比较</strong>。</p>
 </section>
-<section id="代码实操" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="代码实操"><span class="header-section-number">5.3</span> 代码实操</h2>
-<!-- TODO: reghdfe 等；附录 F 代码裁剪进 examples/ch05 -->
+<section id="fwl-定理先剔除再回归" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="fwl-定理先剔除再回归"><span class="header-section-number">5.2.2</span> FWL 定理：先剔除，再回归</h3>
+<p>把上面「减均值」的操作一般化，就是 Frisch-Waugh-Lovell(FWL) 定理。考虑一个多元回归：</p>
+<p><span id="eq-fe-fwl"><span class="math display">\[
+Y = X_1{\color{red}{\beta_1}} + X_2\beta_2 + u
+\tag{5.3}\]</span></span></p>
+<p>我们只关心 <span class="math inline">\(X_1\)</span> 的系数 <span class="math inline">\(\beta_1\)</span>。FWL 定理说，要得到 <span class="math inline">\(\hat\beta_1\)</span>，不必把 <span class="math inline">\(X_1\)</span>、<span class="math inline">\(X_2\)</span> 一起放进回归，可以分三步走：</p>
+<ol type="1">
+<li>用 <span class="math inline">\(X_2\)</span> 回归 <span class="math inline">\(Y\)</span>，取残差 <span class="math inline">\(\tilde{Y}\)</span>(把 <span class="math inline">\(X_2\)</span> 对 <span class="math inline">\(Y\)</span> 的影响剔除干净)；</li>
+<li>用 <span class="math inline">\(X_2\)</span> 回归 <span class="math inline">\(X_1\)</span>，取残差 <span class="math inline">\(\tilde{X}_1\)</span>(把 <span class="math inline">\(X_2\)</span> 对 <span class="math inline">\(X_1\)</span> 的影响剔除干净)；</li>
+<li>用 <span class="math inline">\(\tilde{X}_1\)</span> 回归 <span class="math inline">\(\tilde{Y}\)</span>，得到的系数<strong>恰好等于</strong> <a href="#eq-fe-fwl" class="quarto-xref">式&nbsp;<span>5.3</span></a> 里的 <span class="math inline">\(\hat\beta_1\)</span>。</li>
+</ol>
+<p>用一句话概括：<strong>「先把其他变量剔除、再回归」与「一起回归」等价</strong>。上一小节的减均值，只是 FWL 的一个特例——那里的 <span class="math inline">\(X_2\)</span> 就是常数项 (一列 1)，「剔除 <span class="math inline">\(X_2\)</span>」正好就是「减去均值」。</p>
+<p>FWL 给我们一个极其有用的视角：<strong>多元回归里 <span class="math inline">\(X_1\)</span> 的系数，度量的是「<span class="math inline">\(X_1\)</span> 中剔除掉其他变量之后剩下的那部分」与「<span class="math inline">\(Y\)</span> 中剔除掉其他变量之后剩下的那部分」之间的关系</strong>。系数是「控制其他变量之后的比较」，这句在上一讲就出现过的话，到这里有了精确的数学表述：所谓「控制」，就是「残差化」；所谓「比较」，就是拿两个残差去回归。</p>
+<div class="callout callout-style-default callout-note callout-titled" title="为什么值得专门讲 FWL">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+为什么值得专门讲 FWL
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>FWL 不只是一个理论性质。Stata 里处理高维固定效应的 <code>reghdfe</code>、<code>ivreg2</code>/<code>lasso2</code> 里的 <code>partial()</code> 选项、以及画部分回归图的 <code>avplot</code>、<code>binscatter</code> 等命令，其底层原理都是 FWL。理解了「剔除—回归」，本讲后面的固定效应和 DID 就都是它的应用。</p>
+</div>
+</div>
 </section>
-<section id="ai-协作" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="ai-协作"><span class="header-section-number">5.4</span> AI 协作</h2>
-<blockquote class="blockquote">
-<p>契约边界：本节逐条覆盖大纲「AI 协作训练」清单，不删项。</p>
-</blockquote>
+<section id="遗漏变量坏控制与过度控制" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="遗漏变量坏控制与过度控制"><span class="header-section-number">5.2.3</span> 遗漏变量、坏控制与过度控制</h3>
+<p>FWL 也让「遗漏变量偏误」一眼可见。设真实模型是 <a href="#eq-fe-fwl" class="quarto-xref">式&nbsp;<span>5.3</span></a>，但我们偷懒，只放 <span class="math inline">\(X_1\)</span>：</p>
+<p><span class="math display">\[
+\text{只估 }\; Y = X_1\theta_1 + \underbrace{\varepsilon}_{X_2\beta_2+u}
+\]</span></p>
+<p>此时 <span class="math inline">\(X_2\)</span> 被塞进了误差项。只要 <span class="math inline">\(X_1\)</span> 与 <span class="math inline">\(X_2\)</span> 相关 (<span class="math inline">\(Corr(X_1,X_2)\neq 0\)</span>)，<span class="math inline">\(\hat\theta_1\)</span> 就不等于 <span class="math inline">\(\beta_1\)</span>——它把 <span class="math inline">\(X_2\)</span> 的一部分贡献也算到了 <span class="math inline">\(X_1\)</span> 头上。辛普森悖论就是这么来的：真实模型里每家公司有自己的截距 (个体效应)，漏掉它，规模的系数就被公司间差异污染。</p>
+<p>但控制变量并非越多越好。多放一个变量，能不能让系数更干净，取决于这个变量<strong>站在因果链条的哪个位置</strong>：</p>
 <ul>
-<li>让 AI 解释含有 FWL、虚拟变量和交乘项的回归式 —— <code>core/05-regression-interpreter</code>；</li>
-<li>让 AI 检查 DID 型回归中每个变量和交乘项的含义 —— <code>core/05-regression-interpreter</code>；</li>
-<li>让 AI 生成交乘项结果的边际效应解释 —— <code>core/05-regression-interpreter</code>；</li>
-<li>让 AI 检查固定效应模型中的系数是否可以被识别 —— <code>core/05-regression-interpreter</code>；</li>
-<li>让 AI 把复杂回归式改写成「变量含义 + 比较对象 + 系数解释」三列表 —— <code>core/05-regression-interpreter</code>。</li>
+<li><strong>好的控制变量</strong>：它同时影响 <span class="math inline">\(X_1\)</span> 和 <span class="math inline">\(Y\)</span>，是二者共同的混淆源。放进去，能挡住一条虚假的关联通道。</li>
+<li><strong>坏控制 (bad control)</strong>：它本身是被 <span class="math inline">\(X_1\)</span> 影响的结果 (处理之后才发生的中间变量)。把它当控制变量放进去，等于把一部分真实效应也一起「控制」掉了，系数反而偏了。</li>
+<li><strong>过度控制 (over-control)</strong>：控制了处理效应必经的中介，或控制了与 <span class="math inline">\(X_1\)</span> 高度共线、几乎不含独立信息的变量，识别变异被抽干，系数变得不稳、方差飙升。</li>
 </ul>
-<!-- TODO -->
+<p>判断的标准不是「显著与否」「<span class="math inline">\(R^2\)</span> 高不高」，而是<strong>这个变量是原因还是结果</strong>。识别策略层面的深入讨论超出本讲范围，这里只需记住一句：控制变量要控在混淆上，不要控在结果或中介上。</p>
 </section>
-<section id="python-附录" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="python-附录"><span class="header-section-number">5.5</span> Python 附录</h2>
-<p>载体 <code>examples/ch05/ch05_python.ipynb</code>。</p>
-<!-- TODO -->
+<section id="虚拟变量基准组与虚拟变量陷阱" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="虚拟变量基准组与虚拟变量陷阱"><span class="header-section-number">5.2.4</span> 虚拟变量、基准组与虚拟变量陷阱</h3>
+<p>把 FWL 里的 <span class="math inline">\(X_2\)</span> 换成一个分类变量，就得到虚拟变量 (dummy variable)。设一份数据里既有男性 (<span class="math inline">\(M=1\)</span>) 也有女性 (<span class="math inline">\(M=0\)</span>)，模型写成：</p>
+<p><span id="eq-fe-dummy"><span class="math display">\[
+y_i = \alpha + {\color{blue}{\gamma}}\,M_i + \beta x_i + u_i
+\tag{5.4}\]</span></span></p>
+<p><span class="math inline">\(\gamma\)</span> 的含义一目了然——它是男性组相对女性组的<strong>截距差</strong>：</p>
+<p><span class="math display">\[
+E[y_i\mid M=0]=\alpha+\beta x_i,\qquad E[y_i\mid M=1]=(\alpha+\gamma)+\beta x_i
+\]</span></p>
+<p>图 <a href="#fig-fe-dummy" class="quarto-xref">图&nbsp;<span>5.2</span></a> 里，两组是两条平行线 (斜率同为 <span class="math inline">\(\beta\)</span>)，<span class="math inline">\(\gamma\)</span> 就是两条线的垂直间距。这时「女性组」被当作<strong>基准组</strong> (base group)，它的截距是 <span class="math inline">\(\alpha\)</span>，其余各组的虚拟变量系数都是「相对基准组」的差。</p>
+<div id="fig-fe-dummy" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fe-dummy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/FWL_Dummy_a01.png" class="img-fluid figure-img" style="width:55.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fe-dummy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;5.2: 虚拟变量 = 变截距：两组共用斜率 <span class="math inline">\(\beta\)</span>，虚拟变量系数 <span class="math inline">\(\gamma\)</span> 是两条平行线的垂直间距
+</figcaption>
+</figure>
+</div>
+<p>这里藏着一个初学者最常踩的坑——<strong>虚拟变量陷阱 (dummy variable trap)</strong>。一个分类变量若有 <span class="math inline">\(k\)</span> 个类别，把 <span class="math inline">\(k\)</span> 个虚拟变量连同常数项一起放进回归，就会因为「<span class="math inline">\(k\)</span> 个虚拟变量之和恒等于常数项那一列 1」而完全共线，模型无法估计。解决办法只有二选一：<strong>留一个基准组</strong> (放 <span class="math inline">\(k-1\)</span> 个虚拟变量 + 常数项)，或<strong>去掉常数项</strong> (放满 <span class="math inline">\(k\)</span> 个虚拟变量，此时每个系数是该组的组内截距，而非相对差)。二者的斜率估计完全相同，区别只在截距怎么解读。</p>
+<p>在 Stata 里，这些都由因子变量 (factor variable) 自动打理，不必手工造虚拟变量：</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>符号</th>
+<th>含义</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>i.</code></td>
+<td>声明为分类变量 (自动留基准组、生成虚拟变量)</td>
+<td><code>reg y x i.id i.year</code></td>
+</tr>
+<tr class="even">
+<td><code>c.</code></td>
+<td>声明为连续变量</td>
+<td><code>c.age</code></td>
+</tr>
+<tr class="odd">
+<td><code>ib#.</code></td>
+<td>指定第 <code>#</code> 类为基准组 (默认取最小值那类)</td>
+<td><code>ib2.race</code></td>
+</tr>
+<tr class="even">
+<td><code>#</code></td>
+<td>两变量的交乘项</td>
+<td><code>i.D#c.x</code></td>
+</tr>
+<tr class="odd">
+<td><code>##</code></td>
+<td>两变量各自及其交乘项</td>
+<td><code>x##z</code></td>
+</tr>
+</tbody>
+</table>
+<p>例如 <code>reg wage i.race c.hours i.race#c.hours</code>，一行就把「不同种族的工资水平差」和「不同种族里工时回报的差异」都估了出来——这正是把虚拟变量和交乘项组合起来用。<strong>理解了「虚拟变量 = 变截距」，就为下一节的固定效应做好了全部准备</strong>：固定效应，无非是把「个体」也当成一个分类变量，给每个个体一条自己的截距。</p>
 </section>
-<section id="小结与练习" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="小结与练习"><span class="header-section-number">5.6</span> 小结与练习</h2>
-<!-- TODO -->
 </section>
-<section id="延伸阅读" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="延伸阅读"><span class="header-section-number">5.7</span> 延伸阅读</h2>
-<!-- TODO: 现代 DID 估计量（CSDID 等）留高级班，链接 https://www.lianxh.cn/details/1811.html -->
+<section id="固定效应模型从虚拟变量到组内去心" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="固定效应模型从虚拟变量到组内去心"><span class="header-section-number">5.3</span> 固定效应模型：从虚拟变量到组内去心</h2>
+<section id="三类变量三个下标" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="三类变量三个下标"><span class="header-section-number">5.3.1</span> 三类变量、三个下标</h3>
+<p>面板数据每个观测有两个下标：个体 <span class="math inline">\(i\)</span>、时间 <span class="math inline">\(t\)</span>。影响 <span class="math inline">\(y_{it}\)</span> 的变量可以按「随谁变」分成三类：</p>
+<ul>
+<li><strong>不随时间变的 <span class="math inline">\(x_i\)</span></strong>：公司文化、个人能力、地区禀赋、所有权属性；</li>
+<li><strong>不随个体变的 <span class="math inline">\(x_t\)</span></strong>：宏观冲击、货币政策、经济政策不确定性；</li>
+<li><strong>既随时间又随个体变的 <span class="math inline">\(x_{it}\)</span></strong>：规模、杠杆、投资、研发。</li>
+</ul>
+<p>麻烦在于，<span class="math inline">\(x_i\)</span> 和 <span class="math inline">\(x_t\)</span> 里有大量成员观测不到，又偏偏和我们关心的 <span class="math inline">\(x_{it}\)</span> 相关。以杠杆率为例，假设真实模型里所有权属性 <span class="math inline">\(SOE_i\)</span> 影响杠杆，但我们观测不到它：</p>
+<p><span class="math display">\[
+\text{真实：}\; Lev_{it}=\alpha+SOE_i+Size_{it}\beta+\varepsilon_{it},\qquad
+\text{只估：}\; Lev_{it}=\alpha+Size_{it}\theta+u_{it}
+\]</span></p>
+<p>只要国企普遍规模更大、杠杆更高 (<span class="math inline">\(Corr(SOE_i,Size_{it})\neq 0\)</span>)，<span class="math inline">\(\hat\theta\)</span> 就把所有权的贡献混了进来。这就是上一节遗漏变量偏误的面板版本。</p>
+</section>
+<section id="组内去心不用观测也能控制" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="组内去心不用观测也能控制"><span class="header-section-number">5.3.2</span> 组内去心：不用观测，也能控制</h3>
+<p>固定效应模型的办法直接而漂亮：把所有不随时间变化的因素——无论能不能观测——统统打包进一个个体截距 <span class="math inline">\(\alpha_i\)</span>，再用 FWL 的减均值把它剔除掉：</p>
+<p><span id="eq-fe-demean"><span class="math display">\[
+\begin{aligned}
+y_{it} &amp;= \alpha_i + x_{it}\beta + \varepsilon_{it} \\
+\bar{y}_i &amp;= \alpha_i + \bar{x}_i\beta + \bar\varepsilon_i \\
+y_{it}-\bar{y}_i &amp;= (x_{it}-\bar{x}_i)\beta + ({\color{red}{\alpha_i-\alpha_i}}) + (\varepsilon_{it}-\bar\varepsilon_i)
+\end{aligned}
+\tag{5.5}\]</span></span></p>
+<p>第三行里 <span class="math inline">\(\alpha_i-\alpha_i=0\)</span>，这一步就是「不用观测也能控制」的全部秘密：我们从没测量过 <span class="math inline">\(SOE_i\)</span>、公司文化或管理层风格，但只要它们不随时间变，组内去心就把它们连同 <span class="math inline">\(\alpha_i\)</span> 一起减掉了。对去心后的数据做 OLS，得到的 <span class="math inline">\(\hat\beta\)</span>，和直接在模型里放 <span class="math inline">\(N\)</span> 个个体虚拟变量完全等价——这又是 FWL 定理的一次应用。<strong>「给每个个体一条截距」= 放 <span class="math inline">\(N\)</span> 个虚拟变量 = 组内去心</strong>，三种说法是同一件事。这也正是上一节「虚拟变量 = 变截距」在面板上的延伸。</p>
+<p>Stata 里至少有四种等价写法，前三种是现成命令，第四种手动去心，用来确认自己真懂了组内变换：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>xtset id <span class="fu">year</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span>   <span class="fu">y</span> x, <span class="kw">fe</span> <span class="kw">vce</span>(<span class="kw">cluster</span> id)              <span class="co">// [1] 组内估计量</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">areg</span>    <span class="fu">y</span> x, absorb(id) <span class="kw">vce</span>(<span class="kw">cluster</span> id)      <span class="co">// [2]</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>reghdfe <span class="fu">y</span> x, absorb(id) <span class="kw">vce</span>(<span class="kw">cluster</span> id)      <span class="co">// [3]</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">bysort</span> id: <span class="bn">center</span> <span class="fu">y</span> x, <span class="kw">prefix</span>(c_)            <span class="co">// [4] 手动去心</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> c_y c_x, <span class="kw">vce</span>(<span class="kw">cluster</span> id)                 <span class="co">//     系数同上，标准误需另行调整</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>四种方法的 <span class="math inline">\(\hat\beta\)</span> 完全相同。差别只在于：它用的是每家公司<strong>内部</strong>的变化，而不是公司<strong>之间</strong>的差异。</p>
+</section>
+<section id="个体时间与双向固定效应" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="个体时间与双向固定效应"><span class="header-section-number">5.3.3</span> 个体、时间与双向固定效应</h3>
+<p>只放个体截距 <span class="math inline">\(\alpha_i\)</span>，是<strong>个体固定效应</strong>：控制掉一切不随时间变的个体差异。再加一个年份截距 <span class="math inline">\(\lambda_t\)</span>，就是实证中用得最多的<strong>双向固定效应 (TWFE)</strong>：</p>
+<p><span id="eq-fe-twfe"><span class="math display">\[
+Y_{it}=x_{it}'\beta+\alpha_i+\lambda_t+\varepsilon_{it}
+\tag{5.6}\]</span></span></p>
+<p>写成虚拟变量的形式，它的含义更清楚：</p>
+<p><span class="math display">\[
+Y_{it}=x_{it}'\beta+\sum_{i=1}^N\alpha_i A_i+\sum_{t=1}^T\lambda_t B_t+\varepsilon_{it}
+\]</span></p>
+<p><span class="math inline">\(\alpha_i\)</span> 吸收「不随时间变的个体差异」，<span class="math inline">\(\lambda_t\)</span> 吸收「当年对所有个体一致的宏观冲击」。也可以只放 <span class="math inline">\(\lambda_t\)</span>(<strong>时间固定效应</strong>)，控制共同的时间趋势而不管个体差异。放哪几组、怎么放，取决于你想控制什么。命令上，<code>reghdfe y x, absorb(id year)</code> 或 <code>xtreg y x i.year, fe</code> 都能实现双向固定效应。</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="常见问题：为什么固定效应放不进性别和种族">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+常见问题：为什么固定效应放不进性别和种族
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>初学者常犯的一个错，是想在个体固定效应模型里加入性别、种族、出生地这类变量，结果 Stata 报告它们被 <code>(omitted)</code> 了。原因就在 <a href="#eq-fe-demean" class="quarto-xref">式&nbsp;<span>5.5</span></a>：个体效应 <span class="math inline">\(\alpha_i\)</span> 不随时间变，而性别、种族在样本期内也不随时间变，二者完全共线——组内去心把 <span class="math inline">\(\alpha_i\)</span> 减掉的同时，也把所有时不变变量一起减成了 0，Stata 只能删掉它们。</p>
+<p><strong>一句话：固定效应能「控制」个体的一切时不变特征，却无法「估计」这些特征各自的系数。</strong> 若研究问题恰恰是「种族对工资的影响」这类时不变变量的效应，就不能用固定效应，需要改用组间估计、加控制变量的混合回归，或 Hausman–Taylor(<code>xthtaylor</code>)、<code>xtseqreg</code> 等专门方法。</p>
+</div>
+</div>
+</section>
+</section>
+<section id="高维固定效应的基本思想" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="高维固定效应的基本思想"><span class="header-section-number">5.4</span> 高维固定效应的基本思想</h2>
+<p>固定效应的组数和维度一旦上去，直接放虚拟变量在计算上就不可行了。两个典型场景：一是国际贸易的引力模型，出口国 × 年份、进口国 × 年份、国家对，三组固定效应动辄上万个虚拟变量；二是劳动经济学的「雇主—雇员」匹配数据，要同时估计百万级的工人效应和几十万个企业效应。<code>reg y x i.id i.firm i.year</code> 这样硬放虚拟变量，内存和时间都撑不住。</p>
+<p><code>reghdfe</code> 的解决办法是<strong>交替去心</strong>：轮流对每一组固定效应做组内变换，反复迭代直到收敛——本质上还是 FWL 定理的反复应用。对使用者来说，只需要把要吸收的固定效应写进 <code>absorb()</code>：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>reghdfe <span class="fu">y</span> x1 <span class="kw">x2</span>, absorb(exp#year imp#year exp#imp) <span class="kw">vce</span>(<span class="kw">cluster</span> <span class="fu">exp</span> imp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>高维固定效应只需记住三点基本思想：</p>
+<ol type="1">
+<li><strong><code>absorb()</code> 吸什么，和 <code>vce(cluster)</code> 聚类到哪，是两个独立的决定</strong>。前者由「要控制哪些混淆」决定，后者由「残差在哪个维度上相关」决定，二者经常不同。</li>
+<li><strong>吸收得越多，剩下的识别变异越少</strong>。每加一组固定效应，被控制的混淆更多，但用来估计 <span class="math inline">\(\beta\)</span> 的变异也更少——不是加得越多越好。</li>
+<li><strong>处理变量不能和固定效应处在同一变异层级</strong>。若政策变量本身就在「行业 × 年份」层面变动，再放行业 × 年份固定效应，处理变量会被吸收殆尽、被 Stata 直接 <code>omitted</code>。这不是软件出错，而是你既要控制这一层的一切共同变动、又要估计只在这一层变动的变量，自相矛盾。</li>
+</ol>
+<p>高维固定效应的更细致内容 (奇异值观测的剔除、非负因变量为何不宜用 <span class="math inline">\(\log(1+y)\)</span>、交互固定效应等) 留给进阶专题，本讲点到为止。</p>
+</section>
+<section id="双向固定效应与-did" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="双向固定效应与-did"><span class="header-section-number">5.5</span> 双向固定效应与 DID</h2>
+<section id="每加一组固定效应就换一次比较对象" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="每加一组固定效应就换一次比较对象"><span class="header-section-number">5.5.1</span> 每加一组固定效应，就换一次比较对象</h3>
+<p>把前面几种设定排在一起，会看到一条清晰的递进——每往模型里多放一组固定效应，被控制的混淆更多，系数回答的问题也随之收窄：</p>
+<div id="tbl-fe-ladder" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-fe-ladder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+表&nbsp;5.1: 固定效应设定与比较对象的递进
+</figcaption>
+<div aria-describedby="tbl-fe-ladder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>设定</th>
+<th><code>absorb()</code></th>
+<th>被吸收的混淆</th>
+<th>系数回答的问题</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>混合回归 POLS</td>
+<td>无</td>
+<td>无</td>
+<td>公司间差异与公司内变化混在一起</td>
+</tr>
+<tr class="even">
+<td>个体 FE</td>
+<td><code>id</code></td>
+<td>不随时间变的公司特征</td>
+<td>同一家公司变化时，<span class="math inline">\(y\)</span> 怎么变</td>
+</tr>
+<tr class="odd">
+<td>双向 FE(TWFE)</td>
+<td><code>id year</code></td>
+<td>＋当年对所有公司一致的宏观冲击</td>
+<td>相对同年其他公司，该公司的变化带来什么</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>表 <a href="#tbl-fe-ladder" class="quarto-xref">表&nbsp;<span>5.1</span></a> 是本讲最要紧的一张表：<strong>固定效应设定，本质上是研究者在向读者声明「我在拿谁和谁比」</strong>。这也回答了一个关键问题——既然固定效应会吸收掉同层级的变量，为什么 DID 的处理变量能在双向固定效应下活下来？因为 DID 的处理变量比 <span class="math inline">\(\alpha_i\)</span> 和 <span class="math inline">\(\lambda_t\)</span> 都「高一个层级」，它在<strong>个体 × 时间</strong>维度上变动，恰好落在双向固定效应吸不掉的那层变异里。</p>
+</section>
+<section id="did看清两次差分" class="level3" data-number="5.5.2">
+<h3 data-number="5.5.2" class="anchored" data-anchor-id="did看清两次差分"><span class="header-section-number">5.5.2</span> 2×2 DID：看清「两次差分」</h3>
+<p>DID 是政策评估里最干净的一个设定。最基本的情形是「两组两期」：处理组在政策后受处理，对照组始终不受处理。用 <span class="math inline">\(Treat_i=1\)</span> 标记处理组，<span class="math inline">\(Post_t=1\)</span> 标记政策后，基础回归是：</p>
+<p><span id="eq-fe-did"><span class="math display">\[
+y_{it}=\alpha+\theta_1 Treat_i+\theta_2 Post_t+{\color{blue}{\gamma}}\,(Treat_i\times Post_t)+\varepsilon_{it}
+\tag{5.7}\]</span></span></p>
+<p>真正关心的是<strong>交乘项</strong> <span class="math inline">\(\gamma\)</span>。把四个「组别—时期」的均值写出来 (<span class="math inline">\(C_0,C_1\)</span> 是对照组政策前后，<span class="math inline">\(Y_0,Y_1\)</span> 是处理组政策前后)：</p>
+<div id="tbl-fe-did" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-fe-did-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+表&nbsp;5.2: 2×2 DID 的四格均值
+</figcaption>
+<div aria-describedby="tbl-fe-did-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">政策前</th>
+<th style="text-align: right;">政策后</th>
+<th style="text-align: right;">前后变化</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>对照组</td>
+<td style="text-align: right;"><span class="math inline">\(C_0\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(C_1\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(C_1-C_0\)</span></td>
+</tr>
+<tr class="even">
+<td>处理组</td>
+<td style="text-align: right;"><span class="math inline">\(Y_0\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(Y_1\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(Y_1-Y_0\)</span></td>
+</tr>
+<tr class="odd">
+<td>组间差异</td>
+<td style="text-align: right;"><span class="math inline">\(Y_0-C_0\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(Y_1-C_1\)</span></td>
+<td style="text-align: right;"><span class="math inline">\((Y_1-C_1)-(Y_0-C_0)\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>三个系数各有身份，一个都不能混：</p>
+<ul>
+<li><span class="math inline">\(\theta_1=Y_0-C_0\)</span>：政策前两组的<strong>水平差</strong> (两组本来就不一样，不是政策效应)；</li>
+<li><span class="math inline">\(\theta_2=C_1-C_0\)</span>：对照组的<strong>时间变化</strong> (对照组没受政策，用它刻画共同的时间趋势)；</li>
+<li>交乘项 <span class="math inline">\(\gamma\)</span>：</li>
+</ul>
+<p><span id="eq-fe-did-gamma"><span class="math display">\[
+\gamma=(Y_1-C_1)-(Y_0-C_0)=(Y_1-Y_0)-(C_1-C_0)
+\tag{5.8}\]</span></span></p>
+<p>两种写法等价：左边是「政策后组间差」减「政策前组间差」，右边是「处理组前后变化」减「对照组前后变化」。<strong>DID 的精髓，是用对照组的同期变化，替处理组扣掉它本来也会经历的共同趋势</strong>：处理组若没有政策，本会从 <span class="math inline">\(Y_0\)</span> 沿对照组的趋势走到 <span class="math inline">\(Y_0+(C_1-C_0)\)</span>；实际到了 <span class="math inline">\(Y_1\)</span>，二者之差正是政策效应。这里的三个虚拟变量——组别 <span class="math inline">\(Treat_i\)</span>、时间 <span class="math inline">\(Post_t\)</span>、以及二者的交乘 <span class="math inline">\(Treat_i\times Post_t\)</span>——就是大纲说的「DID 中的组别、时间和处理交乘项」。</p>
+<div id="fig-fe-did" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fe-did-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/DID-two-period-03-base_C0.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fe-did-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;5.3: 2×2 DID 的四个均值与处理组反事实：对照组斜率给出共同趋势，处理组偏离这条趋势的部分就是政策效应
+</figcaption>
+</figure>
+</div>
+<p>一个经典例子是 Card and Krueger (1994)：1992 年新泽西上调最低工资、相邻的宾夕法尼亚没有，<span class="math inline">\(Treat_i\)</span> 是「是否新泽西」、<span class="math inline">\(Post_t\)</span> 是「是否调薪后」，交乘项系数就是最低工资对就业的 DID 估计。处理组、对照组、政策前后、交乘项含义全都一目了然，没有一处要猜「在跟谁比」。</p>
+</section>
+<section id="从两期到多期事件研究与平行趋势" class="level3" data-number="5.5.3">
+<h3 data-number="5.5.3" class="anchored" data-anchor-id="从两期到多期事件研究与平行趋势"><span class="header-section-number">5.5.3</span> 从两期到多期：事件研究与平行趋势</h3>
+<p>真实的政策评估几乎总是多期面板：政策前有若干期、政策后也有若干期。把 <a href="#eq-fe-did" class="quarto-xref">式&nbsp;<span>5.7</span></a> 沿「相对政策时间」展开，就得到多期 DID(事件研究) 设定。设政策在 <span class="math inline">\(t^*\)</span> 期实施，令 <span class="math inline">\(k=t-t^*\)</span> 为相对时间：</p>
+<p><span id="eq-fe-event"><span class="math display">\[
+Y_{it}=\alpha_i+\lambda_t+\sum_{k\neq -1}\delta_k\big(Treat_i\times\mathbf{1}\{t-t^*=k\}\big)+\varepsilon_{it}
+\tag{5.9}\]</span></span></p>
+<p>以政策前一期 <span class="math inline">\(k=-1\)</span> 作基准 (系数归一化为 0)。两组系数含义要分开看：</p>
+<ul>
+<li><strong>事前系数</strong> <span class="math inline">\(\delta_k\,(k&lt;-1)\)</span>：政策来临<strong>之前</strong>处理组相对对照组的差异。若平行趋势成立，这些系数应当<strong>不显著</strong>——政策还没来，两组不该有系统性差异。</li>
+<li><strong>事后系数</strong> <span class="math inline">\(\delta_k\,(k\ge 0)\)</span>：政策实施后第 <span class="math inline">\(k\)</span> 期的处理效应，连起来就是政策效应的动态路径。</li>
+</ul>
+<div id="fig-fe-multi" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fe-multi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/DID-multi-period-01.png" class="img-fluid figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fe-multi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;5.4: 标准的多期 DID：事前若干期用于判断平行趋势，事后若干期用于估计动态效应
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="常见问题：对照组怎么选、平行趋势怎么看">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+常见问题：对照组怎么选、平行趋势怎么看
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>DID 能不能站得住，全押在<strong>平行趋势假设</strong>上：如果没有政策，处理组和对照组的结果变量本会沿同一条趋势走。两件事最容易出问题——</p>
+<ul>
+<li><strong>对照组的选择</strong>：对照组要能代表处理组「假如没有政策会怎样」。若处理组和对照组本就走在不同的趋势上 (比如处理组是高增长地区、对照组是停滞地区)，DID 会把趋势差误当成政策效应。</li>
+<li><strong>平行趋势的检验</strong>：主要靠事件研究图看事前系数是否接近零、是否平坦。要强调的是，事前系数不显著只是一个<strong>直观的、不严谨</strong>的检验——它是必要条件而非充分条件，通不过基本可以否掉平行趋势，通过了也不能算证明。</li>
+</ul>
+<p>至于分批推进的政策 (不同个体在不同年份进入处理) 会给双向固定效应带来的麻烦——TWFE 的系数会变成一堆 2×2 比较的加权平均、甚至混入负权重——以及 CSDID 等现代 DID 估计量如何修正，属于高级班内容，本讲不展开，仅在延伸阅读给出入口。</p>
+</div>
+</div>
+</section>
+</section>
+<section id="如何理解带固定效应和交乘项的系数" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="如何理解带固定效应和交乘项的系数"><span class="header-section-number">5.6</span> 如何理解带固定效应和交乘项的系数</h2>
+<p>走到这里，可以把一条主线收拢成一句话：<strong>无论是一元回归的斜率、虚拟变量的截距差、固定效应模型里的 <span class="math inline">\(\beta\)</span>，还是 DID 的交乘项，它们全都是「在控制了别的东西之后，拿谁跟谁比」</strong>。区别只在于「控制了什么」「比较对象是谁」：</p>
+<ul>
+<li>一元回归的 <span class="math inline">\(\beta\)</span>：相对样本均值，<span class="math inline">\(X\)</span> 高一单位对应 <span class="math inline">\(Y\)</span> 的差；</li>
+<li>虚拟变量系数：相对基准组的截距差；</li>
+<li>个体固定效应里的 <span class="math inline">\(\beta\)</span>：同一个体内部，随时间变化时 <span class="math inline">\(Y\)</span> 怎么变；</li>
+<li>双向固定效应里的 <span class="math inline">\(\beta\)</span>：相对同年其他个体，该个体的变化带来什么；</li>
+<li>DID 交乘项：处理组前后变化，再扣掉对照组同期变化。</li>
+</ul>
+<p>读懂一个复杂回归式的系数，可以用一张<strong>三列表</strong>把它拆开——每个变量 (含交乘项) 占一行，逐列写清「变量含义 / 比较对象 / 系数解释」。比如面对 <code>reg y i.treat##i.post</code> 里的 <code>1.treat#1.post</code>，三列分别是：「处理组在政策后的额外项」/「处理组前后变化 vs 对照组前后变化」/「双重差分的政策效应」。养成这个习惯，再复杂的固定效应加交乘项模型，也不会看着系数发懵。下一节的 AI 协作，就把这张三列表交给 AI 来帮你打草稿，你负责核对。</p>
+</section>
+<section id="代码实操" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="代码实操"><span class="header-section-number">5.7</span> 代码实操</h2>
+<p>本节用四段可复现的 Stata 代码，把前面的直觉落到命令上。完整脚本见伴生文件 <code>examples/ch05/ch05_main.do</code>(<code>**#</code> 大纲与本讲各节标题一一对应，可在 VS Code 中按节导航运行)；真实财务数据 <code>xtcs.dta</code>(中国上市公司资本结构面板) 随本讲提供。代码为静态展示、输出为本机运行后冻结，不在渲染时执行。</p>
+<p><strong>其一，辛普森悖论与组内去心</strong>：真实斜率 <span class="math inline">\(\beta=0.5\)</span>，但三家公司的个体效应与初始规模负相关。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>*----------------- 模拟：辛普森悖论</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span> <span class="dv">seed</span> 20260706</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span> <span class="kw">obs</span> 3</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> id    = <span class="dt">_n</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> a_i   = 12 - 3*id            <span class="co">// 个体效应 9,6,3，与规模负相关</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> size0 = 2  + 3*id            <span class="co">// 初创规模 5,8,11</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>expand 100</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> x = size0 + runiform(0, 4)          <span class="co">// Size</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> <span class="fu">y</span> = a_i + 0.5*x + rnormal(0, 0.8)   <span class="co">// DGP: beta = 0.5</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span>  <span class="fu">y</span> x                 <span class="co">// 混合回归：斜率为负</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="kw">areg</span> <span class="fu">y</span> x, absorb(id)     <span class="co">// 个体固定效应：斜率回到 0.5 附近</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>xtset id</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> <span class="fu">y</span> x, <span class="kw">be</span>            <span class="co">// 对照：组间关系，就是那条负斜率的来源</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>   混合回归      <span class="kw">reg</span> <span class="fu">y</span> x            :  x = -0.305   被公司间差异污染，符号翻负</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>   个体固定效应  <span class="kw">areg</span> <span class="fu">y</span> x, absorb(id):  x =  0.562   只用公司内部变异，还原真值 0.5</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>   组间关系      <span class="kw">xtreg</span> <span class="fu">y</span> x, <span class="kw">be</span>      :  x = -0.500   公司之间的关系，正是负斜率来源</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>其二，固定效应命令族的等价与时不变变量被 omit</strong>：</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">webuse</span> nlswork, <span class="kw">clear</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>xtset idcode <span class="fu">year</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> <span class="bn">black</span> = 2.race                              <span class="co">// 种族虚拟变量（时不变）</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> ln_wage tenure hours, <span class="kw">fe</span>                  <span class="co">// 个体 FE</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> ln_wage tenure hours i.<span class="fu">year</span>, <span class="kw">fe</span>           <span class="co">// 双向 FE（加时间效应）</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>reghdfe ln_wage tenure hours, absorb(idcode <span class="fu">year</span>) <span class="kw">cluster</span>(idcode)  <span class="co">// 等价的双向 FE</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> ln_wage <span class="bn">black</span> tenure hours, <span class="kw">fe</span>            <span class="co">// 试图加入时不变变量 black</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>       <span class="bn">black</span> |      0.000  (omitted)      ← 时不变变量与个体效应共线，被自动剔除</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>其三，2×2 DID 还原政策效应</strong>：真实政策效应设为 <span class="math inline">\(+3\)</span>，看交乘项能否还原、三个系数是否各归其位。</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>*----------------- 模拟：2×2 DID</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span> <span class="dv">seed</span> 20260708</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span> <span class="kw">obs</span> 200</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> id    = <span class="dt">_n</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> treat = id &gt; 100                    <span class="co">// 后 100 个为处理组</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>expand 2</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="kw">bysort</span> id: <span class="kw">gen</span> <span class="kw">post</span> = <span class="dt">_n</span> - 1            <span class="co">// 0=政策前, 1=政策后</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>* DGP: 基线 10 + 组间差 2 + 时间趋势 4 + 政策效应 3</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> <span class="fu">y</span> = 10 + 2*treat + 4*<span class="kw">post</span> + 3*(treat*<span class="kw">post</span>) + rnormal(0,1)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="kw">table</span> <span class="kw">post</span> treat, stat(<span class="kw">mean</span> <span class="fu">y</span>) nformat(%6.2f)   <span class="co">// 四格均值</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> <span class="fu">y</span> i.treat##i.<span class="kw">post</span>, <span class="kw">vce</span>(<span class="kw">robust</span>)              <span class="co">// 交乘项应还原 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>   四格均值      政策前   政策后</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>   对照组        10.06    13.82</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>   处理组        12.02    19.03</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>   1.treat        1.959    组间水平差 θ1（处理组本就高约 2）</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>   1.<span class="kw">post</span>         3.761    对照组时间趋势 θ2（≈4）</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>   1.treat#1.<span class="kw">post</span> 3.251    双重差分 γ ← 政策效应（真值 3）</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>其四，真实财务数据里「换比较对象、换答案」</strong>：用中国上市公司资本结构面板 <code>xtcs.dta</code>，看规模 <code>size</code> 对资产负债率 <code>tl</code> 的系数，如何随固定效应一步步递进而变化。</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"$D/xtcs.dta"</span>, <span class="kw">clear</span>                                     <span class="co">// code=公司, year=年份</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>xtset code <span class="fu">year</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span>     tl <span class="kw">size</span> ndts tang tobin npr                          <span class="co">// 混合回归 POLS</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span>   tl <span class="kw">size</span> ndts tang tobin npr, <span class="kw">fe</span> <span class="kw">cluster</span>(code)        <span class="co">// 个体 FE</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span>   tl <span class="kw">size</span> ndts tang tobin npr i.<span class="fu">year</span>, <span class="kw">fe</span> <span class="kw">cluster</span>(code) <span class="co">// 双向 FE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>   <span class="kw">size</span> 的系数：  混合 POLS  0.041  →  个体 FE  0.120  →  双向 FE  0.134</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>三个数字不是「越估越准」，而是<strong>在回答三个不同的问题</strong>：POLS 的 0.041 混着「大公司 vs 小公司」的横截面差异；个体 FE 的 0.120 只问「同一家公司规模变大以后，负债率怎么变」；再加年份效应控制掉共同的宏观波动，双向 FE 给到 0.134。系数一路走高，正是本讲那张比较对象递进表在真实数据上的印证。</p>
+</section>
+<section id="ai-协作" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="ai-协作"><span class="header-section-number">5.8</span> AI 协作</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="契约边界">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+契约边界
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>本节逐条覆盖归属本讲的四项「AI 协作训练」，不删项、不缩范围。每项给一份可复制的提示词、标注对应的 core skill，并说明怎么人工核对。这些任务，网页版 AI 助手大多都能完成。</p>
+</div>
+</div>
+<p>带固定效应和交乘项的回归式，是最容易「看着系数发懵」的地方。让 AI 陪你做的，不是替你下结论，而是把系数逐个翻译成「拿谁跟谁比」，再由你回到数据核对。四项训练共用同一个 skill：<a href="../appendix/B_skills_index.html"><code>core/05-regression-interpreter</code></a>。</p>
+<section id="训练-1让-ai-解释含-fwl虚拟变量和交乘项的回归式" class="level3" data-number="5.8.1">
+<h3 data-number="5.8.1" class="anchored" data-anchor-id="训练-1让-ai-解释含-fwl虚拟变量和交乘项的回归式"><span class="header-section-number">5.8.1</span> 训练 1：让 AI 解释含 FWL、虚拟变量和交乘项的回归式</h3>
+<p><strong>任务</strong>：把一条回归命令 (或方程) 交给 AI，让它逐项说清每个系数的含义、比较对象和量纲。</p>
+<div class="callout callout-style-default callout-note callout-titled" title="提示词">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+提示词
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<blockquote class="blockquote">
+<p>这是一条 Stata 回归命令 (或回归方程)：<code>reg wage i.race c.hours i.race#c.hours</code>。请面向计量基础较弱的读者，逐项解释：(1) 每个系数 (含常数项、虚拟变量、连续变量、交乘项) 度量的是什么；(2) 它的比较对象是谁、基准组是谁；(3) 单位怎么读。特别说明交乘项的存在如何改变主变量系数的解释。只依据这条式子本身，不要编造数据里没有的信息；不确定处标出来让我核对。</p>
+</blockquote>
+</div>
+</div>
+<p><strong>对应 skill</strong>：<code>core/05-regression-interpreter</code>。<strong>人工核对</strong>：重点查 AI 有没有说错基准组、有没有把交乘项存在时的主效应仍当成「总效应」来读。</p>
+</section>
+<section id="训练-2让-ai-检查-did-型回归中每个变量和交乘项的含义" class="level3" data-number="5.8.2">
+<h3 data-number="5.8.2" class="anchored" data-anchor-id="训练-2让-ai-检查-did-型回归中每个变量和交乘项的含义"><span class="header-section-number">5.8.2</span> 训练 2：让 AI 检查 DID 型回归中每个变量和交乘项的含义</h3>
+<p><strong>任务</strong>：把一条 DID 回归交给 AI，让它对照「组别 / 时间 / 处理交乘项」逐一核对每个变量的角色。</p>
+<div class="callout callout-style-default callout-note callout-titled" title="提示词">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+提示词
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<blockquote class="blockquote">
+<p>下面是一条双重差分 (DID) 回归：<code>reg y i.treat##i.post, vce(robust)</code>(<code>treat</code> 为处理组虚拟变量，<code>post</code> 为政策后虚拟变量)。请逐项说明：<code>1.treat</code>、<code>1.post</code>、<code>1.treat#1.post</code> 各自度量什么，对应 2×2 四格均值里的哪个差；哪个才是政策效应；并用「处理组前后变化减对照组前后变化」的话把交乘项复述一遍。指出这条回归识别政策效应所依赖的关键假设。只依据这条式子，不要脑补。</p>
+</blockquote>
+</div>
+</div>
+<p><strong>对应 skill</strong>：<code>core/05-regression-interpreter</code>。<strong>人工核对</strong>：确认 AI 没把 <code>1.treat</code>(组间水平差) 或 <code>1.post</code>(时间趋势) 误当成政策效应；核对它说的关键假设是不是平行趋势。</p>
+</section>
+<section id="训练-3让-ai-检查固定效应模型中的系数是否可以被识别" class="level3" data-number="5.8.3">
+<h3 data-number="5.8.3" class="anchored" data-anchor-id="训练-3让-ai-检查固定效应模型中的系数是否可以被识别"><span class="header-section-number">5.8.3</span> 训练 3：让 AI 检查固定效应模型中的系数是否可以被识别</h3>
+<p><strong>任务</strong>：把模型设定和变量的「随谁变」信息交给 AI，让它判断哪些系数在给定固定效应下还能识别、哪些会被吸收。</p>
+<div class="callout callout-style-default callout-note callout-titled" title="提示词">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+提示词
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<blockquote class="blockquote">
+<p>我要估计一个固定效应模型：<code>reghdfe y x1 x2 gender region, absorb(id year)</code>。已知：<code>x1</code>、<code>x2</code> 随个体和时间都变；<code>gender</code> 不随时间变；<code>region</code> 在样本期内不随时间变。请判断：加入个体固定效应 (<code>id</code>) 后，哪些变量的系数还能被识别、哪些会因为与个体效应共线而被 <code>omitted</code>，并解释原因。如果我确实想估计 <code>gender</code> 的效应，有哪些替代做法？只做可识别性判断，不要替我下实证结论。</p>
+</blockquote>
+</div>
+</div>
+<p><strong>对应 skill</strong>：<code>core/05-regression-interpreter</code>。<strong>人工核对</strong>：AI 的判断要回到「是否随时间变」这一条硬标准去验；对它给的替代方法 (组间估计、Hausman–Taylor 等) 只当线索，适用与否自己判断。</p>
+</section>
+<section id="训练-4让-ai-把复杂回归式改写成变量含义-比较对象-系数解释三列表" class="level3" data-number="5.8.4">
+<h3 data-number="5.8.4" class="anchored" data-anchor-id="训练-4让-ai-把复杂回归式改写成变量含义-比较对象-系数解释三列表"><span class="header-section-number">5.8.4</span> 训练 4：让 AI 把复杂回归式改写成「变量含义 + 比较对象 + 系数解释」三列表</h3>
+<p><strong>任务</strong>：把一条带多个虚拟变量、固定效应和交乘项的回归式交给 AI，让它输出一张三列表。</p>
+<div class="callout callout-style-default callout-note callout-titled" title="提示词">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+提示词
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<blockquote class="blockquote">
+<p>请把下面这条回归式改写成一张三列表格，每个变量 (含交乘项、常数项) 占一行，三列分别是「变量含义」「比较对象 / 基准组」「系数解释 (一句话)」：</p>
+<p><code>reghdfe y treat_post x1 x2, absorb(id year)</code>，其中 <code>treat_post = treat × post</code>。</p>
+<p>表格要让一个没读过这篇分析的人，也能照着读懂每个系数在跟谁比。不确定的地方留空并标注，让我补。</p>
+</blockquote>
+</div>
+</div>
+<p><strong>对应 skill</strong>：<code>core/05-regression-interpreter</code>。<strong>人工核对</strong>：三列表是脚手架，每一行的「比较对象」要你对照模型的固定效应结构逐条确认，AI 填错基准组是最常见的错。</p>
+<!-- skill 实体 core/05-regression-interpreter 由 ch04 窗口独占新建维护 (已落地 2026-07-18)；本讲只软链复用、不改其目录，需扩展走 REQUESTS.md。 -->
+</section>
+</section>
+<section id="python-附录" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="python-附录"><span class="header-section-number">5.9</span> Python 附录</h2>
+<p>同样的 FWL、固定效应与 DID，用 Python 也能一行行复现。载体是伴生文件 <code>examples/ch05/ch05_python.ipynb</code>，内容与本讲代码实操一一对应：用 <code>linearmodels</code>(<code>PanelOLS</code>) 或 <code>pyfixest</code>(<code>feols</code>) 估计个体、时间与双向固定效应，用 <code>statsmodels</code> 跑 2×2 DID 的交乘项回归；每段配「任务说明 + 提示词」，代码由 AI 生成、输出本机运行后冻结。</p>
+<p>想让 AI 帮你把某段 Stata 翻成等价 Python，可以这样提示：</p>
+<div class="callout callout-style-default callout-note callout-titled" title="提示词">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+提示词
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<blockquote class="blockquote">
+<p>下面这段 Stata 代码用双向固定效应估计 <code>y</code> 对 <code>x</code> 的关系：<code>reghdfe y x, absorb(id year) cluster(id)</code>。请用 Python 的 <code>linearmodels.PanelOLS</code>(或 <code>pyfixest</code>) 写出等价实现，包含设定面板索引、加入个体与时间固定效应、按 <code>id</code> 聚类稳健标准误；并逐行加中文注释说明它和 Stata 命令的对应关系。只写等价实现，不要改变模型设定。</p>
+</blockquote>
+</div>
+</div>
+</section>
+<section id="小结与练习" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="小结与练习"><span class="header-section-number">5.10</span> 小结与练习</h2>
+<p>本讲用一条主线把三样东西串了起来：FWL 定理说「系数 = 剔除其他变量之后的残差回归」，虚拟变量说「分类变量 = 变截距」，固定效应说「给每个个体一条截距 = 组内去心」，而 DID 不过是「组别 × 时间 × 处理」三个虚拟变量组合出的两次差分。它们看似是四个话题，底层却是同一件事——<strong>每一次控制，都是在换一次比较对象</strong>。</p>
+<p>一句话带走：<strong>回归系数从来不回答「影响有多大」，它只回答「在控制了别的东西之后，拿谁跟谁比」；读懂了比较对象，就读懂了系数。</strong></p>
+<section id="练习" class="level3" data-number="5.10.1">
+<h3 data-number="5.10.1" class="anchored" data-anchor-id="练习"><span class="header-section-number">5.10.1</span> 练习</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="练习 1(概念·FWL 与残差化)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+练习 1(概念·FWL 与残差化)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>有人说「多元回归里 <span class="math inline">\(x_1\)</span> 的系数，就是把 <span class="math inline">\(x_1\)</span> 单独拿出来对 <span class="math inline">\(y\)</span> 回归得到的斜率」。请用 FWL 定理指出这句话错在哪，并说明正确的说法是什么。</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="参考答案">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+参考答案
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>错在漏掉了「剔除其他变量」这一步。单独用 <span class="math inline">\(x_1\)</span> 回归 <span class="math inline">\(y\)</span>，得到的斜率会被 <span class="math inline">\(x_1\)</span> 与其他变量的相关性污染 (遗漏变量偏误)。FWL 的正确说法是：<span class="math inline">\(x_1\)</span> 的多元回归系数，等于「<span class="math inline">\(x_1\)</span> 剔除掉其他变量后的残差 <span class="math inline">\(\tilde{x}_1\)</span>」对「<span class="math inline">\(y\)</span> 剔除掉其他变量后的残差 <span class="math inline">\(\tilde{y}\)</span>」回归的斜率——是残差对残差，不是原始变量对原始变量。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="练习 2(概念·固定效应可识别性)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+练习 2(概念·固定效应可识别性)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>一位研究者用个体固定效应模型 <code>xtreg wage tenure female, fe</code> 估计工作年限和性别对工资的影响，发现 <code>female</code> 的系数是 <code>(omitted)</code>。请解释原因，并给出若他确实想估计性别效应可以怎么办。</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="参考答案">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+参考答案
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>性别在样本期内不随时间变化，与不随时间变化的个体效应 <span class="math inline">\(\alpha_i\)</span> 完全共线，组内去心把 <span class="math inline">\(\alpha_i\)</span> 减掉的同时也把 <code>female</code> 减成了 0，所以被 <code>omitted</code>。固定效应能控制个体的一切时不变特征，却无法估计这些特征各自的系数。若要估性别效应，可改用加控制变量的混合回归 / 组间估计，或 Hausman–Taylor(<code>xthtaylor</code>)、<code>xtseqreg</code> 等能保留时不变变量的方法。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="练习 3(概念·DID 系数身份)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+练习 3(概念·DID 系数身份)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>在 2×2 DID 回归 <code>reg y i.treat##i.post</code> 中，<code>1.treat</code>、<code>1.post</code>、<code>1.treat#1.post</code> 三个系数分别是什么含义？哪一个才是政策效应？为什么不能直接用「处理组政策后均值减对照组政策后均值」来估政策效应？</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="参考答案">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+参考答案
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>1.treat = Y0−C0</code> 是政策前两组的水平差 (两组本来就不同)；<code>1.post = C1−C0</code> 是对照组的时间趋势；<code>1.treat#1.post = (Y1−Y0)−(C1−C0)</code> 是双重差分，才是政策效应。直接用「处理组政策后减对照组政策后」(即 <span class="math inline">\(Y_1-C_1\)</span>) 会混入政策前就存在的组间水平差 <span class="math inline">\(Y_0-C_0\)</span>；DID 的关键正是用对照组的同期变化，替处理组扣掉它本来也会经历的共同趋势。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="练习 4(交给 AI 并审计)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+练习 4(交给 AI 并审计)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>任取一条你研究领域里带固定效应和交乘项的回归式，用本讲「训练 4」的提示词让 AI 生成一张三列表；然后回到模型设定，找出 AI 至少一处填错或含糊的地方 (最常见的是基准组)，说明你是怎么发现的。</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="参考答案 (要点)">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+参考答案 (要点)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>本题无标准答案，重点在「审计」。合格的回答应能指出 AI 的具体错处 (如把交乘项存在时的主效应当成总效应、写错基准组、把被固定效应吸收的变量仍列为可识别)，并说明核对依据 (模型的固定效应结构、因子变量的基准组设定、变量是否随时间变化)。能稳定发现并纠正这类偏差，正是本讲要练的能力。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="延伸阅读" class="level2" data-number="5.11">
+<h2 data-number="5.11" class="anchored" data-anchor-id="延伸阅读"><span class="header-section-number">5.11</span> 延伸阅读</h2>
+<ul>
+<li><strong>固定效应的系统讲法</strong>：连享会《因果推断》讲义中<a href="https://lianxhcn.github.io/ci-policy/lectures/04_fixed_effects.html">讨论固定效应「控制了什么」的一章</a>，把组内去心、双向固定效应、高维固定效应到交互固定效应连成一条线，适合想更进一步的同学。</li>
+<li><strong>双重差分的现代视角</strong>：连享会《因果推断》讲义中<a href="https://lianxhcn.github.io/ci-policy/lectures/06_did_design.html">从 TWFE 讲到 CSDID 的一章</a>，讲清了分批推进政策为什么会让 TWFE 出问题。</li>
+<li><strong>FWL 与部分回归图</strong>：连享会推文<a href="https://www.lianxh.cn/news/e346db1a68211.html">图示线性回归系数：Frisch-Waugh 定理与部分回归图</a>、<a href="https://www.lianxh.cn/news/22f1f266f5868.html">多元回归系数：我们都解释错了？</a>。</li>
+<li><strong>入门底本</strong>：Wooldridge《计量经济学导论》中虚拟变量、面板固定效应与政策分析 (DID) 的相关章节，统一见<a href="../appendix/D_reading_list.html">阅读清单</a>。</li>
+<li><strong>方法进阶 (现代 DID 估计量与机器学习方法)</strong>：CSDID 等现代 DID 估计量、DDML 与机器学习方法留待高级班，可先浏览<a href="https://www.lianxh.cn/details/1811.html">连享会关于现代因果推断方法的整理</a>。</li>
+</ul>
 
 
 </section>

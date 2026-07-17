@@ -1,0 +1,1226 @@
+# Manufacturing Revolutions — 研究设计与估计方程推导
+
+## Source Map
+
+| 论文章节 | 内容 | 核心代码文件 | 估计方法 |
+|----------|------|-------------|---------|
+| Section II | 制度背景与政策时间线 | `actstable_simple_combined_all.csv` | 定性+描述性统计 |
+| Section IV | 数据构造：MMS面板、COMTRADE、IO表 | 数据构建脚本 (`0_databuild/`) | 数据清洗与 harmonization |
+| Section V.A-V.B | 基准DiD：产出增长 | `1_run_growth_analysis.do` | TWFE + xtdidregress |
+| Section V.C | 出口发展与RCA | `2b_run_koreatrade_analysis.do` | reghdfe + ppmlhdfe |
+| Section V.D.1 | 工厂级TFP持久性 | (微数据, Table I) | 混合面板回归 |
+| Section V.E | Double-Robust DiD | `3b_run_doublerobust_analysis.do` | csdid (dripw + reg) |
+| Section V.F | 跨国DDD | `3c_run_worldtrade_analysis.do` | reghdfe + ppmlhdfe |
+| Section VI.A | 政策工具：投资与中间投入 | `4_run_policy_analysis.do` | reghdfe |
+| Section VI.C | 机制：Learning by Doing | `5a_run_mechanisms_lbd_analysis.do` | reghdfe + 交互项 |
+| Section VII | 投入产出关联 (IO Linkages) | `6a_run_linkages_growthprice_analysis.do`, `6b_run_linkages_trade_analysis.do` | reghdfe + ppmlhdfe |
+| Appendix B-K | 稳健性、UNIDO、Placebo等 | `code/0_analysis/2_appendix_scripts/` | 多种 |
+
+## 本文件阅读边界
+
+本文件聚焦于 **研究设计与估计方程推导**，涵盖以下内容：
+
+- [Y] HCI政策的处理变量定义 (二元+连续)
+- [Y] 基准TWFE DiD估计方程及其事件研究形式
+- [Y] Double-Robust DiD (Sant'Anna & Zhao 2020 / Callaway & Sant'Anna 2021) 的实现逻辑
+- [Y] 跨国三重差分 (DDD) 估计方程
+- [Y] 投资政策分析方程
+- [Y] Learning-by-Doing 机制检验方程
+- [Y] 投入产出关联 (IO Linkage) 估计方程
+- [Y] 固定效应、控制变量、标准误聚类、Rolling Window设计
+- [Y] 稳健性设计：Pre-trend检验、Placebo、SUTVA、连续处理变量
+- [Y] 每类方程到具体 `.do` / `.R` 文件的代码映射
+
+本文件 **不** 涵盖以下内容：
+
+- [N] 原始数据的清洗与 harmonization 过程 (位于 `0_databuild/`)
+- [N] 图表生成的具体R代码 (位于 `code/1_figures/`)
+- [N] 理论模型的形式化推导 (本文是实证/reduced-form论文)
+- [N] Online Appendix 的完整内容复述
+
+---
+
+## 1 研究问题与设计概览
+
+### 1.1 研究问题的经济学表述
+
+本文的核心研究问题是：**韩国1973—1979年重化工业 (Heavy and Chemical Industry, HCI) 推进政策是否促进了目标产业的工业发展？**
+
+具体分解为四个子问题：
+
+1. **直接效应 (Direct Effects)**：HCI政策是否提高了目标制造业的产出、生产率、就业和出口表现？
+2. **动态持久性 (Dynamic Persistence)**：政策效应在1979年政策终止后是否持续？
+3. **政策机制 (Mechanisms)**：效应是否通过投资扩张和学习效应 (Learning-by-Doing) 实现？
+4. **网络溢出效应 (Network Spillovers)**：政策是否通过投入产出关联间接惠及下游产业？
+
+### 1.2 识别策略的核心逻辑
+
+HCI政策的识别依赖于 **时间和产业两个维度的变异** (temporal and sectoral variation)：
+
+- **时间变异**：1973年1月宣布HCI驱动 (政策开启)，1979年Park总统被刺 (政策终止)。两个时间节点均由外生政治事件驱动——Nixon doctrine(外部安全冲击) 和总统暗杀——减缓了政策内生性问题。
+- **产业变异**：HCI政策针对六大战略产业 (钢铁、有色金属、造船、机械、电子、石化)，这些产业在法律文本中有明确列举。处理组与非处理组的划分依据为立法法案 (enforcement decrees and national sectoral acts)。
+
+基准识别假设为 **平行趋势假设 (Parallel Trends)**：在无政策干预的反事实世界中，目标产业与非目标产业的结果变量将按照1972年 (政策前一年) 之前的趋势平行演变。论文通过检验1972年之前各年系数的联合显著性 (F-test) 和视觉检验event-study图来间接支持这一假设。
+
+### 1.3 设计概览图
+
+```
+时间轴: 1967 ---------- 1972 ---------- 1979 ---------- 1986
+         |  政策前期   | 基准年 |   政策期   |  政策后期      |
+         |  (Pre-HCI)  |       | (HCI Drive)| (Post-HCI)     |
+         |             |       |            | Liberalization |
+         |<---- 处理变量构造 ---->|            |                |
+         |  hci = 0/1 (time-invariant, 由立法定义)           |
+         |  treat = (hci == 1 & year >= 1973)                |
+         |                                                |
+         数据: 4-digit面板 (1967-1986, "long panel")
+               5-digit面板 (1970-1986, "short panel")
+```
+
+---
+
+## 2 处理变量构造：HCI政策暴露的定义与编码
+
+### 2.1 从立法到二元处理变量的映射
+
+论文从韩国重化工业立法中手工匹配目标产业。核心数据源为 `actstable_simple_combined_all.csv`，该文件记录了韩国1973—1979年间HCI驱动相关的立法法案及对应的产业分类。具体操作流程为：
+
+1. 将每项立法中列举的目标产业名称 (如"Steel," "Shipbuilding," "Electronics") 与韩国标准产业分类 (KSIC, Korea Standard Industrial Classification) 的五位码 (5-digit) 进行手工匹配。
+2. 使用产业编码交叉表 (crosswalk schemas) 将不同KSIC修订版 (1967—1986年间共四次重大修订) 统一为一致的产业面板。
+3. 最终在 harmonized 面板数据中，每个产业 $i$ 获得一个时间不变的二元变量 $HCI_i$：
+
+$$HCI_i = \begin{cases} 1, & \text{if industry } i \text{ is on the HCI legislative target list} \\ 0, & \text{otherwise (other manufacturing)} \end{cases}$$
+
+### 2.2 处理变量的Stata代码构造
+
+在Stata代码中，处理变量的构造在各个 `.do` 文件中通过 `prep_data` 程序统一实现。以 `1_run_growth_analysis.do` 为例 (第22-28行)：
+
+```stata
+// PROGRAM: prep_data
+capture program drop prep_data
+program define prep_data
+    args filenameargument
+    use "`filenameargument'", clear
+    xtset id year
+    gen treat = (hci == 1 & year >= 1973)
+end
+```
+
+**关键设定说明**：
+
+- `hci` 是产业层面的时间不变二元变量 (来自立法匹配)。
+- `treat` 是时间变化的处理指示变量，逻辑为：`(hci == 1 & year >= 1973)`，即目标产业从1973年起进入处理状态。
+- 处理组在1973年之前的所有年份中 `treat = 0`，处理组在1973年及以后 `treat = 1`。
+- 非目标产业在所有年份中 `treat = 0`，构成“从未处理组”(never-treated group)。
+
+### 2.3 政策引入时间 (1973) 与政策终止时间 (1979)
+
+HCI政策的关键时间节点在设计中有明确的经济计量含义：
+
+- **1973年**: 政策宣布年。1973年1月Park Chung-hee政府正式宣布重化工业推进计划。在估计中，1973年被定义为政策开始年，1972年作为基准年 (baseline year)，所有事件研究系数均以1972年为参照归一化为零。
+
+- **1979年**: 政策终止年。Park总统在1979年10月被刺杀，随后韩国开始经济自由化改革。然而，在估计方程中，处理变量 `treat` 在1979年后 **并不** 切换回零——这意味着估计策略识别的是政策的 **持久效应 (persistent effects)**，而非仅在政策实施期间的效应。具体而言：
+  - 系数 $\beta_{1973}, \dots, \beta_{1979}$ 描述政策实施期间的动态效应。
+  - 系数 $\beta_{1980}, \dots, \beta_{1986}$ 描述政策终止后的持续效应 (即是否存在永久性的水平转变)。
+
+在 `xtdidregress` 框架下，`treat` 在处理发生后保持为1，这意味着该估计器假设处理是不可逆的 (irreversible treatment)，与论文的持久效应分析目标一致。
+
+### 2.4 连续处理变量的替代方案
+
+在 Online Appendix J.1 中，论文还构造了一个连续的处理暴露测度：衡量非HCI产业中HCI相关产品的产出份额。该测度用于检验“水平溢出 (horizontal spillovers)”假设。其构造逻辑为：
+
+$$\text{ContinuousExposure}_i = \sum_{k \in HCI} \frac{\text{Output}_{ik}}{\text{TotalOutput}_i}$$
+
+其中 $\text{Output}_{ik}$ 是产业 $i$ 中属于HCI产品市场 $k$ 的产出。由于韩国多产品企业 (multi-product plants) 在HCI市场和非HCI市场之间的产出重叠有限，该连续测度的变异较小，因此论文将其作为稳健性检验而非主设定。
+
+---
+
+## 3 数据构造与样本关系
+
+### 3.1 数据来源的层级结构
+
+论文的数据结构为 **产业-年份面板**，由以下数据源整合构建：
+
+| 数据源 | 层级 | 覆盖年份 | 变量类型 |
+|--------|------|---------|---------|
+| MMS (Mining and Manufacturing Surveys) | 产业级 (4-digit & 5-digit KSIC) | 1967–1986 | 产出、增加值、就业、工资、中间投入、投资、资本存量 |
+| MMS 微数据 (Plant-level) | 工厂级 | 1980–1986 | TFP估计 (用于持久性检验) |
+| UN COMTRADE | 产品级 (SITC rev.1, 4-digit) | 1967–1986 | 出口流 (用于RCA和CDK计算) |
+| Bank of Korea IO Tables | 产业级 (约320部门) | 1970 | 投入产出权重矩阵 |
+| Bank of Korea PPI | 产业级 | 1967–1986 | 产出价格指数 |
+| 贸易政策数据 (Luedde-Neurath) | 产品级 | 1968, 1974, 1976, 1978, 1980, 1982 | 关税和数量限制 |
+| 政策贷款数据 (KDB) | 产业级 (2-digit) | 1972–1981 | 韩国开发银行贷款 |
+
+### 3.2 两套面板数据的权衡
+
+论文使用两套 harmonized 面板：
+
+**短面板 (5-digit, 1970–1986)**：
+- 输入文件: `mms_merged_harmonized_panel_cleaned4reg_5digit.dta`
+- 更细的产业分类 (约278个5-digit产业)
+- 覆盖年份较短 (1970年之前的数据需要大量 harmonization)
+- 预处理期较短 (仅有1970–1972三年)，限制了pretrend检验的power
+- 在基准分析中被优先使用，因为更接近原始MMS出版数据
+
+**长面板 (4-digit, 1967–1986)**：
+- 输入文件: `mms_merged_harmonized_panel_cleaned4reg_4digit.dta`
+- 更粗的产业分类 (约88个4-digit产业)
+- 覆盖年份更长 (包含1967–1969年的额外预处理期)
+- 需要更多的跨版本 harmonization
+- 用于稳健性检验和长pretrend检验
+
+贸易分析使用 **SITC 4-digit** 面板 (`comtrade_merged_harmonized_panel_cleaned4reg_4digit.dta`)，该面板比产业面板更细，与4-digit KSIC通过手工匹配连接。
+
+投资分析使用额外的政策数据集 (`mms_policy_5digit.dta`, `mms_policy_4digit.dta`)，这些数据集包含更详细的投资和资本形成变量。
+
+### 3.3 核心变量构造
+
+**产出变量**：
+
+| Stata变量名 | 含义 | 构造方法 |
+|-------------|------|---------|
+| `l_ship` | log(实际装运产出) | 实际gross output shipped取对数 |
+| `l_grossoutput` | log(实际总产出) | 实际gross output取对数 |
+| `l_valueadded` | log(实际增加值) | 实际value added取对数 |
+| `l_ppi` | log(产出价格指数) | Bank of Korea PPI取对数 |
+| `l_y_n` | log(劳动生产率) | 实际value added per worker取对数 |
+
+**就业与结构变量**：
+
+| Stata变量名 | 含义 | 构造方法 |
+|-------------|------|---------|
+| `l_workers` | log(总就业) | 总工人数取对数 |
+| `l_est` | log(工厂数) | 工厂/establishment数取对数 |
+| `l_avg_size` | log(平均工厂规模) | 总就业/工厂数取对数 |
+| `l_ship_sh` | log(产出份额) | 产业产出/制造业总产出取对数 |
+| `l_lab_sh` | log(就业份额) | 产业就业/制造业总就业取对数 |
+
+**投资与投入变量**：
+
+| Stata变量名 | 含义 | 构造方法 |
+|-------------|------|---------|
+| `l_costs` | log(总中间投入成本) | 实际material costs取对数 |
+| `l_m_n` | log(人均中间投入) | 中间投入per worker取对数 |
+| `l_inv_tot` | log(总投资) | 实际总资本形成取对数 |
+| `l_i_n` | log(人均投资) | 投资per worker取对数 |
+| `l_stock_tot` | log(资本存量) | 实际资本存量取对数 |
+
+**贸易变量**：
+
+| Stata变量名 | 含义 | 构造方法 |
+|-------------|------|---------|
+| `rca_core` | RCA (Balassa指数) | $RCA_k = \frac{X^{Korea}_k / X^{Korea}_{Total}}{X^{World}_k / X^{World}_{Total}}$ |
+| `h_rca_core` | asinh(RCA) | 反双曲正弦变换以处理零值 |
+| `rca_dummy` | 1[RCA > 1] | 二元指示：是否达到比较优势 |
+| `rca_cdk` | CDK相对出口生产率 | $\exp(\hat{\delta}_{ik} / \hat{\theta})$，基于Costinot, Donaldson, Komunjer (2012) |
+| `export_sh` | 出口份额 | 产业出口/制造业总出口 |
+
+**TFP变量** (仅在5-digit面板和post-1979微数据中可用)：
+
+| Stata变量名 | 含义 | 估计方法 |
+|-------------|------|---------|
+| `tfp_acf` | TFP (ACF) | Ackerberg, Caves, and Frazer (2015) |
+| `tfp_lp` | TFP (LP) | Levinsohn and Petrin (2003) |
+| `tfp_w` | TFP (Wooldridge) | Wooldridge (2009) |
+| `tfp_op` | TFP (OP) | Olley and Pakes (1996) |
+
+### 3.4 前定控制变量 (Pre-treatment Controls)
+
+基准控制变量为 **1972年之前各产业的均值**，这些变量是时间不变的 (在产业 $i$ 层面)，但在所有回归中与年份效应交互以允许它们的影响随时间变化：
+
+$$\text{Controls}_{it} = \gamma^{pre}_1 \cdot \text{l\_costs\_0}_i \times \text{Year}_t + \gamma^{pre}_2 \cdot \text{l\_avg\_wages\_0}_i \times \text{Year}_t + \gamma^{pre}_3 \cdot \text{l\_avg\_size\_0}_i \times \text{Year}_t + \gamma^{pre}_4 \cdot \text{l\_y\_n\_0}_i \times \text{Year}_t$$
+
+在Stata代码中，这一控制集被定义为一个local macro(例如 `1_run_growth_analysis.do` 第122行)：
+
+```stata
+local basic_regressors c.(l_costs_0 l_avg_size_0 l_avg_wages_0 l_y_n_0)#i.year
+```
+
+在 `xtdidregress` 语法中，控制变量以 `(outcome controls)` 的形式直接纳入：
+
+```stata
+quietly: xtdidregress (`variable' ``regressorset'') (treat), group(id) time(year) vce(cluster id)
+```
+
+其中 `` ``regressorset'' `` 在循环中可以是空字符串 (无控制) 或 `basic_regressors`(有控制)。
+
+### 3.5 样本的跨文件关系
+
+各分析文件使用的输入数据集如下：
+
+```
+                            +------------------------------+
+                            |  MMS Harmonized Panels       |
+                            |  (5-digit & 4-digit)         |
+                            +----------+-------------------+
+                                       |
+            +--------------------------+--------------------------+
+            |                          |                          |
+            v                          v                          v
++------------------+    +------------------+    +------------------+
+| 1_run_growth_    |    | 2a_run_devout-   |    | 3b_run_double-   |
+| analysis.do      |    | comes_analysis.do|    | robust_analysis.do|
+| (xtdidregress)   |    | (reghdfe)        |    | (csdid)           |
++------------------+    +------------------+    +------------------+
+
+                            +------------------------------+
+                            |  MMS Policy Panels           |
+                            |  (5-digit & 4-digit)         |
+                            +----------+-------------------+
+                                       |
+                                       v
+                            +------------------+
+                            | 4_run_policy_    |
+                            | analysis.do      |
+                            | (reghdfe)        |
+                            +------------------+
+
+                            +------------------------------+
+                            |  MMS TFP Panel (5-digit)     |
+                            +----------+-------------------+
+                                       |
+                                       v
+                            +------------------+
+                            | 5a_run_mechanisms|
+                            | _lbd_analysis.do |
+                            | (reghdfe)        |
+                            +------------------+
+
+                            +------------------------------+
+                            |  SITC Trade Panel            |
+                            |  (COMTRADE, 4-digit)         |
+                            +----------+-------------------+
+                                       |
+            +--------------------------+--------------------------+
+            |                          |                          |
+            v                          v                          v
++------------------+    +------------------+    +------------------+
+| 2b_run_korea-    |    | 3c_run_world-    |    | 6b_run_linkages_ |
+| trade_analysis.do|    | trade_analysis.do|    | trade_analysis.do|
+| (reghdfe+ppmlhdfe)|   | (reghdfe+ppmlhdfe)|   | (reghdfe+ppmlhdfe)|
++------------------+    +------------------+    +------------------+
+```
+
+---
+
+## 4 基准DiD估计方程推导
+
+### 4.1 基准TWFE设定
+
+论文的核心估计方程为线性双向固定效应 (TWFE) 事件研究模型 (论文方程 (1))：
+
+$$\ln(y_{it}) = \alpha_i + \tau_t + \sum_{j \neq 1972} \beta_j \cdot (HCI_i \times \text{Year}_t^j) + \varepsilon_{it}$$
+
+其中：
+- $y_{it}$ 为产业 $i$ 在年份 $t$ 的 (对数) 工业发展结果变量。
+- $\alpha_i$ 为产业固定效应 (Industry FE)，吸收产业层面所有时间不变的特征。
+- $\tau_t$ 为年份固定效应 (Year FE)，吸收所有产业共同的宏观经济冲击。
+- $HCI_i$ 为时间不变的二元处理指示变量 (是否为目标产业)。
+- $\text{Year}_t^j$ 为一组年份虚拟变量，对于年份 $t = j$ 取值为1，否则为0。
+- 基准年1972年的系数被归一化为零 ($\beta_{1972} \equiv 0$)。
+- $\varepsilon_{it}$ 为误差项，在产业层面进行聚类 (cluster at industry level)。
+
+**经济含义**：系数 $\beta_j$ 度量了在年份 $j$，目标产业相对于非目标产业的 (条件) 对数结果差异，以1972年的差异为参照。$\beta_j > 0$ 意味着目标产业在年份 $j$ 的结果相对于非目标产业有所提高。
+
+系数 $\beta_j$ 传达了三个维度的信息：
+
+1. **$\beta_{1967}, \dots, \beta_{1971}$**：政策前差异 (pre-trends)。如果平行趋势假设成立，这些系数应接近于零且不呈现系统性模式。通过联合F检验 (joint F-test of pre-trend significance) 提供量化证据。
+
+2. **$\beta_{1973}, \dots, \beta_{1979}$**：政策实施期间的平均处理效应 (ATT)。如果HCI政策促进了目标产业的发展，这些系数应当逐步增大并在统计上显著。
+
+3. **$\beta_{1980}, \dots, \beta_{1986}$**：政策终止后的持久效应。如果政策产生了持久的结构性转变，这些系数应当保持正值 (即使不再继续增长)。
+
+### 4.2 带控制的扩展TWFE设定
+
+包含前定控制变量的扩展设定为：
+
+$$\ln(y_{it}) = \alpha_i + \tau_t + \sum_{j \neq 1972} \beta_j \cdot (HCI_i \times \text{Year}_t^j) + \sum_{k} \gamma_k \cdot (X_{i}^{pre,k} \times \text{Year}_t) + \varepsilon_{it}$$
+
+其中 $X_{i}^{pre,k}$ 为产业 $i$ 在1972年之前的第 $k$ 个特征的平均值 (时间不变)，包括：
+- `l_costs_0`：log(平均中间投入成本)
+- `l_avg_size_0`：log(平均工厂规模)
+- `l_avg_wages_0`：log(平均工资)
+- `l_y_n_0`：log(平均劳动生产率)
+
+这些前定变量与年份效应 $\text{Year}_t$ 交互，以允许它们的影响随时间弹性变化。
+
+### 4.3 事件研究 (Event Study) 的具体实现：`xtdidregress` 命令
+
+基准分析使用Stata 17+的 `xtdidregress` 命令。在 `1_run_growth_analysis.do` 第161行：
+
+```stata
+quietly: xtdidregress (`variable' ``regressorset'') (treat), group(id) time(year) vce(cluster id)
+```
+
+其中：
+- `(`variable' \`\`regressorset\'\')`：结果变量和可选的时变控制变量。
+- `(treat)`：二元处理变量 `treat = (hci == 1 & year >= 1973)`。
+- `group(id)`：面板个体标识 (产业代码)。
+- `time(year)`：时间变量。
+- `vce(cluster id)`：在产业层面聚类标准误。
+
+**`xtdidregress` 的事件研究输出**：
+
+`xtdidregress` 在估计后提供两个关键的后估计命令：
+
+1. **`estat trendplots`**(第168行)：生成处理组和控制组的预测输出时间序列图。
+2. **`estat grangerplot`**(第183行)：生成传统DiD事件研究图 ($\beta_j$ 系数按年份排列)，以指定基准年 (`baseline(1972)`) 为参照。
+
+**`estat ptrends`**(第176行)：对预处理期系数进行联合显著性检验：
+
+```stata
+quietly: estat ptrends
+local pre_ftest = r(F)
+local pre_testprob = r(p)
+estadd scalar Fs = `pre_ftest', replace
+estadd scalar ps = `pre_testprob', replace
+```
+
+该检验的零假设为所有预处理期交互项系数联合为零 ($H_0: \beta_{pre} = 0$)。F统计量的p值越小，越倾向于拒绝平行趋势假设。
+
+### 4.4 Rolling Windows 逻辑
+
+论文中的"Rolling Window"(滚动窗口) 概念与传统的金融时间序列滚动估计不同，它是指 **在事件研究框架中逐年估计处理效应**，即方程 (1) 中的每个 $\beta_j$ 分别估计。这本质上等同于一个“fully flexible”的事件研究设定。
+
+在代码中，"largerolling" 一词出现在输出文件名中 (例如 `did_largerolling_mainresults_alloutput`)，用以描述这种逐年的动态估计策略，与简单的Pre-Post DiD(仅对比政策前后两期的平均差异) 形成对比。
+
+对于ROBUSTNESS部分 (Section V.E.3)，动态双重稳健估计使用 `csdid` 命令的 `agg(event)` 选项：
+
+```stata
+csdid `variable' `controlset', time(year) ivar(id) gvar(gvar) method(dripw) wboot reps(10000) agg(event) replace
+```
+
+其中 `agg(event)` 指定事件研究聚合方式，生成按相对年份排列的ATT估计值。
+
+### 4.5 基准回归结果循环的代码结构
+
+`1_run_growth_analysis.do` 的核心结构为双重循环：
+
+```
+Outer loop: outcome variables (l_ship, l_grossoutput, l_valueadded)
+  Inner loop: regressor sets (无控制, basic_regressors)
+    For each combination:
+      1. prep_data (load & generate treat)
+      2. xtdidregress (estimate)
+      3. estat trendplots (predicted trends)
+      4. estat ptrends (pre-trend test)
+      5. estat grangerplot (event study coefficients)
+      6. Store & export results
+```
+
+这一结构在4-digit和5-digit面板上各执行一次。
+
+---
+
+## 5 Double-Robust DiD
+
+### 5.1 理论基础：Sant'Anna & Zhao (2020) / Callaway & Sant'Anna (2021)
+
+TWFE估计器在存在处理效应异质性 (treatment effect heterogeneity) 和多期处理 (multiple time periods) 时可能产生有偏估计。双重稳健 (Double-Robust, DR)DiD估计器通过以下方式解决这些问题：
+
+1. **重新加权 (Reweighting)**：使用倾向得分 (propensity score) 重新加权控制组观测值，使处理组和控制组在协变量上更加平衡。
+2. **结果回归 (Outcome Regression)**：对控制组的结果变量变化进行参数回归，调整反事实。
+3. **双重稳健性**：只要倾向得分模型和结果回归模型中至少有一个被正确设定，估计量就是一致的。
+
+该估计器识别的是 **ATT(Average Treatment Effect on the Treated)**，这对产业政策评估尤其相关，因为政策制定者通常关心的是政策对目标单位的效果，而非对经济中所有单位的平均效果 (ATE)。
+
+### 5.2 ATT的定义
+
+双重稳健DiD的ATT定义为 (论文方程 (3))：
+
+$$ATT_t = E\left[ \left( \frac{Targeted}{E[Targeted]} - \frac{\pi(X)(1-Targeted)}{1-\pi(X)} \cdot \frac{1}{E\left[\frac{\pi(X)(1-Targeted)}{1-\pi(X)}\right]} \right) \cdot (Y_t - Y_{1972}) - f_{0, Y_t - Y_{1972}}(X) \right]$$
+
+其中：
+- $Targeted$ 为二元处理指示。
+- $\pi(X) \equiv E[Targeted | X]$ 为倾向得分 (通过logit回归估计)。
+- $f_{0, Y_t - Y_{1972}}(X) \equiv E[Y_t - Y_{1972} | Targeted = 0, X]$ 为控制组结果变化的回归函数 (通过OLS估计)。
+- 置信区间使用**Wild Bootstrap**(10,000次重复) 计算，以允许产业内相关性。
+
+### 5.3 组变量 (gvar) 的构造逻辑
+
+双重稳健DiD要求定义 **组变量 (group variable, gvar)**。在论文中，采用Callaway & Sant'Anna (2021) 的设定，处理发生在一个共同的时点：
+
+```stata
+gen gvar = 0
+replace gvar = 1973 if hci == 1
+label var gvar "group variable"
+```
+
+- 对于从未处理的产业 (`hci == 0`)，`gvar = 0`。
+- 对于目标产业 (`hci == 1`)，`gvar = 1973`，表示它们在1973年开始接受处理。
+
+由于所有目标产业在同一时点 (1973年) 接受处理，且非目标产业从未接受处理，这实际上是一个 **2×2 DiD** 设定在Callaway & Sant'Anna框架下的特例。
+
+### 5.4 代码实现：`csdid` 命令
+
+双重稳健分析的核心代码在 `3b_run_doublerobust_analysis.do` 中：
+
+**Part I: 主导出/产业分析** (第192-219行)：
+
+```stata
+foreach variable in `outcomevariablelist' {
+    foreach dataset in dataset5 dataset4 {
+        prep_data "``dataset''"
+
+        foreach didtype in dr ols {
+            if( regexm("`didtype'","ols") == 1 ){
+                csdid `variable' `controlset', ///
+                    time(year) ivar(id) gvar(gvar) ///
+                    method(reg) agg(event) replace
+            }
+            else {
+                csdid `variable' `controlset', ///
+                    time(year) ivar(id) gvar(gvar) ///
+                    method(dripw) wboot reps(10000) ///
+                    agg(event) replace
+            }
+            // ... regsave ...
+        }
+    }
+}
+```
+
+**分析类别**：
+
+| didtype | 方法 | 描述 |
+|---------|------|------|
+| `ols`   | `method(reg)` | 仅结果回归 (OLS-based)，不使用倾向得分加权 |
+| `dr`    | `method(dripw)` | 双重稳健：逆概率加权 + 结果回归，Wild Bootstrap SE |
+
+两套估计都使用 `agg(event)` 进行事件研究聚合。`method(dripw)` 使用逆概率加权 (Inverse Probability Weighting) 结合结果回归，实现双重稳健性。
+
+**Part II: 投资分析** (第243-268行) 使用相同的双重循环结构，但加载 `mms_policy_*.dta` 数据集。
+
+**Part III: 贸易分析** (第297-328行) 额外包含PPML估计：
+
+```stata
+if( regexm( "`didtype'" , "ppml" ) == 1 ){
+    ppmlhdfe `variable' i.hci##i.post ///
+        c.(`controlset')##i.year, ///
+        absorb( id year ) vce(cluster id)
+}
+```
+
+PPML(Poisson Pseudo-Maximum Likelihood) 用于处理RCA等贸易变量的非负性和大量零值问题 (Santos Silva and Tenreyro 2006)。
+
+### 5.5 结果数据集的结构
+
+双重稳健分析输出两类CSV文件：
+
+- `doublyrobust_all_results.csv`：包含所有事件研究动态系数 (按年份和相对年份排列)。
+- `doublyrobust_att.csv`：仅包含ATT汇总估计值 (Post_avg)。
+
+类似地，投资和贸易分析分别产生 `doublyrobust_invest_*` 和 `doublyrobust_trade_*` 文件。
+
+---
+
+## 6 Triple Differences (DDD)
+
+### 6.1 识别逻辑：韩国 vs. 世界
+
+DDD估计策略利用国际比较提供额外的反事实变化来源。其核心直觉是：比较韩国HCI与非HCI产业差异的 **DiD估计** 与同期外国市场同一产业的 **Placebo DiD估计**。
+
+识别假设为：在无韩国HCI政策的情况下，韩国内部目标与非目标产业的差异趋势应与外国市场同一产业组的差异趋势相同。
+
+### 6.2 DDD估计方程推导
+
+**基准DDD设定** (论文方程 (4a))：
+
+$$Y_{ict} = \alpha_i + \tau_t + \sigma_c + \sum_{j \neq 1972} \beta_{1j} \cdot (HCI_i \times \text{Year}_t^j) + \sum_{j \neq 1972} \beta_{2j} \cdot (Korea_c \times \text{Year}_t^j) + \sum_{j \neq 1972} \beta_{3j} \cdot (Korea_c \times HCI_i \times \text{Year}_t^j) + \varepsilon_{ict}$$
+
+其中：
+- $c$ 为国家索引，$i$ 为产业 (SITC 4-digit)，$t$ 为年份。
+- $\alpha_i$, $\tau_t$, $\sigma_c$ 分别为产业、年份、国家固定效应。
+- $Korea_c$ 为韩国指示变量 ($Korea_c = 1$ 如果 $c = \text{Korea}$)。
+- $\beta_{3j}$ 为感兴趣的DDD系数，度量韩国目标产业相对于国际参照组的额外差异。
+
+**严格DDD设定** (论文方程 (4b))：
+
+$$Y_{ict} = \alpha_{it} + \tau_{ct} + \sigma_{ci} + \sum_{j \neq 1972} \beta_{3j} \cdot (Korea_c \times HCI_i \times \text{Year}_t^j) + \varepsilon_{ict}$$
+
+其中使用了更高维度的固定效应：
+- $\alpha_{it}$：产业-年份固定效应 (吸收全球产业特定的时变冲击)。
+- $\tau_{ct}$：国家-年份固定效应 (吸收国家特定的宏观经济波动)。
+- $\sigma_{ci}$：国家-产业固定效应 (吸收不随时间变化的国家-产业禀赋)。
+
+在这种严格设定下，$Korea_c \times \text{Year}_t^j$ 和 $HCI_i \times \text{Year}_t^j$ 的交互项都被国家-年份和产业-年份固定效应吸收，仅剩下三重交互项 $\beta_{3j}$。
+
+### 6.3 代码实现
+
+世界贸易DDD分析在 `3c_run_worldtrade_analysis.do` 中实现。输入文件为 `comtrade_worldsitc_panel_cleaned4reg_4digit.dta`。
+
+**核心回归循环** (第46-78行)：
+
+```stata
+foreach variable of local outcomevariablelist {
+    local modelnumber = 1
+    foreach fixedeffects in "code reportercode"                // FE set 1
+                            "i.code#i.year i.reportercode#i.year"  // FE set 2
+                            "i.code#i.year i.reportercode#i.year i.reportercode#i.code" { // FE set 3
+
+        if regexm("`variable'", "dummy|cdk|h_") {
+            quietly: reghdfe `variable' i.hci##ib(1972).year##i.korea, ///
+                absorb( `fixedeffects' ) ///
+                vce(cluster reportercode code)
+        }
+        else {
+            quietly: ppmlhdfe `variable' i.hci##ib(1972).year##i.korea, ///
+                absorb( `fixedeffects' ) ///
+                vce(cluster reportercode code)
+        }
+        // ... regsave ...
+    }
+}
+```
+
+**三层固定效应设定**：
+
+| FE Set | 固定效应 | Stata语法 | 含义 |
+|--------|---------|-----------|------|
+| 1 (最简) | 产业 + 国家 | `code reportercode` | 对应方程 (4a) |
+| 2 | 产业-年份 + 国家-年份 | `i.code#i.year i.reportercode#i.year` | 对应方程 (4b) 部分 |
+| 3 (最严) | 产业-年份 + 国家-年份 + 国家-产业 | 第2组 + `i.reportercode#i.code` | 对应方程 (4b) 完整版 |
+
+**估计器选择逻辑**：
+
+- 对于CDK和二元RCA类别变量 (`rca_cdk`, `rca_dummy`, `h_rca_core`)，使用 `reghdfe`(线性回归)。
+- 对于原始RCA指数 (`rca_core`)，使用 `ppmlhdfe`(PPML回归以处理零值和异方差)。
+
+**标准误聚类**：
+
+```stata
+vce(cluster reportercode code)
+```
+
+双重聚类在国家-产品层面 (`reportercode` × `code`)，允许误差在国家内部和产业内部的相关性。
+
+### 6.4 韩国单独贸易分析
+
+在 `2b_run_koreatrade_analysis.do` 中，对韩国单独的贸易数据进行类似的DiD分析 (不使用国际对比)：
+
+```stata
+reghdfe `variable' i.hci##ib(1972).year , ///
+    absorb( id year ``regressortype'') ///
+    vce(cluster id)
+```
+
+对于连续RCA测度，使用PPML：
+
+```stata
+ppmlhdfe `variable' i.hci##ib(1972).year , ///
+    absorb( id year ``regressortype'') ///
+    vce(cluster id)
+```
+
+`regressortype` 包含前定控制变量与基准年的交互项：
+
+```stata
+local basic_regressors c.l_costs_0#b(1972).year c.l_avg_wages_0#b(1972).year c.l_y_n_0#b(1972).year c.l_avg_size_0#b(1972).year
+```
+
+---
+
+## 7 政策工具分析方程
+
+### 7.1 投资与投入方程推导
+
+政策分析部分检验HCI政策是否促进了目标产业的投资和中间投入使用。估计方程采用与基准DiD相同的结构，但结果变量为投资和投入测度：
+
+$$\ln(y_{it}) = \alpha_i + \tau_t + \sum_{j \neq 1972} \beta_j^{invest} \cdot (HCI_i \times \text{Year}_t^j) + \varepsilon_{it}$$
+
+其中 $y_{it}$ 为投资和投入结果变量：
+- `l_costs`：log(总中间投入)
+- `l_m_n`：log(人均中间投入)
+- `l_inv_tot`：log(总投资)
+- `l_i_n`：log(人均投资)
+- `l_stock_tot`：log(资本存量)
+
+### 7.2 代码实现
+
+政策分析在 `4_run_policy_analysis.do` 中实现，使用 `reghdfe` 命令而非 `xtdidregress`(因为只需要生成逐年系数，而不需要 `xtdidregress` 特有的趋势分解)：
+
+```stata
+reghdfe `variable' i.hci##ib(1972).year, ///
+    absorb( id year ) ///
+    vce(cluster id)
+```
+
+这里 `i.hci##ib(1972).year` 是 `i.hci i.year i.hci#i.year` 的简写形式 (以1972年为基准年省略)。该设定等价于基准DiD事件研究方程 (1)，但使用 `reghdfe` 直接估计所有交互项。
+
+**预趋势检验** (第101-109行)：
+
+```stata
+make_pretest_vars "1.hci" "`variable'"
+test `r(result)'
+local pre_ftest = `r(F)'
+local pre_testprob = `r(p)'
+estadd scalar Fs r(F)
+estadd scalar ps r(p)
+```
+
+`make_pretest_vars` 程序自动构造预处理期中 `1.hci` 与各年份的交互项列表，然后通过 `test` 命令进行联合F检验。
+
+### 7.3 双重稳健投资分析
+
+在 `3b_run_doublerobust_analysis.do` 的Part II中，投资分析也使用了双重稳健DiD估计 (第242-268行)：
+
+```stata
+csdid `variable' `controlset', ///
+    time(year) ivar(id) gvar(gvar) ///
+    method(dripw) wboot reps(10000) ///
+    agg(event) replace
+```
+
+这里的控制集为 `l_costs_0 l_avg_size_0 l_avg_wages_0 l_y_n_0`，与产业产出分析一致。
+
+### 7.4 投入楔子 (Input Wedges) 与MRPK分析
+
+论文进一步通过产业层面 MRPK(Marginal Revenue Product of Capital) 分析，检验信贷政策是否释放了高MRPK目标产业的约束 (见Online Appendix D.2)。该方法借鉴 Bau and Matray (2022)，具体设定为：
+
+$$\ln(y_{it}) = \beta^{highMRPK} \cdot (HighMRPK_i \times Post_t) + \beta^{HCI, highMRPK} \cdot (HCI_i \times HighMRPK_i \times Post_t) + \alpha_i + \tau_t + \varepsilon_{it}$$
+
+该分析在Online Appendix代码中执行 (非主分析脚本)。
+
+---
+
+## 8 机制检验方程：Learning by Doing
+
+### 8.1 产业层面LBD方程
+
+Learning-by-Doing机制检验的核心思想是：如果HCI目标产业存在更强的学习效应，则累积经验 (Experience) 应当与更低的价格/单位成本和更高的TFP相关联，且这一关联在目标产业中应当更强。
+
+**产业层面LBD回归方程** (论文方程 (5))：
+
+$$Y_{it} = \beta_1 \cdot \ln(\text{Experience}_{it}) + \beta_2 \cdot (\ln(\text{Experience}_{it}) \times HCI_i) + \alpha_i + \tau_t + \theta \cdot \ln(\text{Size}_{it}) + X_{it}'\gamma + \varepsilon_{it}$$
+
+其中：
+- $Y_{it}$ 为 log(价格)、log(单位成本) 或 TFP。
+- $\text{Experience}_{it}$ 为截至时期 $t$ 的累积实际总产出 (cumulative real gross output)。
+- $\beta_1$ 度量所有产业的通用学习效应。
+- $\beta_2$ 度量目标产业中额外 (差分) 的学习效应——如果学习效应在HCI产业中更强，则 $\beta_2 < 0$(对于价格和成本) 或 $\beta_2 > 0$(对于TFP)。
+- $\ln(\text{Size}_{it})$ 控制规模效应。
+- $X_{it}$ 包括人均投入使用量、资本密集度等控制变量 (均为log形式，按工人数标准化)。
+
+**代码实现** (`5a_run_mechanisms_lbd_analysis.do`)：
+
+```stata
+reghdfe `variable' i.hci##c.(l_experience) l_avg_size l_workers , ///
+    absorb( id year ) ///
+    vce( cluster id )
+```
+
+完整的第二组控制还包括：
+
+```stata
+local secondset i.hci##c.(l_experience) l_workers l_avg_size l_k_n l_m_n l_i_n
+```
+
+其中 `l_k_n`(资本密集度)、`l_m_n`(人均中间投入)、`l_i_n`(人均投资) 用于控制技术进步的其他来源。
+
+**线性组合检验** (第104-106行)：
+
+```stata
+lincom l_experience + 1.hci#c.l_experience
+estadd scalar combobeta = r(estimate)
+estadd scalar combose = r(se)
+```
+
+该检验估计目标产业中经验的总效应：$\beta_1 + \beta_2$(即目标产业中经验的综合效果)。
+
+**样本限制**：注意 `prep_data` 在此将样本限制为 `year >= 1973`(第21行)：
+
+```stata
+keep if year >= 1973
+```
+
+因为LBD分析考察的是政策时期内的学习效应，而非DiD设计本身。
+
+### 8.2 工厂层面LBD：跨工厂溢出检验
+
+工厂层面LBD分析 (论文Table VI) 将经验分解为工厂自有经验 (plant-level experience) 和产业层面经验 (industry-level experience)：
+
+$$TFP_{pt} = \beta_1 \cdot \ln(PlantExp_{pt}) + \beta_2 \cdot (Targeted_p \times \ln(PlantExp_{pt})) + \beta_3 \cdot \ln(IndExp_{it}) + \beta_4 \cdot (Targeted_p \times \ln(IndExp_{it})) + \alpha_p + \tau_t + \varepsilon_{pt}$$
+
+其中 $p$ 为工厂，$i$ 为产业，$\alpha_p$ 为工厂固定效应。$\beta_4 > 0$ 意味着目标产业中存在跨工厂的学习溢出 (industry-wide learning spillovers)。此分析在微数据代码中执行 (`code/0_analysis/2_appendix_scripts/`)。
+
+---
+
+## 9 投入产出关联方程
+
+### 9.1 关联暴露测度的构造
+
+论文使用韩国银行1970年IO表构造两类关联暴露测度。1970年IO表是政策前最细分的投入产出表 (涵盖约320个部门)，因此不存在由政策导致的内生性问题。
+
+**直接后向关联 (Direct Backward Linkage)**(论文方程 (6a))：
+
+$$\text{BackwardLinkage}_i = \sum_{j \in HCI} \alpha_{ij}$$
+
+其中 $\alpha_{ij}$ 为产业 $i$ 的产出被目标产业 $j$ 使用的价值占 $j$ 总产出的份额。该测度捕捉产业 $i$ 作为HCI供应商的暴露程度。
+
+**直接前向关联 (Direct Forward Linkage)**(论文方程 (6b))：
+
+$$\text{ForwardLinkage}_i = \sum_{j \in HCI} \alpha_{ji}$$
+
+其中 $\alpha_{ji}$ 为目标产业 $j$ 的产出被产业 $i$ 使用的价值占 $i$ 总产出的份额。该测度捕捉产业 $i$ 作为HCI产品用户的暴露程度。
+
+**Leontief全关联 (Total Linkages)**：使用Leontief逆矩阵 $(I - A)^{-1}$ 中的元素扩展上述公式，以捕捉包括二阶、三阶...$n$阶的完整网络效应。例如：
+
+$$\text{TotalBackwardLinkage}_i = \sum_{j \in HCI} L_{ij}$$
+
+其中 $L_{ij}$ 为Leontief逆矩阵的元素，表示 $i$ 部门产出对 $j$ 部门最终需求的总 (直接+间接) 依赖。
+
+在代码中，这两类关联测度被统一储存为：
+
+```stata
+local harmonized_direct `""hci_share_use_tot_0 hci_share_make_tot_0""'
+local harmonized_leontief `""lf_hci_link_use_0 lf_hci_link_make_0""'
+```
+
+其中 `hci_share_use_tot_0`(前向暴露) 和 `hci_share_make_tot_0`(后向暴露) 为直接份额测度，`lf_hci_link_use_0` 和 `lf_hci_link_make_0` 为基于Leontief逆矩阵的总关联测度。
+
+### 9.2 关联DiD估计方程
+
+**动态滚动关联方程** (论文方程 (7))：
+
+$$\ln(y_{it}) = \alpha_i + \tau_t + \sum_{j \neq 1972} \gamma_j \cdot (\text{BackwardLinkage}_i \times \text{Year}_t^j) + \sum_{j \neq 1972} \delta_j \cdot (\text{ForwardLinkage}_i \times \text{Year}_t^j) + \varepsilon_{it}$$
+
+关键差异：与基准DiD使用二元处理变量 $HCI_i$ 不同，此方程使用**连续型**关联暴露测度作为处理变量。因此：
+- $\gamma_j$ 度量后向关联暴露每增加一单位，在年份 $j$ 的结果差异。
+- $\delta_j$ 度量前向关联暴露每增加一单位，在年份 $j$ 的结果差异。
+
+**全样本估计** (包含HCI产业本身) 中额外控制政策直接效应：
+
+$$\ln(y_{it}) = \alpha_i + \tau_t + \sum_{j \neq 1972} \beta_j \cdot (HCI_i \times \text{Year}_t^j) + \sum_{j \neq 1972} \gamma_j \cdot (\text{BackwardLinkage}_i \times \text{Year}_t^j) + \sum_{j \neq 1972} \delta_j \cdot (\text{ForwardLinkage}_i \times \text{Year}_t^j) + \varepsilon_{it}$$
+
+这允许将直接处理效应和关联溢出效应分开识别。
+
+**子样本估计** (仅非HCI产业，`restrictiondummy == 0`) 移除了 $HCI_i \times \text{Year}_t^j$ 项，因为样本中 $HCI_i \equiv 0$。
+
+### 9.3 代码实现
+
+产出和价格的关联分析在 `6a_run_linkages_growthprice_analysis.do` 中执行。该文件调用子程序 `subdofiles/6b_linkages_subrollingloop.do`。
+
+**核心回归循环** (subdo第30-244行) 包含四层嵌套：
+
+```
+Loop: didtype (prepost, rolling)
+  Loop: datatype (4-digit, 5-digit)
+    Loop: outcome (l_valueadded, l_ppi)
+      Loop: restriction (full sample, non-HCI only)
+```
+
+全样本回归：
+
+```stata
+reghdfe `outcome' `didinteraction'##c.(`mainregressorlist'), ///
+    absorb( `fullsampleabsorb' ) ///
+    vce(cluster id) noconstant
+```
+
+其中 `fullsampleabsorb = id hci#year year`，即吸收产业FE、HCI-年份交互 (直接处理效应) 和年份FE。
+
+子样本 (仅非HCI) 回归：
+
+```stata
+reghdfe `outcome' `didinteraction'##c.(`mainregressorlist') ///
+    if hci == `restrictiondummy', ///
+    absorb( `partsampleabsorb' ) ///
+    vce(cluster id) noconstant
+```
+
+其中 `partsampleabsorb = id year`，因为在非HCI样本中没有HCI变异。
+
+`didinteraction` 在 prepost 类型中为 `i.post`(二元政策后指标)，在 rolling 类型中为 `ib(1972).year`(逐年交互项)。
+
+### 9.4 贸易关联分析
+
+贸易数据的关联分析在 `6b_run_linkages_trade_analysis.do` 中执行。该分析将SITC贸易数据与IO关联测度结合，使用PPML(对于RCA等非负/零值变量) 和reghdfe(对于CDK和二元指标) 估计。
+
+**估计器选择逻辑** (第185-192行)：
+
+```stata
+if regexm("`outcome'", "(cdk|dummy)"){
+    local regcommand reghdfe
+}
+else {
+    local regcommand ppmlhdfe
+}
+```
+
+**固定效应设定**因样本不同而异：
+- 全样本：`absorb(id hci#year year)`
+- 非HCI子样本：`absorb(id year)`
+
+---
+
+## 10 固定效应、控制变量与标准误设计
+
+### 10.1 固定效应矩阵
+
+| 分析类型 | Industry FE ($\alpha_i$) | Year FE ($\tau_t$) | 额外FE | 估计命令 | 代码文件 |
+|----------|------------------------|-------------------|--------|---------|---------|
+| 基准产出DiD | Yes (`id`) | Yes (`year`) | — | `xtdidregress` | `1_run_growth_analysis.do` |
+| 发展结果DiD | Yes (`id`) | Yes (`year`) | — | `reghdfe` | `2a_run_devoutcomes_analysis.do` |
+| 韩国贸易DiD | Yes (`id`) | Yes (`year`) | — | `reghdfe` / `ppmlhdfe` | `2b_run_koreatrade_analysis.do` |
+| 跨国DDD (简) | Industry, Country | Year | — | `reghdfe` / `ppmlhdfe` | `3c_run_worldtrade_analysis.do` |
+| 跨国DDD (严) | Industry×Year | Country×Year | Country×Industry | `reghdfe` / `ppmlhdfe` | `3c_run_worldtrade_analysis.do` |
+| 投资政策DiD | Yes (`id`) | Yes (`year`) | — | `reghdfe` | `4_run_policy_analysis.do` |
+| LBD机制 | Yes (`id`) | Yes (`year`) | — | `reghdfe` | `5a_run_mechanisms_lbd_analysis.do` |
+| IO关联 (全样本) | Yes (`id`) | Yes (`year`) | `hci#year` | `reghdfe` | `6a/6b_run_linkages_*.do` |
+| IO关联 (非HCI) | Yes (`id`) | Yes (`year`) | — | `reghdfe` | `6a/6b_run_linkages_*.do` |
+
+### 10.2 控制变量策略
+
+论文采用**三重控制策略**：
+
+**策略1：无控制 (Baseline)**
+
+纯固定效应设定，仅包含产业FE和年份FE。这提供了最透明的处理-对照差异估计。
+
+**策略2：前定控制变量 × 年份 (Pre-treatment Controls × Year)**
+
+四个时间不变的前定产业特征与全部年份交互：
+
+$$\gamma_1 \cdot \text{l\_costs\_0}_i \times \text{Year}_t + \gamma_2 \cdot \text{l\_avg\_wages\_0}_i \times \text{Year}_t + \gamma_3 \cdot \text{l\_avg\_size\_0}_i \times \text{Year}_t + \gamma_4 \cdot \text{l\_y\_n\_0}_i \times \text{Year}_t$$
+
+这四个变量均为1972年之前的产业均值，取log形式并以实际值计价。交互项 $\times \text{Year}_t$ 确保这些预处理特征的影响可以随时间变化。
+
+在 `xtdidregress` 中，通过 `()` 直接纳入：
+
+```stata
+xtdidregress (l_ship c.(l_costs_0 l_avg_size_0 l_avg_wages_0 l_y_n_0)#i.year) (treat), ...
+```
+
+在 `reghdfe` 中，通过模型右侧纳入：
+
+```stata
+reghdfe l_ship i.hci##ib(1972).year c.(l_costs_0 l_avg_wages_0 l_avg_size_0 l_y_n_0)##ib(1972).year, absorb(id year) vce(cluster id)
+```
+
+在 `csdid` 双重稳健估计中，通过 `controlset` 传递：
+
+```stata
+local controlset l_costs_0 l_avg_size_0 l_avg_wages_0 l_y_n_0
+```
+
+**策略3：机制控制 (仅LBD分析)**
+
+在LBD分析中，额外的时变控制变量包括：
+- `l_avg_size`(log平均工厂规模)
+- `l_workers`(log总就业)
+- `l_k_n`(log资本密集度)
+- `l_m_n`(log人均中间投入)
+- `l_i_n`(log人均投资)
+
+这些变量在LBD回归中作为时变控制变量纳入，以分离学习效应与规模效应、要素密集度效应。
+
+### 10.3 标准误聚类设计
+
+**产业级聚类** (适用于所有韩国国内产业分析)：
+
+```stata
+vce(cluster id)
+```
+
+$id$ 为产业标识符。这是最常用的聚类层级，允许同一产业在不同年份的误差项存在任意序列相关。
+
+**双重聚类** (适用于跨国DDD分析)：
+
+```stata
+vce(cluster reportercode code)
+```
+
+在国家和产品 (SITC 4-digit) 两个维度上聚类，允许误差在国家内部和产品内部同时相关。
+
+**双重聚类** (适用于工厂级TFP回归)：
+
+```stata
+vce(cluster industryid plantid)
+```
+
+在产业和工厂两个维度上聚类，允许TFP误差在产业内部和工厂内部的相关性。
+
+**Wild Bootstrap标准误** (适用于双重稳健DiD)：
+
+```stata
+csdid ... method(dripw) wboot reps(10000)
+```
+
+使用Wild Bootstrap程序生成置信区间 (10,000次重复)，该程序针对产业级聚类进行了调整 (Callaway and Sant'Anna 2021)。
+
+### 10.4 预处理期趋势检验的构造
+
+在所有事件研究回归中，论文提供联合F检验以评估平行趋势假设。检验的构造方式因估计器而异：
+
+**对于 `xtdidregress`**：
+
+```stata
+quietly: estat ptrends
+local pre_ftest = r(F)
+local pre_testprob = r(p)
+```
+
+Stata内部的 `estat ptrends` 自动构造检验统计量。
+
+**对于 `reghdfe`**：
+
+```stata
+make_pretest_vars "1.hci" "`variable'"
+test `r(result)'
+```
+
+`make_pretest_vars` 程序 (定义在各个 `.do` 文件中) 完成以下步骤：
+
+1. 使用 `levelsof year if year < 1972 & !missing(outcome)` 获取预处理年份列表。
+2. 对每个预处理年份 `yrpre`，构造交互项 `1.hci#yrpre.year`。
+3. 通过 `test` 命令对所有预处理交互项进行联合检验。
+4. 零假设 $H_0: \beta_{pre} = 0$(即所有预处理期系数联合为零)。
+5. 对于 `reghdfe`，提取 `r(F)` 和 `r(p)` 值；对于 `ppmlhdfe`，提取 `r(chi2)` 和 `r(p)` 值。
+
+---
+
+## 11 稳健性设计推导
+
+### 11.1 前趋势检验 (Pre-trend Tests)
+
+论文的核心稳健性策略是检验事件研究图中预处理期系数的行为。这通过以下方式实现：
+
+- **视觉检验**：事件研究图中 $\beta_{1967}, \dots, \beta_{1971}$ 的点估计和置信区间，判断是否在零附近波动且无系统性模式。
+- **联合F检验**：如10.4节所述，所有回归报告预处理期系数的联合显著性检验。5-digit面板仅有三年的预处理期 (1970–1972)，因此F检验的power有限；4-digit面板有五年的预处理期 (1967–1972)，检验power更强。
+- **长期预处理趋势**：4-digit面板中，1967–1972年五个预处理年份提供了额外的反事实趋势验证。
+
+### 11.2 前1973年政策分析的Placebo逻辑
+
+论文通过以下几个维度进行Placebo检验：
+
+1. **政策前时期对比**：最直接的Placebo是检查1973年之前是否存在处理-对照差异。事件研究图中 $\beta_{1967} \approx \beta_{1968} \approx \dots \approx \beta_{1971} \approx 0$ 是平行趋势成立的直接证据。
+
+2. **前1973年伪政策分析 (Pre-1973 pseudo-policy analysis)**：在Online Appendix中，论文可能将政策开始时间人为前移 (例如假設政策在1969年开始)，检验在伪政策时点前后是否存在“处理效应”。如果不存在，则支持识别策略的有效性。
+
+3. **国际Placebo(DDD)**：跨国三重差分本身即是一种Placebo检验——如果韩国的DiD估计与国际Placebo DiD估计没有系统性差异，则支持识别假设。
+
+### 11.3 SUTVA检验
+
+稳定单元处理值假设 (Stable Unit Treatment Value Assumption, SUTVA) 要求控制组的潜在结果不受处理组接受处理的影响。在网络/产业政策设置中，这可能通过投入产出关联被违反。
+
+论文通过三种方式处理SUTVA问题 (Section VII.B)：
+
+1. **限制控制组**：将控制组限制为前向关联暴露低于中位数的产业 ("limited exposure" 对照组)。重新估计后，主要效应未发生质的变化 (Online Appendix Figure G.1)。
+
+2. **控制关联暴露**：在主要回归中纳入关联暴露测度作为控制变量。控制下游溢出后，主效应变得更显著 (因为正溢出使控制组受益，略微低估效应)。
+
+3. **投资挤出检验**：分别检验目标和非目标产业的投资动态，发现非目标产业的投资并未绝对下降，排除了政策对非目标产业产生负面溢出的可能性 (Online Appendix D.3)。
+
+### 11.4 连续处理变量的替代方案
+
+在Online Appendix J.1中，论文使用连续处理暴露测度 (见2.4节) 替代二元HCI指标：
+
+$$\ln(y_{it}) = \alpha_i + \tau_t + \sum_{j \neq 1972} \beta_j \cdot (\text{ContinuousExposure}_i \times \text{Year}_t^j) + \varepsilon_{it}$$
+
+由于多产品企业在HCI和非HCI市场之间的产出重叠有限，连续暴露测度的变异较小。动态估计与二元处理估计一致 (Online Appendix Figure B.2)，支持主分析结论的稳健性。
+
+### 11.5 UNIDO稳健性数据集
+
+论文提及UNIDO(联合国工业发展组织) 数据用于跨国稳健性检验 (Online Appendix K)。UNIDO数据提供国际可比的产业产出统计，作为MMS数据的补充验证。使用UNIDO数据的DDD估计显示出与COMTRADE SITC数据类似的结果模式。
+
+---
+
+## 12 代码实现映射
+
+### 12.1 各估计方程到代码文件的完整映射
+
+| 方程编号 | 论文内容 | .do 文件 | 关键行 | 估计命令 | 实现细节 |
+|---------|---------|---------|--------|---------|---------|
+| (1) 基准 | TWFE DiD (产出) | `1_run_growth_analysis.do` | L161, L275 | `xtdidregress` | 5-digit + 4-digit, 含/不含控制 |
+| (1) 基准 | TWFE DiD (发展结果) | `2a_run_devoutcomes_analysis.do` -> `2b_devoutcomes_subrollingloop.do` | sub L56 | `reghdfe` | 产出份额、就业、工厂数等 |
+| (1) 基准 | TWFE DiD (韩国贸易) | `2b_run_koreatrade_analysis.do` | L155, L163 | `reghdfe` / `ppmlhdfe` | RCA, CDK, 出口份额 |
+| (2) TFP | 工厂级TFP持久性 | `0_analysis/2_appendix_scripts/` | — | `reghdfe` | Industry-year FE, two-way clustering |
+| (3) DR | Double-Robust ATT | `3b_run_doublerobust_analysis.do` | L200-L209 | `csdid` (dripw + reg) | 10,000 Wild Bootstrap iterations |
+| (3) DR | DR投资ATT | `3b_run_doublerobust_analysis.do` | L248-L259 | `csdid` (dripw + reg) | Policy datasets |
+| (3) DR | DR贸易ATT (含PPML) | `3b_run_doublerobust_analysis.do` | L301-L317 | `csdid` + `ppmlhdfe` | COMTRADE数据 |
+| (4a)/(4b) DDD | 跨国三重差分 | `3c_run_worldtrade_analysis.do` | L54-L65 | `reghdfe` / `ppmlhdfe` | 3组FE设定, 双重聚类 |
+| (1) 投资 | 投资/投入DiD | `4_run_policy_analysis.do` | L90-L92, L197-L198 | `reghdfe` | `i.hci##ib(1972).year` |
+| (5) LBD | 产业级学习效应 | `5a_run_mechanisms_lbd_analysis.do` | L96-L98 | `reghdfe` | `i.hci##c.(l_experience)` 交互 |
+| (5) LBD | 替代经验测度 | `5a_run_mechanisms_lbd_analysis.do` | L155-L158 | `reghdfe` | `l_experience_n`, `l_experience_alt` |
+| (7) 关联 | IO关联产出和价格 | `6a_run_linkages_growthprice_analysis.do` -> `6b_linkages_subrollingloop.do` | sub L116-L130 | `reghdfe` | `didinteraction##c.(mainregressorlist)` |
+| (7) 关联 | IO关联贸易 | `6b_run_linkages_trade_analysis.do` | L206-L220 | `reghdfe` / `ppmlhdfe` | Direct + Leontief linkages |
+
+### 12.2 Stata代码核心模式总结
+
+**模式A：TWFE事件研究 (通过reghdfe)**
+
+```stata
+reghdfe outcome i.hci##ib(1972).year [controls], ///
+    absorb(id year) vce(cluster id)
+```
+
+特点：标准的事件研究设定，HCI×Year交互项捕获处理效应的动态演化。
+
+**模式B：TWFE事件研究 (通过xtdidregress)**
+
+```stata
+xtdidregress (outcome controls) (treat), ///
+    group(id) time(year) vce(cluster id)
+estat grangerplot, baseline(1972)
+estat ptrends
+```
+
+特点：Stata 17+内置的DiD估计命令，自动提供趋势图、事件研究图和预趋势检验。
+
+**模式C：Double-Robust DiD (通过csdid)**
+
+```stata
+gen gvar = 0
+replace gvar = 1973 if hci == 1
+csdid outcome controls, time(year) ivar(id) gvar(gvar) ///
+    method(dripw) wboot reps(10000) agg(event)
+```
+
+特点：需要构造组变量gvar，从未处理组gvar=0，处理组gvar=处理年份。Wild Bootstrap标准误。
+
+**模式D：PPML (通过ppmlhdfe)**
+
+```stata
+ppmlhdfe outcome i.hci##ib(1972).year [controls], ///
+    absorb(id year) vce(cluster id)
+```
+
+特点：用于非负结果变量 (如RCA) 的泊松伪最大似然估计，处理零值和异方差。
+
+**模式E：三重差分 (通过reghdfe/ppmlhdfe)**
+
+```stata
+reghdfe outcome i.hci##ib(1972).year##i.korea, ///
+    absorb(i.code#i.year i.reportercode#i.year i.reportercode#i.code) ///
+    vce(cluster reportercode code)
+```
+
+特点：高维固定效应吸收所有低阶交互项，仅三重交互项被识别。
+
+### 12.3 结果输出和R集成
+
+所有回归结果通过两类通道输出：
+
+**通道1：ESTAB (via estout)**
+
+```stata
+estout output_* using "outputfile.csv", replace ///
+    cells(b(star fmt(3)) se(par fmt(3))) ///
+    keep( 1*hci*year* )
+```
+
+生成CSV格式的回归系数表 (含显著性星号)，用于论文表格。
+
+**通道2：REGSAVE (via regsave)**
+
+```stata
+regsave using "tmpfile", ci tstat pval ///
+    addlabel(outcome,`variable', ...) `replace'
+```
+
+生成包含所有系数、置信区间、t统计量和p值的完整数据集，导出为CSV后由R读取用于：
+- Event-study作图 (`ggplot2`)
+- 动态处理效应可视化
+- 置信区间绘制
+
+**R代码路径**：`code/1_figures/` 目录下的R脚本读取 `.csv` 文件并生成论文中的所有图表。
+
+### 12.4 数据处理流水线的文件依赖关系
+
+```
+actstable_simple_combined_all.csv
+        |
+        v
+MMS Survey Data (digitized/electronic)
+        |
+        v
+0_databuild/  ------►  mms_merged_harmonized_panel_cleaned4reg_5digit.dta
+        |              mms_merged_harmonized_panel_cleaned4reg_4digit.dta
+        |              mms_policy_5digit.dta
+        |              mms_policy_4digit.dta
+        |              mms_TFP_5digit.dta
+        |
+BOK IO Tables (1970)
+        |
+        v
+IO crosswalk  ------►  hci_share_use_tot_0, hci_share_make_tot_0
+                       lf_hci_link_use_0, lf_hci_link_make_0
+        |
+UN COMTRADE (SITC rev.1)
+        |
+        v
+SITC harmonization -►  comtrade_merged_harmonized_panel_cleaned4reg_4digit.dta
+                       comtrade_worldsitc_panel_cleaned4reg_4digit.dta
+```
+
+每个分析脚本从上述最终面板数据中加载输入，运行估计循环，并输出CSV结果数据集以供表格生成和R绘图使用。
+
+---
+
+## 附录：变量名速查表
+
+### A.1 常见结果变量 (Stata名 -> 中文含义)
+
+| Stata名 | 中文含义 | 类型 |
+|--------|---------|------|
+| `l_ship` | log(实际装运产出) | 产出 |
+| `l_grossoutput` | log(实际总产出) | 产出 |
+| `l_valueadded` | log(实际增加值) | 产出 |
+| `l_ppi` | log(产出价格) | 价格 |
+| `l_workers` | log(就业) | 就业 |
+| `l_est` | log(工厂数) | 结构 |
+| `l_y_n` | log(劳动生产率) | 生产率 |
+| `l_lab_sh` | log(就业份额) | 结构 |
+| `l_ship_sh` | log(产出份额) | 结构 |
+| `l_costs` | log(中间投入成本) | 投入 |
+| `l_m_n` | log(人均中间投入) | 投入 |
+| `l_inv_tot` | log(总投资) | 投资 |
+| `l_i_n` | log(人均投资) | 投资 |
+| `l_stock_tot` | log(资本存量) | 投资 |
+| `rca_core` | RCA (Balassa指数) | 贸易 |
+| `rca_cdk` | CDK相对出口生产率 | 贸易 |
+| `rca_dummy` | 1[RCA > 1] | 贸易 |
+| `export_sh` | 出口份额 | 贸易 |
+| `tfp_acf` | TFP (ACF法) | 生产率 |
+| `tfp_lp` | TFP (LP法) | 生产率 |
+| `tfp_w` | TFP (Wooldridge法) | 生产率 |
+| `tfp_op` | TFP (OP法) | 生产率 |
+| `l_uc` | log(单位成本) | 成本 |
+| `l_experience` | log(累积产出经验) | 机制 |
+
+### A.2 常见控制变量 (Stata名 -> 中文含义)
+
+| Stata名 | 中文含义 | 时间变异 |
+|--------|---------|---------|
+| `l_costs_0` | 前定平均log(中间投入) | 无 (时间不变) |
+| `l_avg_wages_0` | 前定平均log(工资) | 无 |
+| `l_avg_size_0` | 前定平均log(工厂规模) | 无 |
+| `l_y_n_0` | 前定平均log(劳动生产率) | 无 |
+| `l_workers` | log(就业) | 有 (时变) |
+| `l_avg_size` | log(平均工厂规模) | 有 |
+| `l_k_n` | log(资本密集度) | 有 |
+| `l_m_n` | log(人均中间投入) | 有 |
+| `l_i_n` | log(人均投资) | 有 |
+
+### A.3 关键标识符变量
+
+| Stata名 | 含义 |
+|--------|------|
+| `id` | 产业标识符 (Industry ID) |
+| `year` | 年份 (1967–1986) |
+| `hci` | 二元HCI目标指示 (时间不变) |
+| `treat` | 二元处理指示 (`hci==1 & year>=1973`) |
+| `post` | 二元政策后指示 (`year >= 1973`) |
+| `gvar` | 组变量 (0=从未处理, 1973=HCI) |
+| `code` | SITC产品代码 (用于贸易分析) |
+| `reportercode` | 报告国代码 (用于贸易分析) |
+| `korea` | 韩国指示 (用于DDD分析) |
+
+### A.4 关联变量
+
+| Stata名 | 含义 |
+|--------|------|
+| `hci_share_use_tot_0` | 直接前向关联暴露 (IO份额) |
+| `hci_share_make_tot_0` | 直接后向关联暴露 (IO份额) |
+| `lf_hci_link_use_0` | Leontief前向关联暴露 |
+| `lf_hci_link_make_0` | Leontief后向关联暴露 |

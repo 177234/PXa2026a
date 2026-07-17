@@ -1,0 +1,2568 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>附录 N — Manufacturing Revolutions — 研究方法拆解 – AI 时代的实证研究基础</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../examples/ch01/Lane_2025_student_notes/derivation.html" rel="next">
+<link href="../../../examples/ch01/Lane_2025_student_notes/summary.html" rel="prev">
+<link href="../../../images/book-logo.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-e8fb9d25728d58bfeac61b497e4a6629.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-57a92833092fd6dc0d7710b6bdfff9c5.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-7ef202e96c563d31d9e5226e4d6cabf9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-490ba4e843cb1303a232ed0c676384f2.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../appendix/A_prompt_templates.html">附录</a></li><li class="breadcrumb-item"><a href="../../../examples/ch01/Lane_2025_student_notes/index.html">第 1 讲 · 进阶选读（助教多角度精读，选读）</a></li><li class="breadcrumb-item"><a href="../../../examples/ch01/Lane_2025_student_notes/methods.html"><span class="chapter-number">N</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions — 研究方法拆解</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="https://lianxhcn.github.io/PXa2026a/" class="sidebar-logo-link">
+      <img src="../../../images/book-logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../../">暑期班 · 初级班</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
+    <a href="https://github.com/lianxhcn/PXa2026a" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🏠 前言</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../usage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📦 课件使用</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📌 讲授计划</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../settings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🚀 课前准备</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../skills-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🤖 AI 工作流与 skills 上手</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>讲义</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../lectures/01_replication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">从顶刊复现项目开始：实证研究的完整流程</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../lectures/02_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">数据处理、探索性分析与样本构造</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../lectures/03_framework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">从总体到推断：实证分析的五层框架</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../lectures/04_ols.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">线性回归的建模语言：CEF、OLS 与统计推断</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../lectures/05_FE_intFE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FWL、虚拟变量与固定效应：理解条件比较</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../lectures/06_practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">综合实操：从复现代码到自己的分析任务</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">附录</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../appendix/A_prompt_templates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">提示词与任务说明书模板</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../appendix/B_skills_index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">skills 索引</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../appendix/C_datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">课程数据集说明</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../appendix/D_reading_list.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">延伸阅读</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../appendix/E_faq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">FAQ：环境与 agent 常见问题</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">第 1 讲配套：Lane (2025) 阅读笔记</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_reading_notes/01_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">整体介绍</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_reading_notes/02_methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">实证方法与识别</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_reading_notes/03_replication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">复现材料导览</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_reading_notes/04_literature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">迷你文献定位</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../appendix/F_akcigit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">扩展案例：Akcigit et al.&nbsp;(2022)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">第 1 讲 · 进阶选读（助教多角度精读，选读）</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_student_notes/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">K</span>&nbsp; <span class="chapter-title">进阶参照：一位博士生的 Lane (2025) 多角度精读</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_student_notes/framing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">L</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions: Industrial Policy and Industrialization in South Korea — 论文Framing分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_student_notes/summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">M</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions 综合分析摘要</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_student_notes/methods.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">N</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions — 研究方法拆解</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_student_notes/derivation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">O</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions — 研究设计与估计方程推导</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_student_notes/replication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">P</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions — 复现材料审计与运行说明</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_student_notes/codex-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">Q</span>&nbsp; <span class="chapter-title">codex-workflow.html</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#source-map" id="toc-source-map" class="nav-link active" data-scroll-target="#source-map"><span class="header-section-number">N.1</span> Source Map</a></li>
+  <li><a href="#本文件阅读边界" id="toc-本文件阅读边界" class="nav-link" data-scroll-target="#本文件阅读边界"><span class="header-section-number">N.2</span> 本文件阅读边界</a></li>
+  <li><a href="#五问诊断摘要" id="toc-五问诊断摘要" class="nav-link" data-scroll-target="#五问诊断摘要"><span class="header-section-number">N.3</span> 1 五问诊断摘要</a></li>
+  <li><a href="#核心研究问题和贡献" id="toc-核心研究问题和贡献" class="nav-link" data-scroll-target="#核心研究问题和贡献"><span class="header-section-number">N.4</span> 2 核心研究问题和贡献</a>
+  <ul class="collapse">
+  <li><a href="#研究问题" id="toc-研究问题" class="nav-link" data-scroll-target="#研究问题"><span class="header-section-number">N.4.1</span> 2.1 研究问题</a></li>
+  <li><a href="#学术贡献定位" id="toc-学术贡献定位" class="nav-link" data-scroll-target="#学术贡献定位"><span class="header-section-number">N.4.2</span> 2.2 学术贡献定位</a></li>
+  </ul></li>
+  <li><a href="#为什么这个问题重要" id="toc-为什么这个问题重要" class="nav-link" data-scroll-target="#为什么这个问题重要"><span class="header-section-number">N.5</span> 3 为什么这个问题重要</a>
+  <ul class="collapse">
+  <li><a href="#政策背景的重大性" id="toc-政策背景的重大性" class="nav-link" data-scroll-target="#政策背景的重大性"><span class="header-section-number">N.5.1</span> 3.1 政策背景的重大性</a></li>
+  <li><a href="#学术争论的长期性" id="toc-学术争论的长期性" class="nav-link" data-scroll-target="#学术争论的长期性"><span class="header-section-number">N.5.2</span> 3.2 学术争论的长期性</a></li>
+  <li><a href="#当代政策含义" id="toc-当代政策含义" class="nav-link" data-scroll-target="#当代政策含义"><span class="header-section-number">N.5.3</span> 3.3 当代政策含义</a></li>
+  </ul></li>
+  <li><a href="#主要结论数量级和机制链条" id="toc-主要结论数量级和机制链条" class="nav-link" data-scroll-target="#主要结论数量级和机制链条"><span class="header-section-number">N.6</span> 4 主要结论、数量级和机制链条</a>
+  <ul class="collapse">
+  <li><a href="#直接效应-基准结果" id="toc-直接效应-基准结果" class="nav-link" data-scroll-target="#直接效应-基准结果"><span class="header-section-number">N.6.1</span> 4.1 直接效应 (基准结果)</a></li>
+  <li><a href="#机制链条-paper-结构" id="toc-机制链条-paper-结构" class="nav-link" data-scroll-target="#机制链条-paper-结构"><span class="header-section-number">N.6.2</span> 4.2 机制链条 (Paper 结构)</a></li>
+  <li><a href="#效应的时间动态" id="toc-效应的时间动态" class="nav-link" data-scroll-target="#效应的时间动态"><span class="header-section-number">N.6.3</span> 4.3 效应的时间动态</a></li>
+  </ul></li>
+  <li><a href="#数据制度背景和变量构造" id="toc-数据制度背景和变量构造" class="nav-link" data-scroll-target="#数据制度背景和变量构造"><span class="header-section-number">N.7</span> 5 数据、制度背景和变量构造</a>
+  <ul class="collapse">
+  <li><a href="#数据全景" id="toc-数据全景" class="nav-link" data-scroll-target="#数据全景"><span class="header-section-number">N.7.1</span> 5.1 数据全景</a></li>
+  <li><a href="#面板结构" id="toc-面板结构" class="nav-link" data-scroll-target="#面板结构"><span class="header-section-number">N.7.2</span> 5.2 面板结构</a></li>
+  <li><a href="#关键变量构造" id="toc-关键变量构造" class="nav-link" data-scroll-target="#关键变量构造"><span class="header-section-number">N.7.3</span> 5.3 关键变量构造</a></li>
+  <li><a href="#投入产出关联度变量-linkage-variables" id="toc-投入产出关联度变量-linkage-variables" class="nav-link" data-scroll-target="#投入产出关联度变量-linkage-variables"><span class="header-section-number">N.7.4</span> 5.4 投入产出关联度变量 (Linkage Variables)</a></li>
+  </ul></li>
+  <li><a href="#研究设计和识别假设" id="toc-研究设计和识别假设" class="nav-link" data-scroll-target="#研究设计和识别假设"><span class="header-section-number">N.8</span> 6 研究设计和识别假设</a>
+  <ul class="collapse">
+  <li><a href="#核心识别逻辑" id="toc-核心识别逻辑" class="nav-link" data-scroll-target="#核心识别逻辑"><span class="header-section-number">N.8.1</span> 6.1 核心识别逻辑</a></li>
+  <li><a href="#parallel-trends-假设" id="toc-parallel-trends-假设" class="nav-link" data-scroll-target="#parallel-trends-假设"><span class="header-section-number">N.8.2</span> 6.2 Parallel Trends 假设</a></li>
+  <li><a href="#ddd-的额外识别假设" id="toc-ddd-的额外识别假设" class="nav-link" data-scroll-target="#ddd-的额外识别假设"><span class="header-section-number">N.8.3</span> 6.3 DDD 的额外识别假设</a></li>
+  <li><a href="#sutva-假设及处理" id="toc-sutva-假设及处理" class="nav-link" data-scroll-target="#sutva-假设及处理"><span class="header-section-number">N.8.4</span> 6.4 SUTVA 假设及处理</a></li>
+  </ul></li>
+  <li><a href="#核心回归方程" id="toc-核心回归方程" class="nav-link" data-scroll-target="#核心回归方程"><span class="header-section-number">N.9</span> 7 核心回归方程</a>
+  <ul class="collapse">
+  <li><a href="#equation-1twfe-事件研究基底方程" id="toc-equation-1twfe-事件研究基底方程" class="nav-link" data-scroll-target="#equation-1twfe-事件研究基底方程"><span class="header-section-number">N.9.1</span> 7.1 Equation (1)：TWFE 事件研究基底方程</a></li>
+  <li><a href="#equation-2plant-level-tfp-持久性" id="toc-equation-2plant-level-tfp-持久性" class="nav-link" data-scroll-target="#equation-2plant-level-tfp-持久性"><span class="header-section-number">N.9.2</span> 7.2 Equation (2)：Plant-Level TFP 持久性</a></li>
+  <li><a href="#equation-3double-robust-did-att" id="toc-equation-3double-robust-did-att" class="nav-link" data-scroll-target="#equation-3double-robust-did-att"><span class="header-section-number">N.9.3</span> 7.3 Equation (3)：Double-Robust DiD (ATT)</a></li>
+  <li><a href="#equations-4a-和-4bddd-跨国模型" id="toc-equations-4a-和-4bddd-跨国模型" class="nav-link" data-scroll-target="#equations-4a-和-4bddd-跨国模型"><span class="header-section-number">N.9.4</span> 7.4 Equations (4a) 和 (4b)：DDD 跨国模型</a></li>
+  <li><a href="#equation-5learning-by-doing-机制" id="toc-equation-5learning-by-doing-机制" class="nav-link" data-scroll-target="#equation-5learning-by-doing-机制"><span class="header-section-number">N.9.5</span> 7.5 Equation (5)：Learning-by-Doing 机制</a></li>
+  <li><a href="#equations-6a6blinkage-定义方程" id="toc-equations-6a6blinkage-定义方程" class="nav-link" data-scroll-target="#equations-6a6blinkage-定义方程"><span class="header-section-number">N.9.6</span> 7.6 Equations (6a)–(6b)：Linkage 定义方程</a></li>
+  <li><a href="#equation-7linkage-event-study-方程" id="toc-equation-7linkage-event-study-方程" class="nav-link" data-scroll-target="#equation-7linkage-event-study-方程"><span class="header-section-number">N.9.7</span> 7.7 Equation (7)：Linkage Event-Study 方程</a></li>
+  <li><a href="#滚动-event-study-rolling-windows" id="toc-滚动-event-study-rolling-windows" class="nav-link" data-scroll-target="#滚动-event-study-rolling-windows"><span class="header-section-number">N.9.8</span> 7.8 滚动 Event-Study (Rolling Windows)</a></li>
+  <li><a href="#linkage-event-study-中子循环的详细逻辑" id="toc-linkage-event-study-中子循环的详细逻辑" class="nav-link" data-scroll-target="#linkage-event-study-中子循环的详细逻辑"><span class="header-section-number">N.9.9</span> 7.9 Linkage Event-Study 中子循环的详细逻辑</a></li>
+  <li><a href="#出口贸易方程-trade-export-specification" id="toc-出口贸易方程-trade-export-specification" class="nav-link" data-scroll-target="#出口贸易方程-trade-export-specification"><span class="header-section-number">N.9.10</span> 7.10 出口贸易方程 (Trade / Export Specification)</a></li>
+  </ul></li>
+  <li><a href="#主要表格和图形解读" id="toc-主要表格和图形解读" class="nav-link" data-scroll-target="#主要表格和图形解读"><span class="header-section-number">N.10</span> 8 主要表格和图形解读</a>
+  <ul class="collapse">
+  <li><a href="#table-iplant-level-tfp-持久性" id="toc-table-iplant-level-tfp-持久性" class="nav-link" data-scroll-target="#table-iplant-level-tfp-持久性"><span class="header-section-number">N.10.1</span> 8.1 Table I：Plant-Level TFP 持久性</a></li>
+  <li><a href="#table-ii工业发展-att" id="toc-table-ii工业发展-att" class="nav-link" data-scroll-target="#table-ii工业发展-att"><span class="header-section-number">N.10.2</span> 8.2 Table II：工业发展 ATT</a></li>
+  <li><a href="#table-iii出口发展-att" id="toc-table-iii出口发展-att" class="nav-link" data-scroll-target="#table-iii出口发展-att"><span class="header-section-number">N.10.3</span> 8.3 Table III：出口发展 ATT</a></li>
+  <li><a href="#table-iv投入与投资" id="toc-table-iv投入与投资" class="nav-link" data-scroll-target="#table-iv投入与投资"><span class="header-section-number">N.10.4</span> 8.4 Table IV：投入与投资</a></li>
+  <li><a href="#table-v-和-vilearning-by-doing-lbd" id="toc-table-v-和-vilearning-by-doing-lbd" class="nav-link" data-scroll-target="#table-v-和-vilearning-by-doing-lbd"><span class="header-section-number">N.10.5</span> 8.5 Table V 和 VI：Learning-by-Doing (LBD)</a></li>
+  <li><a href="#table-viilinkage-effects-value-added" id="toc-table-viilinkage-effects-value-added" class="nav-link" data-scroll-target="#table-viilinkage-effects-value-added"><span class="header-section-number">N.10.6</span> 8.6 Table VII：Linkage Effects (Value Added)</a></li>
+  <li><a href="#figure-ivii-概况" id="toc-figure-ivii-概况" class="nav-link" data-scroll-target="#figure-ivii-概况"><span class="header-section-number">N.10.7</span> 8.7 Figure I–VII 概况</a></li>
+  </ul></li>
+  <li><a href="#机制检验-lbd-investment-policy-channels" id="toc-机制检验-lbd-investment-policy-channels" class="nav-link" data-scroll-target="#机制检验-lbd-investment-policy-channels"><span class="header-section-number">N.11</span> 9 机制检验 (LBD, Investment, Policy Channels)</a>
+  <ul class="collapse">
+  <li><a href="#投资政策渠道-section-vi.a" id="toc-投资政策渠道-section-vi.a" class="nav-link" data-scroll-target="#投资政策渠道-section-vi.a"><span class="header-section-number">N.11.1</span> 9.1 投资政策渠道 (Section VI.A)</a></li>
+  <li><a href="#贸易政策渠道-section-vi.b" id="toc-贸易政策渠道-section-vi.b" class="nav-link" data-scroll-target="#贸易政策渠道-section-vi.b"><span class="header-section-number">N.11.2</span> 9.2 贸易政策渠道 (Section VI.B)</a></li>
+  <li><a href="#信用政策渠道的进一步证据" id="toc-信用政策渠道的进一步证据" class="nav-link" data-scroll-target="#信用政策渠道的进一步证据"><span class="header-section-number">N.11.3</span> 9.3 信用政策渠道的进一步证据</a></li>
+  <li><a href="#learning-by-doing-机制-section-vi.c" id="toc-learning-by-doing-机制-section-vi.c" class="nav-link" data-scroll-target="#learning-by-doing-机制-section-vi.c"><span class="header-section-number">N.11.4</span> 9.4 Learning-by-Doing 机制 (Section VI.C)</a></li>
+  </ul></li>
+  <li><a href="#稳健性安慰剂和识别威胁" id="toc-稳健性安慰剂和识别威胁" class="nav-link" data-scroll-target="#稳健性安慰剂和识别威胁"><span class="header-section-number">N.12</span> 10 稳健性、安慰剂和识别威胁</a>
+  <ul class="collapse">
+  <li><a href="#双重稳健估计" id="toc-双重稳健估计" class="nav-link" data-scroll-target="#双重稳健估计"><span class="header-section-number">N.12.1</span> 10.1 双重稳健估计</a></li>
+  <li><a href="#跨国-triple-differences" id="toc-跨国-triple-differences" class="nav-link" data-scroll-target="#跨国-triple-differences"><span class="header-section-number">N.12.2</span> 10.2 跨国 Triple Differences</a></li>
+  <li><a href="#pre-trend-检验" id="toc-pre-trend-检验" class="nav-link" data-scroll-target="#pre-trend-检验"><span class="header-section-number">N.12.3</span> 10.3 Pre-Trend 检验</a></li>
+  <li><a href="#sutva-稳健性检验" id="toc-sutva-稳健性检验" class="nav-link" data-scroll-target="#sutva-稳健性检验"><span class="header-section-number">N.12.4</span> 10.4 SUTVA 稳健性检验</a></li>
+  <li><a href="#连续处理变量检验" id="toc-连续处理变量检验" class="nav-link" data-scroll-target="#连续处理变量检验"><span class="header-section-number">N.12.5</span> 10.5 连续处理变量检验</a></li>
+  <li><a href="#四种-tfp-方法的稳健性" id="toc-四种-tfp-方法的稳健性" class="nav-link" data-scroll-target="#四种-tfp-方法的稳健性"><span class="header-section-number">N.12.6</span> 10.6 四种 TFP 方法的稳健性</a></li>
+  <li><a href="#替代对照组和数据集的稳健性" id="toc-替代对照组和数据集的稳健性" class="nav-link" data-scroll-target="#替代对照组和数据集的稳健性"><span class="header-section-number">N.12.7</span> 10.7 替代对照组和数据集的稳健性</a></li>
+  <li><a href="#出口竞争力的替代度量" id="toc-出口竞争力的替代度量" class="nav-link" data-scroll-target="#出口竞争力的替代度量"><span class="header-section-number">N.12.8</span> 10.8 出口竞争力的替代度量</a></li>
+  <li><a href="#dynamic-double-robust-事件研究" id="toc-dynamic-double-robust-事件研究" class="nav-link" data-scroll-target="#dynamic-double-robust-事件研究"><span class="header-section-number">N.12.9</span> 10.9 Dynamic Double-Robust 事件研究</a></li>
+  </ul></li>
+  <li><a href="#外部有效性和政策含义" id="toc-外部有效性和政策含义" class="nav-link" data-scroll-target="#外部有效性和政策含义"><span class="header-section-number">N.13</span> 11 外部有效性和政策含义</a>
+  <ul class="collapse">
+  <li><a href="#外部有效性讨论" id="toc-外部有效性讨论" class="nav-link" data-scroll-target="#外部有效性讨论"><span class="header-section-number">N.13.1</span> 11.1 外部有效性讨论</a></li>
+  <li><a href="#政策含义" id="toc-政策含义" class="nav-link" data-scroll-target="#政策含义"><span class="header-section-number">N.13.2</span> 11.2 政策含义</a></li>
+  </ul></li>
+  <li><a href="#代码实现和复现线索" id="toc-代码实现和复现线索" class="nav-link" data-scroll-target="#代码实现和复现线索"><span class="header-section-number">N.14</span> 12 代码实现和复现线索</a>
+  <ul class="collapse">
+  <li><a href="#文件与估计方法的映射" id="toc-文件与估计方法的映射" class="nav-link" data-scroll-target="#文件与估计方法的映射"><span class="header-section-number">N.14.1</span> 12.1 文件与估计方法的映射</a></li>
+  <li><a href="#子循环文件-sub-do-files" id="toc-子循环文件-sub-do-files" class="nav-link" data-scroll-target="#子循环文件-sub-do-files"><span class="header-section-number">N.14.2</span> 12.2 子循环文件 (Sub-do-files)</a></li>
+  <li><a href="#数据处理流水线概览" id="toc-数据处理流水线概览" class="nav-link" data-scroll-target="#数据处理流水线概览"><span class="header-section-number">N.14.3</span> 12.3 数据处理流水线概览</a></li>
+  <li><a href="#关键复现注意事项" id="toc-关键复现注意事项" class="nav-link" data-scroll-target="#关键复现注意事项"><span class="header-section-number">N.14.4</span> 12.4 关键复现注意事项</a></li>
+  <li><a href="#核心-stata-工作流-以-1_run_growth_analysis.do-为例" id="toc-核心-stata-工作流-以-1_run_growth_analysis.do-为例" class="nav-link" data-scroll-target="#核心-stata-工作流-以-1_run_growth_analysis.do-为例"><span class="header-section-number">N.14.5</span> 12.5 核心 Stata 工作流 (以 1_run_growth_analysis.do 为例)</a></li>
+  </ul></li>
+  <li><a href="#局限和继续阅读建议" id="toc-局限和继续阅读建议" class="nav-link" data-scroll-target="#局限和继续阅读建议"><span class="header-section-number">N.15</span> 13 局限和继续阅读建议</a>
+  <ul class="collapse">
+  <li><a href="#方法论局限" id="toc-方法论局限" class="nav-link" data-scroll-target="#方法论局限"><span class="header-section-number">N.15.1</span> 13.1 方法论局限</a></li>
+  <li><a href="#继续阅读建议" id="toc-继续阅读建议" class="nav-link" data-scroll-target="#继续阅读建议"><span class="header-section-number">N.15.2</span> 13.2 继续阅读建议</a></li>
+  </ul></li>
+  <li><a href="#附录-a关键变量对照表" id="toc-附录-a关键变量对照表" class="nav-link" data-scroll-target="#附录-a关键变量对照表"><span class="header-section-number">N.16</span> 附录 A：关键变量对照表</a></li>
+  <li><a href="#附录-b表格与图形的论文代码溯源" id="toc-附录-b表格与图形的论文代码溯源" class="nav-link" data-scroll-target="#附录-b表格与图形的论文代码溯源"><span class="header-section-number">N.17</span> 附录 B：表格与图形的论文代码溯源</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/lianxhcn/PXa2026a/edit/main/examples/ch01/Lane_2025_student_notes/methods.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/lianxhcn/PXa2026a/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../appendix/A_prompt_templates.html">附录</a></li><li class="breadcrumb-item"><a href="../../../examples/ch01/Lane_2025_student_notes/index.html">第 1 讲 · 进阶选读（助教多角度精读，选读）</a></li><li class="breadcrumb-item"><a href="../../../examples/ch01/Lane_2025_student_notes/methods.html"><span class="chapter-number">N</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions — 研究方法拆解</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">附录 N — Manufacturing Revolutions — 研究方法拆解</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="source-map" class="level2" data-number="N.1">
+<h2 data-number="N.1" class="anchored" data-anchor-id="source-map"><span class="header-section-number">N.1</span> Source Map</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 30%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>源文件</th>
+<th>路径</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>paper_text.md</td>
+<td><code>论文精读复现workflow/Lane2025QJE/paper_text.md</code></td>
+<td>论文全文 (PDF 转 Markdown)</td>
+</tr>
+<tr class="even">
+<td>appendix_text.md</td>
+<td><code>论文精读复现workflow/Lane2025QJE/appendix_text.md</code></td>
+<td>Online Appendix 全文</td>
+</tr>
+<tr class="odd">
+<td>1_run_growth_analysis.do</td>
+<td><code>replicationpackage/code/0_analysis/1_main_scripts/</code></td>
+<td>核心 DiD / Event Study (TWFE)</td>
+</tr>
+<tr class="even">
+<td>3b_run_doublerobust_analysis.do</td>
+<td><code>replicationpackage/code/0_analysis/1_main_scripts/</code></td>
+<td>Double-Robust DiD (csdid/drdid)</td>
+</tr>
+<tr class="odd">
+<td>3c_run_worldtrade_analysis.do</td>
+<td><code>replicationpackage/code/0_analysis/1_main_scripts/</code></td>
+<td>DDD 跨国分析 (ppmlhdfe)</td>
+</tr>
+<tr class="even">
+<td>6a_run_linkages_growthprice_analysis.do</td>
+<td><code>replicationpackage/code/0_analysis/1_main_scripts/</code></td>
+<td>投入产出 (IO) 联动分析</td>
+</tr>
+<tr class="odd">
+<td>5a_run_mechanisms_lbd_analysis.do</td>
+<td><code>replicationpackage/code/0_analysis/1_main_scripts/</code></td>
+<td>Learning-by-Doing 机制检验</td>
+</tr>
+<tr class="even">
+<td>4_run_policy_analysis.do</td>
+<td><code>replicationpackage/code/0_analysis/1_main_scripts/</code></td>
+<td>政策工具分析 (投资/信贷)</td>
+</tr>
+<tr class="odd">
+<td>3a_run_micro_tfp_analysis.do</td>
+<td><code>replicationpackage/code/0_analysis/1_main_scripts/</code></td>
+<td>微观 TFP 持久性分析</td>
+</tr>
+<tr class="even">
+<td>subdofiles/6b_linkages_subrollingloop.do</td>
+<td><code>replicationpackage/code/0_analysis/subdofiles/</code></td>
+<td>Linkage rolling 子循环</td>
+</tr>
+<tr class="odd">
+<td>subdofiles/1b_main_subrollingloop.do</td>
+<td><code>replicationpackage/code/0_analysis/subdofiles/</code></td>
+<td>主回归 rolling 子循环</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="本文件阅读边界" class="level2" data-number="N.2">
+<h2 data-number="N.2" class="anchored" data-anchor-id="本文件阅读边界"><span class="header-section-number">N.2</span> 本文件阅读边界</h2>
+<p>本文件聚焦于论文的<strong>实证研究设计 (Research Design)</strong> 和<strong>估计方法论 (Estimation Methodology)</strong>，涵盖以下内容:</p>
+<ul>
+<li>[Y] 识别策略 (DiD, DDD, Event Study, Double-Robust)</li>
+<li>[Y] 核心回归方程的形式化拆解与代码落地对照</li>
+<li>[Y] 变量构造逻辑 (处理变量、结果变量、控制变量)</li>
+<li>[Y] 识别假设及其检验方式</li>
+<li>[Y] 政策工具变量与渠道检验</li>
+<li>[Y] 投入产出联动分析方法</li>
+<li>[Y] 稳健性检验设计 (SUTVA, 安慰剂, 替代估计量)</li>
+<li>[N] 理论模型 (Section III 的概念框架仅概述)</li>
+<li>[N] 全文逐段的制度细节 (详见原始论文 Section II)</li>
+<li>[N] 表格数据的手工复现 (提供代码路径和关键统计量)</li>
+<li>[N] 一般均衡或结构性估计 (本论文为 Reduced-Form)</li>
+</ul>
+<hr>
+</section>
+<section id="五问诊断摘要" class="level2" data-number="N.3">
+<h2 data-number="N.3" class="anchored" data-anchor-id="五问诊断摘要"><span class="header-section-number">N.3</span> 1 五问诊断摘要</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 60%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>五问维度</th>
+<th>Lane (2025) 的实证策略</th>
+<th>诊断</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Q1: 研究问题</strong></td>
+<td>韩国 HCI 产业政策是否因果性地促进了目标产业及下游产业的发展？</td>
+<td>明确、可检验 (Verifiable ATT)</td>
+</tr>
+<tr class="even">
+<td><strong>Q2: 识别策略</strong></td>
+<td>以 1973 年 HCI 政策引入为外生冲击 (Nixon 安全危机驱动)；Treat × Post 的 DiD 比较目标产业与非目标产业；DDD 用跨国安慰剂产业作为 second difference</td>
+<td>逻辑自洽，外生性论证充分</td>
+</tr>
+<tr class="odd">
+<td><strong>Q3: 核心 Estimand</strong></td>
+<td>TWFE DiD 的 <span class="math inline">\(\beta_j\)</span> (Treat × Year 交互项系数)；结果变量为 log output, log value added, log labor productivity；固定效应为 industry 和 year FE；cluster 在 industry 层面</td>
+<td>估计算子是标准的 ATT on the treated</td>
+</tr>
+<tr class="even">
+<td><strong>Q4: 稳健性</strong></td>
+<td>Double-robust DiD (Sant’Anna and Zhao 2020, Callaway and Sant’Anna 2021)；DDD 跨国安慰剂；rolling event-study windows；pre-trend 联合检验；替代控制组 (低 linkage 暴露组)；SUTVA 污染检验</td>
+<td>多层稳健性覆盖充分</td>
+</tr>
+<tr class="odd">
+<td><strong>Q5: 学术贡献</strong></td>
+<td>首个用现代计量方法评估韩国 HCI 驱动的实证研究；新数字化工业普查数据 (MMS)；揭示 IO 网络溢出效应；政策结束后效应持久</td>
+<td>数据 + 方法 + 发现三位一体的贡献</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="核心研究问题和贡献" class="level2" data-number="N.4">
+<h2 data-number="N.4" class="anchored" data-anchor-id="核心研究问题和贡献"><span class="header-section-number">N.4</span> 2 核心研究问题和贡献</h2>
+<section id="研究问题" class="level3" data-number="N.4.1">
+<h3 data-number="N.4.1" class="anchored" data-anchor-id="研究问题"><span class="header-section-number">N.4.1</span> 2.1 研究问题</h3>
+<p>本文回答的核心问题是：<strong>1973 年引入的韩国重化学工业 (HCI) 推进政策是否因果性地促进了被直接扶持产业 (targeted industries) 和通过投入产出关联的下游产业 (downstream industries) 的工业发展？</strong></p>
+<p>该问题可进一步分解为三个层次:</p>
+<ol type="1">
+<li><strong>直接效应 (Direct Effects)</strong>：HCI 政策是否提升了目标产业的产出、生产率、就业和出口竞争力？(Section V)</li>
+<li><strong>间接效应 (Indirect / Spillover Effects)</strong>：HCI 政策是否通过投入产出网络 (Input-Output linkages) 对非目标的下游和上游产业产生了溢出？(Section VII)</li>
+<li><strong>机制效应 (Mechanisms)</strong>：政策是通过何种渠道 (信贷扩张、投资激励、学习效应) 产生作用的？(Section VI)</li>
+</ol>
+</section>
+<section id="学术贡献定位" class="level3" data-number="N.4.2">
+<h3 data-number="N.4.2" class="anchored" data-anchor-id="学术贡献定位"><span class="header-section-number">N.4.2</span> 2.2 学术贡献定位</h3>
+<p>论文明确列出三个贡献:</p>
+<ol type="1">
+<li><strong>工业政策的现代计量评估</strong>：在 Juhász (2018), Criscuolo et al.&nbsp;(2019), Aghion et al.&nbsp;(2015) 等新兴文献基础上，以 natural experiment 方法评估韩国历史性产业政策。</li>
+<li><strong>东亚奇迹的实证再审视</strong>：首次用现代计量技术评估被 Wade (1990) 和 Amsden (1992) 等定性研究广泛讨论、但被 Beason and Weinstein (1996) 和 Pack (2000) 等实证研究质疑的韩国 HCI 政策。</li>
+<li><strong>网络溢出视角的引入</strong>：将 IO 网络分析 (Javorcik 2004 的 FDI 溢出框架) 引入产业政策评估，揭示 policy 通过 forward linkage 对下游产业的正面溢出。</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="为什么这个问题重要" class="level2" data-number="N.5">
+<h2 data-number="N.5" class="anchored" data-anchor-id="为什么这个问题重要"><span class="header-section-number">N.5</span> 3 为什么这个问题重要</h2>
+<section id="政策背景的重大性" class="level3" data-number="N.5.1">
+<h3 data-number="N.5.1" class="anchored" data-anchor-id="政策背景的重大性"><span class="header-section-number">N.5.1</span> 3.1 政策背景的重大性</h3>
+<p>韩国 HCI 驱动 (1973–1979) 是战后发展中国家最雄心勃勃的产业政策实验之一。六个战略性部门 (钢铁、有色冶金、造船、机械、电子、石油化工) 获得了政府主导的定向信贷 (directed credit)、税收激励和贸易保护。到 1980 年，HCI 产品已占韩国制造业出口的 50% 以上 (目标于 1983 年提前达成)。</p>
+</section>
+<section id="学术争论的长期性" class="level3" data-number="N.5.2">
+<h3 data-number="N.5.2" class="anchored" data-anchor-id="学术争论的长期性"><span class="header-section-number">N.5.2</span> 3.2 学术争论的长期性</h3>
+<p>关于产业政策 (尤其是东亚语境下) 的有效性，存在深刻的学术分歧: - <strong>支持派</strong> (Wade 1990; Amsden 1992; Rodrik 1995)：强调国家能力与战略性干预的正向促进作用 - <strong>质疑派</strong> (Krueger 1990; Pack 2000; Noland and Pack 2003)：认为产业政策与工业增长之间缺乏因果证据，甚至可能产生寻租和错配</p>
+</section>
+<section id="当代政策含义" class="level3" data-number="N.5.3">
+<h3 data-number="N.5.3" class="anchored" data-anchor-id="当代政策含义"><span class="header-section-number">N.5.3</span> 3.3 当代政策含义</h3>
+<p>在过去十年间，全球主要经济体重新展开了对产业政策的关注 (美国 CHIPS 法案、欧盟 Green Deal Industrial Plan 等)。Juhász, Lane, and Rodrik (2024) 在 <em>Annual Review of Economics</em> 中指出了 “New Economics of Industrial Policy” 的兴起。Lane (2025) 的发现——临时性产业政策可以产生持久效果且通过网络产生溢出——对当代政策设计具有直接启示意义。</p>
+<hr>
+</section>
+</section>
+<section id="主要结论数量级和机制链条" class="level2" data-number="N.6">
+<h2 data-number="N.6" class="anchored" data-anchor-id="主要结论数量级和机制链条"><span class="header-section-number">N.6</span> 4 主要结论、数量级和机制链条</h2>
+<section id="直接效应-基准结果" class="level3" data-number="N.6.1">
+<h3 data-number="N.6.1" class="anchored" data-anchor-id="直接效应-基准结果"><span class="header-section-number">N.6.1</span> 4.1 直接效应 (基准结果)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 21%">
+<col style="width: 29%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>结果变量</th>
+<th>估计量</th>
+<th>效果 (ATT)</th>
+<th>显著性</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Output (shipments)</td>
+<td>Double-robust</td>
+<td>+128% (即 <span class="math inline">\(e^{0.8378} - 1 \approx 131\%\)</span>，经 SM 调整约 128%)</td>
+<td>p &lt; 0.01</td>
+</tr>
+<tr class="even">
+<td>Value Added</td>
+<td>Double-robust</td>
+<td>+127%</td>
+<td>p &lt; 0.01</td>
+</tr>
+<tr class="odd">
+<td>Labor Productivity</td>
+<td>Double-robust</td>
+<td>+17.2%</td>
+<td>p &lt; 0.05</td>
+</tr>
+<tr class="even">
+<td>Employment</td>
+<td>Double-robust</td>
+<td>+63.8%</td>
+<td>p &lt; 0.01</td>
+</tr>
+<tr class="odd">
+<td>Output Price</td>
+<td>Double-robust</td>
+<td>−9.55%</td>
+<td>p &lt; 0.01</td>
+</tr>
+<tr class="even">
+<td>RCA (Balassa)</td>
+<td>Double-robust</td>
+<td>+13.2% (log)</td>
+<td>p &lt; 0.01</td>
+</tr>
+<tr class="odd">
+<td>Prob (RCA &gt; 1)</td>
+<td>Double-robust</td>
+<td>+10.6 pp</td>
+<td>p &lt; 0.01</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="机制链条-paper-结构" class="level3" data-number="N.6.2">
+<h3 data-number="N.6.2" class="anchored" data-anchor-id="机制链条-paper-结构"><span class="header-section-number">N.6.2</span> 4.2 机制链条 (Paper 结构)</h3>
+<pre><code>政策工具 (Policy Levers)
+  +-- 定向信贷 (Directed Credit) -&gt; 降低 MRPK 楔形 -&gt; 投资扩张 (Intermediate outlays +81.4%)
+  +-- 税收激励 (Tax Incentives) -&gt; 有效边际税率分化 (Figure I Panel A)
+  +-- 贸易政策 (Trade Policy) -&gt; 投入品关税豁免 (非名义保护主义)
+  |
+  +-- 传导至工业发展 (Industrial Development)
+        +-- [直接渠道] 产出扩张 -&gt; 就业增长 -&gt; 劳动生产率提升
+        +-- [学习渠道] 经验积累 (Cumulative Output) -&gt; 单位成本下降 -&gt; TFP 提升
+        |     +-- 交叉工厂学习溢出 (Plant-level + Industry-level LBD)
+        +-- [网络渠道] 下游 Forward Linkage 产业 -&gt; 产出扩张 -&gt; 价格下降 -&gt; 出口 RCA 提升</code></pre>
+</section>
+<section id="效应的时间动态" class="level3" data-number="N.6.3">
+<h3 data-number="N.6.3" class="anchored" data-anchor-id="效应的时间动态"><span class="header-section-number">N.6.3</span> 4.3 效应的时间动态</h3>
+<ul>
+<li><strong>政策期内 (1973–1979)</strong>：效应逐步显现且加速</li>
+<li><strong>政策结束后 (1979–1986)</strong>：效应持久甚至增强 (特别是出口 RCA 和 TFP)</li>
+<li><strong>1990 年后</strong>：部分效应可能衰减 (微观数据仅至 1986)</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="数据制度背景和变量构造" class="level2" data-number="N.7">
+<h2 data-number="N.7" class="anchored" data-anchor-id="数据制度背景和变量构造"><span class="header-section-number">N.7</span> 5 数据、制度背景和变量构造</h2>
+<section id="数据全景" class="level3" data-number="N.7.1">
+<h3 data-number="N.7.1" class="anchored" data-anchor-id="数据全景"><span class="header-section-number">N.7.1</span> 5.1 数据全景</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 26%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>数据来源</th>
+<th>覆盖期</th>
+<th>粒度</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>MMS</strong> (Mining and Manufacturing Survey)</td>
+<td>1967–1986</td>
+<td>4-digit / 5-digit KSIC</td>
+<td>核心产出、就业、价格、投资的行业面板</td>
+</tr>
+<tr class="even">
+<td><strong>UN COMTRADE</strong></td>
+<td>1967–1986</td>
+<td>SITC Rev.1 4-digit</td>
+<td>贸易流动、RCA 计算、DDD 跨国分析</td>
+</tr>
+<tr class="odd">
+<td><strong>Bank of Korea IO Tables</strong></td>
+<td>1970 (基准年)</td>
+<td>~320 部门</td>
+<td>投入产出关联度计算</td>
+</tr>
+<tr class="even">
+<td><strong>Policy Loan Data</strong></td>
+<td>1972–1981</td>
+<td>2-digit / 部门</td>
+<td>KDB 和商业银行政策贷款记录</td>
+</tr>
+<tr class="odd">
+<td><strong>Trade Policy (Luedde-Neurath 1982)</strong></td>
+<td>1968, 1974, 1976, 1978, 1980, 1982</td>
+<td>产品级</td>
+<td>关税、数量限制 (QR) 的保护率</td>
+</tr>
+<tr class="even">
+<td><strong>Plant-level MMS microdata</strong></td>
+<td>1979–1986</td>
+<td>工厂级</td>
+<td>TFP 估计 (OP, LP, Wooldridge, ACF)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="面板结构" class="level3" data-number="N.7.2">
+<h3 data-number="N.7.2" class="anchored" data-anchor-id="面板结构"><span class="header-section-number">N.7.2</span> 5.2 面板结构</h3>
+<p>论文使用两个面板以权衡覆盖期和粒度:</p>
+<p><strong>Long Panel (4-digit KSIC, 1967–1986)</strong>: - 行业数：88 (全样本), 55 (非 HCI 样本) - 优势：覆盖完整的政策前后观察期 (1967–1972 为 pre-period, 共 6 年 pre-trend) - 劣势：行业粒度较粗，统计效力较低</p>
+<p><strong>Short Panel (5-digit KSIC, 1970–1986)</strong>: - 行业数：278 (全样本), 176 (非 HCI 样本) - 优势：行业粒度细，接近原始 MMS 出版统计量，统计效力高 - 劣势：仅 3 年 pre-period (1970–1972)，pre-trend 检验的识别力有限</p>
+</section>
+<section id="关键变量构造" class="level3" data-number="N.7.3">
+<h3 data-number="N.7.3" class="anchored" data-anchor-id="关键变量构造"><span class="header-section-number">N.7.3</span> 5.3 关键变量构造</h3>
+<section id="处理变量-treatment-variable" class="level4" data-number="N.7.3.1">
+<h4 data-number="N.7.3.1" class="anchored" data-anchor-id="处理变量-treatment-variable"><span class="header-section-number">N.7.3.1</span> 处理变量 (Treatment Variable)</h4>
+<pre><code>代码: 1_run_growth_analysis.do, Line 27
+gen treat = (hci == 1 &amp; year &gt;= 1973)</code></pre>
+<p>处理变量定义为二元变量：<code>Targeted_i = 1</code>，若产业 <span class="math inline">\(i\)</span> 出现在六项主要 HCI 立法中 (钢铁、有色冶金、造船、机械、电子、石油化工)。立法文本与 KSIC 行业代码通过人工匹配 (hand-matching) 完成。处理时间为 1973 年 1 月 (HCI 政策正式宣布)。</p>
+<p>处理变量构造的关键特征： - [Y] 处理组：six strategic sectors 对应的 KSIC 分类 - [Y] 对照组：所有其他制造业行业 (non-targeted manufacturing) - [Y] Binary treatment (Section V) 对应 DiD 和 Double-robust - [Y] Continuous treatment (Section VII) 对应 Linkage 分析 - [!] <code>Treat = hci × Post1973</code> 为 staggered adoption 的标准设置 (single cohort)</p>
+</section>
+<section id="核心结果变量-outcome-variables" class="level4" data-number="N.7.3.2">
+<h4 data-number="N.7.3.2" class="anchored" data-anchor-id="核心结果变量-outcome-variables"><span class="header-section-number">N.7.3.2</span> 核心结果变量 (Outcome Variables)</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 52%">
+<col style="width: 24%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>变量名 (log)</th>
+<th>定义</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>l_ship</code></td>
+<td>Log real gross output shipped (发货额)</td>
+<td>MMS</td>
+</tr>
+<tr class="even">
+<td><code>l_grossoutput</code></td>
+<td>Log real gross output (总产值)</td>
+<td>MMS</td>
+</tr>
+<tr class="odd">
+<td><code>l_valueadded</code></td>
+<td>Log real value added (增加值)</td>
+<td>MMS</td>
+</tr>
+<tr class="even">
+<td><code>l_workers</code></td>
+<td>Log total employment (就业人数)</td>
+<td>MMS</td>
+</tr>
+<tr class="odd">
+<td><code>l_ppi</code></td>
+<td>Log producer price index (出厂价格)</td>
+<td>Bank of Korea PPI</td>
+</tr>
+<tr class="even">
+<td><code>l_y_n</code></td>
+<td>Log value added per worker = labor productivity</td>
+<td>MMS (构造)</td>
+</tr>
+<tr class="odd">
+<td><code>l_ship_sh</code></td>
+<td>Log share of manufacturing output (产出份额)</td>
+<td>MMS (构造)</td>
+</tr>
+<tr class="even">
+<td><code>l_lab_sh</code></td>
+<td>Log share of manufacturing employment (就业份额)</td>
+<td>MMS (构造)</td>
+</tr>
+<tr class="odd">
+<td><code>l_est</code></td>
+<td>Log number of establishments (工厂数)</td>
+<td>MMS</td>
+</tr>
+<tr class="even">
+<td><code>l_costs</code></td>
+<td>Log real intermediate outlays (中间投入)</td>
+<td>MMS</td>
+</tr>
+<tr class="odd">
+<td><code>l_inv_tot</code></td>
+<td>Log real total investment (总投资)</td>
+<td>MMS</td>
+</tr>
+<tr class="even">
+<td><code>l_i_n</code></td>
+<td>Log investment per worker</td>
+<td>MMS (构造)</td>
+</tr>
+<tr class="odd">
+<td><code>RCA</code> (Balassa)</td>
+<td>Revealed comparative advantage index</td>
+<td>COMTRADE (构造)</td>
+</tr>
+<tr class="even">
+<td><code>rca_cdk</code></td>
+<td>CDK 相对出口生产率</td>
+<td>COMTRADE (构造 via gravity)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="控制变量-basic-regressors" class="level4" data-number="N.7.3.3">
+<h4 data-number="N.7.3.3" class="anchored" data-anchor-id="控制变量-basic-regressors"><span class="header-section-number">N.7.3.3</span> 控制变量 (Basic Regressors)</h4>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>代码: 1_run_growth_analysis.<span class="kw">do</span>, Line 122</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> basic_regressors c.(l_costs_0 l_avg_size_0 l_avg_wages_0 l_y_n_0)#i.<span class="fu">year</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>控制变量为四个 pre-1973 的行业平均值与年份效应的交互项: - <code>l_costs_0</code>: Pre-1973 平均 log 中间投入 (material costs) - <code>l_avg_size_0</code>: Pre-1973 平均 log 工厂规模 (employment per plant) - <code>l_avg_wages_0</code>: Pre-1973 平均 log 工资 (total wage bill per worker) - <code>l_y_n_0</code>: Pre-1973 平均 log 劳动生产率 (value added per worker)</p>
+<p>这些控制变量是<strong>时不变的 (time-invariant)</strong>，因此与 <code>i.year</code> 交互来捕捉它们随时间的影响，从而控制 pre-1973 的未观测生产力差异。</p>
+</section>
+</section>
+<section id="投入产出关联度变量-linkage-variables" class="level3" data-number="N.7.4">
+<h3 data-number="N.7.4" class="anchored" data-anchor-id="投入产出关联度变量-linkage-variables"><span class="header-section-number">N.7.4</span> 5.4 投入产出关联度变量 (Linkage Variables)</h3>
+<p><strong>Direct Linkages</strong> (来自 1970 IO 表):</p>
+<p><span class="math display">\[Backward\_Linkage_i = \sum_{j \in HCI} \alpha_{ij}\]</span></p>
+<p><span class="math display">\[Forward\_Linkage_i = \sum_{j \in HCI} \alpha_{ji}\]</span></p>
+<p>其中 <span class="math inline">\(\alpha_{ij}\)</span> 表示产业 <span class="math inline">\(i\)</span> 产出中被 HCI 产业 <span class="math inline">\(j\)</span> 使用的一组份额 (基于 IO 成本份额)。</p>
+<p><strong>Leontief-based Total Linkages</strong>: <span class="math display">\[Total\_Backward\_Linkages_i = \sum_{j \in HCI} \ell_{ij}\]</span></p>
+<p>其中 <span class="math inline">\(\ell_{ij}\)</span> 是 Leontief 逆矩阵的元素，即 <span class="math inline">\((I - A)^{-1}\)</span> 中的元素，捕获网络中的全部直接和间接关联。</p>
+<p>代码变量名对应: - <code>hci_share_use_tot_0</code> 和 <code>hci_share_make_tot_0</code> (direct shares) - <code>lf_hci_link_use_0</code> 和 <code>lf_hci_link_make_0</code> (Leontief inverse-based)</p>
+<hr>
+</section>
+</section>
+<section id="研究设计和识别假设" class="level2" data-number="N.8">
+<h2 data-number="N.8" class="anchored" data-anchor-id="研究设计和识别假设"><span class="header-section-number">N.8</span> 6 研究设计和识别假设</h2>
+<section id="核心识别逻辑" class="level3" data-number="N.8.1">
+<h3 data-number="N.8.1" class="anchored" data-anchor-id="核心识别逻辑"><span class="header-section-number">N.8.1</span> 6.1 核心识别逻辑</h3>
+<p>核心识别策略是 <strong>Difference-in-Differences (DiD)</strong>，利用 1973 年 HCI 政策引入作为外生冲击:</p>
+<p><strong>处理效应识别的三层识别链</strong>:</p>
+<ol type="1">
+<li><strong>时间变异 (Temporal variation)</strong>：1973 年 1 月 HCI 政策引入 (驱动因素 = Nixon 安全危机 + Park 总统的自我政变)</li>
+<li><strong>截面变异 (Cross-sectional variation)</strong>：六大战略性行业 (Targeted) vs.&nbsp;其他制造业 (Non-Targeted)</li>
+<li><strong>外生性论证</strong>：
+<ul>
+<li>政策启动由 Nixon 1969 年宣言 (美国不再直接军事支持亚太盟友) 和朝鲜军事化引发的安全危机驱动</li>
+<li>国际债权人 (IMF, USAID, World Bank, US EXIM Bank) 事前认为韩国在重化工业没有比较优势</li>
+<li>World Bank 在 1969 年明确判断韩国 “had no comparative advantage in the production of steel”</li>
+<li>政策终止由 Park 总统 1979 年被刺杀这一外生政治事件驱动</li>
+</ul></li>
+</ol>
+</section>
+<section id="parallel-trends-假设" class="level3" data-number="N.8.2">
+<h3 data-number="N.8.2" class="anchored" data-anchor-id="parallel-trends-假设"><span class="header-section-number">N.8.2</span> 6.2 Parallel Trends 假设</h3>
+<p><strong>DiD 的核心识别假设</strong>：</p>
+<blockquote class="blockquote">
+<p>在没有 HCI 政策干预的情境下，目标产业与非目标产业的工业发展结果应遵循共同的时间趋势 (parallel trends)。</p>
+</blockquote>
+<p>[E[Y_{it}(0) | Targeted_i = 1, t] - E[Y_{it}(0) | Targeted_i = 1, t-1] = E[Y_{it}(0) | Targeted_i = 0, t] - E[Y_{it}(0) | Targeted_i = 0, t-1]]</p>
+<p><strong>该假设在本文中的有效性来源</strong>:</p>
+<ol type="1">
+<li><p><strong>Pre-trend 视觉检验</strong>：Figure II 显示 1967–1972 年间 targeted 与 non-targeted 产业的产出轨迹高度平行</p></li>
+<li><p><strong>Pre-trend 联合 F 检验</strong>：</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 代码: 1_run_growth_analysis.do, Line 176</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span>: <span class="kw">estat</span> ptrends</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> pre_ftest = <span class="fu">r</span>(<span class="fu">F</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> pre_testprob = <span class="fu">r</span>(<span class="kw">p</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>事前趋势系数的联合显著性检验 (joint F-test of pre-trends) 不能拒绝零假设 (即 pre-trends jointly insignificant)</p></li>
+<li><p><strong>Long Panel 的额外支撑</strong>：4-digit long panel (1967–1986) 提供 6 年 pre-period，显著增强了 pre-trend 检测的识别力</p></li>
+<li><p><strong>Qualitative 历史论证</strong>：Section II 详细记录了国际机构在事前对韩国重化工业的比较优势持怀疑态度，表明 targeted 产业并不具备被预测为自然增长的不可观测优势</p></li>
+</ol>
+<p><strong>Parallel Trends 假设的局限</strong>:</p>
+<ul>
+<li>[!] Short Panel (5-digit) 仅 3 年 pre-period (1970–1972)，pre-trend 检验效力有限</li>
+<li>[!] Pre-trend 不显著不能 “证明” 平行趋势成立 (只能不拒绝零假设)</li>
+<li>[!] 论文使用 DDD 跨国比较作为对此局限的补充</li>
+</ul>
+</section>
+<section id="ddd-的额外识别假设" class="level3" data-number="N.8.3">
+<h3 data-number="N.8.3" class="anchored" data-anchor-id="ddd-的额外识别假设"><span class="header-section-number">N.8.3</span> 6.3 DDD 的额外识别假设</h3>
+<p>方程 (4a)–(4b) 的 DDD 设定了额外的识别假设：</p>
+<blockquote class="blockquote">
+<p>在韩国，Targeted 和 Non-Targeted 产业的差异在 treatment 前应与外国 Targeted 和 Non-Targeted 产业的差异遵循相同的时间趋势。</p>
+</blockquote>
+<p>等价于: 韩国 DiD 与外国安慰剂 DiD 的差异在事前为零。</p>
+<p><strong>DDD 的无偏条件</strong> (Olden and Møen 2022)：即使两个 DiD 各自有偏，只要偏误相同 (common bias)，其差异就给出无偏估计。</p>
+</section>
+<section id="sutva-假设及处理" class="level3" data-number="N.8.4">
+<h3 data-number="N.8.4" class="anchored" data-anchor-id="sutva-假设及处理"><span class="header-section-number">N.8.4</span> 6.4 SUTVA 假设及处理</h3>
+<p><strong>Stable Unit Treatment Value Assumption (SUTVA)</strong> 要求政策的外部性不污染对照组。本文的挑战在于: - HCI 政策通过网络溢出 (forward linkages) 影响了非目标下游产业，可能导致对照组部分 “被处理” - 这种正向溢出会使 DiD 估计有偏 (可能偏低，因为对照组也因此受益)</p>
+<p><strong>论文的三重 SUTVA 稳健性检验</strong> (Section VII.B, Online Appendix G):</p>
+<ol type="1">
+<li><strong>限制对照组为低联动暴露行业</strong>：仅保留低于 median linkage 的 control industries (Online Appendix Figure G.1)</li>
+<li><strong>在回归中控制 linkage exposure</strong>：在 DiD 方程中显式控制 forward linkage 暴露 (Online Appendix G.2)</li>
+<li><strong>检验投资挤出</strong>：检验 linkage 控制是否改变投资效应的符号 (Online Appendix G.3)</li>
+</ol>
+<p>结论：即便控制 SUTVA 污染，核心 DiD 效应模式仍然稳健。</p>
+<hr>
+</section>
+</section>
+<section id="核心回归方程" class="level2" data-number="N.9">
+<h2 data-number="N.9" class="anchored" data-anchor-id="核心回归方程"><span class="header-section-number">N.9</span> 7 核心回归方程</h2>
+<section id="equation-1twfe-事件研究基底方程" class="level3" data-number="N.9.1">
+<h3 data-number="N.9.1" class="anchored" data-anchor-id="equation-1twfe-事件研究基底方程"><span class="header-section-number">N.9.1</span> 7.1 Equation (1)：TWFE 事件研究基底方程</h3>
+<p><span class="math display">\[\ln(y_{it}) = \alpha_i + \tau_t + \sum_{j \neq 1972} \beta_j \cdot Target_i \times Year_t^j + \varepsilon_{it}\]</span></p>
+<p><strong>模型形式解读</strong>: - <span class="math inline">\(\ln(y_{it})\)</span>: 产业 <span class="math inline">\(i\)</span> 在年份 <span class="math inline">\(t\)</span> 的工业发展结果 (log 形式) - <span class="math inline">\(\alpha_i\)</span>: 产业固定效应 (industry FE)，吸收不随时间变化的产业异质性 - <span class="math inline">\(\tau_t\)</span>: 年份固定效应 (year FE)，吸收共同的宏观冲击 - <span class="math inline">\(Target_i\)</span>: 二元处理变量 (=1 若产业属于 HCI 六大战略部门) - <span class="math inline">\(Year_t^j\)</span>: 年份虚拟变量 (=1 若 <span class="math inline">\(t = j\)</span>) - <span class="math inline">\(\beta_j\)</span>: <strong>核心估参量</strong>，即每年 targeted vs.&nbsp;non-targeted 产业的差异 (相对于基年 1972 年) - <span class="math inline">\(\varepsilon_{it}\)</span>: 误差项，标准误在产业层面 cluster</p>
+<p><strong>Treatment 参数的含义</strong>:</p>
+<p><span class="math inline">\(\beta_j\)</span> 的三个解读维度: - <span class="math inline">\(j &lt; 1972\)</span>: 事前差异, 检验 Parallel Trends (<span class="math inline">\(\beta_{1967} \approx ... \approx \beta_{1971} \approx 0\)</span>) - <span class="math inline">\(1973 \leq j \leq 1979\)</span>: 政策期内的处理效应 - <span class="math inline">\(j \geq 1980\)</span>: 政策后的持久效应</p>
+<p><strong>控制的时变协变量</strong> (Basic Regressors):</p>
+<p>论文还估计包含控制变量的版本: <span class="math display">\[\ln(y_{it}) = \alpha_i + \tau_t + \sum_{j \neq 1972} \beta_j \cdot Target_i \times Year_t^j + \sum_{k} \gamma_{k,j} \cdot X_{i}^{pre} \times Year_t^j + \varepsilon_{it}\]</span></p>
+<p>其中 <span class="math inline">\(X_{i}^{pre}\)</span> 是 pre-1973 industry average controls (log intermediate costs, log average plant size, log average wages, log labor productivity)，与 year FE 交互后进入方程。</p>
+<p><strong>代码实现</strong> (1_run_growth_analysis.do):</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Line 161: 核心估计</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span>: xtdidregress (l_ship l_costs_0 l_avg_size_0 l_avg_wages_0 l_y_n_0)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>              (treat), <span class="fu">group</span>(id) time(<span class="fu">year</span>) <span class="kw">vce</span>(<span class="kw">cluster</span> id)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Line 168: 趋势图 (预测)</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">estat</span> trendplots, ltrends noxline</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Line 176: Pre-trend 联合检验</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span>: <span class="kw">estat</span> ptrends</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">// Line 183: Event-study (Granger) 动态图</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">estat</span> grangerplot, baseline(1972) verbose <span class="kw">post</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>注: <code>xtdidregress</code> 是 Stata 17+ 的官方 DiD/Event-Study 命令，自动处理 <code>target × year</code> 的交互项，并以 <code>baseline()</code> 参数指定基准年份。</p>
+</blockquote>
+</section>
+<section id="equation-2plant-level-tfp-持久性" class="level3" data-number="N.9.2">
+<h3 data-number="N.9.2" class="anchored" data-anchor-id="equation-2plant-level-tfp-持久性"><span class="header-section-number">N.9.2</span> 7.2 Equation (2)：Plant-Level TFP 持久性</h3>
+<p><span class="math display">\[TFP_{pit} = \alpha_{it} + \beta \cdot Targeted_p + \varepsilon_{pit}\]</span></p>
+<p>其中 <span class="math inline">\(p\)</span> 表示工厂, <span class="math inline">\(t\)</span> 为 post-1979 年份, <span class="math inline">\(\alpha_{it}\)</span> 是 industry-year 固定效应 (4-digit KSIC × Year)。由于 treatment 是时不变的，使用两路 cluster (industry + plant level) 标准误。TFP 使用四种方法估计: OP (Olley and Pakes 1996), LP (Levinsohn and Petrin 2003), Wooldridge (2009), ACF (Ackerberg, Caves, and Frazer 2015)。</p>
+</section>
+<section id="equation-3double-robust-did-att" class="level3" data-number="N.9.3">
+<h3 data-number="N.9.3" class="anchored" data-anchor-id="equation-3double-robust-did-att"><span class="header-section-number">N.9.3</span> 7.3 Equation (3)：Double-Robust DiD (ATT)</h3>
+<p><span class="math display">\[ATT_t = E\left[ \frac{Targeted}{E[Targeted]} - \frac{\pi(X)(1 - Targeted)}{1 - \pi(X)} \cdot \frac{1}{E\left[\frac{\pi(X)(1 - Targeted)}{1 - \pi(X)}\right]} \right] \cdot \left( Y_t - Y_{1972} - f_{0,Y_t - Y_{1972}}(X) \right)\]</span></p>
+<p>其中: - <span class="math inline">\(\pi(X) \equiv E[Targeted | X]\)</span>: 倾向得分 (logit 估计) - <span class="math inline">\(f_{0,Y_t - Y_{1972}}(X) \equiv E[Y_t - Y_{1972} | Targeted = 0, X]\)</span>: 对照组的 outcome regression (OLS 估计) - <span class="math inline">\(Y_t - Y_{1972}\)</span>: long-difference (相对于 pre-treatment 最后一期 1972 年)</p>
+<p><strong>Double-Robust 性质</strong>: 只要 <span class="math inline">\(\pi(X)\)</span> 或 <span class="math inline">\(f_{0,Y_t - Y_{1972}}(X)\)</span> 中至少一个被正确设定，ATT 的估计就是一致的。</p>
+<p><strong>代码实现</strong> (3b_run_doublerobust_analysis.do):</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Line 200-209: 使用 csdid 包 (基于 Callaway and Sant'Anna 2021)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">// DR (Doubly-Robust Inverse Probability Weighting)</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>csdid l_ship l_costs_0 l_avg_size_0 l_avg_wages_0 l_y_n_0, <span class="co">///</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    time(<span class="fu">year</span>) ivar(id) gvar(gvar) <span class="co">///</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    method(dripw) wboot reps(10000) <span class="co">///</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    agg(event) <span class="kw">replace</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Line 201-203: OLS (作为比较基准)</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>csdid l_ship l_costs_0 l_avg_size_0 l_avg_wages_0 l_y_n_0, <span class="co">///</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    time(<span class="fu">year</span>) ivar(id) gvar(gvar) <span class="co">///</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    method(<span class="kw">reg</span>) agg(event) <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>关键代码细节</strong>: - <code>method(dripw)</code>: Doubly-Robust Inverse Probability Weighting 方法 - <code>wboot reps(10000)</code>: Wild bootstrap, 10,000 次迭代 (允许 within-industry correlation) - <code>agg(event)</code>: 聚合到 event-study 动态估计 - <code>gvar = 1973</code> (若 hci == 1): CSDID 的 group variable (single cohort, staggered 中最简情形)</p>
+</section>
+<section id="equations-4a-和-4bddd-跨国模型" class="level3" data-number="N.9.4">
+<h3 data-number="N.9.4" class="anchored" data-anchor-id="equations-4a-和-4bddd-跨国模型"><span class="header-section-number">N.9.4</span> 7.4 Equations (4a) 和 (4b)：DDD 跨国模型</h3>
+<p><strong>简化版 DDD (4a)</strong>:</p>
+<p><span class="math display">\[Y_{ict} = \alpha_i + \tau_t + \sigma_c + \sum_{j \neq 1972} \beta_{1j} \cdot HCI_i \times Year_t^j + \sum_{j \neq 1972} \beta_{2j} \cdot Korea_c \times Year_t^j + \sum_{j \neq 1972} \beta_{3j} \cdot Korea_c \times HCI_i \times Year_t^j + \varepsilon_{ict}\]</span></p>
+<p><strong>高维固定效应版 DDD (4b)</strong>:</p>
+<p><span class="math display">\[Y_{ict} = \alpha_{it} + \tau_{ct} + \sigma_{ci} + \sum_{j \neq 1972} \beta_{3j} \cdot Korea_c \times HCI_i \times Year_t^j + \varepsilon_{ict}\]</span></p>
+<p>其中: - <span class="math inline">\(c\)</span>: country (韩国 + 所有其他报告贸易数据的国家) - <span class="math inline">\(i\)</span>: industry (SITC Rev.1 4-digit) - <span class="math inline">\(\beta_{3j}\)</span>: 核心系数——韩国的 Targeted vs.&nbsp;Non-Targeted 差异相对于外国 Placebo 差异的差异 - <span class="math inline">\(\alpha_{it}\)</span>: industry-year FE, 吸收全球产业特定的时间冲击 - <span class="math inline">\(\tau_{ct}\)</span>: country-year FE, 吸收国家特定的宏观冲击 - <span class="math inline">\(\sigma_{ci}\)</span>: country-industry FE, 吸收不随时间变化的国家-产业比较优势</p>
+<p><strong>PPML 估计</strong> (贸易流量中的零值问题):</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 代码: 3b_run_doublerobust_analysis.do, Line 301-305</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ppmlhdfe rca_core i.hci##i.<span class="kw">post</span> <span class="co">///</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    c.(l_costs_0 l_avg_size_0 l_avg_wages_0 l_y_n_0)##i.<span class="fu">year</span>, <span class="co">///</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    absorb(id <span class="fu">year</span>) <span class="kw">vce</span>(<span class="kw">cluster</span> id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>DDD 的关键识别优势</strong>: - 控制了全球 HCI 产业的共同趋势 (通过 <span class="math inline">\(HCI_i \times Year_t^j\)</span>) - 控制了韩国整体的宏观经济趋势 (通过 <span class="math inline">\(Korea_c \times Year_t^j\)</span>) - 剩余 variation 是韩国 HCI 产业相对于世界 HCI 产业的差异化增长，即韩国产业政策的净效应</p>
+</section>
+<section id="equation-5learning-by-doing-机制" class="level3" data-number="N.9.5">
+<h3 data-number="N.9.5" class="anchored" data-anchor-id="equation-5learning-by-doing-机制"><span class="header-section-number">N.9.5</span> 7.5 Equation (5)：Learning-by-Doing 机制</h3>
+<p><span class="math display">\[Y_{it} = \beta_1 \cdot Experience_{it} + \beta_2 \cdot Experience_{it} \times Targeted_i + \alpha_i + \tau_t + \theta \cdot Size_{it} + X'_{it} \cdot \gamma + \varepsilon_{it}\]</span></p>
+<p>其中: - <span class="math inline">\(Y_{it}\)</span>: log price, log unit cost (中间投入/产出), 或 TFP - <span class="math inline">\(Experience_{it}\)</span>: log real cumulative gross output up to time <span class="math inline">\(t\)</span> - <span class="math inline">\(\beta_1\)</span>: 全样本的经验效应 - <span class="math inline">\(\beta_2\)</span>: <strong>目标产业的经验加成效应</strong> (learning 是否在 HCI 产业更强) - <span class="math inline">\(Size_{it}\)</span>: 工厂规模控制 (conventional scale effects) - <span class="math inline">\(X_{it}\)</span>: 包含 factor intensity 控制 (capital intensity, total input outlays per worker) - <span class="math inline">\(\alpha_i\)</span>: 产业固定效应 (或 plant FE 在 micro-level 设定中)</p>
+<p><strong>Plant-level 扩展</strong> (Table VI):</p>
+<p>在工厂层面，<span class="math inline">\(Experience\)</span> 分解为两类: - <span class="math inline">\(Plant\_Experience_{pt}\)</span>: 工厂 <span class="math inline">\(p\)</span> 自身的累积产出 - <span class="math inline">\(Industry\_Experience_{it}\)</span>: 产业 <span class="math inline">\(i\)</span> 的总累积产出 (排除工厂 <span class="math inline">\(p\)</span> 自身)</p>
+<p>该分解允许识别 <strong>plant-level learning</strong> (私有学习效应) vs.&nbsp;<strong>industry-level learning spillovers</strong> (跨工厂学习溢出)。</p>
+<p><span class="math display">\[Y_{pit} = \beta_1^P \cdot Plant\_Exp_{pt} + \beta_2^I \cdot Industry\_Exp_{it} + \beta_3^P \cdot Plant\_Exp_{pt} \times Targeted_i + \beta_4^I \cdot Industry\_Exp_{it} \times Targeted_i + ...\]</span></p>
+<p><strong>注意</strong>: 这是相关性分析 (correlational) 而非因果识别——Experience 是内生变量，且回归只在 post-1972 期间运行。</p>
+</section>
+<section id="equations-6a6blinkage-定义方程" class="level3" data-number="N.9.6">
+<h3 data-number="N.9.6" class="anchored" data-anchor-id="equations-6a6blinkage-定义方程"><span class="header-section-number">N.9.6</span> 7.6 Equations (6a)–(6b)：Linkage 定义方程</h3>
+<p><strong>Direct Backward and Forward Linkages</strong>:</p>
+<p><span class="math display">\[Backward\_Linkage_i = \sum_{j \in HCI} \alpha_{ij}\]</span></p>
+<p><span class="math display">\[Forward\_Linkage_i = \sum_{j \in HCI} \alpha_{ji}\]</span></p>
+<p><strong>Total (Leontief-inverse) Linkages</strong>:</p>
+<p><span class="math display">\[Total\_Backward\_Linkages_i = \sum_{j \in HCI} \ell_{ij}\]</span></p>
+<p><span class="math display">\[Total\_Forward\_Linkages_i = \sum_{j \in HCI} \ell_{ji}\]</span></p>
+<p>其中 <span class="math inline">\(\ell_{ij}\)</span> 来自 <span class="math inline">\(L = (I - A)^{-1}\)</span> (Leontief inverse matrix from 1970 IO tables)。</p>
+</section>
+<section id="equation-7linkage-event-study-方程" class="level3" data-number="N.9.7">
+<h3 data-number="N.9.7" class="anchored" data-anchor-id="equation-7linkage-event-study-方程"><span class="header-section-number">N.9.7</span> 7.7 Equation (7)：Linkage Event-Study 方程</h3>
+<p><span class="math display">\[\ln(y_{it}) = \alpha_i + \tau_t + \sum_{j \neq 1972} \gamma_j \cdot Backward\_Linkage_i \times Year_t^j + \sum_{j \neq 1972} \delta_j \cdot Forward\_Linkage_i \times Year_t^j + \varepsilon_{it}\]</span></p>
+<p><strong>核心参数</strong>: - <span class="math inline">\(\gamma_j\)</span>: 向后关联产业的差异化发展 (backward linkage × year) - <span class="math inline">\(\delta_j\)</span>: 向前关联产业的差异化发展 (forward linkage × year)</p>
+<p><strong>全样本扩展</strong>: 在全样本 (including targeted industries) 估计时，额外控制:</p>
+<p><span class="math display">\[\ln(y_{it}) = \alpha_i + \tau_t + \sum_{j \neq 1972} \beta_j \cdot Targeted_i \times Year_t^j + \sum_{j \neq 1972} \gamma_j \cdot BW\_Linkage_i \times Year_t^j + \sum_{j \neq 1972} \delta_j \cdot FW\_Linkage_i \times Year_t^j + \varepsilon_{it}\]</span></p>
+<p><strong>代码实现路径</strong> (6a_run_linkages_growthprice_analysis.do):</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 输入: subloop 文件 code/0_analysis/subdofiles/6b_linkages_subrollingloop.do</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">// 包含子循环 to 生成 pre-post 和 rolling event-study 估计</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">// 使用 reghdfe (吸收高维固定效应) 结合手动构建的 linkage × year 交互项</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">// 关键回归形式:</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>reghdfe l_valueadded i.post#c.hci_share_use_tot_0 i.post#c.hci_share_make_tot_0, <span class="co">///</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    absorb(id <span class="fu">year</span>) <span class="kw">vce</span>(<span class="kw">cluster</span> id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Linkage 分析的识别假设</strong>:</p>
+<blockquote class="blockquote">
+<p>前后向关联度不同的产业在没有 HCI 政策情境下，工业发展应遵循相同的时间趋势。</p>
+</blockquote>
+<p>即: Strong-linkage 和 Weak-linkage 产业之间的差异在 pre-1972 应为中心在零的随机波动。</p>
+</section>
+<section id="滚动-event-study-rolling-windows" class="level3" data-number="N.9.8">
+<h3 data-number="N.9.8" class="anchored" data-anchor-id="滚动-event-study-rolling-windows"><span class="header-section-number">N.9.8</span> 7.8 滚动 Event-Study (Rolling Windows)</h3>
+<p>论文报告了 rolling event-study 估计，作为替代的动态效应呈现方式。该方法不直接在方程 (1) 中体现，而是通过以下方式实现:</p>
+<p>在实际代码中，子程序 <code>1b_main_subrollingloop.do</code> 和 <code>6b_linkages_subrollingloop.do</code> 生成 rolling window 估计——在 rolling window 设计中，利用 <span class="math inline">\(k\)</span> 年期窗口内的平均处理效应随时间推移的变化来考察政策效果的稳定性和动态演进。</p>
+<p>代码中还包含了 <strong>投资与资本方程 (Equation (8))</strong>，用于评估 HCI 政策对 treated 产业投资响应的影响:</p>
+<p><span class="math display">\[\ln(Investment_{it}) = \alpha_i + \tau_t + \sum_{j \neq 1972} \beta_j \cdot Target_i \times Year_t^j + \varepsilon_{it}\]</span></p>
+<p>此外还有针对 high-MRPK vs.&nbsp;low-MRPK 产业的 differential input wedge 检验 (Policy Mechanisms, Section VI.A.2):</p>
+<p><span class="math display">\[Input\_Response_{it} = \beta \cdot Post \times Targeted_i \times High\_MRPK_i + ...\]</span></p>
+</section>
+<section id="linkage-event-study-中子循环的详细逻辑" class="level3" data-number="N.9.9">
+<h3 data-number="N.9.9" class="anchored" data-anchor-id="linkage-event-study-中子循环的详细逻辑"><span class="header-section-number">N.9.9</span> 7.9 Linkage Event-Study 中子循环的详细逻辑</h3>
+<p><code>6b_linkages_subrollingloop.do</code> 的实现逻辑如下:</p>
+<p><strong>Step 1</strong>: 循环遍历 outcome 变量 (e.g., <code>l_valueadded</code>, <code>l_ppi</code>)</p>
+<p><strong>Step 2</strong>: 循环遍历 linkage regressor 集合: - <code>hci_share_use_tot_0</code> (前向关联) - <code>hci_share_make_tot_0</code> (后向关联) - 两者的联合 (both linkages simultaneously, Eq (7))</p>
+<p><strong>Step 3</strong>: 循环遍历样本限制: - <code>restrictions == 9</code>: 全样本 (all industries) - <code>restrictions == 1</code>: 仅 HCI 产业 (检验直接效应) - <code>restrictions == 0</code>: 仅非 HCI 产业 (检验净溢出)</p>
+<p><strong>Step 4</strong>: 对每个组合运行 <code>reghdfe</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">// PRE-POST 平均效应</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>reghdfe `outcome` i.post#c.`linkage_use` i.post#c.`linkage_make`, <span class="co">///</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    absorb(id <span class="fu">year</span>) <span class="kw">vce</span>(<span class="kw">cluster</span> id)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">// ROLLING EVENT-STUDY</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>reghdfe `outcome` ib(1972).year#c.`linkage_use` ib(1972).year#c.`linkage_make`, <span class="co">///</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    absorb(id <span class="fu">year</span>) <span class="kw">vce</span>(<span class="kw">cluster</span> id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>关键回归细节</strong>: - <code>ib(1972).year#c.linkage_var</code> 创建了 linkage 变量与年份虚拟变量的交互项，以 1972 年为基准年 (omitted category) - 吸收 <code>id</code> 和 <code>year</code> 作为固定效应 - 标准误聚类在 industry <code>id</code> 层面 - 全样本回归中额外控制 <code>Targeted × Year</code> 交互项 (通过 <code>absorb(id year hci#year)</code>) 以吸收直接政策效应</p>
+</section>
+<section id="出口贸易方程-trade-export-specification" class="level3" data-number="N.9.10">
+<h3 data-number="N.9.10" class="anchored" data-anchor-id="出口贸易方程-trade-export-specification"><span class="header-section-number">N.9.10</span> 7.10 出口贸易方程 (Trade / Export Specification)</h3>
+<p>对于 COMTRADE 贸易流数据，论文使用了额外的估计方法:</p>
+<p><strong>RCA 的 PPML 估计</strong> (处理零贸易流):</p>
+<p><span class="math display">\[\ln(RCA_{it}) \approx \exp(\alpha_i + \tau_t + \sum_{j \neq 1972} \beta_j \cdot Target_i \times Year_t^j)\]</span></p>
+<p>使用 PPML (Poisson Pseudo-Maximum Likelihood) 以避免 <span class="math inline">\(\ln(0)\)</span> 问题:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ppmlhdfe rca_core i.hci##i.<span class="kw">post</span> <span class="co">///</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    c.(l_costs_0 l_avg_size_0 l_avg_wages_0 l_y_n_0)##i.<span class="fu">year</span>, <span class="co">///</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    absorb(id <span class="fu">year</span>) <span class="kw">vce</span>(<span class="kw">cluster</span> id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>CDK 相对出口生产率的估计</strong> (Costinot, Donaldson, and Komunjer 2012):</p>
+<p>先估计 gravity equation: <span class="math display">\[\ln(X_{ijk}) = \delta_{ij} + \delta_{jk} + \delta_{ik} + \varepsilon_{ijk}\]</span></p>
+<p>其中 <span class="math inline">\(X_{ijk}\)</span> 是 exporter <span class="math inline">\(i\)</span> -&gt; importer <span class="math inline">\(j\)</span> 的 commodity <span class="math inline">\(k\)</span> 出口额。然后 <span class="math inline">\(\widehat{CDK}_k = \exp(\hat{\delta}_{ik} / \hat{\theta})\)</span>，其中 <span class="math inline">\(\hat{\theta}\)</span> 来自 CDK (2012)。</p>
+<p><strong>该度量序列的一个重要性质</strong>: CDK 从非零贸易流中估计 (与 Balassa RCA 不同)，因此无法捕获 extensive margin (进入新市场) 的效应。CDK 的估计更偏向 intensive margin (已有出口流的扩张)。</p>
+<hr>
+</section>
+</section>
+<section id="主要表格和图形解读" class="level2" data-number="N.10">
+<h2 data-number="N.10" class="anchored" data-anchor-id="主要表格和图形解读"><span class="header-section-number">N.10</span> 8 主要表格和图形解读</h2>
+<section id="table-iplant-level-tfp-持久性" class="level3" data-number="N.10.1">
+<h3 data-number="N.10.1" class="anchored" data-anchor-id="table-iplant-level-tfp-持久性"><span class="header-section-number">N.10.1</span> 8.1 Table I：Plant-Level TFP 持久性</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>TFP 方法</th>
+<th>Estimated ATTs</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Wooldridge (W)</td>
+<td>0.0443***</td>
+<td>4.4% higher TFP for treated</td>
+</tr>
+<tr class="even">
+<td>ACF</td>
+<td>0.0544***</td>
+<td>5.4% higher TFP for treated</td>
+</tr>
+<tr class="odd">
+<td>Olley-Pakes (OP)</td>
+<td>0.0432</td>
+<td>Noisy positive</td>
+</tr>
+<tr class="even">
+<td>Levinsohn-Petrin (LP)</td>
+<td>0.0240</td>
+<td>Noisy positive</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>[Y] 控制 Industry × Year FE</li>
+<li>[Y] Two-way clustered SE (industry + plant)</li>
+<li>[!] 仅覆盖 post-1979 期 (因微数据仅在 1979 年之后可用)</li>
+<li>[!] 相关性分析 (非因果 DID)</li>
+</ul>
+</section>
+<section id="table-ii工业发展-att" class="level3" data-number="N.10.2">
+<h3 data-number="N.10.2" class="anchored" data-anchor-id="table-ii工业发展-att"><span class="header-section-number">N.10.2</span> 8.2 Table II：工业发展 ATT</h3>
+<p>基准结果： - <strong>Output (shipments)</strong>: +128% (Double-robust, col 1) - <strong>Labor productivity</strong>: +17.2% (Double-robust, col 1) - <strong>Output price</strong>: −9.55% (Double-robust, col 1) - <strong>Employment</strong>: +63.8% (Double-robust, col 1)</p>
+<p>Double-robust 和 TWFE 估计高度一致 (见 col 1 vs 2, col 3 vs 4)，支持 TWFE 的可靠性。</p>
+</section>
+<section id="table-iii出口发展-att" class="level3" data-number="N.10.3">
+<h3 data-number="N.10.3" class="anchored" data-anchor-id="table-iii出口发展-att"><span class="header-section-number">N.10.3</span> 8.3 Table III：出口发展 ATT</h3>
+<ul>
+<li><strong>RCA (log)</strong>: +13.2% (Double-robust, col 1)</li>
+<li><strong>Prob (RCA &gt; 1)</strong>: +10.6 pp (Double-robust, col 1)</li>
+<li><strong>CDK export productivity</strong>: +4.92% (Double-robust, col 1)</li>
+</ul>
+<p>PPML 估计 (col 3) 的系数普遍更大但 pattern 一致。</p>
+</section>
+<section id="table-iv投入与投资" class="level3" data-number="N.10.4">
+<h3 data-number="N.10.4" class="anchored" data-anchor-id="table-iv投入与投资"><span class="header-section-number">N.10.4</span> 8.4 Table IV：投入与投资</h3>
+<ul>
+<li><strong>Intermediate outlays</strong>: +109% (Double-robust, col 1)</li>
+<li><strong>Investment total</strong>: +81.4% (Double-robust, col 1)</li>
+<li><strong>Investment per worker</strong>: +13.2% (noisy for 4-digit)</li>
+</ul>
+</section>
+<section id="table-v-和-vilearning-by-doing-lbd" class="level3" data-number="N.10.5">
+<h3 data-number="N.10.5" class="anchored" data-anchor-id="table-v-和-vilearning-by-doing-lbd"><span class="header-section-number">N.10.5</span> 8.5 Table V 和 VI：Learning-by-Doing (LBD)</h3>
+<p><strong>Table V</strong> (Industry-level): - <span class="math inline">\(Experience \times Targeted\)</span>: 对 price 和 unit cost 显著为负 - <span class="math inline">\(Experience \times Targeted\)</span>: 对 TFP (LP) 显著为正 - Combined effect: Targeted 产业的经验弹性显著大于非 Targeted 产业</p>
+<p><strong>Table VI</strong> (Plant-level, post-1979): - Both plant-level and industry-level experience have stronger effects for targeted establishments - Industry-level learning effects persist even controlling for plant-level learning (暗示有 cross-plant spillovers)</p>
+</section>
+<section id="table-viilinkage-effects-value-added" class="level3" data-number="N.10.6">
+<h3 data-number="N.10.6" class="anchored" data-anchor-id="table-viilinkage-effects-value-added"><span class="header-section-number">N.10.6</span> 8.6 Table VII：Linkage Effects (Value Added)</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Specification</th>
+<th>Forward Link × Post</th>
+<th>Backward Link × Post</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5-digit, Full Sample</td>
+<td>2.832***</td>
+<td>−0.017 (ns)</td>
+</tr>
+<tr class="even">
+<td>5-digit, Non-HCI Only</td>
+<td>4.405***</td>
+<td>0.176 (ns)</td>
+</tr>
+<tr class="odd">
+<td>4-digit, Full Sample</td>
+<td>2.095**</td>
+<td>−0.693 (ns)</td>
+</tr>
+<tr class="even">
+<td>4-digit, Non-HCI Only</td>
+<td>2.906**</td>
+<td>−2.163*</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p>Semi-elasticity: 一个 1% 的 Forward Linkage 份额增加 (0 到 1 的连续变量) 关联 +4.4% 的产出增加 (for non-HCI downstream industries)。</p>
+</blockquote>
+</section>
+<section id="figure-ivii-概况" class="level3" data-number="N.10.7">
+<h3 data-number="N.10.7" class="anchored" data-anchor-id="figure-ivii-概况"><span class="header-section-number">N.10.7</span> 8.7 Figure I–VII 概况</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Figure</th>
+<th>内容</th>
+<th>估计方法</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>I (A-C)</td>
+<td>投资政策趋势 (税楔, KDB 贷款)</td>
+<td>描述性统计</td>
+</tr>
+<tr class="even">
+<td>II (A-B)</td>
+<td>Targeted 产出扩张 DiD</td>
+<td>Eq (1) TWFE</td>
+</tr>
+<tr class="odd">
+<td>III (A-B)</td>
+<td>多维工业发展与出口发展</td>
+<td>Eq (1) TWFE + PPML</td>
+</tr>
+<tr class="even">
+<td>IV (A-D)</td>
+<td>跨国 DDD 出口发展</td>
+<td>Eqs (4a)-(4b) PPML</td>
+</tr>
+<tr class="odd">
+<td>V (A-E)</td>
+<td>投入与投资响应</td>
+<td>Eq (1) TWFE</td>
+</tr>
+<tr class="even">
+<td>VI (A-D)</td>
+<td>Forward Linkage—产出与价格</td>
+<td>Eq (7) TWFE</td>
+</tr>
+<tr class="odd">
+<td>VII (A-B)</td>
+<td>Forward Linkage—出口发展</td>
+<td>Eq (7) OLS/PPML</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="机制检验-lbd-investment-policy-channels" class="level2" data-number="N.11">
+<h2 data-number="N.11" class="anchored" data-anchor-id="机制检验-lbd-investment-policy-channels"><span class="header-section-number">N.11</span> 9 机制检验 (LBD, Investment, Policy Channels)</h2>
+<section id="投资政策渠道-section-vi.a" class="level3" data-number="N.11.1">
+<h3 data-number="N.11.1" class="anchored" data-anchor-id="投资政策渠道-section-vi.a"><span class="header-section-number">N.11.1</span> 9.1 投资政策渠道 (Section VI.A)</h3>
+<p>论文通过以下步骤建立投资政策渠道:</p>
+<ol type="1">
+<li><strong>描述性证据 (Figure I)</strong>:
+<ul>
+<li>Panel A: 有效边际税率 (EMTR) 在 1973 后对 Targeted 产业分化</li>
+<li>Panel B-C: KDB 政策贷款在 1973-1979 对 HCI 产业急剧增加</li>
+</ul></li>
+<li><strong>投资响应估计 (Figure V, Table IV)</strong>:
+<ul>
+<li>中间投入 (Intermediate Outlays) 和总投资在 Targeted 产业显著增加</li>
+<li>这种增加不是由 control group 的下降驱动的</li>
+</ul></li>
+<li><strong>MRPK 楔形检验 (Online Appendix D.2)</strong>:
+<ul>
+<li>高 MRPK 的 HCI 产业在政策期投资扩张更显著</li>
+<li>非 Targeted 产业无此效应：<code>High_MRPK × Post = 0</code> for controls</li>
+</ul></li>
+<li><strong>Crowding-Out 检验 (Online Appendix D.3)</strong>:
+<ul>
+<li>非 Targeted 产业的投资水平并未绝对下降</li>
+<li>Capital-intensive non-HCI 产业的投资也未下降</li>
+</ul></li>
+</ol>
+</section>
+<section id="贸易政策渠道-section-vi.b" class="level3" data-number="N.11.2">
+<h3 data-number="N.11.2" class="anchored" data-anchor-id="贸易政策渠道-section-vi.b"><span class="header-section-number">N.11.2</span> 9.2 贸易政策渠道 (Section VI.B)</h3>
+<p>证据表明<strong>名义保护主义并非</strong> HCI 政策的主要渠道: - [Y] Targeted 产业的 output protection (关税/QRs) 低于 Non-Targeted 产业 (Online Appendix Table D.3) - [Y] Targeted 产业享有较低的 input tariff (投入品保护豁免) - [N] 没有证据表明名义产出保护在 1973-1979 期间大幅上升</p>
+<p>论文强调定向信贷 (directed credit) 是 “a central lever” (Lee 1991; Woo 1991)，政策贷款的利率比基准贷款低 5 个百分点 (Cho and Kim 1995)。</p>
+</section>
+<section id="信用政策渠道的进一步证据" class="level3" data-number="N.11.3">
+<h3 data-number="N.11.3" class="anchored" data-anchor-id="信用政策渠道的进一步证据"><span class="header-section-number">N.11.3</span> 9.3 信用政策渠道的进一步证据</h3>
+<p>除了宏观统计变量外，论文在 Online Appendix D.2-D.3 中提供了更多关于信用政策如何通过投资楔形影响制造业的证据：</p>
+<p><strong>中间品投入的扩张</strong>: Figure V Panel A 表明在 control group 的 intermediate outlays 并未下降，但 treated 产业的中间投入增速远超过对照组。Table IV col (1) 的中间投入弹性 <span class="math inline">\(e^{0.5147} - 1 \approx 67\%\)</span> (per worker basis 约 23%)，暗示该效应并非纯粹的规模扩张，而是伴有单位工人投入强度的提升。</p>
+<p><strong>Investment 的跨资产类别验证</strong>: Online Appendix Table D.2 展示了 treated 产业在不同资产类别 (建筑物、机械设备) 上的差异化投资响应。特别是 machinery equipment 投资 (这正是 HCI 税收激励集中扶持的类别) 增长最为显著。</p>
+<p><strong>MRPK 分布检查</strong>: 作者使用 Bau and Matray (2022) 的方法计算了 pretreatment MRPK (marginal revenue product of capital)。在 treated 产业中，high-MRPK 组在政策后有显著更高的 input growth (Online Appendix Figure D.2)，而 control group 中未曾观察到这种 differentiated response。这暗示 capital market integration 通过 directed credit 降低了 high-MRPK 产业的资本楔形，而非 general equilibrium 的跨行业资本再分配。</p>
+</section>
+<section id="learning-by-doing-机制-section-vi.c" class="level3" data-number="N.11.4">
+<h3 data-number="N.11.4" class="anchored" data-anchor-id="learning-by-doing-机制-section-vi.c"><span class="header-section-number">N.11.4</span> 9.4 Learning-by-Doing 机制 (Section VI.C)</h3>
+<p><strong>两步验证</strong>:</p>
+<p><strong>Step 1: Reduced-form industry correlations (Eq (5))</strong>:</p>
+<p>在 post-1972 期: - <span class="math inline">\(Experience\)</span> (cumulative output) 对 price 和 unit cost 的降低效应在 Targeted 产业显著更强 - <span class="math inline">\(Experience\)</span> 对 TFP 的正向效应在 Targeted 产业显著更强 (LP TFP)</p>
+<p><strong>Step 2: Decompose plant vs.&nbsp;industry learning (Table VI)</strong>:</p>
+<p>在 post-1979 microdata 中: - Plant-level experience 对 unit cost 和 TFP 的影响在 Targeted 工厂更强 - <strong>Industry-level experience 效应即使在控制 plant-level experience 后仍然显著</strong> -&gt; 暗示存在 cross-plant learning spillovers</p>
+<blockquote class="blockquote">
+<p>关键洞察: LBD 的 evidence 是 <strong>correlational</strong> 而非 causal。累积产出的内生性 (simultaneity) 未得到解决。然而，被估参数的模式与 infant-industry 理论 (Bardhan 1971) 的预测一致。</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="稳健性安慰剂和识别威胁" class="level2" data-number="N.12">
+<h2 data-number="N.12" class="anchored" data-anchor-id="稳健性安慰剂和识别威胁"><span class="header-section-number">N.12</span> 10 稳健性、安慰剂和识别威胁</h2>
+<section id="双重稳健估计" class="level3" data-number="N.12.1">
+<h3 data-number="N.12.1" class="anchored" data-anchor-id="双重稳健估计"><span class="header-section-number">N.12.1</span> 10.1 双重稳健估计</h3>
+<p><strong>方法论</strong>: Sant’Anna and Zhao (2020) 和 Callaway and Sant’Anna (2021) 提出的 Double-Robust DiD 估计量。</p>
+<p><strong>相对于 TWFE 的优势</strong>: - 不需要所有 pre-treatment 期的 zero pre-trend (仅使用 long-difference relative to 1972) - 通过 reweighting (IPW) + outcome regression 形成双重稳健 - Bootstrap-based inference (10,000 次) 提供有效的 within-industry clustering</p>
+<p><strong>结果</strong>: Double-robust event-studies (Online Appendix Figures B.4-B.6) 在 qualitative pattern 上与 TWFE 估计一致。</p>
+</section>
+<section id="跨国-triple-differences" class="level3" data-number="N.12.2">
+<h3 data-number="N.12.2" class="anchored" data-anchor-id="跨国-triple-differences"><span class="header-section-number">N.12.2</span> 10.2 跨国 Triple Differences</h3>
+<p><strong>方法论</strong>: 使用 COMTRADE 跨国数据，比较韩国 Targeted 产业的出口发展与外国 Targeted 产业的出口发展。</p>
+<p><strong>识别特点</strong>: - 方程 (4b) 使用最高维度的固定效应：<span class="math inline">\(\alpha_{it}\)</span>, <span class="math inline">\(\tau_{ct}\)</span>, <span class="math inline">\(\sigma_{ci}\)</span> - 这意味着控制了 industry-year, country-year, 和 country-industry 的所有时变和不随时间变化的因素 - 额外的验证：Online Appendix C 评估了韩国达到 RCA &gt; 1 的概率，与同等发展水平的 countries 相比显著更高 (+11% to +13.1%)</p>
+</section>
+<section id="pre-trend-检验" class="level3" data-number="N.12.3">
+<h3 data-number="N.12.3" class="anchored" data-anchor-id="pre-trend-检验"><span class="header-section-number">N.12.3</span> 10.3 Pre-Trend 检验</h3>
+<p><strong>Joint F-test</strong>: 方程 (1) 的 pre-1972 系数 (all <span class="math inline">\(\beta_j\)</span> for <span class="math inline">\(j &lt; 1972\)</span>) 的联合显著性检验：</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">estat</span> ptrends  <span class="co">// 即 Stata 17+ 的 pre-trends 检验</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>结果：F 统计量和 p-value 报告在各回归表中，不能拒绝所有 pre-trend 为零的零假设。</p>
+<p><strong>注意短面板的局限</strong>: 5-digit panel 仅有 3 年 pre-period，pre-trend test 可能缺乏识别力。</p>
+</section>
+<section id="sutva-稳健性检验" class="level3" data-number="N.12.4">
+<h3 data-number="N.12.4" class="anchored" data-anchor-id="sutva-稳健性检验"><span class="header-section-number">N.12.4</span> 10.4 SUTVA 稳健性检验</h3>
+<p>论文详细处理了 IO 网络溢出可能污染控制组的威胁:</p>
+<p><strong>检验 1</strong>: 限制 control group 至 below-median linkage exposure (Online Appendix Figure G.1) <strong>检验 2</strong>: 在回归中显式控制 linkage exposure (Online Appendix G.2) <strong>检验 3</strong>: 在考虑 linkage 后重新检验 crowding-out (Online Appendix G.3)</p>
+<p><strong>核心发现</strong>: 即使排除或控制了下游 spillover 效应，核心 DiD 结果仍然健在。</p>
+</section>
+<section id="连续处理变量检验" class="level3" data-number="N.12.5">
+<h3 data-number="N.12.5" class="anchored" data-anchor-id="连续处理变量检验"><span class="header-section-number">N.12.5</span> 10.5 连续处理变量检验</h3>
+<p>使用 plant-level 多产品信息构造 continuous HCI exposure 变量 (Online Appendix J.1)，动态估计 (Online Appendix Figure B.2) 与 binary treatment 的估计模式一致。</p>
+</section>
+<section id="四种-tfp-方法的稳健性" class="level3" data-number="N.12.6">
+<h3 data-number="N.12.6" class="anchored" data-anchor-id="四种-tfp-方法的稳健性"><span class="header-section-number">N.12.6</span> 10.6 四种 TFP 方法的稳健性</h3>
+<p>对 Plant-level TFP 使用四种生产函数方法: - <strong>Olley-Pakes (OP, 1996)</strong>: investment 作为不可观测生产力的代理 - <strong>Levinsohn-Petrin (LP, 2003)</strong>: intermediate inputs 作为代理 - <strong>Wooldridge (2009)</strong>: GMM-based joint estimation - <strong>Ackerberg-Caves-Frazer (ACF, 2015)</strong>: 修正 OP/LP 的共线性问题</p>
+<p>四种方法的结果定性地一致 (Table I)。</p>
+</section>
+<section id="替代对照组和数据集的稳健性" class="level3" data-number="N.12.7">
+<h3 data-number="N.12.7" class="anchored" data-anchor-id="替代对照组和数据集的稳健性"><span class="header-section-number">N.12.7</span> 10.7 替代对照组和数据集的稳健性</h3>
+<p><strong>替代 4-digit 数据集</strong>: 所有核心结果均在更粗糙的 4-digit KSIC (long panel, 1967-1986) 上复现。虽然估计精度有所下降 (更少的 observation 和更大的 aggregation effect)，但 qualitative pattern 始终一致。</p>
+<p><strong>排除特定行业的稳定性</strong>: Online Appendix B 提供了排除个别大行业 (如特定钢铁或石化部门) 后的估计，demonstrating 核心结果不由某个 outlier industry 驱动。</p>
+<p><strong>替代 DiD 识别窗口</strong>: Rolling window 分析 (方程 (2) 的扩展形式) 验证了政策效应在不同 time window 长度下的稳定性，排除了效应仅由某个特定年份的冲击驱动的担忧。</p>
+</section>
+<section id="出口竞争力的替代度量" class="level3" data-number="N.12.8">
+<h3 data-number="N.12.8" class="anchored" data-anchor-id="出口竞争力的替代度量"><span class="header-section-number">N.12.8</span> 10.8 出口竞争力的替代度量</h3>
+<p>除了标准 Balassa RCA 外，论文使用三种 alternative metrics:</p>
+<ol type="1">
+<li><strong>RCA (asinh transformed)</strong>: 反双曲正弦变换允许保留零值观测 (非目标产业在重化工业产品上可能有零出口)</li>
+<li><strong>CDK relative export productivity</strong>: 基于 Costinot, Donaldson, and Komunjer (2012) 的 gravity-based structural measure，提供了比 Balassa index 更具理论一致性的比较优势度量</li>
+<li><strong>Probability of attaining comparative advantage</strong>: <span class="math inline">\(P(RCA &gt; 1)\)</span> 是一个离散的结果，capture 的是二元意义上的出口竞争力突破</li>
+</ol>
+<p>这些 alternative metrics 的DDD 估计 (Figure IV) 在 qualitative pattern 上一致: pre-1973 差异最小，post-1973 显著为正，post-1979 进一步扩大。</p>
+</section>
+<section id="dynamic-double-robust-事件研究" class="level3" data-number="N.12.9">
+<h3 data-number="N.12.9" class="anchored" data-anchor-id="dynamic-double-robust-事件研究"><span class="header-section-number">N.12.9</span> 10.9 Dynamic Double-Robust 事件研究</h3>
+<p>Online Appendix 2 报告的 Double-Robust event-study (Online Appendix Figures B.4-B.6) 展示了与 TWFE event-study 平行但更平滑的动态轨迹。DR event-study 使用的 pre-trend 假设比 TWFE 更弱 (仅需 no differential changes between t-1972 and the baseline period, 而非所有 pre-treatment periods)。</p>
+<p>DR 估计的阶段式构造: - <strong>Step 1</strong>: 为每个 post-treatment year <span class="math inline">\(t\)</span> 估计 <span class="math inline">\(\pi(X)\)</span> (logit) 和 <span class="math inline">\(f_0(X)\)</span> (OLS) - <strong>Step 2</strong>: 计算 <span class="math inline">\(ATT_t\)</span> 作为 weighted average of <span class="math inline">\((Y_t - Y_{1972} - f_0(X))\)</span> with IPW weights - <strong>Step 3</strong>: Bootstrap 重复 (10,000 次) 以构建 95% confidence band</p>
+<p>DR event-study 的关键优势在于: - 不依赖所有 pre-treatment 年的 zero trend 假设 - 通过 reweighting 让 treatment 和 control group 在可观测特征上可比 - 即使 outcome model 或 propensity score 其中之一指定错误，估计仍一致</p>
+<hr>
+</section>
+</section>
+<section id="外部有效性和政策含义" class="level2" data-number="N.13">
+<h2 data-number="N.13" class="anchored" data-anchor-id="外部有效性和政策含义"><span class="header-section-number">N.13</span> 11 外部有效性和政策含义</h2>
+<section id="外部有效性讨论" class="level3" data-number="N.13.1">
+<h3 data-number="N.13.1" class="anchored" data-anchor-id="外部有效性讨论"><span class="header-section-number">N.13.1</span> 11.1 外部有效性讨论</h3>
+<ul>
+<li>[Y] 韩国是极端案例 (extreme case)：具有高度 bureaucratic capacity (Evans 1995 的 “embedded autonomy”) 和高压政治体制</li>
+<li>[!] HCI 政策由 existential security threat 驱动 (Nixon doctrine + North Korean threat)，这种政治凝聚力在大多数发展中国家不常见</li>
+<li>[!] 韩国的宏观环境 (出口导向型增长、早期人力资本积累、日本的技术转移和资本供给) 可能不可复制</li>
+<li>[!] 研究覆盖的是 <strong>制造业产业政策</strong>，对农业、服务业或创新政策的推广需谨慎</li>
+</ul>
+</section>
+<section id="政策含义" class="level3" data-number="N.13.2">
+<h3 data-number="N.13.2" class="anchored" data-anchor-id="政策含义"><span class="header-section-number">N.13.2</span> 11.2 政策含义</h3>
+<ol type="1">
+<li><strong>临时性产业政策可以产生持久效果</strong>: HCI 的各项核心支持在 1979 年撤除后，目标产业的持久竞争优势仍然保持，暗示投资和学习效应具有不可逆性 (sunk costs + dynamic scale economies)</li>
+<li><strong>网络联动是设计产业政策的重要考量</strong>: 选择上游 (upstream) 产业作为政策目标有助于通过 forward linkages 为下游产业提供低成本中间投入</li>
+<li><strong>定向信贷而非贸易保护是工业发展的更有效工具</strong>: 论文的证据表明廉价信贷 + 投资激励 (而非名义保护) 是韩国 HCI 政策的 main active ingredient</li>
+<li><strong>Effects take time</strong>: 出口 RCA 和 TFP 的效果直到 policy 结束后才充分显现</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="代码实现和复现线索" class="level2" data-number="N.14">
+<h2 data-number="N.14" class="anchored" data-anchor-id="代码实现和复现线索"><span class="header-section-number">N.14</span> 12 代码实现和复现线索</h2>
+<section id="文件与估计方法的映射" class="level3" data-number="N.14.1">
+<h3 data-number="N.14.1" class="anchored" data-anchor-id="文件与估计方法的映射"><span class="header-section-number">N.14.1</span> 12.1 文件与估计方法的映射</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 28%">
+<col style="width: 28%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>do-file</th>
+<th>论文内容</th>
+<th>核心命令</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>0_1_master_run_main_analyses.do</code></td>
+<td>主分析总控</td>
+<td><code>include</code></td>
+<td>调用所有主分析脚本</td>
+</tr>
+<tr class="even">
+<td><code>1_run_growth_analysis.do</code></td>
+<td>Section V.B, 核心 DiD</td>
+<td><code>xtdidregress</code>, <code>estat trendplots</code>, <code>estat grangerplot</code></td>
+<td>Event-study coeffs, pre-trend tests</td>
+</tr>
+<tr class="odd">
+<td><code>2a_run_devoutcomes_analysis.do</code></td>
+<td>Section V.B, 多维结果</td>
+<td><code>xtdidregress</code> (with controls)</td>
+<td>劳动生产力, 价格, 工厂数量等</td>
+</tr>
+<tr class="even">
+<td><code>2b_run_koreatrade_analysis.do</code></td>
+<td>Section V.C, 贸易发展</td>
+<td><code>xtdidregress</code>, <code>ppmlhdfe</code></td>
+<td>RCA, export share, CDK</td>
+</tr>
+<tr class="odd">
+<td><code>3a_run_micro_tfp_analysis.do</code></td>
+<td>Section V.D.1, TFP</td>
+<td><code>reghdfe</code></td>
+<td>Plant-level TFP persistence (Table I)</td>
+</tr>
+<tr class="even">
+<td><code>3b_run_doublerobust_analysis.do</code></td>
+<td>Section V.E, DR-DiD</td>
+<td><code>csdid</code> (method= dripw / reg)</td>
+<td>Double-robust event study</td>
+</tr>
+<tr class="odd">
+<td><code>3c_run_worldtrade_analysis.do</code></td>
+<td>Section V.F, DDD</td>
+<td><code>ppmlhdfe</code></td>
+<td>跨国 DDD (Figure IV)</td>
+</tr>
+<tr class="even">
+<td><code>4_run_policy_analysis.do</code></td>
+<td>Section VI.A, 投资政策</td>
+<td><code>xtdidregress</code></td>
+<td>Investment, intermediate outlays</td>
+</tr>
+<tr class="odd">
+<td><code>5a_run_mechanisms_lbd_analysis.do</code></td>
+<td>Section VI.C, LBD 行业级</td>
+<td><code>reghdfe</code></td>
+<td>LBD correlations (Table V)</td>
+</tr>
+<tr class="even">
+<td><code>5b_run_mechanisms_lbd_micro_analysis.do</code></td>
+<td>Section VI.C, LBD 微观级</td>
+<td><code>reghdfe</code></td>
+<td>Plant+Industry LBD (Table VI)</td>
+</tr>
+<tr class="odd">
+<td><code>6a_run_linkages_growthprice_analysis.do</code></td>
+<td>Section VII, Linkages</td>
+<td><code>reghdfe</code> (linked via subloop)</td>
+<td>Linkage event studies (Figure VI)</td>
+</tr>
+<tr class="even">
+<td><code>6b_run_linkages_trade_analysis.do</code></td>
+<td>Section VII, 出口联动</td>
+<td><code>reghdfe</code>, <code>ppmlhdfe</code></td>
+<td>Linkage × Trade (Figure VII)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="子循环文件-sub-do-files" class="level3" data-number="N.14.2">
+<h3 data-number="N.14.2" class="anchored" data-anchor-id="子循环文件-sub-do-files"><span class="header-section-number">N.14.2</span> 12.2 子循环文件 (Sub-do-files)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 37%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>sub-dofile</th>
+<th>被调用于</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>1b_main_subrollingloop.do</code></td>
+<td>多个主分析脚本</td>
+<td>Pre-post + Rolling 分析循环</td>
+</tr>
+<tr class="even">
+<td><code>6b_linkages_subrollingloop.do</code></td>
+<td>Linkage 分析脚本</td>
+<td>Linkage × Year rolling 循环</td>
+</tr>
+<tr class="odd">
+<td><code>6b_linkages_subrollingloop_wcontrols.do</code></td>
+<td>Linkage 分析 (with controls)</td>
+<td>扩展版 rolling 循环</td>
+</tr>
+<tr class="even">
+<td><code>APPb_linkages_subrollingloop_simplified.do</code></td>
+<td>Appendix E 脚本</td>
+<td>简化版 Linkage rolling</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="数据处理流水线概览" class="level3" data-number="N.14.3">
+<h3 data-number="N.14.3" class="anchored" data-anchor-id="数据处理流水线概览"><span class="header-section-number">N.14.3</span> 12.3 数据处理流水线概览</h3>
+<pre><code>Raw Data (MMS, COMTRADE, IO Tables, Policy Loans)
+        |
+        v
+Data Building Scripts (code/1_data/)
+  +-- Harmonization across KSIC revisions (1967, 1970, 1975, 1980, 1984)
+  +-- Crosswalk schemas (KSIC ↔ SITC ↔ IO sectors)
+  +-- Output: mms_merged_harmonized_panel_cleaned4reg_5digit.dta
+                   mms_merged_harmonized_panel_cleaned4reg_4digit.dta
+                   comtrade_merged_harmonized_panel_cleaned4reg_4digit.dta
+        |
+        v
+Analysis Scripts (code/0_analysis/)
+  +-- 1_main_scripts/  -&gt; Main paper (Tables I-VIII, Figures I-VII)
+  +-- 2_appendix_scripts/ -&gt; Online Appendix (Figures B1-G3)
+  +-- 3_suppappendix_scripts/ -&gt; Supplementary Online Appendix
+        |
+        v
+Outputs (data/intermediate_datasets/)
+  +-- *_all_results.csv, *_att.csv, *_prepostresults_estout.csv
+        |
+        v
+Visualization in R (code/2_visualization/)
+  +-- 0_1_generate_labeled_figures.R
+  +-- 0_2_generate_all_figures.R</code></pre>
+</section>
+<section id="关键复现注意事项" class="level3" data-number="N.14.4">
+<h3 data-number="N.14.4" class="anchored" data-anchor-id="关键复现注意事项"><span class="header-section-number">N.14.4</span> 12.4 关键复现注意事项</h3>
+<ol type="1">
+<li><strong>Stata 版本要求</strong>: <code>xtdidregress</code> 需要 Stata 17 或更高版本</li>
+<li><strong>必需的用户安装包 (ssc install)</strong>:
+<ul>
+<li><code>csdid</code> (Double-robust DiD)</li>
+<li><code>drdid</code> (Double-robust DiD 辅助)</li>
+<li><code>ppmlhdfe</code> (PPML with HDFE)</li>
+<li><code>regsave</code> (回归结果导出)</li>
+<li><code>reghdfe</code> (高维固定效应)</li>
+<li><code>estout</code> (回归表格导出)</li>
+<li><code>gph2xl</code> (Stata 图数据导出至 Excel/CSV)</li>
+</ul></li>
+<li><strong>Bootstrap 计算量</strong>: Double-robust 估计使用 10,000 次 wild bootstrap — 单次完整运行可能需要数小时</li>
+<li><strong>Data harmonization 是最耗时的步骤</strong>: MMS 数据在不同 KSIC 版本间的 harmonization 涉及多次 crosswalk schema 的数字化和应用，这是本文数据贡献的核心</li>
+<li><strong>SITC Rev.1 匹配</strong>: UN COMTRADE 数据 (SITC Rev.1 4-digit) 与 KSIC 的手工匹配 (hand-match) 文档见于 Online Appendix I.2</li>
+</ol>
+</section>
+<section id="核心-stata-工作流-以-1_run_growth_analysis.do-为例" class="level3" data-number="N.14.5">
+<h3 data-number="N.14.5" class="anchored" data-anchor-id="核心-stata-工作流-以-1_run_growth_analysis.do-为例"><span class="header-section-number">N.14.5</span> 12.5 核心 Stata 工作流 (以 1_run_growth_analysis.do 为例)</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>* Step 1: Load <span class="kw">data</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>prep_data <span class="st">"inputfile"</span>          <span class="co">// 载入并生成 treat = hci * post1973</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>* Step 2: TWFE DiD estimation</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>xtdidregress (<span class="fu">y</span> controls) (treat), <span class="fu">group</span>(id) time(<span class="fu">year</span>) <span class="kw">vce</span>(<span class="kw">cluster</span> id)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>* Step 3: Pre-trend joint <span class="kw">test</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="kw">estat</span> ptrends</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>* Step 4: Dynamic event study plots</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="kw">estat</span> grangerplot, baseline(1972) verbose <span class="kw">post</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>* Step 5: Export results</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>estout event* <span class="kw">using</span> <span class="st">"results.csv"</span>, <span class="kw">replace</span> <span class="kw">keep</span>(_l*) ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="局限和继续阅读建议" class="level2" data-number="N.15">
+<h2 data-number="N.15" class="anchored" data-anchor-id="局限和继续阅读建议"><span class="header-section-number">N.15</span> 13 局限和继续阅读建议</h2>
+<section id="方法论局限" class="level3" data-number="N.15.1">
+<h3 data-number="N.15.1" class="anchored" data-anchor-id="方法论局限"><span class="header-section-number">N.15.1</span> 13.1 方法论局限</h3>
+<ol type="1">
+<li><p><strong>TWFE 在 staggered adoption 中的偏误</strong>: 本文是 single-cohort (1973) 的经典 DiD 设计，不涉及 TWFE 对 staggered 设定的 negative weighting 问题 (Goodman-Bacon 2021, de Chaisemartin and D’Haultfoeuille 2020)。但论文使用 DR-DiD 作为 supplement。</p></li>
+<li><p><strong>LBD 的内生性</strong>: Experience (cumulative output) 与 TFP 之间的 correlation 受 simultaneity bias 影响。本文未使用 IV (instrumental variable) 策略来解决这一问题。同时，学习效应回归仅覆盖 post-1972 期，可能错过了政策初期 steep learning curves。</p></li>
+<li><p><strong>IO 数据的时序限制</strong>: Linkage 变量基于 1970 年的单一基准年 IO 表构造，假设 IO 结构不随时间变化。在快速工业化的韩国 1970s 这是一个强假设。</p></li>
+<li><p><strong>Pre-trend 检验的统计效力</strong>: 5-digit short panel 仅有 3 年 pre-period (1970-1972)，joint F-test 可能因为 low power 而无法拒绝 null 假设。</p></li>
+<li><p><strong>SUTVA 与网络外部性的权衡</strong>: 论文发现 forward linkage spillover 的存在，虽然通过敏感性分析证明核心结果稳健，但 spillover 效应本身使 single-unit treatment 的定义变得模糊。</p></li>
+<li><p><strong>宏观和配置后果未考虑</strong>: 本文仅评估 sector-level 的工业发展，未分析对总的 (aggregate) TFP、sectoral misallocation、或消费者福利的影响。</p></li>
+<li><p><strong>Political economy 的内生性</strong>: 虽然 Nixon 危机提供了外生 timing，但 HCI sector selection 本身是政府战略选择，包含一定的内生成分。</p></li>
+</ol>
+</section>
+<section id="继续阅读建议" class="level3" data-number="N.15.2">
+<h3 data-number="N.15.2" class="anchored" data-anchor-id="继续阅读建议"><span class="header-section-number">N.15.2</span> 13.2 继续阅读建议</h3>
+<p><strong>产业政策的经济学基础</strong>: - Juhász, Lane, and Rodrik (2024). “The New Economics of Industrial Policy.” <em>Annual Review of Economics</em>, 16, 213-242. - Rodrik (2004). “Industrial Policy for the Twenty-First Century.” Kennedy School Working Paper.</p>
+<p><strong>DiD 和 Event-Study 方法论</strong>: - Callaway and Sant’Anna (2021). “Difference-in-Differences with Multiple Time Periods.” <em>Journal of Econometrics</em>, 225(2), 200-230. - Sant’Anna and Zhao (2020). “Doubly Robust Difference-in-Differences Estimators.” <em>Journal of Econometrics</em>, 219(1), 101-122. - Roth, Sant’Anna, Bilinski, and Poe (2023). “What’s Trending in Difference-in-Differences? A Synthesis of the Recent Econometrics Literature.” <em>Journal of Econometrics</em>.</p>
+<p><strong>投入产出网络与政策</strong>: - Liu (2019). “Industrial Policies in Production Networks.” <em>Quarterly Journal of Economics</em>, 134(4), 1883-1948. - Acemoglu, Autor, Dorn, Hanson, and Price (2016). “Import Competition and the Great US Employment Sag of the 2000s.” <em>Journal of Labor Economics</em>, 34(S1), S141-S198.</p>
+<p><strong>韩国经济发展的经典文献</strong>: - Amsden (1992). <em>Asia’s Next Giant: South Korea and Late Industrialization</em>. Oxford University Press. - Wade (1990). <em>Governing the Market: Economic Theory and the Role of Government in East Asian Industrialization</em>. Princeton University Press. - Stern, Kim, Perkins, and Yoo (1995). <em>Industrialization and the State: The Korean Heavy and Chemical Industry Drive</em>. Harvard Institute for International Development.</p>
+<p><strong>相关实证文献</strong>: - Juhász (2018). “Temporary Protection and Technology Adoption: Evidence from the Napoleonic Blockade.” <em>American Economic Review</em>, 108(11), 3339-3376. - Criscuolo, Martin, Overman, and Van Reenen (2019). “Some Causal Effects of an Industrial Policy.” <em>American Economic Review</em>, 109(1), 48-85. - Hanlon (2020). “The Persistent Effect of Temporary Input Cost Advantages in Shipbuilding, 1850 to 1911.” <em>Journal of the European Economic Association</em>, 18(6), 3173-3209.</p>
+<hr>
+</section>
+</section>
+<section id="附录-a关键变量对照表" class="level2" data-number="N.16">
+<h2 data-number="N.16" class="anchored" data-anchor-id="附录-a关键变量对照表"><span class="header-section-number">N.16</span> 附录 A：关键变量对照表</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 41%">
+<col style="width: 30%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>变量代码 (Stata)</th>
+<th>含义 (英文)</th>
+<th>含义 (中文)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>id</code></td>
+<td>Industry ID (harmonized across KSIC revisions)</td>
+<td>行业 ID (跨 KSIC 版本 harmonized)</td>
+</tr>
+<tr class="even">
+<td><code>year</code></td>
+<td>Year (1967–1986)</td>
+<td>年份</td>
+</tr>
+<tr class="odd">
+<td><code>hci</code></td>
+<td>HCI treatment indicator (=1 for targeted industries)</td>
+<td>HCI 处理标识 (=1 若为政策目标行业)</td>
+</tr>
+<tr class="even">
+<td><code>treat</code></td>
+<td><code>hci == 1 &amp; year &gt;= 1973</code></td>
+<td>处理 × 处理后时期 (DiD 时间窗口)</td>
+</tr>
+<tr class="odd">
+<td><code>l_ship</code></td>
+<td>Log real value of gross output shipped</td>
+<td>Log 实际发货额</td>
+</tr>
+<tr class="even">
+<td><code>l_grossoutput</code></td>
+<td>Log real gross output</td>
+<td>Log 实际总产值</td>
+</tr>
+<tr class="odd">
+<td><code>l_valueadded</code></td>
+<td>Log real value added</td>
+<td>Log 实际增加值</td>
+</tr>
+<tr class="even">
+<td><code>l_workers</code></td>
+<td>Log total employment</td>
+<td>Log 总就业人数</td>
+</tr>
+<tr class="odd">
+<td><code>l_ppi</code></td>
+<td>Log producer price index</td>
+<td>Log 生产者价格指数</td>
+</tr>
+<tr class="even">
+<td><code>l_y_n</code></td>
+<td>Log value added per worker</td>
+<td>Log 劳动生产率</td>
+</tr>
+<tr class="odd">
+<td><code>l_ship_sh</code></td>
+<td>Log share of manufacturing output</td>
+<td>Log 制造业产出份额</td>
+</tr>
+<tr class="even">
+<td><code>l_lab_sh</code></td>
+<td>Log share of manufacturing employment</td>
+<td>Log 制造业就业份额</td>
+</tr>
+<tr class="odd">
+<td><code>l_est</code></td>
+<td>Log number of establishments (plants)</td>
+<td>Log 工厂数</td>
+</tr>
+<tr class="even">
+<td><code>l_costs</code></td>
+<td>Log real intermediate outlays (material costs)</td>
+<td>Log 中间投入支出</td>
+</tr>
+<tr class="odd">
+<td><code>l_inv_tot</code></td>
+<td>Log real total gross capital formation</td>
+<td>Log 总投资</td>
+</tr>
+<tr class="even">
+<td><code>l_i_n</code></td>
+<td>Log investment per worker</td>
+<td>Log 人均投资</td>
+</tr>
+<tr class="odd">
+<td><code>rca_core</code></td>
+<td>Balassa RCA index</td>
+<td>Balassa 显性比较优势指数</td>
+</tr>
+<tr class="even">
+<td><code>rca_cdk</code></td>
+<td>CDK relative export productivity</td>
+<td>CDK 相对出口生产率</td>
+</tr>
+<tr class="odd">
+<td><code>rca_dummy</code></td>
+<td>Indicator for RCA &gt; 1</td>
+<td>RCA &gt; 1 的指示变量</td>
+</tr>
+<tr class="even">
+<td><code>export_sh</code></td>
+<td>Share of manufacturing exports</td>
+<td>制造业出口份额</td>
+</tr>
+<tr class="odd">
+<td><code>hci_share_use_tot_0</code></td>
+<td>Forward linkage share (direct)</td>
+<td>直接前向关联份额</td>
+</tr>
+<tr class="even">
+<td><code>hci_share_make_tot_0</code></td>
+<td>Backward linkage share (direct)</td>
+<td>直接后向关联份额</td>
+</tr>
+<tr class="odd">
+<td><code>lf_hci_link_use_0</code></td>
+<td>Total forward linkage (Leontief)</td>
+<td>Leontief 总前向关联</td>
+</tr>
+<tr class="even">
+<td><code>lf_hci_link_make_0</code></td>
+<td>Total backward linkage (Leontief)</td>
+<td>Leontief 总后向关联</td>
+</tr>
+<tr class="odd">
+<td><code>l_costs_0</code></td>
+<td>Pre-1973 avg log intermediate costs</td>
+<td>Pre-1973 平均 Log 中间投入</td>
+</tr>
+<tr class="even">
+<td><code>l_avg_size_0</code></td>
+<td>Pre-1973 avg log plant size</td>
+<td>Pre-1973 平均 Log 工厂规模</td>
+</tr>
+<tr class="odd">
+<td><code>l_avg_wages_0</code></td>
+<td>Pre-1973 avg log wage bill</td>
+<td>Pre-1973 平均 Log 工资</td>
+</tr>
+<tr class="even">
+<td><code>l_y_n_0</code></td>
+<td>Pre-1973 avg log labor productivity</td>
+<td>Pre-1973 平均 Log 劳动生产率</td>
+</tr>
+<tr class="odd">
+<td><code>gvar</code></td>
+<td>CSDID group variable (=1973 if hci==1)</td>
+<td>CSDID 分组变量</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="附录-b表格与图形的论文代码溯源" class="level2" data-number="N.17">
+<h2 data-number="N.17" class="anchored" data-anchor-id="附录-b表格与图形的论文代码溯源"><span class="header-section-number">N.17</span> 附录 B：表格与图形的论文代码溯源</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 35%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>论文图表</th>
+<th>对应代码文件</th>
+<th>核心命令/输出</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Table I (Plant-Level TFP)</td>
+<td><code>3a_run_micro_tfp_analysis.do</code></td>
+<td><code>reghdfe tfp_log targeted, absorb(i4d#year)</code></td>
+</tr>
+<tr class="even">
+<td>Table II (Industrial Development ATT)</td>
+<td><code>3b_run_doublerobust_analysis.do</code></td>
+<td><code>csdid ... method(dripw) agg(event)</code></td>
+</tr>
+<tr class="odd">
+<td>Table III (Export Development ATT)</td>
+<td>Trade section of <code>3b_run_doublerobust_analysis.do</code></td>
+<td><code>csdid ... method(dripw)</code>, <code>ppmlhdfe</code></td>
+</tr>
+<tr class="even">
+<td>Table IV (Input Use &amp; Investment ATT)</td>
+<td>Invest section of <code>3b_run_doublerobust_analysis.do</code></td>
+<td><code>csdid ... method(dripw)</code></td>
+</tr>
+<tr class="odd">
+<td>Table V (LBD Industry-Level)</td>
+<td><code>5a_run_mechanisms_lbd_analysis.do</code></td>
+<td><code>reghdfe y experience##targeted, absorb(id year)</code></td>
+</tr>
+<tr class="even">
+<td>Table VI (LBD Plant-Level)</td>
+<td><code>5b_run_mechanisms_lbd_micro_analysis.do</code></td>
+<td><code>reghdfe y exp_p##targeted exp_i##targeted, absorb(...)</code></td>
+</tr>
+<tr class="odd">
+<td>Table VII (Linkage × Value Added)</td>
+<td><code>6a_run_linkages_growthprice_analysis.do</code></td>
+<td><code>reghdfe l_v i.post#c.forward i.post#c.backward, absorb(id year)</code></td>
+</tr>
+<tr class="even">
+<td>Table VIII (Linkage × Prices)</td>
+<td><code>6a_run_linkages_growthprice_analysis.do</code></td>
+<td><code>reghdfe l_ppi i.post#c.forward i.post#c.backward, absorb(id year)</code></td>
+</tr>
+<tr class="odd">
+<td>Figure I (Investment Policy Trends)</td>
+<td><code>4_run_policy_analysis.do</code> (data generation)</td>
+<td>描述性图</td>
+</tr>
+<tr class="even">
+<td>Figure II (Output DiD)</td>
+<td><code>1_run_growth_analysis.do</code></td>
+<td><code>estat trendplots</code> + <code>estat grangerplot</code></td>
+</tr>
+<tr class="odd">
+<td>Figure III (Multi-Outcome DiD)</td>
+<td><code>2a_run_devoutcomes_analysis.do</code> + <code>2b_run_koreatrade_analysis.do</code></td>
+<td><code>xtdidregress</code></td>
+</tr>
+<tr class="even">
+<td>Figure IV (DDD Trade)</td>
+<td><code>3c_run_worldtrade_analysis.do</code></td>
+<td><code>ppmlhdfe</code> (with triple interactions)</td>
+</tr>
+<tr class="odd">
+<td>Figure V (Input/Investment DiD)</td>
+<td><code>4_run_policy_analysis.do</code></td>
+<td><code>xtdidregress</code></td>
+</tr>
+<tr class="even">
+<td>Figure VI (Forward Linkage DiD)</td>
+<td><code>6a_run_linkages_growthprice_analysis.do</code></td>
+<td><code>reghdfe</code> (rolling event study)</td>
+</tr>
+<tr class="odd">
+<td>Figure VII (Forward Linkage × Trade)</td>
+<td><code>6b_run_linkages_trade_analysis.do</code></td>
+<td><code>reghdfe</code> + <code>ppmlhdfe</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<blockquote class="blockquote">
+<p><strong>最后一层注释</strong>: 本文的方法论贡献在于系统性地将当代 DiD 方法论 (TWFE event-study, Double-Robust DiD, DDD) 应用于历史上最重要但缺乏现代实证评估的产业政策 episode 之一。论文并非方法论原创——它使用标准 causal inference toolbox——但其力量在于研究设计的严谨性 (多层次的识别策略互补)、数据的独创性 (digitized MMS harmonization across five KSIC revisions) 以及发现的经济学意义 (temporary policy -&gt; persistent comparative advantage shift)。</p>
+</blockquote>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/PXa2026a\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../examples/ch01/Lane_2025_student_notes/summary.html" class="pagination-link" aria-label="Manufacturing Revolutions 综合分析摘要">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">M</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions 综合分析摘要</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../examples/ch01/Lane_2025_student_notes/derivation.html" class="pagination-link" aria-label="Manufacturing Revolutions — 研究设计与估计方程推导">
+        <span class="nav-page-text"><span class="chapter-number">O</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions — 研究设计与估计方程推导</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.lianxh.cn">lianxh.cn</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/lianxhcn/PXa2026a/edit/main/examples/ch01/Lane_2025_student_notes/methods.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/lianxhcn/PXa2026a/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>基于 <a href="https://quarto.org/">Quarto</a> 构建</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

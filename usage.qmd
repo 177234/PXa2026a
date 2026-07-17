@@ -1,0 +1,117 @@
+---
+number-sections: false
+---
+
+# 📦 课件使用 {.unnumbered}
+
+::: {.callout-tip title="只想上课看讲义？一个网址就够了"}
+本课程的**在线讲义**就是上课时的主讲义，打开即用、无需安装：
+
+**<https://lianxhcn.github.io/PXa2026a/>**
+
+下面的"下载仓库、本地跑代码、安装 skills"都是**想在本地动手**的同学才需要，按需取用，不必全做。
+:::
+
+## 1. 在线讲义 = 主课件
+
+上课主要看这个网站：**<https://lianxhcn.github.io/PXa2026a/>**。它包含全部六讲讲义、附录与配套
+材料，手机、平板、电脑都能看，随课程更新自动刷新。
+
+**想在本地跑代码、离线复习、使用课程 skills**，再按下面把讲义仓库下载到自己电脑。
+
+## 2. 把讲义仓库下载到本地 (四选一)
+
+仓库地址：**<https://github.com/lianxhcn/PXa2026a>**。下面四种方式效果一样，任选其一。
+
+**方式一 · 下载 ZIP(最省事，不装任何软件)**
+
+右击下面链接 →「链接另存为」，或直接点开下载，解压即可：
+<https://github.com/lianxhcn/PXa2026a/archive/refs/heads/main.zip>
+
+**方式二 · 命令行 (已装 git 的同学)**
+
+```bash
+git clone https://github.com/lianxhcn/PXa2026a.git
+```
+
+**方式三 · GitHub Desktop(图形界面，便于持续跟进更新)**
+
+安装与使用见连享会推文
+[《用 GitHub Desktop 管理你的代码仓库》](https://www.lianxh.cn/details/1672.html)。
+
+::: {.callout-note title="方式四 · 让 AI 帮你克隆 (推荐)"}
+最省心的一种：把仓库地址交给 AI 助手 (Claude Code / Codex / 网页版均可)，一句话让它帮你完成。
+示例提示词 (复制、按需改路径)：
+
+```text
+请帮我把这个 GitHub 仓库克隆到本地：
+https://github.com/lianxhcn/PXa2026a.git
+克隆到我的「课程」文件夹下。完成后告诉我本地完整路径，并列出仓库顶层的文件夹。
+如果我电脑上还没安装 git，请先一步步教我安装，再继续克隆。
+```
+
+即使你完全不熟悉命令行，AI 也会带你把仓库拿到本地——这本身就是本课程"让 AI 干活、你来把关"的
+一次小练习。
+:::
+
+## 3. `examples/` 文件夹：可运行的代码与数据
+
+每一讲的可运行文件都在 `examples/chNN/` 下，与讲义各节一一对应：
+
+| 位置 | 内容 |
+|---|---|
+| `examples/chNN/chNN_main.do` | 该讲的 **Stata 伴生代码**，`**#` 大纲与书稿节标题对齐 (ch02–ch05) |
+| `examples/chNN/chNN_python.ipynb` | 该讲的 **Python 版** (部分讲提供，如 ch02、ch05) |
+| `examples/chNN/data/` | 该讲的**示例数据** `.dta`，附生成脚本 `00_make_chNN_data.do` 与 `README-数据说明.md` |
+| `examples/ch01/` | 第 1 讲为解读型，无 `main.do`；提供 Lane (2025) 的**阅读笔记**与**带注释的原复现代码** (`code_annotations/`) |
+| `examples/ch06/` | 第 6 讲为现场演示，课上 / 课后补充 |
+
+::: {.callout-tip title="习惯传统 Stata 的同学：打开 .do 就能跑"}
+不必安装 VS Code、也不必用 AI——用你熟悉的 **Stata 软件**直接打开 `examples/chNN/chNN_main.do`
+即可运行 (顶部逐行跑，或按 `**#` 分节跑)。数据默认**联网直读** (do 顶部用
+`global D "https://raw.githubusercontent.com/…/chNN/data"` 指向线上数据)，**连仓库都不用克隆**就能
+跑；离线时把那行 `$D` 改成本地 `data` 文件夹路径即可。
+:::
+
+**数据读取的三种口径** (各讲会注明用哪种)：
+
+1. **Stata 自带数据**：`sysuse auto`、`webuse mroz` 等，直接载入；
+2. **本仓库示例数据**：`examples/chNN/data/` 下的 `.dta`(小体量模拟 / 示例数据，随仓库提供)，do 用
+   `$D` 联网直读，或克隆后把 `$D` 改成本地路径；
+3. **不可再分发的数据** (主案例 Lane 的 Dataverse 复现包、CSMAR/Wind 等商业数据)：仓库**不提供
+   数据本体**，只给官方下载链接与说明，见「[附录 C · 数据集说明](appendix/C_datasets.qmd)」。
+
+软件环境 (Stata / VS Code / Python) 的配置见「[课前准备](settings.qmd)」。部分 do 用到 `reghdfe`、
+`winsor2`、`esttab`、`binscatter` 等社区命令，多数已在 do 内自动安装；若仍提示找不到，运行一次
+`ssc install 命令名` 即可。
+
+## 4. 批量安装课程 skills(重要)
+
+本课程把常用工作流封装成了一组 **skills**(放在仓库 `skills/` 下)。装好后，Claude Code、Codex 等
+AI 助手就能直接调用它们。
+
+**装课程自带的 skills**：克隆仓库后，在仓库目录里运行一次——
+
+```powershell
+scripts/setup-skills.ps1      # Windows；macOS / Linux 用 bash scripts/setup-skills.sh
+```
+
+不熟悉命令行也没关系：可以像上面方式四那样，让 AI 照着「[AI 工作流与 skills 上手](skills-guide.qmd)」
+帮你装。装完做个 30 秒冒烟测试——让 AI 复述某个 skill 的用途，能答对就说明装好了。
+
+::: {.callout-note title="想系统管好自己所有的 skills？(选读)"}
+如果你以后想跨 Agent、从 GitHub 批量获取和管理 skills，连享会《Agent Skills 指南》三篇讲得很清楚
+([专题检索入口](https://www.lianxh.cn/search.html?s=Agent+Skills+%E6%8C%87%E5%8D%97))：
+
+1. **指南 (1)**：别再囤技能——为什么技能越多反而越难用；
+2. **指南 (2)**：用 `npx skills` 管好所有 Agent 的技能库 (发现 / 安装 / 盘点 / 更新 / 卸载 五条命令)；
+3. **指南 (3)**：用 Router 分层管理海量 Skills。
+
+其中第 (2) 篇的 `npx skills`，正是"从别的 GitHub 仓库批量安装 skills 到任意 Agent"的主力工具。
+:::
+
+---
+
+::: {.callout-tip title="遇到问题"}
+环境与安装的常见问题见「[附录 E · FAQ](appendix/E_faq.qmd)」；课程群有助教答疑。
+:::

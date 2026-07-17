@@ -2,66 +2,114 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://lianxhcn.github.io/PXa2026a/index.html</loc>
-    <lastmod>2026-07-17T01:21:48.768Z</lastmod>
+    <lastmod>2026-07-17T22:14:45.379Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lianxhcn.github.io/PXa2026a/usage.html</loc>
+    <lastmod>2026-07-17T22:14:46.575Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/PXa2026a/syllabus.html</loc>
-    <lastmod>2026-07-17T01:21:53.006Z</lastmod>
+    <lastmod>2026-07-17T22:14:48.872Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/PXa2026a/settings.html</loc>
-    <lastmod>2026-07-17T01:21:56.822Z</lastmod>
+    <lastmod>2026-07-17T22:14:49.504Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/PXa2026a/skills-guide.html</loc>
-    <lastmod>2026-07-17T01:22:00.164Z</lastmod>
+    <lastmod>2026-07-17T22:14:51.254Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/PXa2026a/lectures/01_replication.html</loc>
-    <lastmod>2026-07-16T17:09:23.265Z</lastmod>
+    <lastmod>2026-07-17T22:11:19.768Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/PXa2026a/lectures/02_data.html</loc>
-    <lastmod>2026-07-16T17:09:43.561Z</lastmod>
+    <lastmod>2026-07-17T22:12:53.901Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/PXa2026a/lectures/03_framework.html</loc>
-    <lastmod>2026-07-16T17:10:01.116Z</lastmod>
+    <lastmod>2026-07-17T22:12:54.406Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/PXa2026a/lectures/04_ols.html</loc>
-    <lastmod>2026-07-16T17:10:15.090Z</lastmod>
+    <lastmod>2026-07-17T22:11:20.376Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/PXa2026a/lectures/05_FE_intFE.html</loc>
-    <lastmod>2026-07-16T17:10:31.362Z</lastmod>
+    <lastmod>2026-07-17T22:11:20.741Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/PXa2026a/lectures/06_practice.html</loc>
-    <lastmod>2026-07-16T17:10:49.367Z</lastmod>
+    <lastmod>2026-07-17T22:20:44.073Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/PXa2026a/appendix/A_prompt_templates.html</loc>
-    <lastmod>2026-07-16T17:11:03.033Z</lastmod>
+    <lastmod>2026-07-17T22:14:52.920Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/PXa2026a/appendix/B_skills_index.html</loc>
-    <lastmod>2026-07-16T17:11:18.365Z</lastmod>
+    <lastmod>2026-07-17T22:16:17.169Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/PXa2026a/appendix/C_datasets.html</loc>
-    <lastmod>2026-07-16T17:11:31.964Z</lastmod>
+    <lastmod>2026-07-17T22:14:57.268Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/PXa2026a/appendix/D_reading_list.html</loc>
-    <lastmod>2026-07-16T17:11:42.009Z</lastmod>
+    <lastmod>2026-07-17T22:14:57.854Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/PXa2026a/appendix/E_faq.html</loc>
-    <lastmod>2026-07-16T17:11:54.166Z</lastmod>
+    <lastmod>2026-07-17T22:14:58.397Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lianxhcn.github.io/PXa2026a/examples/ch01/Lane_2025_reading_notes/01_overview.html</loc>
+    <lastmod>2026-07-17T22:15:39.881Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lianxhcn.github.io/PXa2026a/examples/ch01/Lane_2025_reading_notes/02_methods.html</loc>
+    <lastmod>2026-07-17T22:15:41.842Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lianxhcn.github.io/PXa2026a/examples/ch01/Lane_2025_reading_notes/03_replication.html</loc>
+    <lastmod>2026-07-17T22:15:42.211Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lianxhcn.github.io/PXa2026a/examples/ch01/Lane_2025_reading_notes/04_literature.html</loc>
+    <lastmod>2026-07-17T22:15:43.716Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/PXa2026a/appendix/F_akcigit.html</loc>
-    <lastmod>2026-07-16T17:12:04.454Z</lastmod>
+    <lastmod>2026-07-17T22:14:58.933Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lianxhcn.github.io/PXa2026a/examples/ch01/Lane_2025_student_notes/index.html</loc>
+    <lastmod>2026-07-17T22:15:46.669Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lianxhcn.github.io/PXa2026a/examples/ch01/Lane_2025_student_notes/framing.html</loc>
+    <lastmod>2026-07-17T22:15:45.264Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lianxhcn.github.io/PXa2026a/examples/ch01/Lane_2025_student_notes/summary.html</loc>
+    <lastmod>2026-07-17T22:15:49.167Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lianxhcn.github.io/PXa2026a/examples/ch01/Lane_2025_student_notes/methods.html</loc>
+    <lastmod>2026-07-17T22:15:47.065Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lianxhcn.github.io/PXa2026a/examples/ch01/Lane_2025_student_notes/derivation.html</loc>
+    <lastmod>2026-07-17T22:15:44.512Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lianxhcn.github.io/PXa2026a/examples/ch01/Lane_2025_student_notes/replication.html</loc>
+    <lastmod>2026-07-17T22:15:47.473Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lianxhcn.github.io/PXa2026a/examples/ch01/Lane_2025_student_notes/codex-workflow.html</loc>
+    <lastmod>2026-07-17T22:15:44.112Z</lastmod>
   </url>
 </urlset>

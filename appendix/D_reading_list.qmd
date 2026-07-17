@@ -2,17 +2,57 @@
 
 少量高质量入口，供课后深化与迁移。可直接复用连享会既有资源。
 
+## 引文格式规范 (myAPA){#sec-myapa}
+
+::: {.callout-important title="全站统一引文格式"}
+本课件所有参考文献一律采用 **myAPA 格式** (老师 2026-07-17 定，作为项目规范)。各讲、各附录与
+skills 的文献著录都按此执行，便于跨窗口 (W1/W2/Codex) 统一。
+:::
+
+**正式论文模板**：
+
+```text
+Author (Year). Title. Journal, Vol(Issue), pp–pp. [Link](DOI) (rep), [PDF](url), [Google](<scholar>).
+```
+
+**字段规则**：
+
+- **来源类型标注**：预印本标 `arXiv`；工作论文标 `National Bureau of Economic Research`(NBER)；
+  正式期刊用期刊全名 (如 *The Quarterly Journal of Economics*)；
+- **`(rep)` 标记**：论文附有可复现包 (replication package) 时，在 `[Link]` 后加 `(rep)`；复现包的
+  下载脚本与指引见 [附录 C · 数据集说明](C_datasets.qmd)；
+- **`[Google]` 链接**：用尖括号包裹整个 URL，即 `[Google](<...>)`，或把检索词中的空格换成 `+`，
+  避免 Markdown 解析问题；
+- **反编造纪律 (硬要求)**：URL 拿不准就**留空** `[Google](<>)`，**绝不瞎编**链接；确信的文献给
+  DOI，不确信的只给 Google 检索链接并提示核对。
+
+**范例** (主案例 Lane 2025)：
+
+```text
+Lane, N. (2025). Manufacturing Revolutions: Industrial Policy and Industrialization in South Korea.
+The Quarterly Journal of Economics, 140(3), 1683–1741.
+[Link](https://doi.org/10.1093/qje/qjaf025) (rep),
+[PDF](https://academic.oup.com/qje/article-pdf/140/3/1683/63400136/qjaf025.pdf),
+[Google](<https://scholar.google.com/scholar?q=Manufacturing+revolutions+industrial+policy+and+industrialization+in+South+Korea>).
+```
+
 ## 连享会
 
 - 连享会主页：<https://www.lianxh.cn>
-- 现代 DID 估计量（CSDID 等，属高级班）：<https://www.lianxh.cn/details/1811.html>
+- 现代 DID 估计量 (CSDID 等，属高级班)：<https://www.lianxh.cn/details/1811.html>
 
 ## 主案例与扩展案例
 
-- Lane, N. (2025). Manufacturing revolutions: Industrial policy and industrialization in
-  South Korea. *QJE*, 140(3), 1683–1741. <https://doi.org/10.1093/qje/qjaf025>
-- Akcigit, U., Grigsby, J., Nicholas, T., & Stantcheva, S. (2022). Taxation and innovation
-  in the twentieth century. *QJE*, 137(1), 329–385. <https://doi.org/10.1093/qje/qjab022>
+- Lane, N. (2025). Manufacturing Revolutions: Industrial Policy and Industrialization in
+  South Korea. *The Quarterly Journal of Economics*, 140(3), 1683–1741.
+  [Link](https://doi.org/10.1093/qje/qjaf025) (rep),
+  [PDF](https://academic.oup.com/qje/article-pdf/140/3/1683/63400136/qjaf025.pdf),
+  [Google](<https://scholar.google.com/scholar?q=Manufacturing+revolutions+industrial+policy+and+industrialization+in+South+Korea>).
+- Akcigit, U., Grigsby, J., Nicholas, T., & Stantcheva, S. (2022). Taxation and Innovation
+  in the Twentieth Century. *The Quarterly Journal of Economics*, 137(1), 329–385.
+  [Link](https://doi.org/10.1093/qje/qjab022) (rep),
+  [PDF](https://file-lianxh.oss-cn-shenzhen.aliyuncs.com/Refs/Paper2022/Akcigit-2022-QJE.pdf),
+  [Google](<https://scholar.google.com/scholar?q=Taxation+and+innovation+in+the+twentieth+century+Akcigit+Grigsby+Nicholas+Stantcheva>).
 
 ## 复现与 skills
 

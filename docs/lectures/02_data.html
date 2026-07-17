@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -131,6 +165,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../usage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📦 课件使用</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">📌 讲授计划</span></a>
   </div>
@@ -183,7 +223,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/05_FE_intFE.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FWL、虚拟变量、交乘项与固定效应：理解条件比较</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FWL、虚拟变量与固定效应：理解条件比较</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -233,12 +273,100 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">FAQ：环境与 agent 常见问题</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">第 1 讲配套：Lane (2025) 阅读笔记</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_reading_notes/01_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">整体介绍</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_reading_notes/02_methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">实证方法与识别</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_reading_notes/03_replication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">复现材料导览</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_reading_notes/04_literature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">迷你文献定位</span></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/F_akcigit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">扩展案例：Akcigit et al.&nbsp;(2022)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">扩展案例：Akcigit et al.&nbsp;(2022)</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">第 1 讲 · 进阶选读（助教多角度精读，选读）</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_student_notes/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">K</span>&nbsp; <span class="chapter-title">进阶参照：一位博士生的 Lane (2025) 多角度精读</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_student_notes/framing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">L</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions: Industrial Policy and Industrialization in South Korea — 论文Framing分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_student_notes/summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">M</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions 综合分析摘要</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_student_notes/methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">N</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions — 研究方法拆解</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_student_notes/derivation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">O</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions — 研究设计与估计方程推导</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_student_notes/replication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">P</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions — 复现材料审计与运行说明</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_student_notes/codex-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">Q</span>&nbsp; <span class="chapter-title">codex-workflow.html</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
       </ul>
   </li>
     </ul>
@@ -251,13 +379,70 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#案例情境" id="toc-案例情境" class="nav-link active" data-scroll-target="#案例情境"><span class="header-section-number">2.1</span> 案例情境</a></li>
-  <li><a href="#概念讲解" id="toc-概念讲解" class="nav-link" data-scroll-target="#概念讲解"><span class="header-section-number">2.2</span> 概念讲解</a></li>
-  <li><a href="#代码实操" id="toc-代码实操" class="nav-link" data-scroll-target="#代码实操"><span class="header-section-number">2.3</span> 代码实操</a></li>
-  <li><a href="#ai-协作" id="toc-ai-协作" class="nav-link" data-scroll-target="#ai-协作"><span class="header-section-number">2.4</span> AI 协作</a></li>
-  <li><a href="#python-附录" id="toc-python-附录" class="nav-link" data-scroll-target="#python-附录"><span class="header-section-number">2.5</span> Python 附录</a></li>
-  <li><a href="#小结与练习" id="toc-小结与练习" class="nav-link" data-scroll-target="#小结与练习"><span class="header-section-number">2.6</span> 小结与练习</a></li>
-  <li><a href="#延伸阅读" id="toc-延伸阅读" class="nav-link" data-scroll-target="#延伸阅读"><span class="header-section-number">2.7</span> 延伸阅读</a></li>
+  <li><a href="#一份数据的旅程" id="toc-一份数据的旅程" class="nav-link active" data-scroll-target="#一份数据的旅程"><span class="header-section-number">2.1</span> 一份数据的旅程</a></li>
+  <li><a href="#动手之前先问三件事" id="toc-动手之前先问三件事" class="nav-link" data-scroll-target="#动手之前先问三件事"><span class="header-section-number">2.2</span> 动手之前先问三件事</a>
+  <ul class="collapse">
+  <li><a href="#先把项目文件夹摆好" id="toc-先把项目文件夹摆好" class="nav-link" data-scroll-target="#先把项目文件夹摆好"><span class="header-section-number">2.2.1</span> 先把项目文件夹摆好</a></li>
+  <li><a href="#数据从哪来" id="toc-数据从哪来" class="nav-link" data-scroll-target="#数据从哪来"><span class="header-section-number">2.2.2</span> 数据从哪来</a></li>
+  <li><a href="#变量口径" id="toc-变量口径" class="nav-link" data-scroll-target="#变量口径"><span class="header-section-number">2.2.3</span> 变量口径</a></li>
+  <li><a href="#数据字典" id="toc-数据字典" class="nav-link" data-scroll-target="#数据字典"><span class="header-section-number">2.2.4</span> 数据字典</a></li>
+  </ul></li>
+  <li><a href="#认清你的数据" id="toc-认清你的数据" class="nav-link" data-scroll-target="#认清你的数据"><span class="header-section-number">2.3</span> 认清你的数据</a>
+  <ul class="collapse">
+  <li><a href="#观察单位与粒度" id="toc-观察单位与粒度" class="nav-link" data-scroll-target="#观察单位与粒度"><span class="header-section-number">2.3.1</span> 观察单位与粒度</a></li>
+  <li><a href="#主键与唯一性" id="toc-主键与唯一性" class="nav-link" data-scroll-target="#主键与唯一性"><span class="header-section-number">2.3.2</span> 主键与唯一性</a></li>
+  <li><a href="#横截面时序面板与多层级" id="toc-横截面时序面板与多层级" class="nav-link" data-scroll-target="#横截面时序面板与多层级"><span class="header-section-number">2.3.3</span> 横截面、时序、面板与多层级</a></li>
+  <li><a href="#扁平-wide-与长条-long" id="toc-扁平-wide-与长条-long" class="nav-link" data-scroll-target="#扁平-wide-与长条-long"><span class="header-section-number">2.3.4</span> 扁平 (wide) 与长条 (long)</a></li>
+  </ul></li>
+  <li><a href="#合并追加与聚合" id="toc-合并追加与聚合" class="nav-link" data-scroll-target="#合并追加与聚合"><span class="header-section-number">2.4</span> 合并、追加与聚合</a>
+  <ul class="collapse">
+  <li><a href="#追加-append" id="toc-追加-append" class="nav-link" data-scroll-target="#追加-append"><span class="header-section-number">2.4.1</span> 追加 (append)</a></li>
+  <li><a href="#关联变量-key" id="toc-关联变量-key" class="nav-link" data-scroll-target="#关联变量-key"><span class="header-section-number">2.4.2</span> 关联变量 (key)</a></li>
+  <li><a href="#横向合并-m1" id="toc-横向合并-m1" class="nav-link" data-scroll-target="#横向合并-m1"><span class="header-section-number">2.4.3</span> 横向合并 (m:1)</a></li>
+  <li><a href="#聚合与频率转换" id="toc-聚合与频率转换" class="nav-link" data-scroll-target="#聚合与频率转换"><span class="header-section-number">2.4.4</span> 聚合与频率转换</a></li>
+  <li><a href="#长宽转换-reshape" id="toc-长宽转换-reshape" class="nav-link" data-scroll-target="#长宽转换-reshape"><span class="header-section-number">2.4.5</span> 长宽转换 (reshape)</a></li>
+  </ul></li>
+  <li><a href="#变量能直接用吗" id="toc-变量能直接用吗" class="nav-link" data-scroll-target="#变量能直接用吗"><span class="header-section-number">2.5</span> 变量能直接用吗</a>
+  <ul class="collapse">
+  <li><a href="#缺失值" id="toc-缺失值" class="nav-link" data-scroll-target="#缺失值"><span class="header-section-number">2.5.1</span> 缺失值</a></li>
+  <li><a href="#离群值" id="toc-离群值" class="nav-link" data-scroll-target="#离群值"><span class="header-section-number">2.5.2</span> 离群值</a></li>
+  <li><a href="#对数转换" id="toc-对数转换" class="nav-link" data-scroll-target="#对数转换"><span class="header-section-number">2.5.3</span> 对数转换</a></li>
+  <li><a href="#标准化" id="toc-标准化" class="nav-link" data-scroll-target="#标准化"><span class="header-section-number">2.5.4</span> 标准化</a></li>
+  </ul></li>
+  <li><a href="#字符与日期变量" id="toc-字符与日期变量" class="nav-link" data-scroll-target="#字符与日期变量"><span class="header-section-number">2.6</span> 字符与日期变量</a>
+  <ul class="collapse">
+  <li><a href="#文本型数字-destring" id="toc-文本型数字-destring" class="nav-link" data-scroll-target="#文本型数字-destring"><span class="header-section-number">2.6.1</span> 文本型数字 (destring)</a></li>
+  <li><a href="#类别文本-encode" id="toc-类别文本-encode" class="nav-link" data-scroll-target="#类别文本-encode"><span class="header-section-number">2.6.2</span> 类别文本 (encode)</a></li>
+  <li><a href="#日期变量" id="toc-日期变量" class="nav-link" data-scroll-target="#日期变量"><span class="header-section-number">2.6.3</span> 日期变量</a></li>
+  <li><a href="#文本变量交给技能" id="toc-文本变量交给技能" class="nav-link" data-scroll-target="#文本变量交给技能"><span class="header-section-number">2.6.4</span> 文本变量：交给技能</a></li>
+  </ul></li>
+  <li><a href="#探索性分析与图形诊断" id="toc-探索性分析与图形诊断" class="nav-link" data-scroll-target="#探索性分析与图形诊断"><span class="header-section-number">2.7</span> 探索性分析与图形诊断</a>
+  <ul class="collapse">
+  <li><a href="#分布直方图与密度图" id="toc-分布直方图与密度图" class="nav-link" data-scroll-target="#分布直方图与密度图"><span class="header-section-number">2.7.1</span> 分布：直方图与密度图</a></li>
+  <li><a href="#离群与组间分组箱线图" id="toc-离群与组间分组箱线图" class="nav-link" data-scroll-target="#离群与组间分组箱线图"><span class="header-section-number">2.7.2</span> 离群与组间：分组箱线图</a></li>
+  <li><a href="#关系散点图" id="toc-关系散点图" class="nav-link" data-scroll-target="#关系散点图"><span class="header-section-number">2.7.3</span> 关系：散点图</a></li>
+  <li><a href="#趋势时间趋势图" id="toc-趋势时间趋势图" class="nav-link" data-scroll-target="#趋势时间趋势图"><span class="header-section-number">2.7.4</span> 趋势：时间趋势图</a></li>
+  <li><a href="#组间均值分组均值图" id="toc-组间均值分组均值图" class="nav-link" data-scroll-target="#组间均值分组均值图"><span class="header-section-number">2.7.5</span> 组间均值：分组均值图</a></li>
+  <li><a href="#一图一问清单" id="toc-一图一问清单" class="nav-link" data-scroll-target="#一图一问清单"><span class="header-section-number">2.7.6</span> 一图一问清单</a></li>
+  </ul></li>
+  <li><a href="#留痕与可复现" id="toc-留痕与可复现" class="nav-link" data-scroll-target="#留痕与可复现"><span class="header-section-number">2.8</span> 留痕与可复现</a>
+  <ul class="collapse">
+  <li><a href="#样本筛选日志" id="toc-样本筛选日志" class="nav-link" data-scroll-target="#样本筛选日志"><span class="header-section-number">2.8.1</span> 样本筛选日志</a></li>
+  <li><a href="#匹配率与样本流失" id="toc-匹配率与样本流失" class="nav-link" data-scroll-target="#匹配率与样本流失"><span class="header-section-number">2.8.2</span> 匹配率与样本流失</a></li>
+  <li><a href="#变量字典" id="toc-变量字典" class="nav-link" data-scroll-target="#变量字典"><span class="header-section-number">2.8.3</span> 变量字典</a></li>
+  <li><a href="#两条最省心的习惯" id="toc-两条最省心的习惯" class="nav-link" data-scroll-target="#两条最省心的习惯"><span class="header-section-number">2.8.4</span> 两条最省心的习惯</a></li>
+  </ul></li>
+  <li><a href="#复现-lane-的一小段" id="toc-复现-lane-的一小段" class="nav-link" data-scroll-target="#复现-lane-的一小段"><span class="header-section-number">2.9</span> 复现 Lane 的一小段</a>
+  <ul class="collapse">
+  <li><a href="#复现包里有什么没有什么" id="toc-复现包里有什么没有什么" class="nav-link" data-scroll-target="#复现包里有什么没有什么"><span class="header-section-number">2.9.1</span> 复现包里有什么、没有什么</a></li>
+  <li><a href="#认结构构造处理变量" id="toc-认结构构造处理变量" class="nav-link" data-scroll-target="#认结构构造处理变量"><span class="header-section-number">2.9.2</span> 认结构、构造处理变量</a></li>
+  <li><a href="#可控可复现可验证" id="toc-可控可复现可验证" class="nav-link" data-scroll-target="#可控可复现可验证"><span class="header-section-number">2.9.3</span> 可控、可复现、可验证</a></li>
+  </ul></li>
+  <li><a href="#经验法则与红线" id="toc-经验法则与红线" class="nav-link" data-scroll-target="#经验法则与红线"><span class="header-section-number">2.10</span> 经验法则与红线</a></li>
+  <li><a href="#数据处理技能地图" id="toc-数据处理技能地图" class="nav-link" data-scroll-target="#数据处理技能地图"><span class="header-section-number">2.11</span> 数据处理技能地图</a></li>
+  <li><a href="#python-附录" id="toc-python-附录" class="nav-link" data-scroll-target="#python-附录"><span class="header-section-number">2.12</span> Python 附录</a></li>
+  <li><a href="#小结与练习" id="toc-小结与练习" class="nav-link" data-scroll-target="#小结与练习"><span class="header-section-number">2.13</span> 小结与练习</a></li>
+  <li><a href="#延伸阅读" id="toc-延伸阅读" class="nav-link" data-scroll-target="#延伸阅读"><span class="header-section-number">2.14</span> 延伸阅读</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/lianxhcn/PXa2026a/edit/main/lectures/02_data.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/lianxhcn/PXa2026a/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -309,49 +494,1133 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </div>
 </div>
-<!-- W2 写作窗口负责本章。以下为统一模板骨架，逐节填充；动笔每节前先重读 working/STYLE.md。 -->
-<section id="案例情境" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="案例情境"><span class="header-section-number">2.1</span> 案例情境</h2>
-<p>以面板数据为主，兼顾文本等非结构化数据的入门处理；概念演示用 Stata 自带数据 + 老师财务 数据。代码骨架以 <code>MUST-A2-data.do</code> 为主线（2.1 导入 · 2.2 合并追加 · 2.3 重组 · 2.4 主键/ 重复值 · 2.5 缺漏值 · 2.6 离群值 · 2.7 文字变量）。</p>
-<!-- TODO(W2) -->
-</section>
-<section id="概念讲解" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="概念讲解"><span class="header-section-number">2.2</span> 概念讲解</h2>
-<p>数据处理流程、常见错误、图形诊断和检查方法。</p>
-<!-- TODO(W2) -->
-</section>
-<section id="代码实操" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="代码实操"><span class="header-section-number">2.3</span> 代码实操</h2>
-<p>Stata 为主线；有 Python 对照处用 <code>panel-tabset</code>。派生 <code>examples/ch02/ch02_main.do</code>。</p>
-<!-- TODO(W2): EDA 图形补缺（参考 ds2026 第 13/14 章与可视化系列，Stata 实现配 stata101） -->
-</section>
-<section id="ai-协作" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="ai-协作"><span class="header-section-number">2.4</span> AI 协作</h2>
-<blockquote class="blockquote">
-<p>契约边界：本节逐条覆盖大纲「AI 协作训练」清单，不删项。每条给任务说明书/提示词 + core skill。</p>
-</blockquote>
+<!-- W2：本章采用「跟着一份数据走一遍」模式。脊柱数据见 examples/ch02/data/README-数据说明.md；节级大纲见 working/progress/ch02.md。中文段落一律整段单行 (不硬换行，避免 CJK 渲染空格)。 -->
+<section id="一份数据的旅程" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="一份数据的旅程"><span class="header-section-number">2.1</span> 一份数据的旅程</h2>
+<p>小林是一名经济学研究生。她想弄清一个并不复杂的问题：<strong>制造业上市公司的研发投入，是不是随着企业规模变大而变化，并且因行业而异？</strong> 问题不难，难的是——要回答它，她得先有一张干净的数据。</p>
+<p>她手上的原始文件是这样几份：</p>
 <ul>
-<li>让 AI 根据变量清单和数据字典生成清洗计划 —— <code>core/04-data-cleaning-planner</code>；</li>
-<li>让 AI 检查 merge / join 逻辑是否合理 —— <code>core/04-data-cleaning-planner</code>；</li>
-<li>让 AI 解释缺失值、离群值、缩尾、截尾和对数转换的差别 —— <code>core/04-data-cleaning-planner</code>；</li>
-<li>让 AI 根据变量类型建议合适的探索性图形 —— <code>core/04-data-cleaning-planner</code>；</li>
-<li>让 AI 把 Stata 数据处理逻辑翻译成 Python / R —— <code>core/04-data-cleaning-planner</code>；</li>
-<li>让 AI 生成变量构造说明和样本筛选日志 —— <code>core/06-repro-logger</code>。</li>
+<li><code>firm_finance_2021.dta</code>、<code>firm_finance_2022.dta</code>——两批分开导出的公司财务表；</li>
+<li><code>industry_lookup.dta</code>——一张行业代码对照表，同门整理后发来的；</li>
+<li><code>mktcap_monthly.dta</code>——公司月度市值表，一家公司一年有十二行。</li>
 </ul>
-<!-- TODO(W2) -->
+<p>打开一看，问题不少：研发支出这一列，有的是空的，有的写着 <code>-99</code>；资产负债率不是数字，而是 <code>"38.2%"</code> 这样的文字；同一家公司的证券代码，在财务表里是 <code>000101</code>，到了市值表里却变成了 <code>101</code>——前导零悄悄没了；月度市值表里，一家公司一年十二行，而财务表里一年只有一行，两张表根本不在一个「颗粒度」上。</p>
+<p>这些看起来都是「小毛病」。但正是这些小毛病，决定了最后能不能得到一份<strong>可信</strong>的数据。若对它们视而不见、直接开始 <code>merge</code>、<code>reg</code>，样本量可能莫名其妙地翻倍或腰斩，某个系数可能被一个录错的数字带偏，而你甚至不知道是哪一步出了错。</p>
+<p><strong>这一讲，我们就把这段路完整走一遍</strong>：从这几份凌乱的原始表，走到一张「一家公司一年一行、变量口径清楚、可以直接跑回归」的干净面板。沿途我们会不断停下来问同一类问题——不是「这条命令怎么写」，而是「这一步我在做什么判断，做完怎么知道自己没做错」。</p>
+<p>一路上要回答的问题，串起来就是本讲的地图：</p>
+<ul>
+<li>这份数据从哪来、每个变量到底量的是什么？(来源、口径与数据字典)</li>
+<li>一行代表什么、这几张表能不能对齐？(观察单位、粒度与数据形态)</li>
+<li>怎么把它们<strong>正确地</strong>拼成一张表，合并之后样本为什么变了？(合并、追加与聚合)</li>
+<li>哪些变量不能直接用、该怎么处理？(缺失、离群与变换)</li>
+<li>字符和日期这类「非数值」变量怎么办？</li>
+<li>怎么用图形给数据做一次体检？(探索性分析与图形诊断)</li>
+<li>怎么把整个过程记录下来，让别人 (和半年后的自己) 能复现？(日志、字典与匹配率)</li>
+<li>最后，把这套做法用到一篇顶刊论文 Lane (2025) 的真实数据上，我们能不能复现它的数据处理、并验证结果？</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled" title="本章怎么读：从「记命令」到「调技能」">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+本章怎么读：从「记命令」到「调技能」
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>过去学数据处理，学的是一串命令：<code>merge</code>、<code>reshape</code>、<code>winsor2</code>、<code>destring</code>……记住语法，套到数据上。</p>
+<p>在 AI 和 Agent 辅助下，重点变了。你<strong>不必</strong>先背下每条命令的写法，但你<strong>必须</strong>能做到三件事：认清自己面对的是<strong>哪一类</strong>数据处理问题、把这个任务<strong>描述清楚</strong>、再调出合适的 <strong>skill</strong> 帮你完成——手头没有现成提示词时，还知道去哪里搜索和安装。可以这样理解：在 Agent 模式下，一个 skill 就相当于过去若干条命令的「有序打包」。</p>
+<p>所以本章每遇到一类任务，都会用同一个小循环来讲：<strong>a. 场景</strong> (为什么此刻需要它)→ <strong>b. 直觉</strong> (讲人话、给直觉)→ <strong>c.&nbsp;最小操作</strong> (一两行看得懂的代码)→ <strong>d.&nbsp;怎么检查</strong> (结果对不对)→ <strong>e. 常见坑</strong> (真实的翻车)。并在关键处配一个 callout 框，写清<strong>提示词</strong>和该调用的 <strong>skill</strong>。命令会忘，判断和这套工作方式不会。</p>
+</div>
+</div>
+<p>还有一层意思，得在开头就挑明。这一整讲讲的常见操作、适用场景和陷阱，说到底都是为了<strong>安全地借 skills 和 agent 来清洗数据</strong>做准备。有了 AI，写清洗代码的门槛低了，风险却换了地方：agent 可能投机取巧，甚至为了凑出你后面想要的回归结果，在数据清洗和变量构造阶段悄悄做手脚。所以你得有警惕心，也得守住几条不可破除的红线——本讲末尾会把这些红线，连同「面对不同数据该调哪个 skill」一并交给你。前面每一节要练的判断，都是为了让你有能力看穿 agent 有没有偷工减料。</p>
+<blockquote class="blockquote">
+<p>还记得上一讲打开 Lane (2025) 复现项目时，那一堆文件夹和脚本吗？本讲要补上的，正是其中最耗时、也最容易出错的一环：<strong>原始数据究竟怎么变成分析数据</strong>。相关背景见 <a href="../lectures/01_replication.html">第 1 讲</a>。</p>
+</blockquote>
 </section>
-<section id="python-附录" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="python-附录"><span class="header-section-number">2.5</span> Python 附录</h2>
-<p>载体 <code>examples/ch02/ch02_python.ipynb</code>；正文只放入口与示范提示词。</p>
-<!-- TODO(W2) -->
+<section id="动手之前先问三件事" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="动手之前先问三件事"><span class="header-section-number">2.2</span> 动手之前先问三件事</h2>
+<p>拿到数据就急着 <code>merge</code>、急着 <code>reg</code>，是初学者最常见、也最贵的错。有经验的研究者会先停下来，问三件事：这份数据从哪来？每个变量到底量的是什么？有没有一份写清楚这些的说明书？在此之前，还有一件更基础的事——先把项目文件夹摆好。</p>
+<section id="先把项目文件夹摆好" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="先把项目文件夹摆好"><span class="header-section-number">2.2.1</span> 先把项目文件夹摆好</h3>
+<p>很多人的数据处理，一开始就乱在文件夹上：原始数据、改了一半的数据、结果图表全堆在一个目录里，几个月后连哪份是原始数据都认不出。动手之前，先把项目结构摆好，这不是可选项，是可复现的地基。一个朴素好用的结构：</p>
+<pre><code>project/
+├── data_raw/     原始数据，只读，永不手动修改
+├── data_clean/   清洗好、可直接分析的数据
+├── code/         清洗与分析的 do 文件(按阶段编号：01_clean.do、02_merge.do…)
+├── output/       图表与结果
+└── README.md     数据来源、处理顺序、变量定义</code></pre>
+<p>最该记住的一条铁律：<strong><code>data_raw/</code> 只读，永不手动改</strong>。所有清洗都写成 do 文件、结果另存到 <code>data_clean/</code>；哪怕处理逻辑错了，原始数据永远能回溯重来。真正需要反复修改和保存的，是代码和 README，不是数据本身。这条习惯，本讲最后一节还会落到「留痕」上再讲一遍。</p>
 </section>
-<section id="小结与练习" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="小结与练习"><span class="header-section-number">2.6</span> 小结与练习</h2>
-<!-- TODO(W2): 3–5 题，含 1 道"交给 agent 并审计"；答案折叠框 -->
+<section id="数据从哪来" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="数据从哪来"><span class="header-section-number">2.2.2</span> 数据从哪来</h3>
+<p>同样叫「企业规模」，统计年鉴里的口径和上市公司年报里的口径可能完全不同；同样一个变量，公开调查数据和商业数据库的可得性、清洗程度、使用许可也各不相同。<strong>来源，决定了数据的口径、质量、边界和你能不能公开它</strong>。经管社科研究中，数据大致来自四类渠道：</p>
+<ul>
+<li><strong>公开统计</strong>：统计年鉴、国家统计局、世界银行 WDI 等，多为宏观或地区层面；</li>
+<li><strong>微观调查</strong>：CFPS、CHFS、CGSS 等入户或抽样调查，个体或家庭层面；</li>
+<li><strong>商业数据库</strong>：CSMAR、Wind、GTA 等，上市公司财务、治理、市场数据的主要来源；</li>
+<li><strong>文本与网络数据</strong>：公告、新闻、政策文件、网页抓取等非结构化来源。</li>
+</ul>
+<blockquote class="blockquote">
+<p>每一类的具体获取方法 (接口、下载、抓取、清洗) 本讲不展开，详见 <a href="https://lianxhcn.github.io/dsfin/Lecture/data_get_data/lecture_get_data.html">金融数据分析讲义-数据获取</a>。本讲的重点，是拿到数据之后怎么判断和处理。</p>
+</blockquote>
+<p>本讲这份数据就横跨了两类来源：财务表来自商业数据库导出，行业对照表由他人整理。<strong>来源一杂，格式和口径就容易打架</strong>——这也正是后面各种毛病的根源。</p>
 </section>
-<section id="延伸阅读" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="延伸阅读"><span class="header-section-number">2.7</span> 延伸阅读</h2>
-<!-- TODO(W2) -->
+<section id="变量口径" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="变量口径"><span class="header-section-number">2.2.3</span> 变量口径</h3>
+<p>口径，就是「这个变量到底量的是什么、怎么量的」。它常常藏在一个看似清楚的变量名背后：</p>
+<ul>
+<li>「研发支出」是财报里<strong>费用化</strong>的研发费用，还是<strong>含资本化</strong>的研发投入总额？两者能差出不少；</li>
+<li>「规模」用总资产、营业收入，还是员工人数？换一个，结论可能就变；</li>
+<li>「资产负债率」是百分数 (<code>45.3</code>) 还是小数 (<code>0.453</code>)？单位不统一，一取对数就出错。</li>
+</ul>
+<p>口径不清，后面所有的处理和回归都建在流沙上。所以<strong>动手之前，先把每个关键变量的口径钉死</strong>。</p>
+</section>
+<section id="数据字典" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="数据字典"><span class="header-section-number">2.2.4</span> 数据字典</h3>
+<p>把上面这些「口径」逐一写下来，就成了一份<strong>数据字典</strong> (codebook)：每个变量的名称、含义、单位、来源、口径和取值范围。它是一份数据最重要、却最常被跳过的文档。给上面那份财务表配一份字典，开头几行大概是这样：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>变量</th>
+<th>含义</th>
+<th>单位</th>
+<th>来源</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>stkcd</code></td>
+<td>证券代码</td>
+<td>——</td>
+<td>商业数据库</td>
+<td>6 位，含前导零</td>
+</tr>
+<tr class="even">
+<td><code>sales</code></td>
+<td>营业收入</td>
+<td>万元</td>
+<td>商业数据库</td>
+<td>合并报表口径</td>
+</tr>
+<tr class="odd">
+<td><code>rd</code></td>
+<td>研发支出</td>
+<td>万元</td>
+<td>商业数据库</td>
+<td>费用化，缺失以 -99 标记</td>
+</tr>
+<tr class="even">
+<td><code>lev</code></td>
+<td>资产负债率</td>
+<td>%</td>
+<td>商业数据库</td>
+<td>期末，负债/资产</td>
+</tr>
+</tbody>
+</table>
+<p><strong>没有数据字典的数据，是一颗定时炸弹</strong>：你今天记得 <code>rd</code> 的缺失是 <code>-99</code>，三个月后就未必了。</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="AI 协作：让 AI 生成数据字典初稿，你来核对">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+AI 协作：让 AI 生成数据字典初稿，你来核对
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>数据字典不必从零手写。把原始表头和你了解的口径交给 AI，让它先起一稿，你再逐行核对补全——生成靠 AI，判断靠你。</p>
+<p><strong>任务说明书 (提示词模板)</strong>：</p>
+<pre><code>你是我的数据助手。下面是一份上市公司财务数据的变量清单(表头 + 前 5 行)：
+[粘贴 describe 或前几行]
+请据此生成一份数据字典草稿，列出每个变量的：中文含义、推测单位、可能的口径、取值范围
+与异常值提示(如负值、明显离群、以特殊值标记的缺失)。凡是你不确定的口径，请单独标出、
+让我确认，不要替我编造。</code></pre>
+<p><strong>推荐 skill</strong>：<code>core/04-data-cleaning-planner</code>(数据清洗计划师)。<strong>没有合适的提示词？</strong> 去 <a href="../appendix/A_prompt_templates.html">附录 A 提示词模板</a> 取用，或用 <code>find-skills</code> 检索、安装社区里的同类技能。</p>
+</div>
+</div>
+<p>注意这里已经发生的转变：过去你要记住 <code>codebook</code>、<code>describe</code> 这些命令；现在你要会的，是<strong>把「我需要一份数据字典」这件事描述清楚</strong>，让 skill 帮你生成，再用你的专业判断把关。带着这份写好的字典，我们才敢去动下一步——先看清，这几张表到底长什么样。</p>
+</section>
+</section>
+<section id="认清你的数据" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="认清你的数据"><span class="header-section-number">2.3</span> 认清你的数据</h2>
+<p>合并之前，先要看懂手里的每一张表<strong>到底是什么</strong>。这一步几乎不写代码，却决定了后面每一步是否走对。要问三个问题：一行代表什么？用什么能唯一确定一行？这是哪一类、哪一种形态的数据？</p>
+<p>本讲的数据存放在课程 GitHub 仓库，可以<strong>直接联网调取，无需克隆本仓库</strong>。下面先约定一个数据路径全局宏 <code>$D</code>，后续各例都从它读取：</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>* 本讲数据(联网直接读取；若已克隆仓库，可把网址改成本地路径)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> D <span class="st">"https://raw.githubusercontent.com/lianxhcn/PXa2026a/main/examples/ch02/data"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>其中 <code>firm_finance_2021.dta</code> 收录 2020–2021 两年、<code>firm_finance_2022.dta</code> 收录 2022 年，是分两次导出的两批；下面先看第一批。</p>
+<section id="观察单位与粒度" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="观察单位与粒度"><span class="header-section-number">2.3.1</span> 观察单位与粒度</h3>
+<p>先把表读进来，看它的结构和头几行：</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"$D/firm_finance_2021.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">describe</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span> <span class="kw">in</span> 1/4, <span class="kw">clean</span> <span class="kw">noobs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Variable    Storage   Display    Variable label
+  name        type    format
+------------------------------------------------
+stkcd        str6     %9s        证券代码
+year         int      %8.0g
+sales        double   %10.0g     营业收入(万元)
+rd           double   %10.0g     研发支出(万元)
+at           double   %10.0g     资产总额(万元)
+lev          str8     %9s        资产负债率(文本)
+indcd        str5     %9s        行业代码
+
+  stkcd   year   sales     rd      at     lev   indcd
+ 000101   2020   82000   4100   65000   38.2%     C39
+ 000101   2021   96000   5200   72000   41.0%     C39
+ 000102   2020   51000   3000   40000   52.4%     C39
+ 000102   2021   57000   3400   44000   50.8%     C39</code></pre>
+<p>一行是<strong>一家公司在某一年</strong>的记录——<code>000101</code> 在 2020、2021 各占一行。我们把「一行代表什么」叫作数据的<strong>观察单位</strong>，把它的粗细叫作<strong>粒度</strong> (granularity)。这张表的粒度是「公司-年度」。</p>
+<p>粒度是数据处理里最容易被忽略、又最容易出错的概念。对照另外两张表就清楚了：行业对照表 <code>industry_lookup.dta</code> 一行是<strong>一个行业</strong> (粒度更粗)，月度市值表 <code>mktcap_monthly.dta</code> 一行是<strong>一家公司的某一个月</strong> (粒度更细)。<strong>粒度不同的表不能直接合并</strong>——这是下一节反复要处理的问题，这里先记住：动手合并前，先说清每张表的一行是什么。</p>
+</section>
+<section id="主键与唯一性" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="主键与唯一性"><span class="header-section-number">2.3.2</span> 主键与唯一性</h3>
+<p>能唯一标识一行的变量组合，叫<strong>主键</strong>。财务表的主键是「证券代码 + 年度」这一对，而不是证券代码本身。这不是凭感觉，而是要<strong>查</strong>：</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">duplicates</span> <span class="kw">report</span> stkcd <span class="fu">year</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">duplicates</span> <span class="kw">report</span> stkcd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Duplicates in terms of stkcd year
+   Copies |   Obs   Surplus
+----------+-----------------
+        1 |    84         0      &lt;- 每个 (stkcd, year) 只出现 1 次：唯一
+
+Duplicates in terms of stkcd
+   Copies |   Obs   Surplus
+----------+-----------------
+        2 |    84        42      &lt;- 每个 stkcd 出现 2 次(两年)：单独不唯一</code></pre>
+<p><code>stkcd year</code> 的 Surplus 为 0，说明这对组合唯一，可以作主键；<code>stkcd</code> 单独的 Surplus 是 42，因为一家公司横跨两年。<strong>如果误把 <code>stkcd</code> 当主键去做一对一合并，样本就会错乱</strong>。想更严格，可以用 <code>isid</code>：</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">isid</span> stkcd <span class="fu">year</span>    <span class="co">// 若不唯一会直接报错，把问题挡在合并之前</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>真实数据里，主键不唯一往往来自导出重复或口径不清；养成「合并前先查唯一性」的习惯，能挡掉后面一大半的样本量异常。</p>
+</section>
+<section id="横截面时序面板与多层级" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="横截面时序面板与多层级"><span class="header-section-number">2.3.3</span> 横截面、时序、面板与多层级</h3>
+<p>同样几张表，还可以按「有没有单位维度、有没有时间维度」分类：</p>
+<ul>
+<li><strong>横截面</strong>：一个时点、多个单位。<code>industry_lookup</code> 就是——一行一个行业，没有时间。</li>
+<li><strong>时间序列</strong>：一个单位、多个时点。比如单看某一家公司逐年的营收。</li>
+<li><strong>面板</strong>：多个单位 × 多个时点。财务表就是——多家公司、多年，兼有两个维度。</li>
+<li><strong>多层级</strong>：单位嵌套在更大的单位里。公司嵌套在行业、省份中，就是两层结构 (<code>industry_lookup</code> 正是把公司连到行业层的桥)。</li>
+</ul>
+<p>分清类型，才知道能用什么工具。面板数据要用 <code>xtset</code> 声明个体和时间，之后才能算滞后、增长率、组内变化。不过 <code>xtset</code> 要求个体编号是<strong>数值</strong>，而这里的 <code>stkcd</code> 是字符——这个矛盾留到清洗时解决，先记下：<strong>声明面板结构，是面板分析的第一步</strong>。</p>
+</section>
+<section id="扁平-wide-与长条-long" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="扁平-wide-与长条-long"><span class="header-section-number">2.3.4</span> 扁平 (wide) 与长条 (long)</h3>
+<p>最后一个要练出直觉的，是数据的形态。看一个小例子——三个人、三年的收入 <code>inc</code> 和失业状态 <code>ue</code>，一开始长这样，是「扁平型」:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span>, <span class="kw">clean</span> <span class="kw">noobs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>    id   sex   inc80   inc81   inc82   ue80   ue81   ue82
+     1     0    5000    5500    6000      0      1      0
+     2     1    2000    2200    3300      1      0      0
+     3     0    3000    2000    1000      0      0      1</code></pre>
+<p>扁平型 (wide) 一行是一个个体，不同年份摊成不同列 (<code>inc80</code>、<code>inc81</code>……)。可大多数面板分析要的是「长条型」，用 <code>reshape</code> 转过去:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reshape</span> <span class="kw">long</span> inc ue, i(id) j(<span class="fu">year</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span> <span class="kw">in</span> 1/9, <span class="kw">clean</span> <span class="kw">noobs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>    id   year    inc   ue   sex
+     1     80   5000    0     0
+     1     81   5500    1     0
+     1     82   6000    0     0
+     2     80   2000    1     1
+     2     81   2200    0     1
+     2     82   3300    0     1
+     3     80   3000    0     0
+     3     81   2000    0     0
+     3     82   1000    1     0</code></pre>
+<p>转完之后，一行变成「一个人在某一年」，<code>inc</code>、<code>ue</code> 各成一列，年份进了 <code>year</code> 列。识别的窍门只有一句：看同一个个体是不是占了多行——占多行是长条，一行摊成多列是扁平。为什么要分清？大多数面板分析要长条型，而从网页、报表、问卷导出的原始数据常常是扁平的。本讲的财务表本就是长条的 (<code>000101</code> 两年占两行)；<code>reshape</code> 在真实面板上的更多用法，见下一节。</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="AI 协作：让 agent 先探索数据形态，再交你审">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+AI 协作：让 agent 先探索数据形态，再交你审
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>面对一堆来路不明的表，与其逐张手动 <code>describe</code>，不如让 agent 先跑一遍、把判断汇成一张<strong>待审清单</strong>，你只需确认或纠正，再决定怎么处理。这正是 AI 工作流的关键——<strong>先自动探索、生成清单，人确认后再动手</strong>，而不是让 agent 直接改数据。</p>
+<p><strong>任务说明书 (提示词模板)</strong>：</p>
+<pre><code>这里有若干 .dta / .csv 数据表：[列出文件]。请对每一张表逐一探索并报告，汇成一张待审清单：
+(1) 观察单位与粒度(一行代表什么)；
+(2) 主键候选(哪几个变量组合能唯一确定一行，并给出唯一性检查结果)；
+(3) 数据形态(长条 long 还是扁平 wide)；
+(4) 潜在问题：重复行、异常缺失、同名键的存储类型或大小写是否一致、粒度是否不齐。
+只报告与提问，不要修改任何数据。我确认后再决定处理方式。</code></pre>
+<p><strong>推荐 skill</strong>：<code>core/04-data-cleaning-planner</code>。<strong>没有合适提示词？</strong> 见 <a href="../appendix/A_prompt_templates.html">附录 A</a> 或用 <code>find-skills</code> 检索安装。</p>
+</div>
+</div>
+<p>看清了每张表是什么、粒度粗细、主键和形态，我们才有把握做下一件、也是数据处理里最容易翻车的事：把这几张表<strong>正确地</strong>拼成一张。顺带说一句，本讲最后会把这套「先看清结构」的做法，用到 Lane (2025) 那份真实的行业-年度面板上——你会发现，顶刊的分析数据，结构上和这里的财务面板并无二致。</p>
+</section>
+</section>
+<section id="合并追加与聚合" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="合并追加与聚合"><span class="header-section-number">2.4</span> 合并、追加与聚合</h2>
+<p>把几张零散的表拼成一张分析面板，是数据处理里最耗时、也最容易翻车的一步。动手之前，先分清三类操作——它们改变数据的方式完全不同：</p>
+<ul>
+<li><strong>追加 (append)</strong>：两张结构相同的表首尾相接，<strong>行</strong>变多 (如分批导出的数据)；</li>
+<li><strong>合并 (merge)</strong>：按键把另一张表的列贴过来，<strong>列</strong>变多 (如把行业名贴到公司上)；</li>
+<li><strong>聚合 (collapse)</strong>：把细粒度压成粗粒度，行变少、<strong>粒度</strong>变粗 (如把月度压成年度)。</li>
+</ul>
+<p>一句话记忆：<strong>加行用 append，加列用 merge，改粒度用 collapse</strong>。分不清这三者，就会用错工具、炸错样本。</p>
+<section id="追加-append" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="追加-append"><span class="header-section-number">2.4.1</span> 追加 (append)</h3>
+<p>财务表是分两批导出的，先把它们摞成一张完整面板：</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"$D/firm_finance_2021.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">append</span> <span class="kw">using</span> <span class="st">"$D/firm_finance_2022.dta"</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="kw">isid</span> stkcd <span class="fu">year</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> <span class="fu">year</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="kw">tempfile</span> panel</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> <span class="ot">`panel'</span>      <span class="co">// 存一份，后面合并要用</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>    84                              &lt;- 追加前：84 行(2020–2021)
+   126                              &lt;- 追加后：126 行(多出 2022 的 42 行)
+
+       year |      Freq.   Percent
+------------+--------------------
+       2020 |         42     33.33
+       2021 |         42     33.33
+       2022 |         42     33.33</code></pre>
+<p>追加后行数从 84 变 126，<code>isid stkcd year</code> 没报错、<code>tab year</code> 三年各 42 家，说明摞得干净。<strong>append 有两个前提</strong>：两张表的变量要<strong>同名</strong>，且同名变量的<strong>存储类型要一致</strong>——若一份的 <code>lev</code> 是数值、另一份是字符，追加要么报错、要么把两列错误地并在一起。所以追加后，<code>count</code> 和 <code>isid</code> 是必做的两道检查。</p>
+</section>
+<section id="关联变量-key" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="关联变量-key"><span class="header-section-number">2.4.2</span> 关联变量 (key)</h3>
+<p><code>merge</code> 靠一个 (或一组) <strong>键变量</strong>把两张表对齐。初学者一大半的合并事故，都出在键上。把原则列成一张清单，动手前逐条对照：</p>
+<ul>
+<li><strong>a. 键要同名</strong>——<code>merge</code> 按同名变量对齐，两表的键必须叫同一个名字；</li>
+<li><strong>b. 大小写、空格敏感</strong>——<code>"C36"</code> 和 <code>"c36 "</code> 是两个不同的键，差一个空格就对不上；</li>
+<li><strong>c.&nbsp;存储类型一致</strong>——字符键和数值键对不上 (后面月度表就栽在这一条)；</li>
+<li><strong>d.&nbsp;主键唯一</strong>——做一对一 (<code>1:1</code>) 合并前，先 <code>isid</code> 或 <code>duplicates report</code> 查唯一性；</li>
+<li><strong>e. 编码、前导零一致</strong>——<code>"000101"</code> 和 <code>101</code> 不是同一个键；</li>
+<li><strong>f.&nbsp;合并后必查匹配率</strong>——用 <code>_merge</code> 看谁没匹配上，别急着往下走。</li>
+</ul>
+<p>这六条，正好对应本讲数据里埋着的几处毛病。下面就撞上其中两条。</p>
+</section>
+<section id="横向合并-m1" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="横向合并-m1"><span class="header-section-number">2.4.3</span> 横向合并 (m:1)</h3>
+<p>合并之前，先分别看清两份数据，尤其是那个关联的键。主表这边，每行是一个公司-年度，键是行业代码 <code>indcd</code>:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span> stkcd <span class="fu">year</span> indcd <span class="kw">in</span> 1/6, <span class="kw">clean</span> <span class="kw">noobs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>     stkcd   year   indcd
+    000101   2020     C39
+    000101   2021     C39
+    000102   2020     C39
+    000102   2021     C39
+    600201   2020     C27
+    600201   2021     C27</code></pre>
+<p>对照表那边，每行是一个行业，键同样是 <code>indcd</code>:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"$D/industry_lookup.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span>, <span class="kw">clean</span> <span class="kw">noobs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>    indcd                            indname
+      C39   计算机、通信和其他电子设备制造业
+      C27                         医药制造业
+     c36                          汽车制造业</code></pre>
+<p>两份数据粒度不同 (一个是公司-年度、一个是行业)，靠 <code>indcd</code> 把行业名贴到每个公司-年度上，这是多对一 (<code>m:1</code>) 合并。但动手前务必盯住键：主表里是 <code>"C36"</code>，对照表里却写成了小写带空格的 <code>"c36 "</code>——就这一点差别，足以让合并悄悄出错。<strong>数据合并十有八九，栽在没吃透两份数据、尤其没对齐键上。</strong> 先直接合并，看它怎么栽:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="ot">`panel'</span>, <span class="kw">clear</span>      <span class="co">// 重新载入前面 append 好的面板</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">merge</span> <span class="fu">m</span>:1 indcd <span class="kw">using</span> <span class="st">"$D/industry_lookup.dta"</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> <span class="dt">_merge</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span> stkcd <span class="fu">year</span> indcd <span class="dt">_merge</span> <span class="kw">if</span> <span class="dt">_merge</span>==2   <span class="co">// 看那条用不上的脏键</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>    Result                      Number of obs
+    -----------------------------------------
+    Not matched                            43
+        from master                        42  (_merge==1)
+        from using                          1  (_merge==2)
+    Matched                                84  (_merge==3)
+    -----------------------------------------
+
+   Matching result from merge |   Freq.   Percent
+------------------------------+------------------
+              Master only (1) |     42     33.07
+               Using only (2) |      1      0.79
+                  Matched (3) |     84     66.14
+
+     stkcd   year   indcd            _merge
+         .      .    c36     Using only (2)</code></pre>
+<p>只有 84 行匹配上，<strong>匹配率 84/126 ≈ 67%</strong>。两类没匹配上的行泄露了原因：42 行 <code>C36</code> 的公司是 master only(面板里有、对照表里没有)，而那条 <code>c36</code> 是 using only(对照表里有、面板里用不上)。一对照就明白——对照表里汽车业的键写成了小写带空格的 <code>"c36 "</code>，和面板里的 <code>"C36"</code> 对不上。<strong>那条 using-only 记录，就是「键没洗干净」最典型的信号。</strong></p>
+<p>把键洗干净 (转大写、去空格)，再合并一次：</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"$D/industry_lookup.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> indcd = <span class="fu">upper</span>(<span class="fu">strtrim</span>(indcd))   <span class="co">// "c36 " -&gt; "C36"</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="kw">tempfile</span> look</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> <span class="ot">`look'</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="ot">`panel'</span>, <span class="kw">clear</span>      <span class="co">// panel 是前面 append 好的面板</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="kw">merge</span> <span class="fu">m</span>:1 indcd <span class="kw">using</span> <span class="ot">`look'</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> <span class="dt">_merge</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             0
+    Matched                               126  (_merge==3)
+    -----------------------------------------</code></pre>
+<p>126 行全部匹配，<strong>匹配率 100%</strong>。请把顺序记牢：<strong><code>merge</code> 之后第一件事就是 <code>tab _merge</code> 看匹配率</strong>；匹配率偏低，几乎总是键的问题，先回头洗键，别让缺胳膊少腿的数据流到回归里。</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="AI 协作：让 AI 复核 merge / join 逻辑">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+AI 协作：让 AI 复核 merge / join 逻辑
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>合并前，把两张表的粒度、键和合并类型描述给 AI，让它先替你把关——尤其是 <code>1:1</code> 还是 <code>m:1</code>、键要不要先清洗、合并后该期望多少匹配率。判断仍由你拍板，但 AI 能提前拦下大多数低级错。</p>
+<p><strong>任务说明书 (提示词模板)</strong>：</p>
+<pre><code>我要把两张表合并。表 A：[粒度、主键、行数]；表 B：[粒度、主键、行数]。
+我打算用 [键] 做 [1:1 / m:1] 合并。请检查：
+(1) 这个合并类型对不对？两边键的唯一性是否支持它？
+(2) 两边的键在名称、大小写、空格、存储类型、前导零上是否一致？可能哪里对不上？
+(3) 合并后我应该预期多大的匹配率？出现 master-only / using-only 各说明什么？
+只做检查与提问，先不要写最终代码。</code></pre>
+<p><strong>推荐 skill</strong>：<code>core/04-data-cleaning-planner</code>。<strong>没有合适提示词？</strong> 见 <a href="../appendix/A_prompt_templates.html">附录 A</a> 或用 <code>find-skills</code> 检索安装。</p>
+</div>
+</div>
+</section>
+<section id="聚合与频率转换" class="level3" data-number="2.4.4">
+<h3 data-number="2.4.4" class="anchored" data-anchor-id="聚合与频率转换"><span class="header-section-number">2.4.4</span> 聚合与频率转换</h3>
+<p>月度市值表 <code>mktcap_monthly</code> 要并进公司-年度面板，可两张表的<strong>粒度不一样</strong>：一个是公司-月，一个是公司-年度。这时候最常见的翻车，就是不管粒度直接合并。先验证一下月度表到底是什么粒度：</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"$D/mktcap_monthly.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> <span class="kw">int</span> <span class="fu">year</span> = <span class="kw">int</span>(<span class="fu">ym</span>/100)      <span class="co">// 202103 -&gt; 2021</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="kw">duplicates</span> <span class="kw">report</span> stkcd <span class="fu">year</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Duplicates in terms of stkcd year
+   Copies | Observations   Surplus
+----------+------------------------
+       12 |          504       462      &lt;- 一个公司-年度有 12 行：远非唯一</code></pre>
+<p>一个「公司-年度」占了 12 行 (12 个月)。若强行按 <code>stkcd year</code> 做 <code>1:1</code> 合并会直接报错；若用 <code>m:1</code>、<code>m:m</code> 硬合，则会把面板炸成一堆重复行。<strong>正确的顺序是：先把月度聚合到公司-年度 (这一步既是频率转换，也是聚合)，再合并。</strong></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">collapse</span> (<span class="kw">mean</span>) mktcap, <span class="kw">by</span>(stkcd <span class="fu">year</span>)   <span class="co">// 月 -&gt; 年，取年均市值</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="kw">duplicates</span> <span class="kw">report</span> stkcd <span class="fu">year</span>             <span class="co">// 现在唯一了</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="kw">tostring</span> stkcd, <span class="kw">replace</span> <span class="kw">format</span>(%06.0f)   <span class="co">// 数值 101 -&gt; 字符 "000101"，补回前导零</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span> <span class="kw">in</span> 1/3, <span class="kw">clean</span> <span class="kw">noobs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Duplicates in terms of stkcd year
+   Copies | Observations   Surplus
+----------+------------------------
+        1 |           42         0      &lt;- 聚合后：公司-年度唯一
+
+     stkcd   year      mktcap
+    000101   2021   391.28333
+    000102   2021   223.25833
+    000201   2021   658.84167</code></pre>
+<p>这里顺手补上了 key 原则的第 c、e 条：月度表的 <code>stkcd</code> 存成了<strong>数值</strong> <code>101</code>，和面板里的<strong>字符</strong> <code>"000101"</code> 类型不同、还丢了前导零，<code>tostring ... format(%06.0f)</code> 把它转回六位字符键。到这一步，聚合后的年度市值已是干净的公司-年度粒度、键也对得上，再 <code>merge 1:1 stkcd year</code> 就能安全并入主面板 (本例市值只覆盖 2021 年，并入后其余年份的市值为缺失，这也是真实数据的常态)。</p>
+</section>
+<section id="长宽转换-reshape" class="level3" data-number="2.4.5">
+<h3 data-number="2.4.5" class="anchored" data-anchor-id="长宽转换-reshape"><span class="header-section-number">2.4.5</span> 长宽转换 (reshape)</h3>
+<p>有时还要在<strong>长条</strong>与<strong>扁平</strong>之间来回变形。把面板的营收摊成「每公司一行、各年一列」，用 <code>reshape wide</code>：</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"$D/firm_finance_2021.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> stkcd <span class="fu">year</span> sales</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="kw">reshape</span> <span class="kw">wide</span> sales, i(stkcd) j(<span class="fu">year</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span> <span class="kw">in</span> 1/6, <span class="kw">clean</span> <span class="kw">noobs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>     stkcd   sales2020   sales2021
+    000101       82000       96000
+    000102       51000       57000
+    000301      210000      231000
+    000302       95000      101000
+    200001       27793       29256
+    200002       30101       31686</code></pre>
+<p><code>reshape long sales, i(stkcd) j(year)</code> 再变回长条。记住两个选项：<code>i()</code> 是<strong>保持不变的个体</strong>，<code>j()</code> 是<strong>要摊开或合拢的维度</strong>。大多数面板分析要长条型，而从网页、报表导出的数据常是扁平的，<code>reshape</code> 就是两者之间的桥。</p>
+<p>到这里，几张零散的表已经拼成一张「公司-年度、带行业名、带年度市值」的面板。回头看，每一步靠的都不是记住某条命令，而是<strong>先想清粒度和键、动手后用 <code>isid</code>、<code>_merge</code>、<code>duplicates</code> 去查</strong>。本讲最后复现 Lane (2025) 的数据时，你会看到同样的动作：把政策行业交叉表按行业代码 <code>merge</code> 进面板——键就是行业代码，检查方式一模一样。</p>
+</section>
+</section>
+<section id="变量能直接用吗" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="变量能直接用吗"><span class="header-section-number">2.5</span> 变量能直接用吗</h2>
+<p>表拼好了，变量却未必能直接进回归。这一节处理四件事——缺失、离群、对数、标准化——它们有一个共同的做法：<strong>先看，再决定，尤其是先画图</strong>。判断永远在动手之前。下面接着上一节 <code>append</code> 好的面板往下做，并把绘图模板设为 <code>cleanplots</code>(<code>ssc install cleanplots</code> 一次即可)。</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span> <span class="dv">scheme</span> cleanplots</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="缺失值" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="缺失值"><span class="header-section-number">2.5.1</span> 缺失值</h3>
+<p>财务表的 <code>rd</code> 有的是空、有的写着 <code>-99</code>。这个 <code>-99</code> 是<strong>人为标记的缺失，却伪装成一个数字</strong>——若不处理，它会被当成真实研发支出，算进均值、跑进回归。第一步是把它还原成真正的缺失：</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">mvdecode</span> rd, mv(-99)      <span class="co">// 把 -99 全部替换为缺失 .</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span> <span class="kw">if</span> <span class="fu">missing</span>(rd)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>misstable <span class="kw">summarize</span> rd, <span class="ot">all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>rd: 1 missing value generated
+    2                              &lt;- rd 现在共有 2 个缺失(原本的空 + 还原的 -99)
+
+               |                                | Unique
+      Variable |     Obs=.     Obs&gt;.     Obs&lt;.  | values     Min      Max
+  -------------+--------------------------------+----------------------
+            rd |         2                 124  |    121      993    21936</code></pre>
+<p>这里藏着一个经典的坑：<strong>在 Stata 里，缺失 <code>.</code> 大于任何数字</strong>。所以 <code>count if rd&gt;10000</code> 会把缺失也数进去，<code>keep if rd&lt;.</code> 之类的写法必须小心。好在 <code>summarize</code>、<code>regress</code> 这些命令会自动忽略缺失——但 <code>count</code>、<code>keep</code> 不会。先把伪装的缺失还原，是一切的前提。</p>
+</section>
+<section id="离群值" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="离群值"><span class="header-section-number">2.5.2</span> 离群值</h3>
+<p><code>sales</code> 里可能有异常大的值。先看统计量，再画图：</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">summarize</span> sales, <span class="kw">detail</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="kw">histogram</span> sales, <span class="kw">percent</span> <span class="bn">xtitle</span>(<span class="st">"营业收入(万元)"</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> box sales</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>                    营业收入(万元)
+-------------------------------------------------
+              Percentiles      Largest
+50%            85370.5         231000
+75%           145827           242112       Mean       109905.8
+95%           223839           245000       Skewness     6.348803
+99%           245000          1080000       Kurtosis    58.35257</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/ch02/g_sales_box_raw.png" class="img-fluid figure-img"></p>
+<figcaption>营业收入的箱线图：那个飞出箱体的点，就是离群值。</figcaption>
+</figure>
+</div>
+<p>偏度高达 6.35、箱线图上那个孤零零飞出去的点，都在喊「这里有离群值」。但<strong>离群不等于错误</strong>——处理之前，必须先查清它到底是什么：</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span> stkcd <span class="fu">year</span> sales <span class="kw">if</span> sales&gt;500000, <span class="kw">clean</span> <span class="kw">noobs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>     stkcd   year     sales
+    000101   2022   1080000</code></pre>
+<p>这是 <code>000101</code> 在 2022 年的营收。它别的年份都在 10 万上下，这里却是 108 万——<strong>多打了一个 0，是录入错误</strong>。对于这种能查明的错误，正确的做法是<strong>改对它</strong>，而不是缩尾：</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> sales = 108000 <span class="kw">if</span> stkcd==<span class="st">"000101"</span> &amp; <span class="fu">year</span>==2022</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>只有对<strong>无法核实、但确实极端</strong>的值 (不是错误，就是天生很大或很小)，才轮到缩尾和截尾出场：</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>winsor2 sales, cuts(1 99)     <span class="co">// 缩尾：把 1%/99% 之外的值拉回分位点，样本量不变</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>winsor2 sales, cuts(1 99) <span class="kw">trim</span> <span class="co">// 截尾：直接删掉极端值，会损失样本</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>缩尾</strong>把过大过小的值拉回到分位点上，保留样本量；<strong>截尾</strong>干脆删掉它们，样本变少。二者都不该在「看图、查明」之前就无脑套用——否则要么掩盖了本可修正的错误，要么扭曲了真实的分布。顺序永远是：<strong>先画图 → 查明来源 → 能改的改，改不了的再缩尾或截尾</strong>。</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="AI 协作：让 AI 讲清缺失、离群、缩尾、截尾、对数的差别">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+AI 协作：让 AI 讲清缺失、离群、缩尾、截尾、对数的差别
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>这几个概念初学者最容易混。可以让 AI 结合你<strong>具体的变量</strong>把它们讲清楚，并给出何时用哪一个的判断依据——但最终用不用、怎么用，由你根据数据和研究问题决定。</p>
+<p><strong>任务说明书 (提示词模板)</strong>：</p>
+<pre><code>针对我的变量 [变量名、含义、分布特征(偏度、极值、缺失比例)]，请分别解释：
+缺失、离群、缩尾(winsorize)、截尾(trim)、对数转换——各自解决什么问题、代价是什么、
+会如何改变后续回归系数的含义。并给出：对我这个变量，你建议先做哪一步、为什么。
+不要替我下结论，把判断依据摆出来让我选。</code></pre>
+<p><strong>推荐 skill</strong>：<code>core/04-data-cleaning-planner</code>。<strong>没有合适提示词？</strong> 见 <a href="../appendix/A_prompt_templates.html">附录 A</a> 或用 <code>find-skills</code> 检索安装。</p>
+</div>
+</div>
+</section>
+<section id="对数转换" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="对数转换"><span class="header-section-number">2.5.3</span> 对数转换</h3>
+<p>资产、营收这类变量往往<strong>右偏</strong>——大多数不大，少数很大。回归里常对它们取对数：</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> <span class="kw">double</span> <span class="kw">size</span> = <span class="fu">ln</span>(<span class="fu">at</span>)      <span class="co">// size 即「企业规模」的常用度量</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="kw">histogram</span> <span class="fu">at</span>, <span class="kw">percent</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="kw">histogram</span> <span class="kw">size</span>, <span class="kw">percent</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/ch02/g_at_log.png" class="img-fluid figure-img"></p>
+<figcaption>总资产取对数前后：左边右偏，右边明显更对称。</figcaption>
+</figure>
+</div>
+<p>对数把「大的压得多、小的压得少」，让右偏的分布更对称，也把变量间的乘法关系变成加法关系 (这正是弹性解释的由来)。两点要记住：<strong>取对数后系数的含义会变</strong> (变成半弹性或弹性)，解释要相应改口；而且 <code>ln()</code> 要求正值，<code>0</code> 和负数会变成缺失，取对数前先检查。</p>
+</section>
+<section id="标准化" class="level3" data-number="2.5.4">
+<h3 data-number="2.5.4" class="anchored" data-anchor-id="标准化"><span class="header-section-number">2.5.4</span> 标准化</h3>
+<p>有时要把变量标准化到「均值 0、标准差 1」(z-score)，便于跨变量比较，或供某些方法使用：</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">egen</span> z_size = <span class="fu">std</span>(<span class="kw">size</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="kw">summarize</span> <span class="kw">size</span> z_size</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>    Variable |   Obs     Mean    Std. dev.      Min        Max
+-------------+------------------------------------------------
+        size |   126   11.315      .625     10.070     12.578
+      z_size |   126   ~0          1        -1.993      2.021</code></pre>
+<p>标准化<strong>不改变分布的形状</strong>，只是换了把尺子：减去均值、除以标准差，之后「一个单位」就等于「一个标准差」。</p>
+<p>回头看这一节，没有一步是「因为命令该这么写」。每一步都是<strong>先看</strong> (统计量、图形)、<strong>判断</strong> (是错误还是真离群？要不要变换？变换后怎么解释？)、<strong>再动手</strong>，动手之后再回看。缺失怎么补、离群怎么处理、要不要取对数，都没有唯一正确答案，取决于你的数据和研究问题——这恰恰是研究者不能外包给 AI 的那部分判断。</p>
+</section>
+</section>
+<section id="字符与日期变量" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="字符与日期变量"><span class="header-section-number">2.6</span> 字符与日期变量</h2>
+<p>有些变量看着是数字或日期，却以<strong>文本</strong>存着，直接拿去计算会报错，或者更糟——悄悄算错。这一节做三件事：把文本型数字转成数值、把字符日期转成真日期、以及对文本变量该有的意识。判断的核心始终是一句话：<strong>先看清它现在是什么类型、该是什么类型</strong>。</p>
+<section id="文本型数字-destring" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="文本型数字-destring"><span class="header-section-number">2.6.1</span> 文本型数字 (destring)</h3>
+<p><code>lev</code>(资产负债率) 存成 <code>"38.2%"</code>，是字符——直接求均值、跑回归都会出错。用 <code>destring</code> 转成数值：</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"$D/firm_finance_2021.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="kw">destring</span> lev, <span class="kw">gen</span>(lev_num) <span class="kw">percent</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span> stkcd <span class="fu">year</span> lev lev_num <span class="kw">in</span> 1/4, <span class="kw">clean</span> <span class="kw">noobs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>lev: character % removed; lev_num generated as double
+
+     stkcd   year     lev   lev_num
+    000101   2020   38.2%      .382
+    000101   2021   41.0%       .41
+    000102   2020   52.4%      .524
+    000102   2021   50.8%      .508</code></pre>
+<p><code>percent</code> 选项会去掉 <code>%</code> 并除以 100，得到 0–1 的比率。但<strong>不是所有「看着是数字」的文本都该转</strong>。<code>stkcd</code> 也全是数字 (<code>"000101"</code>)，可它是<strong>编号 (标签)，不是量</strong>——<code>destring</code> 会把它变成数值 <code>101</code>，丢掉前导零，键就废了。所以规则很简单：<strong>是「量」(要参与计算) 就转数值；是「编号、标签」就保持字符</strong>。见到文本型数字，先问它是量还是编号，再决定动不动 <code>destring</code>。</p>
+</section>
+<section id="类别文本-encode" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="类别文本-encode"><span class="header-section-number">2.6.2</span> 类别文本 (encode)</h3>
+<p><code>indcd</code> 的 <code>"C39"</code>、<code>"C27"</code>、<code>"C36"</code> 是类别标签。有些分析 (比如放进 <code>i.industry</code> 做固定效应) 需要<strong>数值型</strong>的类别。<code>encode</code> 把文本类别转成「带标签的数值」：</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> indcd, <span class="kw">gen</span>(ind_id)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> <span class="ot">list</span> ind_id</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>ind_id:
+           1 C27
+           2 C36
+           3 C39</code></pre>
+<p><code>encode</code> 自动建了一张「数字 ↔︎ 文字」对照表 (value label)：数据里存的是 1/2/3，显示出来还是 <code>C27/C36/C39</code>；<code>decode</code> 则反向还原。<strong><code>destring</code> 和 <code>encode</code> 的分工要记住</strong>：数字被误存成文本，用 <code>destring</code>(或 <code>real()</code>) 还原；观察值本身就是文字类别，用 <code>encode</code> 给它编号。一个还原数字，一个给文字贴号。</p>
+</section>
+<section id="日期变量" class="level3" data-number="2.6.3">
+<h3 data-number="2.6.3" class="anchored" data-anchor-id="日期变量"><span class="header-section-number">2.6.3</span> 日期变量</h3>
+<p>日期常以文本 (<code>"2021-06-30"</code>) 或数字 (<code>20210630</code>) 存着。要先把它变成 Stata 的<strong>日期值</strong>，才能排序、算间隔、按频率聚合：</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>input str10 rptdate</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="st">"2021-06-30"</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="st">"2022-03-31"</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> <span class="kw">d</span> = <span class="fu">date</span>(rptdate, <span class="st">"YMD"</span>)   <span class="co">// 第二个参数告诉 Stata 顺序是「年-月-日」</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="kw">format</span> <span class="kw">d</span> %td                    <span class="co">// 显示成人类可读的日期</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> <span class="fu">year</span>  = <span class="fu">year</span>(<span class="kw">d</span>)</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> <span class="fu">month</span> = <span class="fu">month</span>(<span class="kw">d</span>)</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span>, <span class="kw">clean</span> <span class="kw">noobs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>       rptdate           d   year   month
+    2021-06-30   30jun2021   2021       6
+    2022-03-31   31mar2022   2022       3</code></pre>
+<p><code>date(字符, "YMD")</code> 里的 <code>"YMD"</code> 告诉 Stata 按「年月日」解析；<code>format d %td</code> 让它显示成 <code>30jun2021</code>(内部其实是从 1960-01-01 起算的天数)；之后 <code>year()</code>、<code>month()</code>、<code>qofd()</code> 等函数随手取。两个坑：顺序参数要对 (<code>"YMD"</code> 还是 <code>"MDY"</code>)；纯数字型日期 (<code>20210630</code>) 要先 <code>tostring</code> 再 <code>date</code>，或直接用 <code>substr</code> 拆出年月日。</p>
+</section>
+<section id="文本变量交给技能" class="level3" data-number="2.6.4">
+<h3 data-number="2.6.4" class="anchored" data-anchor-id="文本变量交给技能"><span class="header-section-number">2.6.4</span> 文本变量：交给技能</h3>
+<p>传统教学到这里会讲一大套——用 <code>regexm</code>、<code>split</code>、<code>substr</code> 从「中国农业银行深圳光明支行」里抠出总行名和城市。在 AI 工作流下，你<strong>不必</strong>记这些代码，但<strong>必须有意识</strong>：认出「这是一个文本处理任务」、能把它描述清楚、调出合适的 skill 来做。</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="AI 协作：文本处理，有意识、会描述、调技能">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+AI 协作：文本处理，有意识、会描述、调技能
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>遇到公司名、地址、公告文本这类需要「从一串文字里抽取信息」的任务，别急着自己写正则，先把任务描述清楚交给 AI 与技能。</p>
+<p><strong>任务说明书 (提示词模板)</strong>：</p>
+<pre><code>我有一列公司全称，如「中国农业银行深圳光明支行」「招商银行股份有限公司兰州分行」，
+想从中提取：(1) 总行名称(如「中国农业银行」)；(2) 所在城市。
+请先规划处理步骤，再生成可运行代码；对拿不准的匹配规则，先列出让我确认，不要硬编造。</code></pre>
+<p><strong>推荐 skill</strong>：<code>core/04-data-cleaning-planner</code>；文本量大或较专门时，用 <code>find-skills</code> 检索安装专门的文本处理技能。正则表达式与 <code>split</code> 的代码细节本讲不展开 (属传统命令教学)，延伸阅读处给链接。</p>
+</div>
+</div>
+<p>字符与日期处理，关键从来不是背下 <code>destring</code>、<code>encode</code>、<code>date</code> 的语法，而是先判断<strong>它现在是什么、该是什么</strong>——是量还是编号？是日期还是文本？判断对了，用哪条命令、哪个 skill，自然一目了然。</p>
+</section>
+</section>
+<section id="探索性分析与图形诊断" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="探索性分析与图形诊断"><span class="header-section-number">2.7</span> 探索性分析与图形诊断</h2>
+<p>探索性数据分析 (EDA) 不是论文里那几张精修的图，而是你在<strong>清洗和建模的每一步</strong>都该做的体检。它的关键在一句话：<strong>每一张图，都是为了回答一个具体的问题</strong>。这一节把六类常用图和它们各自要查的问题对上号。</p>
+<p>先分清两种图。<strong>探索性图形</strong>是画给自己看的——要快、要多、可以糙，目的是<strong>发现问题</strong>；<strong>解释性图形</strong>是画给读者看的——一张图只讲一件事、需要精修。EDA 阶段要的是前者：多画几张、快速扫过，把数据的毛病和结构看出来。</p>
+<p>本节的图都基于上一节清洗好的面板，并构造两个变量：研发强度 <code>rd_ratio</code>(研发支出占营收的百分比) 和企业规模 <code>size</code>(资产的对数)，再按行业分组：</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"$D/firm_finance_2021.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="kw">append</span> <span class="kw">using</span> <span class="st">"$D/firm_finance_2022.dta"</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="kw">mvdecode</span> rd, mv(-99)</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> sales = 108000 <span class="kw">if</span> stkcd==<span class="st">"000101"</span> &amp; <span class="fu">year</span>==2022   <span class="co">// 修正上一节发现的录入错误</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> <span class="kw">double</span> rd_ratio = 100*rd/sales                        <span class="co">// 研发强度(%)</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> <span class="kw">double</span> <span class="kw">size</span> = <span class="fu">ln</span>(<span class="fu">at</span>)                                  <span class="co">// 企业规模</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> str6 ind_s = <span class="fu">cond</span>(indcd==<span class="st">"C39"</span>,<span class="st">"电子"</span>, <span class="fu">cond</span>(indcd==<span class="st">"C27"</span>,<span class="st">"医药"</span>,<span class="st">"汽车"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="分布直方图与密度图" class="level3" data-number="2.7.1">
+<h3 data-number="2.7.1" class="anchored" data-anchor-id="分布直方图与密度图"><span class="header-section-number">2.7.1</span> 分布：直方图与密度图</h3>
+<p><strong>要查的问题：这个变量分布是什么形态？偏不偏？要不要变换？</strong></p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="kw">histogram</span> rd_ratio, <span class="kw">percent</span> <span class="kw">kdensity</span> <span class="bn">xtitle</span>(<span class="st">"研发强度(%)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/ch02/g_hist_rdratio.png" class="img-fluid figure-img"></p>
+<figcaption>研发强度的直方图，叠加核密度曲线。</figcaption>
+</figure>
+</div>
+<p>直方图看形状，叠加的核密度曲线 (<code>kdensity</code>) 把形态描得更平滑。这里研发强度大致落在 2%–10%，并不是单峰——隐约能看出几处聚集。这个信号提醒我们：也许背后藏着分组结构 (后面散点图会证实)。若图形明显右偏，就回到上一节考虑取对数。</p>
+</section>
+<section id="离群与组间分组箱线图" class="level3" data-number="2.7.2">
+<h3 data-number="2.7.2" class="anchored" data-anchor-id="离群与组间分组箱线图"><span class="header-section-number">2.7.2</span> 离群与组间：分组箱线图</h3>
+<p><strong>要查的问题：各组的分布和离群怎样？组间有没有差异？</strong></p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> box rd_ratio, <span class="bn">over</span>(ind_s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/ch02/g_box_ind.png" class="img-fluid figure-img"></p>
+<figcaption>各行业研发强度的分组箱线图。</figcaption>
+</figure>
+</div>
+<p>一张图同时回答了两个问题。三个行业的箱体高低分明——<strong>医药最高、电子居中、汽车最低</strong>，组间差异一目了然；而医药组里还浮着一个孤立的点，那是这一组的离群值。<code>over()</code> 把分组直接摆在横轴上，不需要图例。</p>
+</section>
+<section id="关系散点图" class="level3" data-number="2.7.3">
+<h3 data-number="2.7.3" class="anchored" data-anchor-id="关系散点图"><span class="header-section-number">2.7.3</span> 关系：散点图</h3>
+<p><strong>要查的问题：两个变量怎么关联？有没有异常点或隐藏的分层？</strong></p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="kw">twoway</span> (<span class="kw">scatter</span> rd_ratio <span class="kw">size</span>) (<span class="kw">lfit</span> rd_ratio <span class="kw">size</span>), <span class="co">///</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    <span class="bn">legend</span>(<span class="kw">order</span>(1 <span class="st">"观测值"</span> 2 <span class="st">"拟合线"</span>) pos(6) <span class="bn">rows</span>(1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/ch02/g_scatter.png" class="img-fluid figure-img"></p>
+<figcaption>规模与研发强度的散点图与拟合线：点分成上中下三条带。</figcaption>
+</figure>
+</div>
+<p>拟合线几乎水平，似乎「规模和研发强度没什么关系」——但散点暴露了一件更重要的事：所有点分成了<strong>上、中、下三条带</strong>，那正是三个行业。也就是说，表面上的「无关」，背后其实是<strong>行业在主导</strong>。散点图让你看见了这种隐藏的分层，提醒你：若不加区分地对全样本回归，很可能把行业差异误当成别的东西。这就是图形帮你发现<strong>潜在样本结构与选择问题</strong>的价值——比任何统计量都直观。</p>
+</section>
+<section id="趋势时间趋势图" class="level3" data-number="2.7.4">
+<h3 data-number="2.7.4" class="anchored" data-anchor-id="趋势时间趋势图"><span class="header-section-number">2.7.4</span> 趋势：时间趋势图</h3>
+<p><strong>要查的问题：变量随时间怎么变？各组趋势一样吗？有没有断点？</strong></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="kw">preserve</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="kw">collapse</span> (<span class="kw">mean</span>) rd_ratio, <span class="kw">by</span>(ind_s <span class="fu">year</span>)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="kw">twoway</span> (connected rd_ratio <span class="fu">year</span> <span class="kw">if</span> ind_s==<span class="st">"医药"</span>) <span class="co">///</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>       (connected rd_ratio <span class="fu">year</span> <span class="kw">if</span> ind_s==<span class="st">"电子"</span>) <span class="co">///</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>       (connected rd_ratio <span class="fu">year</span> <span class="kw">if</span> ind_s==<span class="st">"汽车"</span>), <span class="co">///</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>    <span class="bn">legend</span>(<span class="kw">order</span>(1 <span class="st">"医药"</span> 2 <span class="st">"电子"</span> 3 <span class="st">"汽车"</span>) pos(6) <span class="bn">rows</span>(1)) <span class="kw">xlabel</span>(2020 2021 2022)</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="kw">restore</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/ch02/g_trend.png" class="img-fluid figure-img"></p>
+<figcaption>三个行业研发强度的年度趋势。</figcaption>
+</figure>
+</div>
+<p>三个行业的研发强度逐年都很平稳、层次稳定。真正要警惕的是<strong>突变</strong>：如果某一年出现跳变，就得回头查清楚——是政策冲击、是统计口径变了，还是数据出了错 (样本断点)。趋势图正是用来第一时间发现这种断裂的。</p>
+</section>
+<section id="组间均值分组均值图" class="level3" data-number="2.7.5">
+<h3 data-number="2.7.5" class="anchored" data-anchor-id="组间均值分组均值图"><span class="header-section-number">2.7.5</span> 组间均值：分组均值图</h3>
+<p><strong>要查的问题：各组的平均水平差多少？</strong></p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="bn">bar</span> (<span class="kw">mean</span>) rd_ratio, <span class="bn">over</span>(ind_s) <span class="bn">ytitle</span>(<span class="st">"研发强度均值(%)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/ch02/g_barmean.png" class="img-fluid figure-img"></p>
+<figcaption>各行业平均研发强度的条形图。</figcaption>
+</figure>
+</div>
+<p>把箱线图的「分布」进一步压成「一个数」：医药 9.37%、电子 6.55%、汽车 3.17%(对应 <code>tabstat rd_ratio, by(ind_s)</code>)，组间高下立判。分组均值图适合快速比较组间水平，但也因为只剩一个数，会<strong>掩盖组内的离散和离群</strong>——所以它常和箱线图搭配使用，一个看水平、一个看分布。</p>
+</section>
+<section id="一图一问清单" class="level3" data-number="2.7.6">
+<h3 data-number="2.7.6" class="anchored" data-anchor-id="一图一问清单"><span class="header-section-number">2.7.6</span> 一图一问清单</h3>
+<p>回过头看，六类图各司其职，对应着数据处理里最该盯的几个问题：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>要查什么</th>
+<th>用哪张图</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>分布形态、要不要变换</td>
+<td>直方图 / 密度图</td>
+</tr>
+<tr class="even">
+<td>离群值</td>
+<td>箱线图</td>
+</tr>
+<tr class="odd">
+<td>组间差异</td>
+<td>分组箱线图 / 分组均值图</td>
+</tr>
+<tr class="even">
+<td>两变量关系、异常点、隐藏分层</td>
+<td>散点图</td>
+</tr>
+<tr class="odd">
+<td>时间变化、样本断点</td>
+<td>时间趋势图</td>
+</tr>
+<tr class="even">
+<td>潜在样本结构与选择</td>
+<td>分组散点 / 分组密度</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="AI 协作：让 AI 按变量类型建议该画哪些图">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+AI 协作：让 AI 按变量类型建议该画哪些图
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>不确定一个变量该画什么图来检查，就把它的类型和你关心的问题交给 AI，让它列一份 EDA 图形清单，并说明每张图能查出什么。</p>
+<p><strong>任务说明书 (提示词模板)</strong>：</p>
+<pre><code>我有以下变量：[逐个列出：名称、类型(连续/类别/时间)、含义]，研究问题是 [一句话]。
+请建议一套探索性图形(EDA)清单：每一项写清「画哪种图、对哪些变量、能帮我检查什么问题」，
+并优先安排最可能暴露数据问题(离群、缺失、分组结构、样本选择)的图。
+给出可运行的 Stata 代码骨架，图例统一放图形下方。</code></pre>
+<p><strong>推荐 skill</strong>：<code>core/04-data-cleaning-planner</code>。<strong>没有合适提示词？</strong> 见 <a href="../appendix/A_prompt_templates.html">附录 A</a> 或用 <code>find-skills</code> 检索安装。</p>
+</div>
+</div>
+<p>一句话收束：EDA 的精髓是<strong>一图一问</strong>——先想清要检查什么，再选图；图是用来<strong>发现问题</strong>的，不是用来装饰论文的。清洗、变换、建模的每一步，都该顺手画一张图回头看看。</p>
+</section>
+</section>
+<section id="留痕与可复现" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="留痕与可复现"><span class="header-section-number">2.8</span> 留痕与可复现</h2>
+<p>一份干净的面板有了。可如果别人 (或半年后的你) 问一句：这张表怎么来的？样本为什么正好是这么多？每个变量什么口径？——你答得上来吗？答不上来，就等于不可复现。这一节讲三样必须<strong>随数据一起留下</strong>的东西：样本筛选日志、变量字典、匹配率与样本流失，外加两条最省心的习惯。</p>
+<section id="样本筛选日志" class="level3" data-number="2.8.1">
+<h3 data-number="2.8.1" class="anchored" data-anchor-id="样本筛选日志"><span class="header-section-number">2.8.1</span> 样本筛选日志</h3>
+<p>从原始数据走到分析样本，每筛一次就记一笔——留下「样本量是怎么变的」这本账。做法很朴素，就是在每一步后 <code>count</code>：</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"$D/firm_finance_2021.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="kw">append</span> <span class="kw">using</span> <span class="st">"$D/firm_finance_2022.dta"</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>                                                     <span class="co">// 步骤 0</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="kw">mvdecode</span> rd, mv(-99)</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> sales = 108000 <span class="kw">if</span> stkcd==<span class="st">"000101"</span> &amp; <span class="fu">year</span>==2022    <span class="co">// 修正录入错误，不删样本</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> <span class="kw">double</span> rd_ratio = 100*rd/sales</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="kw">drop</span> <span class="kw">if</span> <span class="fu">missing</span>(rd_ratio)</span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>                                                     <span class="co">// 步骤 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>把这些数整理成一张筛选日志：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>步骤</th>
+<th>操作</th>
+<th style="text-align: right;">样本量</th>
+<th style="text-align: right;">变化</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>追加两批财务表</td>
+<td style="text-align: right;">126</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>剔除研发支出缺失</td>
+<td style="text-align: right;">124</td>
+<td style="text-align: right;">−2</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>合并行业名 (匹配率 100%)</td>
+<td style="text-align: right;">124</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+<p>注意那条离群的营收 (<code>000101</code>) 是<strong>修正</strong>、不是删除，所以样本量不减。有了这本账，「样本为什么是 124」一目了然，审稿人问起一句话答清；反过来，若哪一步样本莫名掉了一大截，日志会第一时间报警。</p>
+</section>
+<section id="匹配率与样本流失" class="level3" data-number="2.8.2">
+<h3 data-number="2.8.2" class="anchored" data-anchor-id="匹配率与样本流失"><span class="header-section-number">2.8.2</span> 匹配率与样本流失</h3>
+<p><code>merge</code> 是最容易悄悄丢样本的地方，所以每次合并后都记下 <code>_merge</code> 的分布 (匹配率) 和前后行数：</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="kw">merge</span> <span class="fu">m</span>:1 indcd <span class="kw">using</span> <span class="ot">`look'</span>    <span class="co">// look 是清洗过键的行业对照表</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> <span class="dt">_merge</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>   Matching result from merge |   Freq.   Percent
+------------------------------+------------------
+                  Matched (3) |    124    100.00</code></pre>
+<p>这次匹配率 100%、零流失。回想上一节：同样的合并，脏键时匹配率只有 67%——那不是数据少了，而是键没洗干净。<strong>若匹配率偏低又没有记录，你很可能拿着缺了三分之一的样本还浑然不觉。</strong> 匹配率就是合并这一步的安全带。</p>
+</section>
+<section id="变量字典" class="level3" data-number="2.8.3">
+<h3 data-number="2.8.3" class="anchored" data-anchor-id="变量字典"><span class="header-section-number">2.8.3</span> 变量字典</h3>
+<p>给分析样本里的关键变量做一张字典，交代 N、取值范围和含义。<code>codebook ..., compact</code> 一行就能生成一份雏形：</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="kw">codebook</span> stkcd <span class="fu">year</span> rd_ratio <span class="kw">size</span> lev_num, compact</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Variable   Obs Unique      Mean       Min       Max  Label
+-----------------------------------------------------------------------
+stkcd      124     42         .         .         .  证券代码
+year       124      3  2021.008      2020      2022  年度
+rd_ratio   124    124  6.364036  2.498888   10.5012  研发强度(%)
+size       124    124  11.31305  10.07002  12.57764  企业规模 ln(资产)
+lev_num    124     43  .4475242        .3       .59  资产负债率</code></pre>
+<p>这里藏着一个提醒：<code>stkcd</code> 的均值是「.」，因为它是编号、不是量 (呼应上一节的判断)；而字典能生成得这么整齐，前提是你给每个<strong>构造出来的</strong>变量 (<code>rd_ratio</code>、<code>size</code>) 都写了 <code>label variable</code>——没写标签的变量，就是没写清口径的变量。字典让变量口径不会随时间失忆 (这正是 §2.1 那份数据字典的延续，只不过现在是分析样本的版本)。</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="AI 协作：让 AI 生成样本筛选日志与变量构造说明">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+AI 协作：让 AI 生成样本筛选日志与变量构造说明
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>处理做完，让 AI 读你的 do 文件，替你把日志和变量说明的初稿整理出来，你再核对补全。</p>
+<p><strong>任务说明书 (提示词模板)</strong>：</p>
+<pre><code>下面是我的数据处理 do 文件：[粘贴]。请据此生成两份文档：
+(1) 样本筛选日志：逐步列出每一步操作、样本量、增减和筛选理由；
+(2) 变量构造说明：每个衍生变量的定义、公式、单位、口径。
+对代码里没交代清楚的口径或理由，请标出来让我补充，不要替我编造。</code></pre>
+<p><strong>推荐 skill</strong>：<code>core/06-repro-logger</code>(复现日志器)。<strong>没有合适提示词？</strong> 见 <a href="../appendix/A_prompt_templates.html">附录 A</a> 或用 <code>find-skills</code> 检索安装。</p>
+</div>
+</div>
+</section>
+<section id="两条最省心的习惯" class="level3" data-number="2.8.4">
+<h3 data-number="2.8.4" class="anchored" data-anchor-id="两条最省心的习惯"><span class="header-section-number">2.8.4</span> 两条最省心的习惯</h3>
+<ul>
+<li><strong><code>data_raw</code> 只写不改</strong>：原始数据放进一个只读的 <code>data_raw/</code> 文件夹，所有清洗都写成代码、结果输出到别处，原始文件<strong>永不手动改</strong>。这样任何时候都能从原始数据一键复现——这是 Gentzkow 和 Shapiro《Code and Data for the Social Sciences》反复强调的一条。</li>
+<li><strong>文件命名说人话</strong>：文件名带上内容、粒度和时间范围，如 <code>firm_year_clean_2020_2022.dta</code>，而不是 <code>data_final_v3_really_final.dta</code>。半年后你会感谢自己。</li>
+</ul>
+<p>这两条都不花时间，却能把「复现」从一句空话变成随手可做的事。</p>
+<p>样本日志、变量字典、匹配率——这三样不是交差用的附件，而是你自己的保险。数据处理里最贵的从来不是算力，是「三个月后没人 (包括你) 说得清这份数据怎么来的」。留痕，就是给未来的自己和读者留一条回得去的路。下一节复现顶刊数据时，正是靠这条路，我们才谈得上<strong>可控、可复现、可验证</strong>。</p>
+</section>
+</section>
+<section id="复现-lane-的一小段" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="复现-lane-的一小段"><span class="header-section-number">2.9</span> 复现 Lane 的一小段</h2>
+<p>前面所有的本事——看结构、合并、清洗、构造变量、留痕——现在把它们用到一篇真论文上。我们拿 Lane (2025, QJE) 那篇关于韩国重化工业政策的文章，打开它的复现包，用 AI 与 Agent 的工作流复现其数据处理的<strong>一小段</strong>，并验证结果。目标不是把整篇复现完，而是学会一件事：<strong>借助 AI 处理真实数据时，怎么保证整个过程可控、可复现、可验证</strong>。</p>
+<section id="复现包里有什么没有什么" class="level3" data-number="2.9.1">
+<h3 data-number="2.9.1" class="anchored" data-anchor-id="复现包里有什么没有什么"><span class="header-section-number">2.9.1</span> 复现包里有什么、没有什么</h3>
+<p>打开 Lane 的复现包，先看它的数据文件夹——<code>data/input/</code> 里的文件名都带着 <code>_cleaned4reg</code>(cleaned for regression，供回归用的干净数据)，而 <code>data/intermediate/</code> 是空的 (运行时才填回归结果)。这透露了一个重要事实：<strong>这个包给你的是已经清洗好的分析面板</strong>，而从原始数据 (韩国工业普查、贸易数据、投入产出表) 到这份干净面板的清洗过程，作者放在了上游、<strong>没有随包发布</strong>。</p>
+<p>这是复现的第一课：<strong>顶刊复现包常常只给 cleaned data</strong>。学会识别数据的三个层次——<strong>原始 (raw)/ 清洗后 (cleaned)/ 结果 (results)</strong>——你才知道自己站在链条的哪一环、能复现哪一段。所以本节要做的，不是「从原始造干净」(那段作者没给)，而是从作者的干净面板出发，做我们能做、也最能学到东西的几步数据处理动作。相关的项目结构见 <a href="../lectures/01_replication.html">第 1 讲</a>。</p>
+</section>
+<section id="认结构构造处理变量" class="level3" data-number="2.9.2">
+<h3 data-number="2.9.2" class="anchored" data-anchor-id="认结构构造处理变量"><span class="header-section-number">2.9.2</span> 认结构、构造处理变量</h3>
+<p>打开主分析面板，用上这一讲开头就练的「先看清结构」的本事：</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>* 数据来自 Lane (2025) 的 Dataverse 复现包(下载方法见本节末的 callout)</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"replicationpackage/data/input/mms_merged_harmonized_panel_cleaned4reg_5digit.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="kw">describe</span>, <span class="kw">short</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="kw">codebook</span> hci <span class="fu">year</span>, compact</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Observations:      4,726
+   Variables:         28              Sorted by: id  year
+
+Variable    Obs Unique      Mean   Min   Max  Label
+-----------------------------------------------------------------------
+hci        4726      2   .366907     0     1  Heavy and Chemical Industry ...
+year       4726     17      1978  1970  1986  Year</code></pre>
+<p>一眼就能认出：这是一个<strong>行业-年度面板</strong> (<code>id</code> 是 5 位行业代码、<code>year</code> 是年份)，和本讲小林的公司-年度面板<strong>结构同构</strong>——只不过观察单位是「行业」而非「公司」。主键是 <code>id year</code>，<code>hci</code> 是「是否重化工目标行业」的哑变量 (约 37% 的行业-年被列为目标)。</p>
+<p>接着构造处理变量——这正是 §2.4 讲的变量构造，用在真数据上。韩国 1973 年启动重化工业化政策，目标行业即处理组。Lane 用一行代码合成处理变量：</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> treat = (hci==1 &amp; <span class="fu">year</span>&gt;=1973)   <span class="co">// 目标行业 × 政策启动后</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> treat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>      treat |      Freq.   Percent
+------------+------------------
+          0 |      3,298    69.78
+          1 |      1,428    30.22</code></pre>
+<p>一行代码，把「政策目标行业」和「政策时点」合成了处理变量 (1428 个行业-年进入处理组)——这就是第 1 讲说的「政策怎么进入数据」。你已经能读懂、也能复现顶刊的这一步了。</p>
+</section>
+<section id="可控可复现可验证" class="level3" data-number="2.9.3">
+<h3 data-number="2.9.3" class="anchored" data-anchor-id="可控可复现可验证"><span class="header-section-number">2.9.3</span> 可控、可复现、可验证</h3>
+<p>现在把 AI 放进来。复现常常撞上多语言：Lane 的估计用 Stata、出图表用 R。假设你面对的是作者的一段 R 代码 (比如读入某张政策表、改列名、按行业码 <code>merge</code>)。传统做法要么手敲、要么直接跑作者代码；AI 工作流的做法是：</p>
+<ul>
+<li><strong>可控</strong>：让 AI 把作者的 R 片段翻译成你熟悉的 Stata / Python(就是 §2.4 那条「翻译」协作)，你<strong>逐行看懂、确认逻辑</strong>，而不是黑箱照跑；</li>
+<li><strong>可复现</strong>：你自己的每一步都写成代码，配上样本筛选日志和变量字典 (§2.7)，别人能从原始复现包一键重跑；</li>
+<li><strong>可验证</strong>：把作者的原始代码借 AI 跑一遍，做成一个<strong>对照测试版</strong>；用它的结果和你 AI 复现的结果逐项比对。</li>
+</ul>
+<p>比对就照一张检查清单来，一项一项打勾：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>检查项</th>
+<th>作者原版</th>
+<th>我的 AI 复现版</th>
+<th>一致</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>观测数</td>
+<td>4,726</td>
+<td>4,726</td>
+<td>是</td>
+</tr>
+<tr class="even">
+<td>处理组占比</td>
+<td>30.2%</td>
+<td>30.2%</td>
+<td>是</td>
+</tr>
+<tr class="odd">
+<td>主键 <code>id year</code> 唯一</td>
+<td>是</td>
+<td>是</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
+<p>万一某项对不上，<strong>回退</strong>——不是去改数据迁就结果，而是回头查：是提示词哪里描述不清？哪一步逻辑翻译错了？改提示词或步骤，再跑一次。这个「发现偏差 → 回退修正」的循环，正是 AI 数据处理可靠性的来源。</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="迁移技能：如何按 DOI 从 Dataverse 自动下载复现包">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+迁移技能：如何按 DOI 从 Dataverse 自动下载复现包
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Lane 的复现数据公开在 Harvard Dataverse(DOI <code>10.7910/DVN/VJECHN</code>)。学会按 DOI 自动下载整个复现包，以后处理任何论文都省事——不必手动一个个点。Dataverse 提供按 DOI 打包下载的 API，大致形如：</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="at">-o</span> lane2025_replication.zip <span class="dt">\</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://dataverse.harvard.edu/api/access/dataset/:persistentId/?persistentId=doi:10.7910/DVN/VJECHN"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>任务说明书 (提示词模板)</strong>：</p>
+<pre><code>我要从 Harvard Dataverse 下载 DOI 为 10.7910/DVN/VJECHN 的复现包(整包 zip)。
+请生成一段可运行的下载脚本(curl 或 Python 均可)，并核对 Dataverse 当前的下载 API 端点是否正确；
+下载后解压，并列出其目录结构，帮我快速找到主脚本和数据文件夹。</code></pre>
+<p><strong>推荐 skill</strong>：<code>core/03-replication-navigator</code>(复现包导航，见第 1 讲)；不确定端点时用 <code>find-skills</code> 或让 AI 先核对官方 API 文档，不要照抄未经验证的地址。</p>
+</div>
+</div>
+<p>走完这一段，回头看整讲——你不再是「记住 <code>merge</code>、<code>collapse</code>、<code>destring</code> 怎么写」，而是：面对一份真实数据，能看清它的结构和层次、描述清楚要做什么、调出合适的技能去做，并用日志和对照守住可控、可复现、可验证。这就是 AI 时代做数据处理的样子：<strong>把命令交给技能，把判断留给自己</strong>。</p>
+</section>
+</section>
+<section id="经验法则与红线" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="经验法则与红线"><span class="header-section-number">2.10</span> 经验法则与红线</h2>
+<p>前面各节把常见操作、适用场景和陷阱都走了一遍。这一节把它们浓缩成两张清单：一张是经验法则，帮你更快做对判断；一张是不可破除的红线，既守住自己不出大错，也用来审查 agent 有没有偷工减料。</p>
+<p><strong>一些经验法则</strong> (帮你少走弯路，但都不是死规矩，最终看数据和研究问题):</p>
+<ul>
+<li>规模类变量 (总资产、营收、市值) 通常取对数；一旦取了对数，一般就不必再纠结离群值——对数已经把极端值压平了。</li>
+<li>比率和哑变量 (资产负债率、是否国企) 不取对数。</li>
+<li>类别变量若某一类占比极低 (比如不到 1%)，考虑并入相近的类别或直接剔除，否则这一类的估计很不稳。</li>
+<li>缺失少 (比如低于 5%) 且看着随机，可以删；缺失多、或明显非随机 (研发缺失往往集中在没有研发的公司)，删了会让样本偏向某一类，更稳妥的是填 0 再加一个「是否缺失」的指示变量。</li>
+<li>缩尾多在 1%/99% 分位；缩尾后的均值、标准差应与做同类样本的已发表文献大体接近 (如中国上市公司资产负债率通常在 0.4–0.6)，偏离太多说明阈值设定或数据本身有问题。</li>
+<li>单位要统一：元与万元、日频与年化、前复权与后复权——单位不一致是最隐蔽、也最致命的错。</li>
+<li>主键不唯一时，先查是不是「伪重复」(同一公司同一年有合并报表和母公司报表两条)，按研究口径选定一种，别随机留一行。</li>
+<li>合并后行数比主表多，是一对多膨胀；比主表少很多，是大量没匹配上。两种都要回头查。</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled" title="不可破除的红线">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+不可破除的红线
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>这几条不是建议，是纪律。它们既约束你自己，也是你审查 agent 清洗结果时的尺子:</p>
+<ul>
+<li><strong>原始数据只读，绝不手动改</strong>；一切处理写成代码。</li>
+<li><strong>每一步样本增减都要有账</strong> (样本筛选日志)，样本无故大变，必须查清才往下走。</li>
+<li><strong>合并匹配率异常必须报警</strong>，不能带着缺了一截的样本继续。</li>
+<li><strong>绝不为了让结果「好看」而在清洗阶段动手脚</strong>——删掉不利样本、专挑能凑出显著的阈值，都是红线。</li>
+<li>变换、缩尾、口径的选择，要能对着文献和常识站得住。</li>
+</ul>
+</div>
+</div>
+<p>为什么把红线摆在这么重要的位置？因为 agent 很能干，但它优化的是「完成你交代的任务」，未必是「对研究负责」。当你 (有意无意地) 暗示了想要的结果，它可能在清洗阶段悄悄迎合——删几个碍事的样本、调一下阈值。这些动作技术上都「没报错」，却会毁掉整项研究的可信度。守住上面的红线，你才有底气用 agent，而不是被它带偏。</p>
+</section>
+<section id="数据处理技能地图" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="数据处理技能地图"><span class="header-section-number">2.11</span> 数据处理技能地图</h2>
+<p>有了前面的判断力，就到了本讲的落脚点：怎么把 skills 用起来，用得又快又安全。</p>
+<p><strong>先看数据类型，再挑技能。</strong> 不同数据关注的坑不一样，该调的技能也不同:</p>
+<ul>
+<li><strong>宏观 / 地区数据</strong> (GDP、人口、政策指标)：重点在口径与频率 (年 / 季 / 月)、跨来源的单位与地区编码对齐、缺失与断点；常要频率转换、按地区码合并。</li>
+<li><strong>微观 · 个体 / 家庭调查</strong> (消费、收入)：重点在抽样权重、缺失机制与样本选择偏差、名义 / 实际口径、异常值；常要加权、缺失诊断。</li>
+<li><strong>微观 · 公司财务</strong> (上市公司)：重点在主键 (证券代码 + 年度) 与伪重复、行业 / 地区码合并、缩尾、报表口径——就是本讲的主线。</li>
+</ul>
+<p>面对一份新数据，先判断它属于哪一类、最该防哪些坑，再去找对应的技能。</p>
+<p><strong>课程自带的技能:</strong></p>
+<ul>
+<li><code>core/04-data-cleaning-planner</code>(数据清洗计划师)：生成清洗计划、核查 merge、解释各种变换的差别、按变量类型荐图、探索数据形态、规划文本处理。前面各个 callout 调的都是它。</li>
+<li><code>core/06-repro-logger</code>(复现日志器)：生成样本筛选日志与变量构造说明。</li>
+<li><code>core/08-data-audit</code>(数据审计员)：拿着上面那张红线清单，逐条审查一份清洗结果——样本流失有没有账、匹配率正不正常、离群是否被无差别缩尾、变量口径与文献是否相近、有没有为迎合结果而筛样本，把可疑处列出来让你复核。它专门用来防 agent(或自己) 在清洗阶段做手脚。</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled" title="怎么判断一个下载来的 skill 够不够用、怎么扩展">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+怎么判断一个下载来的 skill 够不够用、怎么扩展
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>从朋友或社区仓库拿到一个数据处理 skill，别直接用，先按三步评估:</p>
+<ol type="1">
+<li><strong>读它的 <code>description</code> 和检查清单</strong>，看它覆盖的任务和你的数据类型对不对得上——一个为宏观数据写的 skill，未必懂公司财务的伪重复。</li>
+<li><strong>用本讲的红线去检验它</strong>：它会查匹配率吗？会留样本日志吗？会先问口径再动手吗？缺哪条，就在提示词里、或在 skill 正文里补上对应的规则。</li>
+<li><strong>确实没有合适的，就自己造</strong>：用 <code>skill-creator</code>，或照 <code>04</code> 的写法写一个 (YAML 只放 <code>name</code> 与 <code>description</code>，正文写清「何时用、提示词、输出约定、人工检查清单」)。去哪找现成的：用 <code>find-skills</code> 检索，或到社区仓库 (记得核对许可，只用允许再分发的)。</li>
+</ol>
+</div>
+</div>
+<p>这就是本讲真正的落点：前面七八节练的判断，是为了让你<strong>有能力评估、挑选、扩展和监督</strong>这些技能——知道自己面对什么问题、该调哪个 skill、它有没有守住红线。命令会过时，技能会更新，但这套判断不会。</p>
+</section>
+<section id="python-附录" class="level2" data-number="2.12">
+<h2 data-number="2.12" class="anchored" data-anchor-id="python-附录"><span class="header-section-number">2.12</span> Python 附录</h2>
+<p>同一条数据旅程，用 Python(pandas) 也能走一遍——读入、合并、清洗、画图的<strong>思路完全一样</strong>，只是命令换了语言。完整代码见伴生文件 <a href="../examples/ch02/ch02_python.ipynb"><code>examples/ch02/ch02_python.ipynb</code></a>，它用 pandas 复刻本讲的关键几步 (同样从 GitHub 联网读取那几张表)。</p>
+<p>这里给出把 Stata 流程「翻译」成 Python 的示范提示词 (呼应本讲多处出现的「让 AI 跨语言」协作)：</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="AI 协作：把 Stata 数据处理翻译成 pandas">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+AI 协作：把 Stata 数据处理翻译成 pandas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<pre><code>下面是我的 Stata 数据处理片段(含 merge、collapse、缺失与离群处理)：[粘贴]。
+请翻译成等价的 pandas 代码，要求：
+(1) 逐句对应，并在注释里标出每一步对应原 Stata 的哪条命令；
+(2) 保留同样的检查(合并后的匹配率、样本量变化)；
+(3) 指出两种语言在缺失值、类型转换上的差异，哪些地方容易译错。</code></pre>
+</div>
+</div>
+<p>重点从来不是记住 pandas 的语法，而是<strong>同一套判断在不同语言里都成立</strong>——这正是 AI 帮你跨语言复现顶刊多源代码的地方。</p>
+</section>
+<section id="小结与练习" class="level2" data-number="2.13">
+<h2 data-number="2.13" class="anchored" data-anchor-id="小结与练习"><span class="header-section-number">2.13</span> 小结与练习</h2>
+<p>这一讲，我们陪着一份数据从凌乱走到干净：先问清<strong>来源、口径与字典</strong>，再<strong>认结构、查主键</strong>，然后<strong>合并、聚合</strong>成一张表，接着处理<strong>缺失、离群、变换</strong>，用<strong>图形</strong>给数据体检，最后<strong>留下日志与字典</strong>、并把这套做法用到 Lane (2025) 的真实数据上。</p>
+<p>回头看，每一步靠的都不是记住某条命令，而是同一个循环：<strong>先想清要做什么判断 → 描述清楚 → 调合适的技能去做 → 动手后用 <code>isid</code>、<code>_merge</code>、<code>duplicates</code>、图形去查</strong>。这份「判断清单」，比任何命令都值得带走。</p>
+<div class="callout callout-style-default callout-note callout-titled" title="练习">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+练习
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>以下练习都可用本讲数据 (<code>global D "https://raw.githubusercontent.com/lianxhcn/PXa2026a/main/examples/ch02/data"</code>) 完成。</p>
+<p><strong>1. 主键与唯一性</strong>：<code>mktcap_monthly.dta</code> 的主键是什么？写一条命令验证它；再说明为什么不能直接按 <code>stkcd</code> 把它 <code>1:1</code> 合并到公司-年度面板。</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="参考答案">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+参考答案
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>主键是 <code>stkcd ym</code>(公司-月)。验证：<code>use "$D/mktcap_monthly.dta", clear</code> 后 <code>isid stkcd ym</code>(不报错即唯一)。不能按 <code>stkcd</code> 做 <code>1:1</code>，因为一家公司有 12 个月共 12 行，<code>stkcd</code> 远非唯一；且它是公司-月粒度，要先 <code>collapse</code> 到公司-年度再合并。</p>
+</div>
+</div>
+</div>
+<p><strong>2. 合并与匹配率</strong>：把 <code>industry_lookup.dta</code> 合并到财务面板时，若不清洗键会发生什么？写出正确的合并流程，并说明合并后第一件要做的检查。</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="参考答案">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+参考答案
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>不清洗键，<code>"C36"</code> 与对照表里的 <code>"c36 "</code> 对不上，汽车业公司全部 <code>_merge==1</code>(master only)，匹配率约 67%。正确流程：先 <code>replace indcd = upper(strtrim(indcd))</code> 清洗对照表的键，再 <code>merge m:1 indcd using ...</code>；合并后第一件事是 <code>tab _merge</code> 看匹配率，确认没有异常的 master-only / using-only。</p>
+</div>
+</div>
+</div>
+<p><strong>3. 缺失与离群</strong>：<code>rd</code> 里有 <code>-99</code>、<code>sales</code> 里有一个异常大的值。分别该怎么处理？为什么离群值不能一律缩尾？</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="参考答案">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+参考答案
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>-99</code> 是伪装成数字的缺失，先 <code>mvdecode rd, mv(-99)</code> 还原为 <code>.</code>。<code>sales</code> 的异常值要<strong>先画图看见、再查明来源</strong>：本讲那条是 <code>000101</code> 在 2022 年多打了一个 0(录入错误)，应<strong>改正</strong>而非缩尾。缩尾/截尾只留给无法核实、但确实极端的真离群——否则会掩盖本可修正的错误。</p>
+</div>
+</div>
+</div>
+<p><strong>4. 选图</strong>：要检查「不同行业的研发强度是否有差异，以及各行业内部有没有离群」，该画哪一张图？若还想看「研发强度与企业规模的关系是否被行业干扰」，又该画哪张？</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="参考答案">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+参考答案
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>前者用<strong>分组箱线图</strong> (<code>graph box rd_ratio, over(ind_s)</code>)，一张图同时看组间差异和组内离群。后者用<strong>散点图</strong> (<code>scatter rd_ratio size</code>)，若点分成几条带，说明关系被行业分层干扰，提示要分组或控制行业。</p>
+</div>
+</div>
+</div>
+<p><strong>5. 交给 agent，并审计它</strong>：让 AI/agent 用本讲数据，从两批财务表出发，完成「追加 → 清洗缺失与离群 → 合并行业 → 构造研发强度 → 产出样本筛选日志」的全流程。然后<strong>审计它的结果</strong>：匹配率是多少？样本从 126 变到几？它有没有把那条可修正的离群值当成真离群缩尾了？变量字典里每个构造变量都写清口径了吗？</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="参考答案要点">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+参考答案要点
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>这道题没有标准代码，重点是<strong>审计意识</strong>。合格的复现应得到：追加后 126 行、剔除研发缺失后 124 行、合并行业匹配率 100%；那条 <code>000101</code> 2022 的离群应被识别为录入错误并改正 (而非缩尾)；<code>rd_ratio</code>、<code>size</code> 等构造变量应有 <code>label</code>。若 agent 直接缩尾了那条离群、或匹配率不到 100% 却没报警，就是要打回重做的信号——这正是「可验证」的含义。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="延伸阅读" class="level2" data-number="2.14">
+<h2 data-number="2.14" class="anchored" data-anchor-id="延伸阅读"><span class="header-section-number">2.14</span> 延伸阅读</h2>
+<ul>
+<li>连享会 · 数据处理专题 (推文合集)：<a href="https://www.lianxh.cn/blogs/25.html" class="uri">https://www.lianxh.cn/blogs/25.html</a></li>
+<li><code>reshape</code> 一文读懂 (<a href="https://www.lianxh.cn/details/1001.html">上</a>｜<a href="https://www.lianxh.cn/details/446.html">下</a>)——长宽转换的更多情形；</li>
+<li>离群值的识别与处理：<a href="https://www.lianxh.cn/details/175.html" class="uri">https://www.lianxh.cn/details/175.html</a></li>
+<li>正则表达式与文本分析：<a href="https://www.lianxh.cn/details/35.html" class="uri">https://www.lianxh.cn/details/35.html</a>——本讲降级的文本挖掘代码细节在此展开；</li>
+<li>数据获取 (接口、下载、抓取)：连享会 <a href="https://lianxhcn.github.io/dsfin/Lecture/data_get_data/lecture_get_data.html">《金融数据获取》讲义</a>；数据管理、清洗与 EDA 的系统内容，见数据分析讲义 <code>ds2026</code> 对应各章；</li>
+<li>数据库进阶 (SQL / SQLite / DuckDB / Parquet) 与现代 DID 等方法，属高级班范围，参见 <a href="https://www.lianxh.cn/details/1811.html" class="uri">https://www.lianxh.cn/details/1811.html</a>。</li>
+</ul>
 
 
 </section>

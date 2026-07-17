@@ -1,0 +1,1002 @@
+# Manufacturing Revolutions — 研究方法拆解
+
+## Source Map
+
+| 源文件 | 路径 | 用途 |
+|--------|------|------|
+| paper_text.md | `论文精读复现workflow/Lane2025QJE/paper_text.md` | 论文全文 (PDF 转 Markdown) |
+| appendix_text.md | `论文精读复现workflow/Lane2025QJE/appendix_text.md` | Online Appendix 全文 |
+| 1_run_growth_analysis.do | `replicationpackage/code/0_analysis/1_main_scripts/` | 核心 DiD / Event Study (TWFE) |
+| 3b_run_doublerobust_analysis.do | `replicationpackage/code/0_analysis/1_main_scripts/` | Double-Robust DiD (csdid/drdid) |
+| 3c_run_worldtrade_analysis.do | `replicationpackage/code/0_analysis/1_main_scripts/` | DDD 跨国分析 (ppmlhdfe) |
+| 6a_run_linkages_growthprice_analysis.do | `replicationpackage/code/0_analysis/1_main_scripts/` | 投入产出 (IO) 联动分析 |
+| 5a_run_mechanisms_lbd_analysis.do | `replicationpackage/code/0_analysis/1_main_scripts/` | Learning-by-Doing 机制检验 |
+| 4_run_policy_analysis.do | `replicationpackage/code/0_analysis/1_main_scripts/` | 政策工具分析 (投资/信贷) |
+| 3a_run_micro_tfp_analysis.do | `replicationpackage/code/0_analysis/1_main_scripts/` | 微观 TFP 持久性分析 |
+| subdofiles/6b_linkages_subrollingloop.do | `replicationpackage/code/0_analysis/subdofiles/` | Linkage rolling 子循环 |
+| subdofiles/1b_main_subrollingloop.do | `replicationpackage/code/0_analysis/subdofiles/` | 主回归 rolling 子循环 |
+
+## 本文件阅读边界
+
+本文件聚焦于论文的**实证研究设计 (Research Design)** 和**估计方法论 (Estimation Methodology)**，涵盖以下内容:
+
+- [Y] 识别策略 (DiD, DDD, Event Study, Double-Robust)
+- [Y] 核心回归方程的形式化拆解与代码落地对照
+- [Y] 变量构造逻辑 (处理变量、结果变量、控制变量)
+- [Y] 识别假设及其检验方式
+- [Y] 政策工具变量与渠道检验
+- [Y] 投入产出联动分析方法
+- [Y] 稳健性检验设计 (SUTVA, 安慰剂, 替代估计量)
+- [N] 理论模型 (Section III 的概念框架仅概述)
+- [N] 全文逐段的制度细节 (详见原始论文 Section II)
+- [N] 表格数据的手工复现 (提供代码路径和关键统计量)
+- [N] 一般均衡或结构性估计 (本论文为 Reduced-Form)
+
+---
+
+## 1 五问诊断摘要
+
+| 五问维度 | Lane (2025) 的实证策略 | 诊断 |
+|----------|------------------------|------|
+| **Q1: 研究问题** | 韩国 HCI 产业政策是否因果性地促进了目标产业及下游产业的发展？ | 明确、可检验 (Verifiable ATT) |
+| **Q2: 识别策略** | 以 1973 年 HCI 政策引入为外生冲击 (Nixon 安全危机驱动)；Treat × Post 的 DiD 比较目标产业与非目标产业；DDD 用跨国安慰剂产业作为 second difference | 逻辑自洽，外生性论证充分 |
+| **Q3: 核心 Estimand** | TWFE DiD 的 $\beta_j$ (Treat × Year 交互项系数)；结果变量为 log output, log value added, log labor productivity；固定效应为 industry 和 year FE；cluster 在 industry 层面 | 估计算子是标准的 ATT on the treated |
+| **Q4: 稳健性** | Double-robust DiD (Sant'Anna and Zhao 2020, Callaway and Sant'Anna 2021)；DDD 跨国安慰剂；rolling event-study windows；pre-trend 联合检验；替代控制组 (低 linkage 暴露组)；SUTVA 污染检验 | 多层稳健性覆盖充分 |
+| **Q5: 学术贡献** | 首个用现代计量方法评估韩国 HCI 驱动的实证研究；新数字化工业普查数据 (MMS)；揭示 IO 网络溢出效应；政策结束后效应持久 | 数据 + 方法 + 发现三位一体的贡献 |
+
+---
+
+## 2 核心研究问题和贡献
+
+### 2.1 研究问题
+
+本文回答的核心问题是：**1973 年引入的韩国重化学工业 (HCI) 推进政策是否因果性地促进了被直接扶持产业 (targeted industries) 和通过投入产出关联的下游产业 (downstream industries) 的工业发展？**
+
+该问题可进一步分解为三个层次:
+
+1. **直接效应 (Direct Effects)**：HCI 政策是否提升了目标产业的产出、生产率、就业和出口竞争力？(Section V)
+2. **间接效应 (Indirect / Spillover Effects)**：HCI 政策是否通过投入产出网络 (Input-Output linkages) 对非目标的下游和上游产业产生了溢出？(Section VII)
+3. **机制效应 (Mechanisms)**：政策是通过何种渠道 (信贷扩张、投资激励、学习效应) 产生作用的？(Section VI)
+
+### 2.2 学术贡献定位
+
+论文明确列出三个贡献:
+
+1. **工业政策的现代计量评估**：在 Juhász (2018), Criscuolo et al. (2019), Aghion et al. (2015) 等新兴文献基础上，以 natural experiment 方法评估韩国历史性产业政策。
+2. **东亚奇迹的实证再审视**：首次用现代计量技术评估被 Wade (1990) 和 Amsden (1992) 等定性研究广泛讨论、但被 Beason and Weinstein (1996) 和 Pack (2000) 等实证研究质疑的韩国 HCI 政策。
+3. **网络溢出视角的引入**：将 IO 网络分析 (Javorcik 2004 的 FDI 溢出框架) 引入产业政策评估，揭示 policy 通过 forward linkage 对下游产业的正面溢出。
+
+---
+
+## 3 为什么这个问题重要
+
+### 3.1 政策背景的重大性
+
+韩国 HCI 驱动 (1973–1979) 是战后发展中国家最雄心勃勃的产业政策实验之一。六个战略性部门 (钢铁、有色冶金、造船、机械、电子、石油化工) 获得了政府主导的定向信贷 (directed credit)、税收激励和贸易保护。到 1980 年，HCI 产品已占韩国制造业出口的 50% 以上 (目标于 1983 年提前达成)。
+
+### 3.2 学术争论的长期性
+
+关于产业政策 (尤其是东亚语境下) 的有效性，存在深刻的学术分歧:
+- **支持派** (Wade 1990; Amsden 1992; Rodrik 1995)：强调国家能力与战略性干预的正向促进作用
+- **质疑派** (Krueger 1990; Pack 2000; Noland and Pack 2003)：认为产业政策与工业增长之间缺乏因果证据，甚至可能产生寻租和错配
+
+### 3.3 当代政策含义
+
+在过去十年间，全球主要经济体重新展开了对产业政策的关注 (美国 CHIPS 法案、欧盟 Green Deal Industrial Plan 等)。Juhász, Lane, and Rodrik (2024) 在 *Annual Review of Economics* 中指出了 "New Economics of Industrial Policy" 的兴起。Lane (2025) 的发现——临时性产业政策可以产生持久效果且通过网络产生溢出——对当代政策设计具有直接启示意义。
+
+---
+
+## 4 主要结论、数量级和机制链条
+
+### 4.1 直接效应 (基准结果)
+
+| 结果变量 | 估计量 | 效果 (ATT) | 显著性 |
+|----------|--------|-----------|--------|
+| Output (shipments) | Double-robust | +128% (即 $e^{0.8378} - 1 \approx 131\%$，经 SM 调整约 128%) | p < 0.01 |
+| Value Added | Double-robust | +127% | p < 0.01 |
+| Labor Productivity | Double-robust | +17.2% | p < 0.05 |
+| Employment | Double-robust | +63.8% | p < 0.01 |
+| Output Price | Double-robust | −9.55% | p < 0.01 |
+| RCA (Balassa) | Double-robust | +13.2% (log) | p < 0.01 |
+| Prob (RCA > 1) | Double-robust | +10.6 pp | p < 0.01 |
+
+### 4.2 机制链条 (Paper 结构)
+
+```
+政策工具 (Policy Levers)
+  +-- 定向信贷 (Directed Credit) -> 降低 MRPK 楔形 -> 投资扩张 (Intermediate outlays +81.4%)
+  +-- 税收激励 (Tax Incentives) -> 有效边际税率分化 (Figure I Panel A)
+  +-- 贸易政策 (Trade Policy) -> 投入品关税豁免 (非名义保护主义)
+  |
+  +-- 传导至工业发展 (Industrial Development)
+        +-- [直接渠道] 产出扩张 -> 就业增长 -> 劳动生产率提升
+        +-- [学习渠道] 经验积累 (Cumulative Output) -> 单位成本下降 -> TFP 提升
+        |     +-- 交叉工厂学习溢出 (Plant-level + Industry-level LBD)
+        +-- [网络渠道] 下游 Forward Linkage 产业 -> 产出扩张 -> 价格下降 -> 出口 RCA 提升
+```
+
+### 4.3 效应的时间动态
+
+- **政策期内 (1973–1979)**：效应逐步显现且加速
+- **政策结束后 (1979–1986)**：效应持久甚至增强 (特别是出口 RCA 和 TFP)
+- **1990 年后**：部分效应可能衰减 (微观数据仅至 1986)
+
+---
+
+## 5 数据、制度背景和变量构造
+
+### 5.1 数据全景
+
+| 数据来源 | 覆盖期 | 粒度 | 用途 |
+|----------|--------|------|------|
+| **MMS** (Mining and Manufacturing Survey) | 1967–1986 | 4-digit / 5-digit KSIC | 核心产出、就业、价格、投资的行业面板 |
+| **UN COMTRADE** | 1967–1986 | SITC Rev.1 4-digit | 贸易流动、RCA 计算、DDD 跨国分析 |
+| **Bank of Korea IO Tables** | 1970 (基准年) | ~320 部门 | 投入产出关联度计算 |
+| **Policy Loan Data** | 1972–1981 | 2-digit / 部门 | KDB 和商业银行政策贷款记录 |
+| **Trade Policy (Luedde-Neurath 1982)** | 1968, 1974, 1976, 1978, 1980, 1982 | 产品级 | 关税、数量限制 (QR) 的保护率 |
+| **Plant-level MMS microdata** | 1979–1986 | 工厂级 | TFP 估计 (OP, LP, Wooldridge, ACF) |
+
+### 5.2 面板结构
+
+论文使用两个面板以权衡覆盖期和粒度:
+
+**Long Panel (4-digit KSIC, 1967–1986)**:
+- 行业数：88 (全样本), 55 (非 HCI 样本)
+- 优势：覆盖完整的政策前后观察期 (1967–1972 为 pre-period, 共 6 年 pre-trend)
+- 劣势：行业粒度较粗，统计效力较低
+
+**Short Panel (5-digit KSIC, 1970–1986)**:
+- 行业数：278 (全样本), 176 (非 HCI 样本)
+- 优势：行业粒度细，接近原始 MMS 出版统计量，统计效力高
+- 劣势：仅 3 年 pre-period (1970–1972)，pre-trend 检验的识别力有限
+
+### 5.3 关键变量构造
+
+#### 处理变量 (Treatment Variable)
+
+```
+代码: 1_run_growth_analysis.do, Line 27
+gen treat = (hci == 1 & year >= 1973)
+```
+
+处理变量定义为二元变量：`Targeted_i = 1`，若产业 $i$ 出现在六项主要 HCI 立法中 (钢铁、有色冶金、造船、机械、电子、石油化工)。立法文本与 KSIC 行业代码通过人工匹配 (hand-matching) 完成。处理时间为 1973 年 1 月 (HCI 政策正式宣布)。
+
+处理变量构造的关键特征：
+- [Y] 处理组：six strategic sectors 对应的 KSIC 分类
+- [Y] 对照组：所有其他制造业行业 (non-targeted manufacturing)
+- [Y] Binary treatment (Section V) 对应 DiD 和 Double-robust
+- [Y] Continuous treatment (Section VII) 对应 Linkage 分析
+- [!] `Treat = hci × Post1973` 为 staggered adoption 的标准设置 (single cohort)
+
+#### 核心结果变量 (Outcome Variables)
+
+| 变量名 (log) | 定义 | 来源 |
+|-------------|------|------|
+| `l_ship` | Log real gross output shipped (发货额) | MMS |
+| `l_grossoutput` | Log real gross output (总产值) | MMS |
+| `l_valueadded` | Log real value added (增加值) | MMS |
+| `l_workers` | Log total employment (就业人数) | MMS |
+| `l_ppi` | Log producer price index (出厂价格) | Bank of Korea PPI |
+| `l_y_n` | Log value added per worker = labor productivity | MMS (构造) |
+| `l_ship_sh` | Log share of manufacturing output (产出份额) | MMS (构造) |
+| `l_lab_sh` | Log share of manufacturing employment (就业份额) | MMS (构造) |
+| `l_est` | Log number of establishments (工厂数) | MMS |
+| `l_costs` | Log real intermediate outlays (中间投入) | MMS |
+| `l_inv_tot` | Log real total investment (总投资) | MMS |
+| `l_i_n` | Log investment per worker | MMS (构造) |
+| `RCA` (Balassa) | Revealed comparative advantage index | COMTRADE (构造) |
+| `rca_cdk` | CDK 相对出口生产率 | COMTRADE (构造 via gravity) |
+
+#### 控制变量 (Basic Regressors)
+
+```stata
+代码: 1_run_growth_analysis.do, Line 122
+local basic_regressors c.(l_costs_0 l_avg_size_0 l_avg_wages_0 l_y_n_0)#i.year
+```
+
+控制变量为四个 pre-1973 的行业平均值与年份效应的交互项:
+- `l_costs_0`: Pre-1973 平均 log 中间投入 (material costs)
+- `l_avg_size_0`: Pre-1973 平均 log 工厂规模 (employment per plant)
+- `l_avg_wages_0`: Pre-1973 平均 log 工资 (total wage bill per worker)
+- `l_y_n_0`: Pre-1973 平均 log 劳动生产率 (value added per worker)
+
+这些控制变量是**时不变的 (time-invariant)**，因此与 `i.year` 交互来捕捉它们随时间的影响，从而控制 pre-1973 的未观测生产力差异。
+
+### 5.4 投入产出关联度变量 (Linkage Variables)
+
+**Direct Linkages** (来自 1970 IO 表):
+
+$$Backward\_Linkage_i = \sum_{j \in HCI} \alpha_{ij}$$
+
+$$Forward\_Linkage_i = \sum_{j \in HCI} \alpha_{ji}$$
+
+其中 $\alpha_{ij}$ 表示产业 $i$ 产出中被 HCI 产业 $j$ 使用的一组份额 (基于 IO 成本份额)。
+
+**Leontief-based Total Linkages**:
+$$Total\_Backward\_Linkages_i = \sum_{j \in HCI} \ell_{ij}$$
+
+其中 $\ell_{ij}$ 是 Leontief 逆矩阵的元素，即 $(I - A)^{-1}$ 中的元素，捕获网络中的全部直接和间接关联。
+
+代码变量名对应:
+- `hci_share_use_tot_0` 和 `hci_share_make_tot_0` (direct shares)
+- `lf_hci_link_use_0` 和 `lf_hci_link_make_0` (Leontief inverse-based)
+
+---
+
+## 6 研究设计和识别假设
+
+### 6.1 核心识别逻辑
+
+核心识别策略是 **Difference-in-Differences (DiD)**，利用 1973 年 HCI 政策引入作为外生冲击:
+
+**处理效应识别的三层识别链**:
+
+1. **时间变异 (Temporal variation)**：1973 年 1 月 HCI 政策引入 (驱动因素 = Nixon 安全危机 + Park 总统的自我政变)
+2. **截面变异 (Cross-sectional variation)**：六大战略性行业 (Targeted) vs. 其他制造业 (Non-Targeted)
+3. **外生性论证**：
+   - 政策启动由 Nixon 1969 年宣言 (美国不再直接军事支持亚太盟友) 和朝鲜军事化引发的安全危机驱动
+   - 国际债权人 (IMF, USAID, World Bank, US EXIM Bank) 事前认为韩国在重化工业没有比较优势
+   - World Bank 在 1969 年明确判断韩国 "had no comparative advantage in the production of steel"
+   - 政策终止由 Park 总统 1979 年被刺杀这一外生政治事件驱动
+
+### 6.2 Parallel Trends 假设
+
+**DiD 的核心识别假设**：
+
+> 在没有 HCI 政策干预的情境下，目标产业与非目标产业的工业发展结果应遵循共同的时间趋势 (parallel trends)。
+
+\[E[Y_{it}(0) | Targeted_i = 1, t] - E[Y_{it}(0) | Targeted_i = 1, t-1] = E[Y_{it}(0) | Targeted_i = 0, t] - E[Y_{it}(0) | Targeted_i = 0, t-1]\]
+
+**该假设在本文中的有效性来源**:
+
+1. **Pre-trend 视觉检验**：Figure II 显示 1967–1972 年间 targeted 与 non-targeted 产业的产出轨迹高度平行
+2. **Pre-trend 联合 F 检验**：
+   ```stata
+   // 代码: 1_run_growth_analysis.do, Line 176
+   quietly: estat ptrends
+   local pre_ftest = r(F)
+   local pre_testprob = r(p)
+   ```
+   事前趋势系数的联合显著性检验 (joint F-test of pre-trends) 不能拒绝零假设 (即 pre-trends jointly insignificant)
+3. **Long Panel 的额外支撑**：4-digit long panel (1967–1986) 提供 6 年 pre-period，显著增强了 pre-trend 检测的识别力
+4. **Qualitative 历史论证**：Section II 详细记录了国际机构在事前对韩国重化工业的比较优势持怀疑态度，表明 targeted 产业并不具备被预测为自然增长的不可观测优势
+
+**Parallel Trends 假设的局限**:
+
+- [!] Short Panel (5-digit) 仅 3 年 pre-period (1970–1972)，pre-trend 检验效力有限
+- [!] Pre-trend 不显著不能 "证明" 平行趋势成立 (只能不拒绝零假设)
+- [!] 论文使用 DDD 跨国比较作为对此局限的补充
+
+### 6.3 DDD 的额外识别假设
+
+方程 (4a)–(4b) 的 DDD 设定了额外的识别假设：
+
+> 在韩国，Targeted 和 Non-Targeted 产业的差异在 treatment 前应与外国 Targeted 和 Non-Targeted 产业的差异遵循相同的时间趋势。
+
+等价于: 韩国 DiD 与外国安慰剂 DiD 的差异在事前为零。
+
+**DDD 的无偏条件** (Olden and Møen 2022)：即使两个 DiD 各自有偏，只要偏误相同 (common bias)，其差异就给出无偏估计。
+
+### 6.4 SUTVA 假设及处理
+
+**Stable Unit Treatment Value Assumption (SUTVA)** 要求政策的外部性不污染对照组。本文的挑战在于:
+- HCI 政策通过网络溢出 (forward linkages) 影响了非目标下游产业，可能导致对照组部分 "被处理"
+- 这种正向溢出会使 DiD 估计有偏 (可能偏低，因为对照组也因此受益)
+
+**论文的三重 SUTVA 稳健性检验** (Section VII.B, Online Appendix G):
+
+1. **限制对照组为低联动暴露行业**：仅保留低于 median linkage 的 control industries (Online Appendix Figure G.1)
+2. **在回归中控制 linkage exposure**：在 DiD 方程中显式控制 forward linkage 暴露 (Online Appendix G.2)
+3. **检验投资挤出**：检验 linkage 控制是否改变投资效应的符号 (Online Appendix G.3)
+
+结论：即便控制 SUTVA 污染，核心 DiD 效应模式仍然稳健。
+
+---
+
+## 7 核心回归方程
+
+### 7.1 Equation (1)：TWFE 事件研究基底方程
+
+$$\ln(y_{it}) = \alpha_i + \tau_t + \sum_{j \neq 1972} \beta_j \cdot Target_i \times Year_t^j + \varepsilon_{it}$$
+
+**模型形式解读**:
+- $\ln(y_{it})$: 产业 $i$ 在年份 $t$ 的工业发展结果 (log 形式)
+- $\alpha_i$: 产业固定效应 (industry FE)，吸收不随时间变化的产业异质性
+- $\tau_t$: 年份固定效应 (year FE)，吸收共同的宏观冲击
+- $Target_i$: 二元处理变量 (=1 若产业属于 HCI 六大战略部门)
+- $Year_t^j$: 年份虚拟变量 (=1 若 $t = j$)
+- $\beta_j$: **核心估参量**，即每年 targeted vs. non-targeted 产业的差异 (相对于基年 1972 年)
+- $\varepsilon_{it}$: 误差项，标准误在产业层面 cluster
+
+**Treatment 参数的含义**:
+
+$\beta_j$ 的三个解读维度:
+- $j < 1972$: 事前差异, 检验 Parallel Trends ($\beta_{1967} \approx ... \approx \beta_{1971} \approx 0$)
+- $1973 \leq j \leq 1979$: 政策期内的处理效应
+- $j \geq 1980$: 政策后的持久效应
+
+**控制的时变协变量** (Basic Regressors):
+
+论文还估计包含控制变量的版本:
+$$\ln(y_{it}) = \alpha_i + \tau_t + \sum_{j \neq 1972} \beta_j \cdot Target_i \times Year_t^j + \sum_{k} \gamma_{k,j} \cdot X_{i}^{pre} \times Year_t^j + \varepsilon_{it}$$
+
+其中 $X_{i}^{pre}$ 是 pre-1973 industry average controls (log intermediate costs, log average plant size, log average wages, log labor productivity)，与 year FE 交互后进入方程。
+
+**代码实现** (1_run_growth_analysis.do):
+
+```stata
+// Line 161: 核心估计
+quietly: xtdidregress (l_ship l_costs_0 l_avg_size_0 l_avg_wages_0 l_y_n_0)
+              (treat), group(id) time(year) vce(cluster id)
+
+// Line 168: 趋势图 (预测)
+estat trendplots, ltrends noxline
+
+// Line 176: Pre-trend 联合检验
+quietly: estat ptrends
+
+// Line 183: Event-study (Granger) 动态图
+estat grangerplot, baseline(1972) verbose post
+```
+
+> 注: `xtdidregress` 是 Stata 17+ 的官方 DiD/Event-Study 命令，自动处理 `target × year` 的交互项，并以 `baseline()` 参数指定基准年份。
+
+### 7.2 Equation (2)：Plant-Level TFP 持久性
+
+$$TFP_{pit} = \alpha_{it} + \beta \cdot Targeted_p + \varepsilon_{pit}$$
+
+其中 $p$ 表示工厂, $t$ 为 post-1979 年份, $\alpha_{it}$ 是 industry-year 固定效应 (4-digit KSIC × Year)。由于 treatment 是时不变的，使用两路 cluster (industry + plant level) 标准误。TFP 使用四种方法估计: OP (Olley and Pakes 1996), LP (Levinsohn and Petrin 2003), Wooldridge (2009), ACF (Ackerberg, Caves, and Frazer 2015)。
+
+### 7.3 Equation (3)：Double-Robust DiD (ATT)
+
+$$ATT_t = E\left[ \frac{Targeted}{E[Targeted]} - \frac{\pi(X)(1 - Targeted)}{1 - \pi(X)} \cdot \frac{1}{E\left[\frac{\pi(X)(1 - Targeted)}{1 - \pi(X)}\right]} \right] \cdot \left( Y_t - Y_{1972} - f_{0,Y_t - Y_{1972}}(X) \right)$$
+
+其中:
+- $\pi(X) \equiv E[Targeted | X]$: 倾向得分 (logit 估计)
+- $f_{0,Y_t - Y_{1972}}(X) \equiv E[Y_t - Y_{1972} | Targeted = 0, X]$: 对照组的 outcome regression (OLS 估计)
+- $Y_t - Y_{1972}$: long-difference (相对于 pre-treatment 最后一期 1972 年)
+
+**Double-Robust 性质**: 只要 $\pi(X)$ 或 $f_{0,Y_t - Y_{1972}}(X)$ 中至少一个被正确设定，ATT 的估计就是一致的。
+
+**代码实现** (3b_run_doublerobust_analysis.do):
+
+```stata
+// Line 200-209: 使用 csdid 包 (基于 Callaway and Sant'Anna 2021)
+// DR (Doubly-Robust Inverse Probability Weighting)
+csdid l_ship l_costs_0 l_avg_size_0 l_avg_wages_0 l_y_n_0, ///
+    time(year) ivar(id) gvar(gvar) ///
+    method(dripw) wboot reps(10000) ///
+    agg(event) replace
+
+// Line 201-203: OLS (作为比较基准)
+csdid l_ship l_costs_0 l_avg_size_0 l_avg_wages_0 l_y_n_0, ///
+    time(year) ivar(id) gvar(gvar) ///
+    method(reg) agg(event) replace
+```
+
+**关键代码细节**:
+- `method(dripw)`: Doubly-Robust Inverse Probability Weighting 方法
+- `wboot reps(10000)`: Wild bootstrap, 10,000 次迭代 (允许 within-industry correlation)
+- `agg(event)`: 聚合到 event-study 动态估计
+- `gvar = 1973` (若 hci == 1): CSDID 的 group variable (single cohort, staggered 中最简情形)
+
+### 7.4 Equations (4a) 和 (4b)：DDD 跨国模型
+
+**简化版 DDD (4a)**:
+
+$$Y_{ict} = \alpha_i + \tau_t + \sigma_c + \sum_{j \neq 1972} \beta_{1j} \cdot HCI_i \times Year_t^j + \sum_{j \neq 1972} \beta_{2j} \cdot Korea_c \times Year_t^j + \sum_{j \neq 1972} \beta_{3j} \cdot Korea_c \times HCI_i \times Year_t^j + \varepsilon_{ict}$$
+
+**高维固定效应版 DDD (4b)**:
+
+$$Y_{ict} = \alpha_{it} + \tau_{ct} + \sigma_{ci} + \sum_{j \neq 1972} \beta_{3j} \cdot Korea_c \times HCI_i \times Year_t^j + \varepsilon_{ict}$$
+
+其中:
+- $c$: country (韩国 + 所有其他报告贸易数据的国家)
+- $i$: industry (SITC Rev.1 4-digit)
+- $\beta_{3j}$: 核心系数——韩国的 Targeted vs. Non-Targeted 差异相对于外国 Placebo 差异的差异
+- $\alpha_{it}$: industry-year FE, 吸收全球产业特定的时间冲击
+- $\tau_{ct}$: country-year FE, 吸收国家特定的宏观冲击
+- $\sigma_{ci}$: country-industry FE, 吸收不随时间变化的国家-产业比较优势
+
+**PPML 估计** (贸易流量中的零值问题):
+```stata
+// 代码: 3b_run_doublerobust_analysis.do, Line 301-305
+ppmlhdfe rca_core i.hci##i.post ///
+    c.(l_costs_0 l_avg_size_0 l_avg_wages_0 l_y_n_0)##i.year, ///
+    absorb(id year) vce(cluster id)
+```
+
+**DDD 的关键识别优势**:
+- 控制了全球 HCI 产业的共同趋势 (通过 $HCI_i \times Year_t^j$)
+- 控制了韩国整体的宏观经济趋势 (通过 $Korea_c \times Year_t^j$)
+- 剩余 variation 是韩国 HCI 产业相对于世界 HCI 产业的差异化增长，即韩国产业政策的净效应
+
+### 7.5 Equation (5)：Learning-by-Doing 机制
+
+$$Y_{it} = \beta_1 \cdot Experience_{it} + \beta_2 \cdot Experience_{it} \times Targeted_i + \alpha_i + \tau_t + \theta \cdot Size_{it} + X'_{it} \cdot \gamma + \varepsilon_{it}$$
+
+其中:
+- $Y_{it}$: log price, log unit cost (中间投入/产出), 或 TFP
+- $Experience_{it}$: log real cumulative gross output up to time $t$
+- $\beta_1$: 全样本的经验效应
+- $\beta_2$: **目标产业的经验加成效应** (learning 是否在 HCI 产业更强)
+- $Size_{it}$: 工厂规模控制 (conventional scale effects)
+- $X_{it}$: 包含 factor intensity 控制 (capital intensity, total input outlays per worker)
+- $\alpha_i$: 产业固定效应 (或 plant FE 在 micro-level 设定中)
+
+**Plant-level 扩展** (Table VI):
+
+在工厂层面，$Experience$ 分解为两类:
+- $Plant\_Experience_{pt}$: 工厂 $p$ 自身的累积产出
+- $Industry\_Experience_{it}$: 产业 $i$ 的总累积产出 (排除工厂 $p$ 自身)
+
+该分解允许识别 **plant-level learning** (私有学习效应) vs. **industry-level learning spillovers** (跨工厂学习溢出)。
+
+$$Y_{pit} = \beta_1^P \cdot Plant\_Exp_{pt} + \beta_2^I \cdot Industry\_Exp_{it} + \beta_3^P \cdot Plant\_Exp_{pt} \times Targeted_i + \beta_4^I \cdot Industry\_Exp_{it} \times Targeted_i + ...$$
+
+**注意**: 这是相关性分析 (correlational) 而非因果识别——Experience 是内生变量，且回归只在 post-1972 期间运行。
+
+### 7.6 Equations (6a)–(6b)：Linkage 定义方程
+
+**Direct Backward and Forward Linkages**:
+
+$$Backward\_Linkage_i = \sum_{j \in HCI} \alpha_{ij}$$
+
+$$Forward\_Linkage_i = \sum_{j \in HCI} \alpha_{ji}$$
+
+**Total (Leontief-inverse) Linkages**:
+
+$$Total\_Backward\_Linkages_i = \sum_{j \in HCI} \ell_{ij}$$
+
+$$Total\_Forward\_Linkages_i = \sum_{j \in HCI} \ell_{ji}$$
+
+其中 $\ell_{ij}$ 来自 $L = (I - A)^{-1}$ (Leontief inverse matrix from 1970 IO tables)。
+
+### 7.7 Equation (7)：Linkage Event-Study 方程
+
+$$\ln(y_{it}) = \alpha_i + \tau_t + \sum_{j \neq 1972} \gamma_j \cdot Backward\_Linkage_i \times Year_t^j + \sum_{j \neq 1972} \delta_j \cdot Forward\_Linkage_i \times Year_t^j + \varepsilon_{it}$$
+
+**核心参数**:
+- $\gamma_j$: 向后关联产业的差异化发展 (backward linkage × year)
+- $\delta_j$: 向前关联产业的差异化发展 (forward linkage × year)
+
+**全样本扩展**:
+在全样本 (including targeted industries) 估计时，额外控制:
+
+$$\ln(y_{it}) = \alpha_i + \tau_t + \sum_{j \neq 1972} \beta_j \cdot Targeted_i \times Year_t^j + \sum_{j \neq 1972} \gamma_j \cdot BW\_Linkage_i \times Year_t^j + \sum_{j \neq 1972} \delta_j \cdot FW\_Linkage_i \times Year_t^j + \varepsilon_{it}$$
+
+**代码实现路径** (6a_run_linkages_growthprice_analysis.do):
+
+```stata
+// 输入: subloop 文件 code/0_analysis/subdofiles/6b_linkages_subrollingloop.do
+// 包含子循环 to 生成 pre-post 和 rolling event-study 估计
+// 使用 reghdfe (吸收高维固定效应) 结合手动构建的 linkage × year 交互项
+
+// 关键回归形式:
+reghdfe l_valueadded i.post#c.hci_share_use_tot_0 i.post#c.hci_share_make_tot_0, ///
+    absorb(id year) vce(cluster id)
+```
+
+**Linkage 分析的识别假设**:
+
+> 前后向关联度不同的产业在没有 HCI 政策情境下，工业发展应遵循相同的时间趋势。
+
+即: Strong-linkage 和 Weak-linkage 产业之间的差异在 pre-1972 应为中心在零的随机波动。
+
+### 7.8 滚动 Event-Study (Rolling Windows)
+
+论文报告了 rolling event-study 估计，作为替代的动态效应呈现方式。该方法不直接在方程 (1) 中体现，而是通过以下方式实现:
+
+在实际代码中，子程序 `1b_main_subrollingloop.do` 和 `6b_linkages_subrollingloop.do` 生成 rolling window 估计——在 rolling window 设计中，利用 $k$ 年期窗口内的平均处理效应随时间推移的变化来考察政策效果的稳定性和动态演进。
+
+代码中还包含了 **投资与资本方程 (Equation (8))**，用于评估 HCI 政策对 treated 产业投资响应的影响:
+
+$$\ln(Investment_{it}) = \alpha_i + \tau_t + \sum_{j \neq 1972} \beta_j \cdot Target_i \times Year_t^j + \varepsilon_{it}$$
+
+此外还有针对 high-MRPK vs. low-MRPK 产业的 differential input wedge 检验 (Policy Mechanisms, Section VI.A.2):
+
+$$Input\_Response_{it} = \beta \cdot Post \times Targeted_i \times High\_MRPK_i + ...$$
+
+### 7.9 Linkage Event-Study 中子循环的详细逻辑
+
+`6b_linkages_subrollingloop.do` 的实现逻辑如下:
+
+**Step 1**: 循环遍历 outcome 变量 (e.g., `l_valueadded`, `l_ppi`)
+
+**Step 2**: 循环遍历 linkage regressor 集合:
+- `hci_share_use_tot_0` (前向关联)
+- `hci_share_make_tot_0` (后向关联)
+- 两者的联合 (both linkages simultaneously, Eq (7))
+
+**Step 3**: 循环遍历样本限制:
+- `restrictions == 9`: 全样本 (all industries)
+- `restrictions == 1`: 仅 HCI 产业 (检验直接效应)
+- `restrictions == 0`: 仅非 HCI 产业 (检验净溢出)
+
+**Step 4**: 对每个组合运行 `reghdfe`:
+```stata
+// PRE-POST 平均效应
+reghdfe `outcome` i.post#c.`linkage_use` i.post#c.`linkage_make`, ///
+    absorb(id year) vce(cluster id)
+
+// ROLLING EVENT-STUDY
+reghdfe `outcome` ib(1972).year#c.`linkage_use` ib(1972).year#c.`linkage_make`, ///
+    absorb(id year) vce(cluster id)
+```
+
+**关键回归细节**:
+- `ib(1972).year#c.linkage_var` 创建了 linkage 变量与年份虚拟变量的交互项，以 1972 年为基准年 (omitted category)
+- 吸收 `id` 和 `year` 作为固定效应
+- 标准误聚类在 industry `id` 层面
+- 全样本回归中额外控制 `Targeted × Year` 交互项 (通过 `absorb(id year hci#year)`) 以吸收直接政策效应
+
+### 7.10 出口贸易方程 (Trade / Export Specification)
+
+对于 COMTRADE 贸易流数据，论文使用了额外的估计方法:
+
+**RCA 的 PPML 估计** (处理零贸易流):
+
+$$\ln(RCA_{it}) \approx \exp(\alpha_i + \tau_t + \sum_{j \neq 1972} \beta_j \cdot Target_i \times Year_t^j)$$
+
+使用 PPML (Poisson Pseudo-Maximum Likelihood) 以避免 $\ln(0)$ 问题:
+```stata
+ppmlhdfe rca_core i.hci##i.post ///
+    c.(l_costs_0 l_avg_size_0 l_avg_wages_0 l_y_n_0)##i.year, ///
+    absorb(id year) vce(cluster id)
+```
+
+**CDK 相对出口生产率的估计** (Costinot, Donaldson, and Komunjer 2012):
+
+先估计 gravity equation:
+$$\ln(X_{ijk}) = \delta_{ij} + \delta_{jk} + \delta_{ik} + \varepsilon_{ijk}$$
+
+其中 $X_{ijk}$ 是 exporter $i$ -> importer $j$ 的 commodity $k$ 出口额。然后 $\widehat{CDK}_k = \exp(\hat{\delta}_{ik} / \hat{\theta})$，其中 $\hat{\theta}$ 来自 CDK (2012)。
+
+**该度量序列的一个重要性质**: CDK 从非零贸易流中估计 (与 Balassa RCA 不同)，因此无法捕获 extensive margin (进入新市场) 的效应。CDK 的估计更偏向 intensive margin (已有出口流的扩张)。
+
+---
+
+## 8 主要表格和图形解读
+
+### 8.1 Table I：Plant-Level TFP 持久性
+
+| TFP 方法 | Estimated ATTs | 解释 |
+|----------|---------------|------|
+| Wooldridge (W) | 0.0443*** | 4.4% higher TFP for treated |
+| ACF | 0.0544*** | 5.4% higher TFP for treated |
+| Olley-Pakes (OP) | 0.0432 | Noisy positive |
+| Levinsohn-Petrin (LP) | 0.0240 | Noisy positive |
+
+- [Y] 控制 Industry × Year FE
+- [Y] Two-way clustered SE (industry + plant)
+- [!] 仅覆盖 post-1979 期 (因微数据仅在 1979 年之后可用)
+- [!] 相关性分析 (非因果 DID)
+
+### 8.2 Table II：工业发展 ATT
+
+基准结果：
+- **Output (shipments)**: +128% (Double-robust, col 1)
+- **Labor productivity**: +17.2% (Double-robust, col 1)
+- **Output price**: −9.55% (Double-robust, col 1)
+- **Employment**: +63.8% (Double-robust, col 1)
+
+Double-robust 和 TWFE 估计高度一致 (见 col 1 vs 2, col 3 vs 4)，支持 TWFE 的可靠性。
+
+### 8.3 Table III：出口发展 ATT
+
+- **RCA (log)**: +13.2% (Double-robust, col 1)
+- **Prob (RCA > 1)**: +10.6 pp (Double-robust, col 1)
+- **CDK export productivity**: +4.92% (Double-robust, col 1)
+
+PPML 估计 (col 3) 的系数普遍更大但 pattern 一致。
+
+### 8.4 Table IV：投入与投资
+
+- **Intermediate outlays**: +109% (Double-robust, col 1)
+- **Investment total**: +81.4% (Double-robust, col 1)
+- **Investment per worker**: +13.2% (noisy for 4-digit)
+
+### 8.5 Table V 和 VI：Learning-by-Doing (LBD)
+
+**Table V** (Industry-level):
+- $Experience \times Targeted$: 对 price 和 unit cost 显著为负
+- $Experience \times Targeted$: 对 TFP (LP) 显著为正
+- Combined effect: Targeted 产业的经验弹性显著大于非 Targeted 产业
+
+**Table VI** (Plant-level, post-1979):
+- Both plant-level and industry-level experience have stronger effects for targeted establishments
+- Industry-level learning effects persist even controlling for plant-level learning (暗示有 cross-plant spillovers)
+
+### 8.6 Table VII：Linkage Effects (Value Added)
+
+| Specification | Forward Link × Post | Backward Link × Post |
+|---------------|---------------------|----------------------|
+| 5-digit, Full Sample | 2.832*** | −0.017 (ns) |
+| 5-digit, Non-HCI Only | 4.405*** | 0.176 (ns) |
+| 4-digit, Full Sample | 2.095** | −0.693 (ns) |
+| 4-digit, Non-HCI Only | 2.906** | −2.163* |
+
+> Semi-elasticity: 一个 1% 的 Forward Linkage 份额增加 (0 到 1 的连续变量) 关联 +4.4% 的产出增加 (for non-HCI downstream industries)。
+
+### 8.7 Figure I–VII 概况
+
+| Figure | 内容 | 估计方法 |
+|--------|------|----------|
+| I (A-C) | 投资政策趋势 (税楔, KDB 贷款) | 描述性统计 |
+| II (A-B) | Targeted 产出扩张 DiD | Eq (1) TWFE |
+| III (A-B) | 多维工业发展与出口发展 | Eq (1) TWFE + PPML |
+| IV (A-D) | 跨国 DDD 出口发展 | Eqs (4a)-(4b) PPML |
+| V (A-E) | 投入与投资响应 | Eq (1) TWFE |
+| VI (A-D) | Forward Linkage—产出与价格 | Eq (7) TWFE |
+| VII (A-B) | Forward Linkage—出口发展 | Eq (7) OLS/PPML |
+
+---
+
+## 9 机制检验 (LBD, Investment, Policy Channels)
+
+### 9.1 投资政策渠道 (Section VI.A)
+
+论文通过以下步骤建立投资政策渠道:
+
+1. **描述性证据 (Figure I)**:
+   - Panel A: 有效边际税率 (EMTR) 在 1973 后对 Targeted 产业分化
+   - Panel B-C: KDB 政策贷款在 1973-1979 对 HCI 产业急剧增加
+
+2. **投资响应估计 (Figure V, Table IV)**:
+   - 中间投入 (Intermediate Outlays) 和总投资在 Targeted 产业显著增加
+   - 这种增加不是由 control group 的下降驱动的
+
+3. **MRPK 楔形检验 (Online Appendix D.2)**:
+   - 高 MRPK 的 HCI 产业在政策期投资扩张更显著
+   - 非 Targeted 产业无此效应：`High_MRPK × Post = 0` for controls
+
+4. **Crowding-Out 检验 (Online Appendix D.3)**:
+   - 非 Targeted 产业的投资水平并未绝对下降
+   - Capital-intensive non-HCI 产业的投资也未下降
+
+### 9.2 贸易政策渠道 (Section VI.B)
+
+证据表明**名义保护主义并非** HCI 政策的主要渠道:
+- [Y] Targeted 产业的 output protection (关税/QRs) 低于 Non-Targeted 产业 (Online Appendix Table D.3)
+- [Y] Targeted 产业享有较低的 input tariff (投入品保护豁免)
+- [N] 没有证据表明名义产出保护在 1973-1979 期间大幅上升
+
+论文强调定向信贷 (directed credit) 是 "a central lever" (Lee 1991; Woo 1991)，政策贷款的利率比基准贷款低 5 个百分点 (Cho and Kim 1995)。
+
+### 9.3 信用政策渠道的进一步证据
+
+除了宏观统计变量外，论文在 Online Appendix D.2-D.3 中提供了更多关于信用政策如何通过投资楔形影响制造业的证据：
+
+**中间品投入的扩张**: Figure V Panel A 表明在 control group 的 intermediate outlays 并未下降，但 treated 产业的中间投入增速远超过对照组。Table IV col (1) 的中间投入弹性 $e^{0.5147} - 1 \approx 67\%$ (per worker basis 约 23%)，暗示该效应并非纯粹的规模扩张，而是伴有单位工人投入强度的提升。
+
+**Investment 的跨资产类别验证**: Online Appendix Table D.2 展示了 treated 产业在不同资产类别 (建筑物、机械设备) 上的差异化投资响应。特别是 machinery equipment 投资 (这正是 HCI 税收激励集中扶持的类别) 增长最为显著。
+
+**MRPK 分布检查**: 作者使用 Bau and Matray (2022) 的方法计算了 pretreatment MRPK (marginal revenue product of capital)。在 treated 产业中，high-MRPK 组在政策后有显著更高的 input growth (Online Appendix Figure D.2)，而 control group 中未曾观察到这种 differentiated response。这暗示 capital market integration 通过 directed credit 降低了 high-MRPK 产业的资本楔形，而非 general equilibrium 的跨行业资本再分配。
+
+### 9.4 Learning-by-Doing 机制 (Section VI.C)
+
+**两步验证**:
+
+**Step 1: Reduced-form industry correlations (Eq (5))**:
+
+在 post-1972 期:
+- $Experience$ (cumulative output) 对 price 和 unit cost 的降低效应在 Targeted 产业显著更强
+- $Experience$ 对 TFP 的正向效应在 Targeted 产业显著更强 (LP TFP)
+
+**Step 2: Decompose plant vs. industry learning (Table VI)**:
+
+在 post-1979 microdata 中:
+- Plant-level experience 对 unit cost 和 TFP 的影响在 Targeted 工厂更强
+- **Industry-level experience 效应即使在控制 plant-level experience 后仍然显著** -> 暗示存在 cross-plant learning spillovers
+
+> 关键洞察: LBD 的 evidence 是 **correlational** 而非 causal。累积产出的内生性 (simultaneity) 未得到解决。然而，被估参数的模式与 infant-industry 理论 (Bardhan 1971) 的预测一致。
+
+---
+
+## 10 稳健性、安慰剂和识别威胁
+
+### 10.1 双重稳健估计
+
+**方法论**: Sant'Anna and Zhao (2020) 和 Callaway and Sant'Anna (2021) 提出的 Double-Robust DiD 估计量。
+
+**相对于 TWFE 的优势**:
+- 不需要所有 pre-treatment 期的 zero pre-trend (仅使用 long-difference relative to 1972)
+- 通过 reweighting (IPW) + outcome regression 形成双重稳健
+- Bootstrap-based inference (10,000 次) 提供有效的 within-industry clustering
+
+**结果**: Double-robust event-studies (Online Appendix Figures B.4-B.6) 在 qualitative pattern 上与 TWFE 估计一致。
+
+### 10.2 跨国 Triple Differences
+
+**方法论**: 使用 COMTRADE 跨国数据，比较韩国 Targeted 产业的出口发展与外国 Targeted 产业的出口发展。
+
+**识别特点**:
+- 方程 (4b) 使用最高维度的固定效应：$\alpha_{it}$, $\tau_{ct}$, $\sigma_{ci}$
+- 这意味着控制了 industry-year, country-year, 和 country-industry 的所有时变和不随时间变化的因素
+- 额外的验证：Online Appendix C 评估了韩国达到 RCA > 1 的概率，与同等发展水平的 countries 相比显著更高 (+11% to +13.1%)
+
+### 10.3 Pre-Trend 检验
+
+**Joint F-test**: 方程 (1) 的 pre-1972 系数 (all $\beta_j$ for $j < 1972$) 的联合显著性检验：
+
+```stata
+estat ptrends  // 即 Stata 17+ 的 pre-trends 检验
+```
+
+结果：F 统计量和 p-value 报告在各回归表中，不能拒绝所有 pre-trend 为零的零假设。
+
+**注意短面板的局限**: 5-digit panel 仅有 3 年 pre-period，pre-trend test 可能缺乏识别力。
+
+### 10.4 SUTVA 稳健性检验
+
+论文详细处理了 IO 网络溢出可能污染控制组的威胁:
+
+**检验 1**: 限制 control group 至 below-median linkage exposure (Online Appendix Figure G.1)
+**检验 2**: 在回归中显式控制 linkage exposure (Online Appendix G.2)
+**检验 3**: 在考虑 linkage 后重新检验 crowding-out (Online Appendix G.3)
+
+**核心发现**: 即使排除或控制了下游 spillover 效应，核心 DiD 结果仍然健在。
+
+### 10.5 连续处理变量检验
+
+使用 plant-level 多产品信息构造 continuous HCI exposure 变量 (Online Appendix J.1)，动态估计 (Online Appendix Figure B.2) 与 binary treatment 的估计模式一致。
+
+### 10.6 四种 TFP 方法的稳健性
+
+对 Plant-level TFP 使用四种生产函数方法:
+- **Olley-Pakes (OP, 1996)**: investment 作为不可观测生产力的代理
+- **Levinsohn-Petrin (LP, 2003)**: intermediate inputs 作为代理
+- **Wooldridge (2009)**: GMM-based joint estimation
+- **Ackerberg-Caves-Frazer (ACF, 2015)**: 修正 OP/LP 的共线性问题
+
+四种方法的结果定性地一致 (Table I)。
+
+### 10.7 替代对照组和数据集的稳健性
+
+**替代 4-digit 数据集**: 所有核心结果均在更粗糙的 4-digit KSIC (long panel, 1967-1986) 上复现。虽然估计精度有所下降 (更少的 observation 和更大的 aggregation effect)，但 qualitative pattern 始终一致。
+
+**排除特定行业的稳定性**: Online Appendix B 提供了排除个别大行业 (如特定钢铁或石化部门) 后的估计，demonstrating 核心结果不由某个 outlier industry 驱动。
+
+**替代 DiD 识别窗口**: Rolling window 分析 (方程 (2) 的扩展形式) 验证了政策效应在不同 time window 长度下的稳定性，排除了效应仅由某个特定年份的冲击驱动的担忧。
+
+### 10.8 出口竞争力的替代度量
+
+除了标准 Balassa RCA 外，论文使用三种 alternative metrics:
+
+1. **RCA (asinh transformed)**: 反双曲正弦变换允许保留零值观测 (非目标产业在重化工业产品上可能有零出口)
+2. **CDK relative export productivity**: 基于 Costinot, Donaldson, and Komunjer (2012) 的 gravity-based structural measure，提供了比 Balassa index 更具理论一致性的比较优势度量
+3. **Probability of attaining comparative advantage**: $P(RCA > 1)$ 是一个离散的结果，capture 的是二元意义上的出口竞争力突破
+
+这些 alternative metrics 的DDD 估计 (Figure IV) 在 qualitative pattern 上一致: pre-1973 差异最小，post-1973 显著为正，post-1979 进一步扩大。
+
+### 10.9 Dynamic Double-Robust 事件研究
+
+Online Appendix 2 报告的 Double-Robust event-study (Online Appendix Figures B.4-B.6) 展示了与 TWFE event-study 平行但更平滑的动态轨迹。DR event-study 使用的 pre-trend 假设比 TWFE 更弱 (仅需 no differential changes between t-1972 and the baseline period, 而非所有 pre-treatment periods)。
+
+DR 估计的阶段式构造:
+- **Step 1**: 为每个 post-treatment year $t$ 估计 $\pi(X)$ (logit) 和 $f_0(X)$ (OLS)
+- **Step 2**: 计算 $ATT_t$ 作为 weighted average of $(Y_t - Y_{1972} - f_0(X))$ with IPW weights
+- **Step 3**: Bootstrap 重复 (10,000 次) 以构建 95% confidence band
+
+DR event-study 的关键优势在于:
+- 不依赖所有 pre-treatment 年的 zero trend 假设
+- 通过 reweighting 让 treatment 和 control group 在可观测特征上可比
+- 即使 outcome model 或 propensity score 其中之一指定错误，估计仍一致
+
+---
+
+## 11 外部有效性和政策含义
+
+### 11.1 外部有效性讨论
+
+- [Y] 韩国是极端案例 (extreme case)：具有高度 bureaucratic capacity (Evans 1995 的 "embedded autonomy") 和高压政治体制
+- [!] HCI 政策由 existential security threat 驱动 (Nixon doctrine + North Korean threat)，这种政治凝聚力在大多数发展中国家不常见
+- [!] 韩国的宏观环境 (出口导向型增长、早期人力资本积累、日本的技术转移和资本供给) 可能不可复制
+- [!] 研究覆盖的是 **制造业产业政策**，对农业、服务业或创新政策的推广需谨慎
+
+### 11.2 政策含义
+
+1. **临时性产业政策可以产生持久效果**: HCI 的各项核心支持在 1979 年撤除后，目标产业的持久竞争优势仍然保持，暗示投资和学习效应具有不可逆性 (sunk costs + dynamic scale economies)
+2. **网络联动是设计产业政策的重要考量**: 选择上游 (upstream) 产业作为政策目标有助于通过 forward linkages 为下游产业提供低成本中间投入
+3. **定向信贷而非贸易保护是工业发展的更有效工具**: 论文的证据表明廉价信贷 + 投资激励 (而非名义保护) 是韩国 HCI 政策的 main active ingredient
+4. **Effects take time**: 出口 RCA 和 TFP 的效果直到 policy 结束后才充分显现
+
+---
+
+## 12 代码实现和复现线索
+
+### 12.1 文件与估计方法的映射
+
+| do-file | 论文内容 | 核心命令 | 输出 |
+|---------|----------|----------|------|
+| `0_1_master_run_main_analyses.do` | 主分析总控 | `include` | 调用所有主分析脚本 |
+| `1_run_growth_analysis.do` | Section V.B, 核心 DiD | `xtdidregress`, `estat trendplots`, `estat grangerplot` | Event-study coeffs, pre-trend tests |
+| `2a_run_devoutcomes_analysis.do` | Section V.B, 多维结果 | `xtdidregress` (with controls) | 劳动生产力, 价格, 工厂数量等 |
+| `2b_run_koreatrade_analysis.do` | Section V.C, 贸易发展 | `xtdidregress`, `ppmlhdfe` | RCA, export share, CDK |
+| `3a_run_micro_tfp_analysis.do` | Section V.D.1, TFP | `reghdfe` | Plant-level TFP persistence (Table I) |
+| `3b_run_doublerobust_analysis.do` | Section V.E, DR-DiD | `csdid` (method= dripw / reg) | Double-robust event study |
+| `3c_run_worldtrade_analysis.do` | Section V.F, DDD | `ppmlhdfe` | 跨国 DDD (Figure IV) |
+| `4_run_policy_analysis.do` | Section VI.A, 投资政策 | `xtdidregress` | Investment, intermediate outlays |
+| `5a_run_mechanisms_lbd_analysis.do` | Section VI.C, LBD 行业级 | `reghdfe` | LBD correlations (Table V) |
+| `5b_run_mechanisms_lbd_micro_analysis.do` | Section VI.C, LBD 微观级 | `reghdfe` | Plant+Industry LBD (Table VI) |
+| `6a_run_linkages_growthprice_analysis.do` | Section VII, Linkages | `reghdfe` (linked via subloop) | Linkage event studies (Figure VI) |
+| `6b_run_linkages_trade_analysis.do` | Section VII, 出口联动 | `reghdfe`, `ppmlhdfe` | Linkage × Trade (Figure VII) |
+
+### 12.2 子循环文件 (Sub-do-files)
+
+| sub-dofile | 被调用于 | 功能 |
+|-----------|----------|------|
+| `1b_main_subrollingloop.do` | 多个主分析脚本 | Pre-post + Rolling 分析循环 |
+| `6b_linkages_subrollingloop.do` | Linkage 分析脚本 | Linkage × Year rolling 循环 |
+| `6b_linkages_subrollingloop_wcontrols.do` | Linkage 分析 (with controls) | 扩展版 rolling 循环 |
+| `APPb_linkages_subrollingloop_simplified.do` | Appendix E 脚本 | 简化版 Linkage rolling |
+
+### 12.3 数据处理流水线概览
+
+```
+Raw Data (MMS, COMTRADE, IO Tables, Policy Loans)
+        |
+        v
+Data Building Scripts (code/1_data/)
+  +-- Harmonization across KSIC revisions (1967, 1970, 1975, 1980, 1984)
+  +-- Crosswalk schemas (KSIC ↔ SITC ↔ IO sectors)
+  +-- Output: mms_merged_harmonized_panel_cleaned4reg_5digit.dta
+                   mms_merged_harmonized_panel_cleaned4reg_4digit.dta
+                   comtrade_merged_harmonized_panel_cleaned4reg_4digit.dta
+        |
+        v
+Analysis Scripts (code/0_analysis/)
+  +-- 1_main_scripts/  -> Main paper (Tables I-VIII, Figures I-VII)
+  +-- 2_appendix_scripts/ -> Online Appendix (Figures B1-G3)
+  +-- 3_suppappendix_scripts/ -> Supplementary Online Appendix
+        |
+        v
+Outputs (data/intermediate_datasets/)
+  +-- *_all_results.csv, *_att.csv, *_prepostresults_estout.csv
+        |
+        v
+Visualization in R (code/2_visualization/)
+  +-- 0_1_generate_labeled_figures.R
+  +-- 0_2_generate_all_figures.R
+```
+
+### 12.4 关键复现注意事项
+
+1. **Stata 版本要求**: `xtdidregress` 需要 Stata 17 或更高版本
+2. **必需的用户安装包 (ssc install)**:
+   - `csdid` (Double-robust DiD)
+   - `drdid` (Double-robust DiD 辅助)
+   - `ppmlhdfe` (PPML with HDFE)
+   - `regsave` (回归结果导出)
+   - `reghdfe` (高维固定效应)
+   - `estout` (回归表格导出)
+   - `gph2xl` (Stata 图数据导出至 Excel/CSV)
+
+3. **Bootstrap 计算量**: Double-robust 估计使用 10,000 次 wild bootstrap — 单次完整运行可能需要数小时
+4. **Data harmonization 是最耗时的步骤**: MMS 数据在不同 KSIC 版本间的 harmonization 涉及多次 crosswalk schema 的数字化和应用，这是本文数据贡献的核心
+5. **SITC Rev.1 匹配**: UN COMTRADE 数据 (SITC Rev.1 4-digit) 与 KSIC 的手工匹配 (hand-match) 文档见于 Online Appendix I.2
+
+### 12.5 核心 Stata 工作流 (以 1_run_growth_analysis.do 为例)
+
+```stata
+* Step 1: Load data
+prep_data "inputfile"          // 载入并生成 treat = hci * post1973
+
+* Step 2: TWFE DiD estimation
+xtdidregress (y controls) (treat), group(id) time(year) vce(cluster id)
+
+* Step 3: Pre-trend joint test
+estat ptrends
+
+* Step 4: Dynamic event study plots
+estat grangerplot, baseline(1972) verbose post
+
+* Step 5: Export results
+estout event* using "results.csv", replace keep(_l*) ...
+```
+
+---
+
+## 13 局限和继续阅读建议
+
+### 13.1 方法论局限
+
+1. **TWFE 在 staggered adoption 中的偏误**: 本文是 single-cohort (1973) 的经典 DiD 设计，不涉及 TWFE 对 staggered 设定的 negative weighting 问题 (Goodman-Bacon 2021, de Chaisemartin and D'Haultfoeuille 2020)。但论文使用 DR-DiD 作为 supplement。
+
+2. **LBD 的内生性**: Experience (cumulative output) 与 TFP 之间的 correlation 受 simultaneity bias 影响。本文未使用 IV (instrumental variable) 策略来解决这一问题。同时，学习效应回归仅覆盖 post-1972 期，可能错过了政策初期 steep learning curves。
+
+3. **IO 数据的时序限制**: Linkage 变量基于 1970 年的单一基准年 IO 表构造，假设 IO 结构不随时间变化。在快速工业化的韩国 1970s 这是一个强假设。
+
+4. **Pre-trend 检验的统计效力**: 5-digit short panel 仅有 3 年 pre-period (1970-1972)，joint F-test 可能因为 low power 而无法拒绝 null 假设。
+
+5. **SUTVA 与网络外部性的权衡**: 论文发现 forward linkage spillover 的存在，虽然通过敏感性分析证明核心结果稳健，但 spillover 效应本身使 single-unit treatment 的定义变得模糊。
+
+6. **宏观和配置后果未考虑**: 本文仅评估 sector-level 的工业发展，未分析对总的 (aggregate) TFP、sectoral misallocation、或消费者福利的影响。
+
+7. **Political economy 的内生性**: 虽然 Nixon 危机提供了外生 timing，但 HCI sector selection 本身是政府战略选择，包含一定的内生成分。
+
+### 13.2 继续阅读建议
+
+**产业政策的经济学基础**:
+- Juhász, Lane, and Rodrik (2024). "The New Economics of Industrial Policy." *Annual Review of Economics*, 16, 213-242.
+- Rodrik (2004). "Industrial Policy for the Twenty-First Century." Kennedy School Working Paper.
+
+**DiD 和 Event-Study 方法论**:
+- Callaway and Sant'Anna (2021). "Difference-in-Differences with Multiple Time Periods." *Journal of Econometrics*, 225(2), 200-230.
+- Sant'Anna and Zhao (2020). "Doubly Robust Difference-in-Differences Estimators." *Journal of Econometrics*, 219(1), 101-122.
+- Roth, Sant'Anna, Bilinski, and Poe (2023). "What's Trending in Difference-in-Differences? A Synthesis of the Recent Econometrics Literature." *Journal of Econometrics*.
+
+**投入产出网络与政策**:
+- Liu (2019). "Industrial Policies in Production Networks." *Quarterly Journal of Economics*, 134(4), 1883-1948.
+- Acemoglu, Autor, Dorn, Hanson, and Price (2016). "Import Competition and the Great US Employment Sag of the 2000s." *Journal of Labor Economics*, 34(S1), S141-S198.
+
+**韩国经济发展的经典文献**:
+- Amsden (1992). *Asia's Next Giant: South Korea and Late Industrialization*. Oxford University Press.
+- Wade (1990). *Governing the Market: Economic Theory and the Role of Government in East Asian Industrialization*. Princeton University Press.
+- Stern, Kim, Perkins, and Yoo (1995). *Industrialization and the State: The Korean Heavy and Chemical Industry Drive*. Harvard Institute for International Development.
+
+**相关实证文献**:
+- Juhász (2018). "Temporary Protection and Technology Adoption: Evidence from the Napoleonic Blockade." *American Economic Review*, 108(11), 3339-3376.
+- Criscuolo, Martin, Overman, and Van Reenen (2019). "Some Causal Effects of an Industrial Policy." *American Economic Review*, 109(1), 48-85.
+- Hanlon (2020). "The Persistent Effect of Temporary Input Cost Advantages in Shipbuilding, 1850 to 1911." *Journal of the European Economic Association*, 18(6), 3173-3209.
+
+---
+
+## 附录 A：关键变量对照表
+
+| 变量代码 (Stata) | 含义 (英文) | 含义 (中文) |
+|------------------|-------------|------------|
+| `id` | Industry ID (harmonized across KSIC revisions) | 行业 ID (跨 KSIC 版本 harmonized) |
+| `year` | Year (1967–1986) | 年份 |
+| `hci` | HCI treatment indicator (=1 for targeted industries) | HCI 处理标识 (=1 若为政策目标行业) |
+| `treat` | `hci == 1 & year >= 1973` | 处理 × 处理后时期 (DiD 时间窗口) |
+| `l_ship` | Log real value of gross output shipped | Log 实际发货额 |
+| `l_grossoutput` | Log real gross output | Log 实际总产值 |
+| `l_valueadded` | Log real value added | Log 实际增加值 |
+| `l_workers` | Log total employment | Log 总就业人数 |
+| `l_ppi` | Log producer price index | Log 生产者价格指数 |
+| `l_y_n` | Log value added per worker | Log 劳动生产率 |
+| `l_ship_sh` | Log share of manufacturing output | Log 制造业产出份额 |
+| `l_lab_sh` | Log share of manufacturing employment | Log 制造业就业份额 |
+| `l_est` | Log number of establishments (plants) | Log 工厂数 |
+| `l_costs` | Log real intermediate outlays (material costs) | Log 中间投入支出 |
+| `l_inv_tot` | Log real total gross capital formation | Log 总投资 |
+| `l_i_n` | Log investment per worker | Log 人均投资 |
+| `rca_core` | Balassa RCA index | Balassa 显性比较优势指数 |
+| `rca_cdk` | CDK relative export productivity | CDK 相对出口生产率 |
+| `rca_dummy` | Indicator for RCA > 1 | RCA > 1 的指示变量 |
+| `export_sh` | Share of manufacturing exports | 制造业出口份额 |
+| `hci_share_use_tot_0` | Forward linkage share (direct) | 直接前向关联份额 |
+| `hci_share_make_tot_0` | Backward linkage share (direct) | 直接后向关联份额 |
+| `lf_hci_link_use_0` | Total forward linkage (Leontief) | Leontief 总前向关联 |
+| `lf_hci_link_make_0` | Total backward linkage (Leontief) | Leontief 总后向关联 |
+| `l_costs_0` | Pre-1973 avg log intermediate costs | Pre-1973 平均 Log 中间投入 |
+| `l_avg_size_0` | Pre-1973 avg log plant size | Pre-1973 平均 Log 工厂规模 |
+| `l_avg_wages_0` | Pre-1973 avg log wage bill | Pre-1973 平均 Log 工资 |
+| `l_y_n_0` | Pre-1973 avg log labor productivity | Pre-1973 平均 Log 劳动生产率 |
+| `gvar` | CSDID group variable (=1973 if hci==1) | CSDID 分组变量 |
+
+## 附录 B：表格与图形的论文代码溯源
+
+| 论文图表 | 对应代码文件 | 核心命令/输出 |
+|----------|-------------|--------------|
+| Table I (Plant-Level TFP) | `3a_run_micro_tfp_analysis.do` | `reghdfe tfp_log targeted, absorb(i4d#year)` |
+| Table II (Industrial Development ATT) | `3b_run_doublerobust_analysis.do` | `csdid ... method(dripw) agg(event)` |
+| Table III (Export Development ATT) | Trade section of `3b_run_doublerobust_analysis.do` | `csdid ... method(dripw)`, `ppmlhdfe` |
+| Table IV (Input Use & Investment ATT) | Invest section of `3b_run_doublerobust_analysis.do` | `csdid ... method(dripw)` |
+| Table V (LBD Industry-Level) | `5a_run_mechanisms_lbd_analysis.do` | `reghdfe y experience##targeted, absorb(id year)` |
+| Table VI (LBD Plant-Level) | `5b_run_mechanisms_lbd_micro_analysis.do` | `reghdfe y exp_p##targeted exp_i##targeted, absorb(...)` |
+| Table VII (Linkage × Value Added) | `6a_run_linkages_growthprice_analysis.do` | `reghdfe l_v i.post#c.forward i.post#c.backward, absorb(id year)` |
+| Table VIII (Linkage × Prices) | `6a_run_linkages_growthprice_analysis.do` | `reghdfe l_ppi i.post#c.forward i.post#c.backward, absorb(id year)` |
+| Figure I (Investment Policy Trends) | `4_run_policy_analysis.do` (data generation) | 描述性图 |
+| Figure II (Output DiD) | `1_run_growth_analysis.do` | `estat trendplots` + `estat grangerplot` |
+| Figure III (Multi-Outcome DiD) | `2a_run_devoutcomes_analysis.do` + `2b_run_koreatrade_analysis.do` | `xtdidregress` |
+| Figure IV (DDD Trade) | `3c_run_worldtrade_analysis.do` | `ppmlhdfe` (with triple interactions) |
+| Figure V (Input/Investment DiD) | `4_run_policy_analysis.do` | `xtdidregress` |
+| Figure VI (Forward Linkage DiD) | `6a_run_linkages_growthprice_analysis.do` | `reghdfe` (rolling event study) |
+| Figure VII (Forward Linkage × Trade) | `6b_run_linkages_trade_analysis.do` | `reghdfe` + `ppmlhdfe` |
+
+---
+
+> **最后一层注释**: 本文的方法论贡献在于系统性地将当代 DiD 方法论 (TWFE event-study, Double-Robust DiD, DDD) 应用于历史上最重要但缺乏现代实证评估的产业政策 episode 之一。论文并非方法论原创——它使用标准 causal inference toolbox——但其力量在于研究设计的严谨性 (多层次的识别策略互补)、数据的独创性 (digitized MMS harmonization across five KSIC revisions) 以及发现的经济学意义 (temporary policy -> persistent comparative advantage shift)。
+

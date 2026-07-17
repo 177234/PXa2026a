@@ -1,0 +1,3829 @@
+
+  ___  ____  ____  ____  ____ ®
+ /__    /   ____/   /   ____/      StataNow 19.5
+___/   /   /___/   /   /___/       MP—Parallel Edition
+
+ Statistics and Data Science       Copyright 1985-2025 StataCorp LLC
+                                   StataCorp
+                                   4905 Lakeway Drive
+                                   College Station, Texas 77845 USA
+                                   800-782-8272        https://www.stata.com
+                                   979-696-4600        service@stata.com
+
+Stata license: Single-user 4-core , expiring  8 Aug 2027
+Serial number: 501909330131
+  Licensed to: arlionn
+               sysu
+
+Notes:
+      1. Stata is running in batch mode.
+      2. Unicode is supported; see help unicode_advice.
+      3. More than 2 billion observations are allowed; see help obs_advice.
+      4. Maximum number of variables is set to 5,000 but can be increased;
+          see help set_maxvar.
+
+
+Running D:\stata19\profile.do ...
+
+. do C:\Users\Administrator\AppData\Local\Temp\claude\D--github-lianxh-PXa2026a
+> \7fc4c56d-4dce-4543-bcfa-918cdafd1323\scratchpad\JEL-DiD\_run_demo_frozen.do 
+
+. *****************************************************************************
+> ***
+. * _run_demo_frozen.do — T7 彩排预跑：只运行初级班范围内 0-3 号脚本
+. * 复现对象: Baker et al. (2026, JEL 64(2)) 复现包 JEL-DiD
+. * 目的：本机跑通 0->1->2->3，产出 Table 1-7 与 Figure 1-4，冻结为课堂对照答案
+. *****************************************************************************
+> ***
+. clear all
+
+. set more off
+
+. capture log close
+
+. version 15
+
+. set seed 20260721
+
+. 
+. * 两个全局都设（0 号脚本用 $root，主控用 $rootdir）
+. global rootdir "C:/Users/Administrator/AppData/Local/Temp/claude/D--github-li
+> anxh-PXa2026a/7fc4c56d-4dce-4543-bcfa-918cdafd1323/scratchpad/JEL-DiD"
+
+. global root "$rootdir"
+
+. cd "$rootdir"
+C:\Users\Administrator\AppData\Local\Temp\claude\D--github-lianxh-PXa2026a\7fc4
+> c56d-4dce-4543-bcfa-918cdafd1323\scratchpad\JEL-DiD
+
+. 
+. log using "_run_demo_frozen_log.smcl", replace
+(file
+    C:\Users\Administrator\AppData\Local\Temp\claude\D--github-lianxh-PXa2026
+    > a\7fc4c56d-4dce-4543-bcfa-918cdafd1323\scratchpad\JEL-DiD\_run_demo_fro
+    > zen_log.smcl not found)
+-------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\Administrator\AppData\Local\Temp\claude\D--github-lianxh-
+> PXa2026a\7fc4c56d-4dce-4543-bcfa-918cdafd1323\scratchpad\JEL-DiD\_run_demo_fr
+> ozen_log.smcl
+  log type:  smcl
+ opened on:  18 Jul 2026, 05:48:42
+
+. 
+. *--- 依赖：0-3 号实际需要 estout/regsave/coefplot/grc1leg2 + csdid/drdid ---*
+. * （彩排确认：脚本2用 drdid，脚本3事件研究用 csdid；honestdid 仅5号用，跳过）
+. di "=== redirect ado to package-local dir ==="
+=== redirect ado to package-local dir ===
+
+. capture mkdir "$rootdir/ado"
+
+. cap adopath - PERSONAL
+
+. cap adopath - OLDPLACE
+
+. cap adopath - SITE
+
+. sysdir set PLUS     "$rootdir/ado/plus"
+
+. sysdir set PERSONAL "$rootdir/ado"
+
+. 
+. global sscdate "2025-11-29"
+
+. global sscmirror "raw.githubusercontent.com/labordynamicsinstitute/ssc-mirror
+> /$sscdate/"
+
+. capture noisily {
+.     net install drdid,    from(https://${sscmirror}fmwww.bc.edu/repec/bocode/
+> d) replace
+checking drdid consistency and verifying not already installed...
+installing into C:/Users/Administrator/AppData/Local/Temp/claude/D--github-lian
+> xh-PXa2026a/7fc4c56d-4dce-4543-bcfa-918cdafd1323/scratchpad/JEL-DiD/ado/plus\
+> ...
+installation complete.
+.     net install csdid,    from(https://${sscmirror}fmwww.bc.edu/repec/bocode/
+> c) replace
+checking csdid consistency and verifying not already installed...
+installing into C:/Users/Administrator/AppData/Local/Temp/claude/D--github-lian
+> xh-PXa2026a/7fc4c56d-4dce-4543-bcfa-918cdafd1323/scratchpad/JEL-DiD/ado/plus\
+> ...
+installation complete.
+.     net install regsave,  from(https://${sscmirror}fmwww.bc.edu/repec/bocode/
+> r) replace
+checking regsave consistency and verifying not already installed...
+installing into C:/Users/Administrator/AppData/Local/Temp/claude/D--github-lian
+> xh-PXa2026a/7fc4c56d-4dce-4543-bcfa-918cdafd1323/scratchpad/JEL-DiD/ado/plus\
+> ...
+installation complete.
+.     net install estout,   from(https://${sscmirror}fmwww.bc.edu/repec/bocode/
+> e) replace
+checking estout consistency and verifying not already installed...
+installing into C:/Users/Administrator/AppData/Local/Temp/claude/D--github-lian
+> xh-PXa2026a/7fc4c56d-4dce-4543-bcfa-918cdafd1323/scratchpad/JEL-DiD/ado/plus\
+> ...
+installation complete.
+.     net install coefplot, from(https://${sscmirror}fmwww.bc.edu/repec/bocode/
+> c) replace
+checking coefplot consistency and verifying not already installed...
+installing into C:/Users/Administrator/AppData/Local/Temp/claude/D--github-lian
+> xh-PXa2026a/7fc4c56d-4dce-4543-bcfa-918cdafd1323/scratchpad/JEL-DiD/ado/plus\
+> ...
+installation complete.
+.     net install grc1leg2, from(https://${sscmirror}fmwww.bc.edu/repec/bocode/
+> g) replace
+checking grc1leg2 consistency and verifying not already installed...
+installing into C:/Users/Administrator/AppData/Local/Temp/claude/D--github-lian
+> xh-PXa2026a/7fc4c56d-4dce-4543-bcfa-918cdafd1323/scratchpad/JEL-DiD/ado/plus\
+> ...
+installation complete.
+. }
+
+. * 若 pinned 镜像失败，退回官方 SSC
+. foreach p in drdid csdid regsave estout coefplot grc1leg2 {
+  2.     capture which `p'
+  3.     if _rc {
+  4.         di as text "fallback: ssc install `p'"
+  5.         capture noisily ssc install `p', replace
+  6.     }
+  7. }
+
+. 
+. timer clear 1
+
+. timer on 1
+
+. 
+. di as result _n "===== STEP 0: build analysis data ====="
+
+===== STEP 0: build analysis data =====
+
+. do "scripts/Stata/0_stata_Make_data.do"
+
+. /****************************************************************************
+>   File: 0.stata_Make_data.do
+>   Project: JEL - DiD: A Practitioner's Guide
+>   Authors: Baker, Callaway, Cunningham, Goodman-Bacon, Sant'Anna
+>   Purpose: Creates a single dataset to use for the subsequent replication
+>              
+>   Data Required:
+>     • `county_mortality_data_sc.dta` — Cleaned version of the R CSV
+> 
+>   Output:
+>     • Figures saved as `.pdf` in the Figures/ directory, matching `ggsave()` 
+> in R
+>   
+>   Sections:
+>     1. Load and prepare data
+>     2. Clean sample: drop early/partial adopters, check panel balance
+>     3. Construct timing, treatment, and weight variables
+>     4. Generate each figure
+> 
+>   Last updated: Bacon, Oct 5, 2025
+> ****************************************************************************/
+. cd "$root"
+C:\Users\Administrator\AppData\Local\Temp\claude\D--github-lianxh-PXa2026a\7fc4
+> c56d-4dce-4543-bcfa-918cdafd1323\scratchpad\JEL-DiD
+
+.         
+. ********************************
+. * 1. Load and prepare data
+. ********************************
+.         clear all
+
+.         set more off
+
+.         capture log close
+
+. 
+.         insheet using "data/county_mortality_data.csv", clear
+(22 vars, 31,843 obs)
+
+. 
+. ********************************
+. * 2. Prepare timing groups
+. ********************************
+.         *Drop early and mid adopters
+.         drop if inlist(state, "District of Columbia", "Delaware", "Massachuse
+> tts", "New York", "Vermont")
+(1,028 observations deleted)
+
+. 
+.         *Define treatment timing
+.         gen treat_year = real(yaca)
+(9,789 missing values generated)
+
+.         replace treat_year = 0 if missing(treat_year)
+(9,789 real changes made)
+
+.         tostring treat_year, gen(treat_str)
+treat_str generated as str4
+
+.         destring yaca, replace force
+yaca: contains nonnumeric characters; replaced as int
+(9789 missing values generated)
+
+. 
+. ********************************
+. * 3. Prepare covariates
+. ********************************
+.         *destring covariates
+.         destring deaths population_20_64 crude_rate_20_64 population_total po
+> pulation_20_64_hispanic population_20_64_female population_20_64_white unempl
+> oyed labor_force unemp_rate poverty_rate median_income, replace force
+deaths: contains nonnumeric characters; replaced as int
+(60 missing values generated)
+population_20_64: contains nonnumeric characters; replaced as long
+(60 missing values generated)
+crude_rate_20_64: contains nonnumeric characters; replaced as double
+(60 missing values generated)
+population_total: contains nonnumeric characters; replaced as long
+(60 missing values generated)
+population_20_64_hispanic: contains nonnumeric characters; replaced as long
+(60 missing values generated)
+population_20_64_female: contains nonnumeric characters; replaced as long
+(60 missing values generated)
+population_20_64_white: contains nonnumeric characters; replaced as long
+(60 missing values generated)
+unemployed: contains nonnumeric characters; replaced as long
+(85 missing values generated)
+labor_force: contains nonnumeric characters; replaced as long
+(85 missing values generated)
+unemp_rate: contains nonnumeric characters; replaced as double
+(85 missing values generated)
+poverty_rate: contains nonnumeric characters; replaced as double
+(66 missing values generated)
+median_income: contains nonnumeric characters; replaced as long
+(66 missing values generated)
+
+.         ren population_total total_population
+
+. 
+.         *Drop counties with missing covariates
+.         gen perc_white    = population_20_64_white   / population_20_64 * 100
+(60 missing values generated)
+
+.         gen perc_hispanic = population_20_64_hispanic/ population_20_64 * 100
+(60 missing values generated)
+
+.         gen perc_female   = population_20_64_female  / population_20_64 * 100
+(60 missing values generated)
+
+.         gen unemp_rate_pc = unemp_rate * 100
+(85 missing values generated)
+
+.         gen median_income_k = median_income/1000
+(66 missing values generated)
+
+.         drop if missing(crude_rate_20_64, population_20_64, ///
+>                                         perc_white, perc_hispanic, perc_femal
+> e, ///
+>                                         unemp_rate_pc, poverty_rate, median_i
+> ncome_k)
+(108 observations deleted)
+
+. 
+. ********************************
+. * 4. Sample construction
+. ********************************                                
+.         *Keep counties with full 11-year panel
+.         bys county_code (year): gen panel_n = _N
+
+.         bys county_code: keep if panel_n == 11
+(2,063 observations deleted)
+
+.         drop panel_n 
+
+.         replace treat_year=0 if treat_year>2019
+(4,257 real changes made)
+
+. 
+. ********************************
+. * 5. Construct population weight
+. ********************************
+.         bys county_code: egen set_wt = max(cond(year==2013, population_20_64,
+>  .))
+
+. 
+. ********************************
+. * 6. Label variables
+. ********************************
+.         label variable crude_rate_20_64 "Crude Mortality Rate"
+
+. 
+.         
+.         
+. save "data/did_jel_aca_replication_data", replace
+(file data/did_jel_aca_replication_data.dta not found)
+file data/did_jel_aca_replication_data.dta saved
+
+. 
+. exit
+
+end of do-file
+
+. 
+. di as result _n "===== STEP 1: adoption table (Table 1) ====="
+
+===== STEP 1: adoption table (Table 1) =====
+
+. do "scripts/Stata/1_stata_adoption_table.do"
+
+. /****************************************************
+>   File:  1.stata_adoption_table.do                     
+>   Project: JEL - DiD: A Practitioner's Guide
+>   Authors: Baker, Callaway, Cunningham, Goodman-Bacon, Sant'Anna
+>   Purpose:      Replicates Table 1 showing Medicaid Expansion    
+>                         under ACA broken down by different population    
+>                         shares (i.e., share of states, counties, adults) 
+> 
+>   Data Required:
+>     • "county_mortality_data.csv" — created by R Code
+>         
+>   Output:
+>         1. Just shows that the tabulation is the same
+> 
+>   Author: Scott Cunningham
+>   Last updated: Bacon, Oct 5, 2025
+> ****************************************************/
+. clear
+
+. capture log close
+
+. 
+. *****************************************************************************
+> *
+. * 1. Load original data to get states right (different from analysis sample)
+. *****************************************************************************
+> *
+.         insheet using "data/county_mortality_data.csv", clear
+(22 vars, 31,843 obs)
+
+. 
+.         keep state county_code year yaca population_20_64
+
+.         
+.         *Define treatment timing
+.         gen treat_year = real(yaca)
+(9,789 missing values generated)
+
+.         replace treat_year = 0 if missing(treat_year)
+(9,789 real changes made)
+
+.         tostring treat_year, gen(treat_str)
+treat_str generated as str4
+
+.         destring yaca, replace force
+yaca: contains nonnumeric characters; replaced as int
+(9789 missing values generated)
+
+. 
+.         destring population_20_64, replace force
+population_20_64: contains nonnumeric characters; replaced as long
+(60 missing values generated)
+
+.         
+.         * Drop DC as in JEL Table 1
+.         drop if state == "District of Columbia"
+(11 observations deleted)
+
+. 
+. ****************************************************
+. * 2. Create adoption category                      *
+. ****************************************************
+.         gen adopt = ""
+(31,832 missing values generated)
+
+.         replace adopt = "Pre2014" if inlist(state, "Delaware", "Massachusetts
+> ", "New York", "Vermont")
+variable adopt was str1 now str7
+(1,017 real changes made)
+
+.         replace adopt = string(yaca) if !missing(yaca) & adopt == ""
+(21,026 real changes made)
+
+.         replace adopt = "NonExpansion" if missing(yaca)
+variable adopt was str7 now str12
+(9,789 real changes made)
+
+. 
+. ****************************************************
+. * 3. Get number of states and state share          *
+. ****************************************************
+.         preserve
+
+.         keep state adopt
+
+.         replace state = strtrim(ustrupper(state))  // normalize before dedupi
+> ng
+(31,832 real changes made)
+
+.         drop if missing(state) | trim(state) == ""
+(0 observations deleted)
+
+.         duplicates drop
+
+Duplicates in terms of all variables
+
+(31,782 observations deleted)
+
+.         gen state_count = 1
+
+.         collapse (sum) state_count, by(adopt)
+
+.         gen state_share = state_count / 50
+
+.         tempfile state_summary
+
+.         save `state_summary'
+file C:\Users\ADMINI~1\AppData\Local\Temp\ST_4084_000002.tmp saved as .dta
+    format
+
+.         restore
+
+. 
+. ****************************************************
+. * 4. Get county & adult pop share (year = 2013)    *
+. ****************************************************
+.         preserve
+
+.         keep if year == 2013
+(28,938 observations deleted)
+
+. 
+.         * Total county count and total 20–64 pop in 2013
+.         su population_20_64
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+populatio~64 |      2,888    65199.65    205464.8         60    6221536
+
+.         scalar total_pop = r(sum)
+
+. 
+.         su county_code
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+ county_code |      2,894    30209.59    15331.37       1001      56045
+
+.         scalar total_counties = r(N)
+
+. 
+.         collapse (count) county_count=county_code (sum) pop=population_20_64,
+>  by(adopt)
+
+. 
+.         gen county_share = county_count / total_counties
+
+.         gen pop_share = pop / total_pop
+
+. 
+.         tempfile county_summary
+
+.         save `county_summary'
+file C:\Users\ADMINI~1\AppData\Local\Temp\ST_4084_000004.tmp saved as .dta
+    format
+
+.         restore
+
+. 
+. ****************************************************
+. * 5. Merge and order categories for display        *
+. ****************************************************
+.         use `state_summary', clear
+
+.         merge 1:1 adopt using `county_summary', nogen
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             0
+    Matched                                 9  
+    -----------------------------------------
+
+. 
+.         * Order like JEL Table 1
+.         gen order = .
+(9 missing values generated)
+
+.         replace order = 1 if adopt == "Pre2014"
+(1 real change made)
+
+.         replace order = 2 if adopt == "2014"
+(1 real change made)
+
+.         replace order = 3 if adopt == "2015"
+(1 real change made)
+
+.         replace order = 4 if adopt == "2016"
+(1 real change made)
+
+.         replace order = 5 if adopt == "2019"
+(1 real change made)
+
+.         replace order = 6 if adopt == "2020"
+(1 real change made)
+
+.         replace order = 7 if adopt == "2021"
+(1 real change made)
+
+.         replace order = 8 if adopt == "2023"
+(1 real change made)
+
+.         replace order = 9 if adopt == "NonExpansion"
+(1 real change made)
+
+.         sort order
+
+. 
+.         * Round to match JEL formatting
+.         gen state_share_fmt = string(state_share, "%4.2f")
+
+.         gen county_share_fmt = string(county_share, "%4.2f")
+
+.         gen pop_share_fmt = string(pop_share, "%4.2f")
+
+. 
+. ****************************************************
+. * 6. Preview table                                 *
+. ****************************************************
+.         list adopt state_count state_share_fmt county_count county_share_fmt 
+> pop_share_fmt, sepby(order)
+
+     +---------------------------------------------------------------------+
+     |        adopt   state~nt   state~mt   count~nt   count~mt   pop_sh~t |
+     |---------------------------------------------------------------------|
+  1. |      Pre2014          4       0.08         92       0.03       0.09 |
+     |---------------------------------------------------------------------|
+  2. |         2014         22       0.44       1036       0.36       0.45 |
+     |---------------------------------------------------------------------|
+  3. |         2015          3       0.06        184       0.06       0.06 |
+     |---------------------------------------------------------------------|
+  4. |         2016          2       0.04        102       0.04       0.02 |
+     |---------------------------------------------------------------------|
+  5. |         2019          2       0.04        148       0.05       0.03 |
+     |---------------------------------------------------------------------|
+  6. |         2020          3       0.06        120       0.04       0.02 |
+     |---------------------------------------------------------------------|
+  7. |         2021          2       0.04        188       0.06       0.03 |
+     |---------------------------------------------------------------------|
+  8. |         2023          2       0.04        134       0.05       0.03 |
+     |---------------------------------------------------------------------|
+  9. | NonExpansion         10       0.20        890       0.31       0.26 |
+     +---------------------------------------------------------------------+
+
+. 
+. ****************************************************
+. * 7. Write LaTeX table for ACA adoption            *
+. ****************************************************
+. foreach g in Pre2014 2014 2015 2016 2019 2020 2021 2023 NonExpansion {
+  2. 
+.    summarize state_share if adopt=="`g'", meanonly
+  3.     local ss_`g': display %4.2f r(mean)
+  4. 
+.     summarize county_share if adopt=="`g'", meanonly
+  5.     local cs_`g': display %4.2f r(mean)
+  6. 
+.     summarize pop_share if adopt=="`g'", meanonly
+  7.     local ps_`g': display %4.2f r(mean)
+  8. }
+
+. 
+. 
+. di "`ss_Pre2014'"
+0.08
+
+. 
+. * State lists
+. local states_Pre2014 "DE, MA, NY, VT"
+
+. local states_2014     "AR, AZ, CA, CO, CT, HI, IA, IL, KY, MD, MI, MN, ND, NH
+> , NJ, NM, NV, OH, OR, RI, WA, WV"
+
+. local states_2015     "AK, IN, PA"
+
+. local states_2016     "LA, MT"
+
+. local states_2019     "ME, VA"
+
+. local states_2020     "ID, NE, UT"
+
+. local states_2021     "MO, OK"
+
+. local states_2023     "NC, SD"
+
+. local states_NonExpansion "AL, FL, GA, KS, MS, SC, TN, TX, WI, WY"
+
+. 
+. 
+. * Prepare LaTeX file
+. cap mkdir "tables"
+
+. local outfile "tables/table1_stata.tex"
+
+. 
+. capture file close fh
+
+. file open fh using "`outfile'", write replace text
+
+. 
+. file write fh ///
+> "\begin{table}[!h]" _n ///
+> "\centering" _n ///
+> "\caption{\label{tab:aca_adopt}Medicaid Expansion under the Affordable Care A
+> ct}" _n ///
+> "\fontsize{12}{14}\selectfont" _n ///
+> "\begin{threeparttable}" _n ///
+> "\begin{tabular}[t]{lp{8cm}ccc}" _n ///
+> "\toprule" _n ///
+> "Expansion Year & States & Share of States & Share of Counties & Share of Adu
+> lts (2013)\\\\ " _n ///
+> "\midrule" _n ///
+> "Pre-2014 & `states_Pre2014' & `ss_Pre2014' & `cs_Pre2014' & `ps_Pre2014'\\\\
+>  " _n ///
+> "2014 & `states_2014' & `ss_2014' & `cs_2014' & `ps_2014'\\\\ " _n ///
+> "2015 & `states_2015' & `ss_2015' & `cs_2015' & `ps_2015'\\\\ " _n ///
+> "2016 & `states_2016' & `ss_2016' & `cs_2016' & `ps_2016'\\\\ " _n ///
+> "2019 & `states_2019' & `ss_2019' & `cs_2019' & `ps_2019'\\\\ " _n ///
+> "2020 & `states_2020' & `ss_2020' & `cs_2020' & `ps_2020'\\\\ " _n ///
+> "2021 & `states_2021' & `ss_2021' & `cs_2021' & `ps_2021'\\\\ " _n ///
+> "2023 & `states_2023' & `ss_2023' & `cs_2023' & `ps_2023'\\\\ " _n ///
+> "Non-Expansion & `states_NonExpansion' & `ss_NonExpansion' & `cs_NonExpansion
+> ' & `ps_NonExpansion'\\\\ " _n ///
+> "\bottomrule" _n ///
+> "\end{tabular}" _n ///
+> "\begin{tablenotes}[para]" _n ///
+> "\item \\vspace{-4ex} \\singlespacing \\footnotesize{The table shows which st
+> ates adopted the ACA's Medicaid expansion in each year as well as the share o
+> f all states, counties, and adults in each expansion year.}" _n ///
+> "\end{tablenotes}" _n ///
+> "\end{threeparttable}" _n ///
+> "\end{table}" _n
+
+. 
+. file close fh
+
+. display "✓  LaTeX table written to `outfile'"
+✓  LaTeX table written to tables/table1_stata.tex
+
+. 
+. 
+. 
+. 
+end of do-file
+
+. 
+. di as result _n "===== STEP 2: 2x2 DiD (Tables 2-7, Figure 1) ====="
+
+===== STEP 2: 2x2 DiD (Tables 2-7, Figure 1) =====
+
+. do "scripts/Stata/2_stata_2x2.do"
+
+. /****************************************************************************
+>   File: 2.stata_2x2.do
+>   Project: JEL - DiD: A Practitioner's Guide
+>   Authors: Baker, Callaway, Cunningham, Goodman-Bacon, Sant'Anna
+>   Purpose: Replicates the 2x2 results in the JEL paper
+>              
+>   Data Required:
+>     • "did_jel_aca_replication_data" — created by 0.stata_Make_data.do
+> 
+>   Output format:
+>     • If possible (ie. run on a Mac): Figures saved as `.pdf` in the Figures/
+>  directory, matching `ggsave()` in R
+>     • Else (ie. run on a PC): Figures saved as `.emf` in the Figures/ directo
+> ry
+>         • Tables written as .tex files in the Tables/ directory
+>         
+>   Output:
+>         1. Table 2: weighted and unweighted averages for the simple 2x2 DiD (
+> "tables/table2_stata.tex")
+>         2. Table 3: regression 2x2 DiD with balanced panel, no controls      
+>    ("tables/table3_stata.tex")
+>         3. Table 4: Covariate-balance table                                  
+>                            ("tables/table4_stata.tex")     
+>         4. Table 5: Regression 2 x 2 DiD with Covariates                     
+>                    ("tables/table5_stata.tex")     
+>         5. Table 6: Outcome Regressions + Propensity Score Models            
+>            ("tables/table6_stata.tex")     
+>         6. Table 7: 2x2 DiD with covariates (Sant'Anna and Zhao 2020)        
+>    ("tables/table7_stata.tex")     
+>         7. Figure 1: Distribution of Propensity Scores                       
+>                    ("figures/figure1_stata.tex")   
+>         
+>   Author: Scott Cunningham
+>   Last updated: Bacon, Oct 5, 2025
+> ****************************************************************************/
+. 
+. ***************************************************************
+. *1. Table 2: weighted and unweighted averages for the simple 2x2 DiD
+. ***************************************************************
+.         *Read in data, keep 2013–2014 and 2014 expansion vs "non expansion" s
+> tates
+.         use "data/did_jel_aca_replication_data", clear
+
+.         keep if inlist(year, 2013, 2014) & inlist(yaca,2014,2020,2021,2023,.)
+(24,244 observations deleted)
+
+.         gen Treat = (yaca==2014)                // 1 = ACA in 2014
+
+.         gen Post = (year == 2014)       // 1 = post-expansion year
+
+. 
+.         *Means
+.         *unweighted
+.         sum crude_rate if Treat==1 & year==2014
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+crude_rat~64 |        978    428.4973    150.7398   119.0079   1167.315
+
+.         global u12014 = r(mean)
+
+.         sum crude_rate if Treat==1 & year==2013
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+crude_rat~64 |        978    419.2277    145.7884   138.5706   1297.578
+
+.         global u12013 = r(mean)
+
+.         sum crude_rate if Treat==0 & year==2014
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+crude_rat~64 |      1,222     483.149    151.0753   102.8807   1187.648
+
+.         global u02014 = r(mean)
+
+.         sum crude_rate if Treat==0 & year==2013
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+crude_rat~64 |      1,222    474.0009    150.0206   72.32619   1256.646
+
+.         global u02013 = r(mean)
+
+. 
+.         *weighted
+.         sum crude_rate if Treat==1 & year==2014 [aw=set_wt]
+
+    Variable |     Obs      Weight        Mean   Std. dev.       Min        Max
+-------------+-----------------------------------------------------------------
+crude_rat~64 |     978    84421489    326.4559   107.0518   119.0079   1167.315
+
+.         global w12014 = r(mean)
+
+.         sum crude_rate if Treat==1 & year==2013  [aw=set_wt]
+
+    Variable |     Obs      Weight        Mean   Std. dev.       Min        Max
+-------------+-----------------------------------------------------------------
+crude_rat~64 |     978    84421489    322.7176   102.6797   138.5706   1297.578
+
+.         global w12013 = r(mean)
+
+.         sum crude_rate if Treat==0 & year==2014  [aw=set_wt]
+
+    Variable |     Obs      Weight        Mean   Std. dev.       Min        Max
+-------------+-----------------------------------------------------------------
+crude_rat~64 |   1,222    65171521    382.7033   123.2735   102.8807   1187.648
+
+.         global w02014 = r(mean)
+
+.         sum crude_rate if Treat==0 & year==2013 [aw=set_wt]
+
+    Variable |     Obs      Weight        Mean   Std. dev.       Min        Max
+-------------+-----------------------------------------------------------------
+crude_rat~64 |   1,222    65171521    376.4021   121.4986   72.32619   1256.646
+
+.         global w02013 = r(mean)
+
+. 
+.         *Gaps, trends, DiDs 
+.         * Unweighted
+.         global Gap13_u = $u12013 - $u02013
+
+.         global Gap14_u = $u12014 - $u02014
+
+.         global DiD_u   = ( $u12014 - $u12013 ) - ( $u02014 - $u02013 )
+
+.         global Trend_T_u = $u12014 - $u12013
+
+.         global Trend_C_u = $u02014 - $u02013
+
+. 
+.         * Weighted
+.         global Gap13_w = $w12013 - $w02013
+
+.         global Gap14_w = $w12014 - $w02014
+
+.         global DiD_w   = ( $w12014 - $w12013 ) - ( $w02014 - $w02013 )
+
+.         global Trend_T_w = $w12014 - $w12013
+
+.         global Trend_C_w = $w02014 - $w02013
+
+. 
+. 
+.         *Rounding for the table
+.         foreach nm in u12013 u02013 u12014 u02014 ///
+>                                  w12013 w02013 w12014 w02014 ///
+>                                  Gap13_u Gap14_u DiD_u Trend_T_u Trend_C_u //
+> /
+>                                  Gap13_w Gap14_w DiD_w Trend_T_w Trend_C_w {
+  2.                 local `nm' : display %6.1f ${`nm'}
+  3.                 display("`nm'")
+  4.         }
+u12013
+u02013
+u12014
+u02014
+w12013
+w02013
+w12014
+w02014
+Gap13_u
+Gap14_u
+DiD_u
+Trend_T_u
+Trend_C_u
+Gap13_w
+Gap14_w
+DiD_w
+Trend_T_w
+Trend_C_w
+
+. 
+.         * Brick-red DiD cells
+.         local DiD_u_cell "\em{\em{\textcolor{BrickRed}{`DiD_u'}}}"
+
+.         local DiD_w_cell "\em{\em{\textcolor{BrickRed}{`DiD_w'}}}"
+
+. 
+.         *Write LaTeX file
+.         cap mkdir "tables"
+
+.         local outfile "tables/table2_stata.tex"
+
+. 
+.         file open fh using "`outfile'", write replace text
+
+. 
+.         file write fh ///
+>         "\begin{table}[!h]" _n ///
+>         "\centering" _n ///
+>         "\caption{\label{tab:two_by_two_ex}Simple 2 \$\\times\$ 2 DiD}" _n //
+> /
+>         "\centering" _n ///
+>         "\fontsize{12}{14}\selectfont" _n ///
+>         "\begin{threeparttable}" _n ///
+>         "\begin{tabular}[t]{>{}c>{}c>{}c>{}c>{}c>{}c>{}c}" _n ///
+>         "\toprule" _n ///
+>         "\multicolumn{1}{c}{ } & \multicolumn{3}{c}{Unweighted Averages} & " 
+> ///
+>         "\multicolumn{3}{c}{Weighted Averages} \\\\" _n ///
+>         "\cmidrule(l{3pt}r{3pt}){2-4} \cmidrule(l{3pt}r{3pt}){5-7}" _n ///
+>         " & Expansion & No Expansion & Gap/DiD & Expansion & No Expansion & G
+> ap/DiD\\\\" _n ///
+>         "\midrule" _n ///
+>         "\textcolor{black}{2013} & \textcolor{black}{`u12013'} & \textcolor{b
+> lack}{`u02013'} & " ///
+>         "\em{`Gap13_u'} & \textcolor{black}{`w12013'} & \textcolor{black}{`w0
+> 2013'} & \em{`Gap13_w'}\\\\" _n ///
+>         "\textcolor{black}{2014} & \textcolor{black}{`u12014'} & \textcolor{b
+> lack}{`u02014'} & " ///
+>         "\em{`Gap14_u'} & \textcolor{black}{`w12014'} & \textcolor{black}{`w0
+> 2014'} & \em{`Gap14_w'}\\\\" _n ///
+>         "\em{\textcolor{black}{Trend/DiD}} & \em{\textcolor{black}{`Trend_T_u
+> '}} & " ///
+>         "\em{\textcolor{black}{`Trend_C_u'}} & `DiD_u_cell' & " ///
+>         "\em{\textcolor{black}{`Trend_T_w'}} & \em{\textcolor{black}{`Trend_C
+> _w'}} & `DiD_w_cell'\\\\" _n ///
+>         "\bottomrule" _n ///
+>         "\end{tabular}" _n ///
+>         "\begin{tablenotes}[para]" _n ///
+>         "\item \\vspace{-4ex} \\singlespacing \\footnotesize{This table repor
+> ts average county-level " _n ///
+>         "mortality rates (deaths among adults aged 20--64 per 100,000 adults)
+>  in 2013 (row~1) and 2014 (row~2) " _n ///
+>         "in states that expanded adult Medicaid eligibility in 2014 (columns~
+> 1 and~4) and states that have not expanded " _n ///
+>         "by 2019 (columns~2 and~5).  The first three columns present unweight
+> ed averages and the second three columns " _n ///
+>         "present population-weighted averages.  Columns~1, 2, 4, and~5 in the
+>  third row show time trends in mortality " _n ///
+>         "between 2013 and 2014 for each group of states.  The first two rows 
+> of columns~3 and~6 show the cross-sectional " _n ///
+>         "gap in mortality between expansion and non-expansion states in 2013 
+> and 2014.  The entries in bold red text in " _n ///
+>         "row~3 show the simple 2 \$\\times\$ 2 difference-in-differences esti
+> mates without weights (column~3) and with them " _n ///
+>         "(column~6).}" _n ///
+>         "\end{tablenotes}" _n ///
+>         "\end{threeparttable}" _n ///
+>         "\end{table}" _n
+
+. 
+.         file close fh
+
+.         display "✓  LaTeX table written to `outfile'"
+✓  LaTeX table written to tables/table2_stata.tex
+
+. 
+. 
+. ***************************************************************
+. *2. Table 3: regression 2x2 DiD with balanced panel, no controls
+. ***************************************************************
+.         *Read in data, keep 2013–2014 and 2014 expansion vs "non expansion" s
+> tates
+.         use "data/did_jel_aca_replication_data", clear  
+
+.         keep if inlist(year, 2013, 2014) & inlist(yaca,2014,2020,2021,2023,.)
+(24,244 observations deleted)
+
+.         gen Treat = (yaca==2014)                // 1 = ACA in 2014
+
+.         gen Post = (year == 2014)       // 1 = post-expansion year
+
+. 
+.         *Panel declaration (once)
+.         xtset county_code year
+
+Panel variable: county_code (strongly balanced)
+ Time variable: year, 2013 to 2014
+         Delta: 1 unit
+
+. 
+.         *UNWEIGHTED regressions
+.         eststo clear
+
+.         * (1) Treat × Post, no FE
+.         reg crude_rate_20_64 c.Treat##c.Post, vce(cluster county_code)
+
+Linear regression                               Number of obs     =      4,400
+                                                F(3, 2199)        =      35.47
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.0329
+                                                Root MSE          =     149.55
+
+                        (Std. err. adjusted for 2,200 clusters in county_code)
+------------------------------------------------------------------------------
+             |               Robust
+crude_rat~64 | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       Treat |    -54.773      6.337    -8.64   0.000      -67.201     -42.346
+        Post |      9.148      2.599     3.52   0.000        4.051      14.245
+             |
+     c.Treat#|
+      c.Post |      0.122      3.748     0.03   0.974       -7.229       7.472
+             |
+       _cons |    474.001      4.292   110.43   0.000      465.584     482.418
+------------------------------------------------------------------------------
+
+.         eststo m1
+
+.         estadd local countyfe "No"
+
+added macro:
+           e(countyfe) : "No"
+
+.         estadd local yearfe   "No"
+
+added macro:
+             e(yearfe) : "No"
+
+. 
+.         * (2) Treat × Post with county & year FE  (xtreg, fe → no constant)
+.         xtreg crude_rate_20_64 c.Treat#c.Post i.year, fe vce(cluster county_c
+> ode)
+
+Fixed-effects (within) regression               Number of obs     =      4,400
+Group variable: county_code                     Number of groups  =      2,200
+
+R-squared:                                      Obs per group:
+     Within  = 0.0108                                         min =          2
+     Between = 0.0350                                         avg =        2.0
+     Overall = 0.0008                                         max =          2
+
+                                                F(2, 2199)        =      12.09
+corr(u_i, Xb) = -0.0012                         Prob > F          =     0.0000
+
+                        (Std. err. adjusted for 2,200 clusters in county_code)
+------------------------------------------------------------------------------
+             |               Robust
+crude_rat~64 | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     c.Treat#|
+      c.Post |      0.122      3.748     0.03   0.974       -7.228       7.472
+             |
+        year |
+       2014  |      9.148      2.599     3.52   0.000        4.052      14.245
+             |
+       _cons |    449.652      0.939   478.98   0.000      447.811     451.493
+-------------+----------------------------------------------------------------
+     sigma_u |  145.45523
+     sigma_e |  62.271173
+         rho |  .84510841   (fraction of variance due to u_i)
+------------------------------------------------------------------------------
+
+.         eststo m2
+
+.         estadd local countyfe "Yes"
+
+added macro:
+           e(countyfe) : "Yes"
+
+.         estadd local yearfe   "Yes"
+
+added macro:
+             e(yearfe) : "Yes"
+
+. 
+.         * (3) Long-difference, unweighted
+.         preserve
+
+.                 keep county_code year crude_rate_20_64 Treat
+
+.                 reshape wide crude_rate_20_64, i(county_code) j(year)
+(j = 2013 2014)
+
+Data                               Long   ->   Wide
+-----------------------------------------------------------------------------
+Number of observations            4,400   ->   2,200       
+Number of variables                   4   ->   4           
+j variable (2 values)              year   ->   (dropped)
+xij variables:
+                       crude_rate_20_64   ->   crude_rate_20_642013 crude_rate_
+> 20_642014
+-----------------------------------------------------------------------------
+
+.                 gen diff = crude_rate_20_642014 - crude_rate_20_642013
+
+.                 label variable diff "\$\\Delta\$"
+
+.                 reg diff Treat, vce(cluster county_code)
+
+Linear regression                               Number of obs     =      2,200
+                                                F(1, 2199)        =       0.00
+                                                Prob > F          =     0.9741
+                                                R-squared         =     0.0000
+                                                Root MSE          =     88.065
+
+                        (Std. err. adjusted for 2,200 clusters in county_code)
+------------------------------------------------------------------------------
+             |               Robust
+        diff | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       Treat |      0.122      3.748     0.03   0.974       -7.228       7.472
+       _cons |      9.148      2.599     3.52   0.000        4.052      14.245
+------------------------------------------------------------------------------
+
+.         eststo m3
+
+.         estadd local countyfe "No"
+
+added macro:
+           e(countyfe) : "No"
+
+.         estadd local yearfe   "No"
+
+added macro:
+             e(yearfe) : "No"
+
+.         restore
+
+. 
+.         *WEIGHTED regressions
+.         * (4) Weighted, no FE
+.         reg crude_rate_20_64 c.Treat##c.Post [aw=set_wt], vce(cluster county_
+> code)
+(sum of wgt is 299,186,020)
+
+Linear regression                               Number of obs     =      4,400
+                                                F(3, 2199)        =      25.52
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.0556
+                                                Root MSE          =     112.85
+
+                        (Std. err. adjusted for 2,200 clusters in county_code)
+------------------------------------------------------------------------------
+             |               Robust
+crude_rat~64 | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       Treat |    -53.685     11.498    -4.67   0.000      -76.233     -31.136
+        Post |      6.301      1.132     5.57   0.000        4.082       8.520
+             |
+     c.Treat#|
+      c.Post |     -2.563      1.490    -1.72   0.086       -5.485       0.359
+             |
+       _cons |    376.402      7.595    49.56   0.000      361.507     391.297
+------------------------------------------------------------------------------
+
+.         eststo m4
+
+.         estadd local countyfe "No"
+
+added macro:
+           e(countyfe) : "No"
+
+.         estadd local yearfe   "No"
+
+added macro:
+             e(yearfe) : "No"
+
+. 
+.         * (5) Weighted, county & year FE  (areg keeps _cons; we'll hide it)
+.         xtreg crude_rate_20_64 c.Treat#c.Post i.year [aw=set_wt], ///
+>                 fe vce(cluster county_code)
+
+Fixed-effects (within) regression               Number of obs     =      4,400
+Group variable: county_code                     Number of groups  =      2,200
+
+R-squared:                                      Obs per group:
+     Within  = 0.0176                                         min =          2
+     Between = 0.0350                                         avg =        2.0
+     Overall = 0.0049                                         max =          2
+
+                                                F(2, 2199)        =      22.95
+corr(u_i, Xb) = 0.0426                          Prob > F          =     0.0000
+
+                        (Std. err. adjusted for 2,200 clusters in county_code)
+------------------------------------------------------------------------------
+             |               Robust
+crude_rat~64 | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     c.Treat#|
+      c.Post |     -2.563      1.490    -1.72   0.086       -5.485       0.359
+             |
+        year |
+       2014  |      6.301      1.131     5.57   0.000        4.082       8.520
+             |
+       _cons |    346.106      0.368   940.09   0.000      345.384     346.828
+-------------+----------------------------------------------------------------
+     sigma_u |  145.33185
+     sigma_e |  26.504736
+         rho |  .96781039   (fraction of variance due to u_i)
+------------------------------------------------------------------------------
+
+.         eststo m5
+
+.         estadd local countyfe "Yes"
+
+added macro:
+           e(countyfe) : "Yes"
+
+.         estadd local yearfe   "Yes"
+
+added macro:
+             e(yearfe) : "Yes"
+
+. 
+. 
+.         * (6) Weighted long-difference
+.         preserve
+
+.                 keep county_code year crude_rate_20_64 Treat set_wt
+
+.                 reshape wide crude_rate_20_64, i(county_code) j(year)
+(j = 2013 2014)
+
+Data                               Long   ->   Wide
+-----------------------------------------------------------------------------
+Number of observations            4,400   ->   2,200       
+Number of variables                   5   ->   5           
+j variable (2 values)              year   ->   (dropped)
+xij variables:
+                       crude_rate_20_64   ->   crude_rate_20_642013 crude_rate_
+> 20_642014
+-----------------------------------------------------------------------------
+
+.                 gen diff = crude_rate_20_642014 - crude_rate_20_642013
+
+.                 reg diff Treat [aw=set_wt], vce(cluster county_code)
+(sum of wgt is 149,593,010)
+
+Linear regression                               Number of obs     =      2,200
+                                                F(1, 2199)        =       2.96
+                                                Prob > F          =     0.0855
+                                                R-squared         =     0.0011
+                                                Root MSE          =     37.483
+
+                        (Std. err. adjusted for 2,200 clusters in county_code)
+------------------------------------------------------------------------------
+             |               Robust
+        diff | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       Treat |     -2.563      1.490    -1.72   0.086       -5.485       0.359
+       _cons |      6.301      1.131     5.57   0.000        4.082       8.520
+------------------------------------------------------------------------------
+
+.         eststo m6
+
+.         estadd local countyfe "No"
+
+added macro:
+           e(countyfe) : "No"
+
+.         estadd local yearfe   "No"
+
+added macro:
+             e(yearfe) : "No"
+
+.         restore
+
+. 
+.         *Build the LaTeX table
+.         local labels ///
+>                 _cons            "Constant" ///
+>                 Treat            "Medicaid Expansion" ///
+>                 Post             "Post" ///
+>                 c.Treat#c.Post   "Medicaid Expansion × Post"
+
+. 
+.         * Add Treat as the interaction label in long-diff specs (m3 and m6)
+.         estimates restore m3
+(results m3 are active now)
+
+.         estadd local intlabel "Medicaid Expansion × Post"
+
+added macro:
+           e(intlabel) : "Medicaid Expansion × Post"
+
+.         estimates restore m6
+(results m6 are active now)
+
+.         estadd local intlabel "Medicaid Expansion × Post"
+
+added macro:
+           e(intlabel) : "Medicaid Expansion × Post"
+
+. 
+.         cap mkdir "tables"
+
+.         esttab m1 m2 m3 m4 m5 m6 using "tables/table3_stata.tex", replace ///
+>                 b(%9.1f) se(%9.1f) star(* 0.10 ** 0.05 *** 0.01)             
+>   ///
+>                 booktabs fragment                                            
+>  ///
+>                 keep(_cons Treat Post c.Treat#c.Post)                        
+>  ///
+>                 varlabels(_cons "Constant"                                   
+> ///
+>                                   Treat "Medicaid Expansion"                 
+>         ///
+>                                   Post  "Post"                               
+>         ///
+>                                   c.Treat#c.Post "Medicaid Expansion × Post")
+>         ///
+>                 mgroups("Unweighted" "Weighted", pattern(1 1 1 1 1 1) span)  
+>  ///
+>                 mtitles("Crude Mortality Rate" "Crude Mortality Rate" "$\\Del
+> ta$" ///
+>                                 "Crude Mortality Rate" "Crude Mortality Rate"
+>  "$\\Delta$") ///
+>                 alignment(c)                                                 
+>  ///
+>                 stats(N countyfe yearfe, fmt(%9.0g %9s %9s)                  
+>  ///
+>                           labels("Obs." "County fixed effects" "Year fixed ef
+> fects")) ///
+>                 addnotes("Standard errors clustered by county. Columns 1–3 un
+> weighted; 4–6 weighted by 2013 county population.")    
+(output written to tables/table3_stata.tex)
+
+.                 
+.         display "✓  LaTeX 2x2 regression table manually written to tables/tab
+> le3_stata.tex"
+✓  LaTeX 2x2 regression table manually written to tables/table3_stata.tex
+
+.                 
+.                 
+. ***************************************************************
+. *3. Table 4: Covariate-balance table
+. *                        NB:the table construction is a lot of lines here...
+. ***************************************************************
+.         *Read in data, keep 2013–2014 and 2014 expansion vs "non expansion" s
+> tates
+.         use "data/did_jel_aca_replication_data", clear
+
+. keep if inlist(year, 2013, 2014) & inlist(yaca,2014,2020,2021,2023,.)
+(24,244 observations deleted)
+
+.         gen Treat = (yaca==2014)                // 1 = ACA in 2014
+
+.         gen Post = (year == 2014)       // 1 = post-expansion year
+
+. 
+.         *local with covariate names
+.         local covs perc_female perc_white perc_hispanic ///
+>                            unemp_rate_pc poverty_rate median_income_k
+
+. 
+.         *2013 levels — unweighted means, SDs, and normalized diff
+.         preserve
+
+.                 keep if year == 2013
+(2,200 observations deleted)
+
+. 
+.                 *---- means and SDs in a single collapse --------------------
+> ---
+.                 collapse (mean)  m_perc_female                          = per
+> c_female       ///
+>                                                  m_perc_white                
+>            = perc_white            ///
+>                                                  m_perc_hispanic             
+>            = perc_hispanic         ///
+>                                                  m_unemp_rate_pc             
+>            = unemp_rate_pc         ///
+>                                                  m_poverty_rate              
+>    = poverty_rate          ///
+>                                                  m_median_income_k           
+>            = median_income_k       ///
+>                                  (sd)    sd_perc_female                      
+>    = perc_female       ///
+>                                                  sd_perc_white               
+>            = perc_white            ///
+>                                                  sd_perc_hispanic            
+>            = perc_hispanic         ///
+>                                                  sd_unemp_rate_pc            
+>            = unemp_rate_pc         ///
+>                                                  sd_poverty_rate             
+>    = poverty_rate          ///
+>                                                  sd_median_income_k          
+>            = median_income_k,      ///
+>                                  by(Treat)
+
+. 
+.                 generate byte id = 1          // same value for both rows (Tr
+> eat 0/1)
+
+. 
+.                 *---- reshape into one wide row -----------------------------
+> --------
+.                 reshape wide m* sd_*, i(id) j(Treat)
+(j = 0 1)
+
+Data                               Long   ->   Wide
+-----------------------------------------------------------------------------
+Number of observations                2   ->   1           
+Number of variables                  14   ->   25          
+j variable (2 values)             Treat   ->   (dropped)
+xij variables:
+                          m_perc_female   ->   m_perc_female0 m_perc_female1
+                           m_perc_white   ->   m_perc_white0 m_perc_white1
+                        m_perc_hispanic   ->   m_perc_hispanic0 m_perc_hispanic
+> 1
+                        m_unemp_rate_pc   ->   m_unemp_rate_pc0 m_unemp_rate_pc
+> 1
+                         m_poverty_rate   ->   m_poverty_rate0 m_poverty_rate1
+                      m_median_income_k   ->   m_median_income_k0 m_median_inco
+> me_k1
+                         sd_perc_female   ->   sd_perc_female0 sd_perc_female1
+                          sd_perc_white   ->   sd_perc_white0 sd_perc_white1
+                       sd_perc_hispanic   ->   sd_perc_hispanic0 sd_perc_hispan
+> ic1
+                       sd_unemp_rate_pc   ->   sd_unemp_rate_pc0 sd_unemp_rate_
+> pc1
+                        sd_poverty_rate   ->   sd_poverty_rate0 sd_poverty_rate
+> 1
+                     sd_median_income_k   ->   sd_median_income_k0 sd_median_in
+> come_k1
+-----------------------------------------------------------------------------
+
+.                 drop id                       // no longer needed
+
+. 
+.                 *---- normalized differences --------------------------------
+> --
+.                 foreach x in `covs'{
+  2.                         gen nd_`x' = (m_`x'1 - m_`x'0) / ///
+>                                                  sqrt( (sd_`x'1^2 + sd_`x'0^2
+> ) / 2 )
+  3.                 }
+
+. 
+.                         keep m* nd_*                    // single-row dataset
+
+.                         tempfile unwt_pre
+
+.                         save `unwt_pre'
+file C:\Users\ADMINI~1\AppData\Local\Temp\ST_4084_000004.tmp saved as .dta
+    format
+
+.                         list
+
+     +-----------------------------------------------------------------------+
+  1. | m_per~le0 | m_per~te0 | m_perc~c0 | m_unemp~0 | m_pover~0 | m_media~0 |
+     | 49.427241 | 81.640538 | 9.6369872 | 7.6057706 | 19.282488 | 43.035581 |
+     |-----------+-----------+-----------+-----------+-----------+-----------|
+     | m_per~le1 | m_per~te1 | m_perc~c1 | m_unemp~1 | m_pover~1 | m_medi~1  |
+     | 49.328371 | 90.483462 | 8.2312625 | 8.0098338 | 16.531186 | 47.96539  |
+     |-----------------------------------------------------------------------|
+     |  nd_perc~le  |  nd_per~te  |  nd_perc~c  |  nd_unem~c  |  nd_pover~e  |
+     |  -.03383194  |  .58590616  |  -.1046422  |  .15661458  |  -.42311701  |
+     |-----------------------------------------------------------------------|
+     |                               nd_medi~k                               |
+     |                               .42713459                               |
+     +-----------------------------------------------------------------------+
+
+.         restore
+
+. 
+. 
+. 
+.         *2013 levels — weighted means, SDs, and normalized diff
+.         preserve
+
+.                 keep if year == 2013
+(2,200 observations deleted)
+
+. 
+.                 *---- means and SDs in a single collapse --------------------
+> ---
+.                 collapse (mean)  wm_perc_female                         = per
+> c_female       ///
+>                                                  wm_perc_white               
+>            = perc_white            ///
+>                                                  wm_perc_hispanic            
+>    = perc_hispanic         ///
+>                                                  wm_unemp_rate_pc            
+>            = unemp_rate_pc         ///
+>                                                  wm_poverty_rate             
+>    = poverty_rate          ///
+>                                                  wm_median_income_k          
+>            = median_income_k       ///
+>                                  (sd)    sd_perc_female                      
+>    = perc_female       ///
+>                                                  sd_perc_white               
+>            = perc_white            ///
+>                                                  sd_perc_hispanic            
+>            = perc_hispanic         ///
+>                                                  sd_unemp_rate_pc            
+>            = unemp_rate_pc         ///
+>                                                  sd_poverty_rate             
+>    = poverty_rate          ///
+>                                                  sd_median_income_k          
+>            = median_income_k       ///
+>                                                  [aw = set_wt], ///
+>                                  by(Treat)
+
+. 
+.                 generate byte id = 1          // same value for both rows (Tr
+> eat 0/1)
+
+. 
+.                 *---- reshape into one wide row -----------------------------
+> --------
+.                 reshape wide wm* sd_*, i(id) j(Treat)
+(j = 0 1)
+
+Data                               Long   ->   Wide
+-----------------------------------------------------------------------------
+Number of observations                2   ->   1           
+Number of variables                  14   ->   25          
+j variable (2 values)             Treat   ->   (dropped)
+xij variables:
+                         wm_perc_female   ->   wm_perc_female0 wm_perc_female1
+                          wm_perc_white   ->   wm_perc_white0 wm_perc_white1
+                       wm_perc_hispanic   ->   wm_perc_hispanic0 wm_perc_hispan
+> ic1
+                       wm_unemp_rate_pc   ->   wm_unemp_rate_pc0 wm_unemp_rate_
+> pc1
+                        wm_poverty_rate   ->   wm_poverty_rate0 wm_poverty_rate
+> 1
+                     wm_median_income_k   ->   wm_median_income_k0 wm_median_in
+> come_k1
+                         sd_perc_female   ->   sd_perc_female0 sd_perc_female1
+                          sd_perc_white   ->   sd_perc_white0 sd_perc_white1
+                       sd_perc_hispanic   ->   sd_perc_hispanic0 sd_perc_hispan
+> ic1
+                       sd_unemp_rate_pc   ->   sd_unemp_rate_pc0 sd_unemp_rate_
+> pc1
+                        sd_poverty_rate   ->   sd_poverty_rate0 sd_poverty_rate
+> 1
+                     sd_median_income_k   ->   sd_median_income_k0 sd_median_in
+> come_k1
+-----------------------------------------------------------------------------
+
+.                 drop id                       // no longer needed
+
+. 
+.                 *---- normalized differences --------------------------------
+> --
+.                 foreach x in `covs'{
+  2.                         gen wnd_`x' = (wm_`x'1 - wm_`x'0) / ///
+>                                                  sqrt( (sd_`x'1^2 + sd_`x'0^2
+> ) / 2 )
+  3.                 }
+
+. 
+.                         keep wm* wnd_*                    // single-row datas
+> et
+
+.                         tempfile wt_pre
+
+.                         save `wt_pre'
+file C:\Users\ADMINI~1\AppData\Local\Temp\ST_4084_000006.tmp saved as .dta
+    format
+
+.                         list
+
+     +-----------------------------------------------------------------------+
+  1. | wm_pe~le0 | wm_pe~te0 | wm_per~c0 | wm_unem~0 | wm_pove~0 | wm_medi~0 |
+     | 50.475652 | 77.907912 | 17.009867 | 6.9951599 | 17.236608 | 49.313075 |
+     |-----------+-----------------------------------------------------------|
+     | wm_pe~le1 | wm_~ite1 | wm_per~c1 | wm_unem~1 | wm_pove~1 | wm_medi~1  |
+     | 50.074222 | 79.53638 | 18.862397 | 8.0114954 | 15.291656 | 57.860592  |
+     |-----------------------------------------------------------------------|
+     |  wnd_per~le  |  wnd_pe~te  |  wnd_per~c  |  wnd_une~c  |  wnd_pove~e  |
+     |  -.23831501  |  .11482404  |  .10692721  |  .50318888  |  -.37441497  |
+     |-----------------------------------------------------------------------|
+     |                               wnd_med~k                               |
+     |                               .68479182                               |
+     +-----------------------------------------------------------------------+
+
+.         restore
+
+. 
+. 
+.         * Differences - unweighted means, SDs, and normalized diff 
+.         preserve
+
+.                 *create differences
+.                 for var `covs': egen bX = total(X*(year==2013)), by(county_co
+> de)
+
+->  egen bperc_female = total(perc_female*(year==2013)), by(county_code)
+
+->  egen bperc_white = total(perc_white*(year==2013)), by(county_code)
+
+->  egen bperc_hispanic = total(perc_hispanic*(year==2013)), by(county_code)
+
+->  egen bunemp_rate_pc = total(unemp_rate_pc*(year==2013)), by(county_code)
+
+->  egen bpoverty_rate = total(poverty_rate*(year==2013)), by(county_code)
+
+->  egen bmedian_income_k = total(median_income_k*(year==2013)), by(county_code
+> )
+
+.                 for var `covs': gen d_X = X-bX
+
+->  gen d_perc_female = perc_female-bperc_female
+
+->  gen d_perc_white = perc_white-bperc_white
+
+->  gen d_perc_hispanic = perc_hispanic-bperc_hispanic
+
+->  gen d_unemp_rate_pc = unemp_rate_pc-bunemp_rate_pc
+
+->  gen d_poverty_rate = poverty_rate-bpoverty_rate
+
+->  gen d_median_income_k = median_income_k-bmedian_income_k
+
+.                 
+.                 keep if year==2014
+(2,200 observations deleted)
+
+. 
+.                 *---- means and SDs in a single collapse --------------------
+> ---
+.                 collapse (mean)  m_d_perc_female                        = d_p
+> erc_female         ///
+>                                                  m_d_perc_white              
+>            = d_perc_white                  ///
+>                                                  m_d_perc_hispanic           
+>    = d_perc_hispanic               ///
+>                                                  m_d_unemp_rate_pc           
+>            = d_unemp_rate_pc               ///
+>                                                  m_d_poverty_rate            
+>    = d_poverty_rate                ///
+>                                                  m_d_median_income_k         
+>    = d_median_income_k     ///
+>                                  (sd)    sd_perc_female                      
+>    = d_perc_female         ///
+>                                                  sd_perc_white               
+>            = d_perc_white                  ///
+>                                                  sd_perc_hispanic            
+>            = d_perc_hispanic               ///
+>                                                  sd_unemp_rate_pc            
+>            = d_unemp_rate_pc               ///
+>                                                  sd_poverty_rate             
+>    = d_poverty_rate                ///
+>                                                  sd_median_income_k          
+>            = d_median_income_k,    ///
+>                                  by(Treat)
+
+. 
+.                 generate byte id = 1          // same value for both rows (Tr
+> eat 0/1)
+
+. 
+.                 *---- reshape into one wide row -----------------------------
+> --------
+.                 reshape wide m* sd_*, i(id) j(Treat)
+(j = 0 1)
+
+Data                               Long   ->   Wide
+-----------------------------------------------------------------------------
+Number of observations                2   ->   1           
+Number of variables                  14   ->   25          
+j variable (2 values)             Treat   ->   (dropped)
+xij variables:
+                        m_d_perc_female   ->   m_d_perc_female0 m_d_perc_female
+> 1
+                         m_d_perc_white   ->   m_d_perc_white0 m_d_perc_white1
+                      m_d_perc_hispanic   ->   m_d_perc_hispanic0 m_d_perc_hisp
+> anic1
+                      m_d_unemp_rate_pc   ->   m_d_unemp_rate_pc0 m_d_unemp_rat
+> e_pc1
+                       m_d_poverty_rate   ->   m_d_poverty_rate0 m_d_poverty_ra
+> te1
+                    m_d_median_income_k   ->   m_d_median_income_k0 m_d_median_
+> income_k1
+                         sd_perc_female   ->   sd_perc_female0 sd_perc_female1
+                          sd_perc_white   ->   sd_perc_white0 sd_perc_white1
+                       sd_perc_hispanic   ->   sd_perc_hispanic0 sd_perc_hispan
+> ic1
+                       sd_unemp_rate_pc   ->   sd_unemp_rate_pc0 sd_unemp_rate_
+> pc1
+                        sd_poverty_rate   ->   sd_poverty_rate0 sd_poverty_rate
+> 1
+                     sd_median_income_k   ->   sd_median_income_k0 sd_median_in
+> come_k1
+-----------------------------------------------------------------------------
+
+.                 drop id                       // no longer needed
+
+. 
+.                 *---- normalized differences --------------------------------
+> --
+.                 foreach x in `covs'{
+  2.                         gen nd_d_`x' = (m_d_`x'1 - m_d_`x'0) / ///
+>                                                  sqrt( (sd_`x'1^2 + sd_`x'0^2
+> ) / 2 )
+  3.                 }
+
+. 
+.                 keep m_d* nd_d*                    // single-row dataset
+
+.                 tempfile unwt_diff
+
+.                 save `unwt_diff'
+file C:\Users\ADMINI~1\AppData\Local\Temp\ST_4084_000008.tmp saved as .dta
+    format
+
+.                 list    
+
+     +---------------------------------------------------------------+
+  1. | m_d_pe~le0 | m_d_pe~te0 | m_d_pe~c0 | m_d_unem~0 | m_d_pove~0 |
+     | -.01620064 | -.21133368 | .20416641 | -1.1627349 | -.54787234 |
+     |-------------------------------------+-------------------------|
+     | m_d_med~0 | m_d_pe~le1 | m_d_pe~te1 | m_d_pe~c1 | m_d_unem~1  |
+     | .97839607 | -.01738734 | -.20871516 | .21403837 | -1.3032151  |
+     |------------------------+------------+-------------------------|
+     | m_d_pove~1 | m_d_med~1 | nd_d_pe~le | nd_d_~ite  | nd_d_pe~c  |
+     | -.28384458 | 1.1127812 | -.00413849 | .00964012  | .03510028  |
+     |---------------------------------------------------------------|
+     |     nd_d_une~c      |     nd_d_po~e      |     nd_d_me~k      |
+     |     -.20577086      |     .14030221      |     .06117605      |
+     +---------------------------------------------------------------+
+
+.         restore
+
+. 
+.         * Differences - weighted means, SDs, and normalized diff 
+.         preserve
+
+.                 *create differences
+.                 for var `covs': egen bX = total(X*(year==2013)), by(county_co
+> de)
+
+->  egen bperc_female = total(perc_female*(year==2013)), by(county_code)
+
+->  egen bperc_white = total(perc_white*(year==2013)), by(county_code)
+
+->  egen bperc_hispanic = total(perc_hispanic*(year==2013)), by(county_code)
+
+->  egen bunemp_rate_pc = total(unemp_rate_pc*(year==2013)), by(county_code)
+
+->  egen bpoverty_rate = total(poverty_rate*(year==2013)), by(county_code)
+
+->  egen bmedian_income_k = total(median_income_k*(year==2013)), by(county_code
+> )
+
+.                 for var `covs': gen d_X = X-bX
+
+->  gen d_perc_female = perc_female-bperc_female
+
+->  gen d_perc_white = perc_white-bperc_white
+
+->  gen d_perc_hispanic = perc_hispanic-bperc_hispanic
+
+->  gen d_unemp_rate_pc = unemp_rate_pc-bunemp_rate_pc
+
+->  gen d_poverty_rate = poverty_rate-bpoverty_rate
+
+->  gen d_median_income_k = median_income_k-bmedian_income_k
+
+.                 
+.                 keep if year==2014
+(2,200 observations deleted)
+
+. 
+.                 *---- means and SDs in a single collapse --------------------
+> ---
+.                 collapse (mean)  wm_d_perc_female                       = d_p
+> erc_female         ///
+>                                                  wm_d_perc_white             
+>            = d_perc_white                  ///
+>                                                  wm_d_perc_hispanic          
+>    = d_perc_hispanic               ///
+>                                                  wm_d_unemp_rate_pc          
+>            = d_unemp_rate_pc               ///
+>                                                  wm_d_poverty_rate           
+>    = d_poverty_rate                ///
+>                                                  wm_d_median_income_k        
+>    = d_median_income_k     ///
+>                                  (sd)    sd_perc_female                      
+>    = d_perc_female         ///
+>                                                  sd_perc_white               
+>            = d_perc_white                  ///
+>                                                  sd_perc_hispanic            
+>            = d_perc_hispanic               ///
+>                                                  sd_unemp_rate_pc            
+>            = d_unemp_rate_pc               ///
+>                                                  sd_poverty_rate             
+>    = d_poverty_rate                ///
+>                                                  sd_median_income_k          
+>            = d_median_income_k     ///
+>                                                  [aw = set_wt], ///
+>                                  by(Treat)
+
+. 
+.                 generate byte id = 1          // same value for both rows (Tr
+> eat 0/1)
+
+. 
+.                 *---- reshape into one wide row -----------------------------
+> --------
+.                 reshape wide wm* sd_*, i(id) j(Treat)
+(j = 0 1)
+
+Data                               Long   ->   Wide
+-----------------------------------------------------------------------------
+Number of observations                2   ->   1           
+Number of variables                  14   ->   25          
+j variable (2 values)             Treat   ->   (dropped)
+xij variables:
+                       wm_d_perc_female   ->   wm_d_perc_female0 wm_d_perc_fema
+> le1
+                        wm_d_perc_white   ->   wm_d_perc_white0 wm_d_perc_white
+> 1
+                     wm_d_perc_hispanic   ->   wm_d_perc_hispanic0 wm_d_perc_hi
+> spanic1
+                     wm_d_unemp_rate_pc   ->   wm_d_unemp_rate_pc0 wm_d_unemp_r
+> ate_pc1
+                      wm_d_poverty_rate   ->   wm_d_poverty_rate0 wm_d_poverty_
+> rate1
+                   wm_d_median_income_k   ->   wm_d_median_income_k0 wm_d_media
+> n_income_k1
+                         sd_perc_female   ->   sd_perc_female0 sd_perc_female1
+                          sd_perc_white   ->   sd_perc_white0 sd_perc_white1
+                       sd_perc_hispanic   ->   sd_perc_hispanic0 sd_perc_hispan
+> ic1
+                       sd_unemp_rate_pc   ->   sd_unemp_rate_pc0 sd_unemp_rate_
+> pc1
+                        sd_poverty_rate   ->   sd_poverty_rate0 sd_poverty_rate
+> 1
+                     sd_median_income_k   ->   sd_median_income_k0 sd_median_in
+> come_k1
+-----------------------------------------------------------------------------
+
+.                 drop id                       // no longer needed
+
+. 
+.                 *---- normalized differences --------------------------------
+> --
+.                 foreach x in `covs'{
+  2.                         gen wnd_d_`x' = (wm_d_`x'1 - wm_d_`x'0) / ///
+>                                                  sqrt( (sd_`x'1^2 + sd_`x'0^2
+> ) / 2 )
+  3.                 }
+
+. 
+.                 keep wm* wnd_*                    // single-row dataset
+
+.                 tempfile wt_diff
+
+.                 save `wt_diff'
+file C:\Users\ADMINI~1\AppData\Local\Temp\ST_4084_00000a.tmp saved as .dta
+    format
+
+.                 list    
+
+     +--------------------------------------------------------------+
+  1. | wm_d_~le0 | wm_d_~ite0 | wm_d_p~c0 | wm_d_une~0 | wm_d_pov~0 |
+     | .02262137 | -.31574557 | .25486353 | -1.0788879 | -.41058301 |
+     |-----------+--------------------------------------------------|
+     | wm_d_me~0 | wm_d~le1 | wm_d_~ite1 | wm_d_p~c1  | wm_d_une~1  |
+     | 1.1022442 | .0102389 | -.32594239 | .33211102  | -1.3556491  |
+     |--------------------------------------------------------------|
+     | wm_d_pov~1 | wm_d_me~1 | wnd_d_p~le | wnd_d_~ite | wnd_d_p~c |
+     | -.34938223 | 1.7364128 | -.08542985 | -.04109848 | .29545255 |
+     |--------------------------------------------------------------|
+     |     wnd_d_un~c     |     wnd_d~ate      |     wnd_d_m~k      |
+     |     -.55047373     |     .04526167      |     .32589951      |
+     +--------------------------------------------------------------+
+
+.         restore
+
+. 
+.         **table creation
+.         *Assemble the four blocks into one matrix
+.         use `unwt_pre',     clear
+
+.         merge 1:1 _n using `wt_pre',   nogen   // adds mw*  sw*  wnd_*
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             0
+    Matched                                 1  
+    -----------------------------------------
+
+.         merge 1:1 _n using `unwt_diff', nogen   // adds md*  nd_d*
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             0
+    Matched                                 1  
+    -----------------------------------------
+
+.         merge 1:1 _n using `wt_diff',  nogen   // adds mwd* swd* wnd_d_*
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             0
+    Matched                                 1  
+    -----------------------------------------
+
+. 
+.         de,f
+
+Contains data from C:\Users\ADMINI~1\AppData\Local\Temp\ST_4084_000004.tmp
+ Observations:             1                  
+    Variables:            72                  18 Jul 2026 05:50
+-------------------------------------------------------------------------------
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+-------------------------------------------------------------------------------
+m_perc_female0  double  %10.0g                0 m_perc_female
+m_perc_white0   double  %10.0g                0 m_perc_white
+m_perc_hispanic0
+                double  %10.0g                0 m_perc_hispanic
+m_unemp_rate_pc0
+                double  %10.0g                0 m_unemp_rate_pc
+m_poverty_rate0 double  %10.0g                0 m_poverty_rate
+m_median_income_k0
+                double  %10.0g                0 m_median_income_k
+m_perc_female1  double  %10.0g                1 m_perc_female
+m_perc_white1   double  %10.0g                1 m_perc_white
+m_perc_hispanic1
+                double  %10.0g                1 m_perc_hispanic
+m_unemp_rate_pc1
+                double  %10.0g                1 m_unemp_rate_pc
+m_poverty_rate1 double  %10.0g                1 m_poverty_rate
+m_median_income_k1
+                double  %10.0g                1 m_median_income_k
+nd_perc_female  double  %10.0g                
+nd_perc_white   double  %10.0g                
+nd_perc_hispanic
+                double  %10.0g                
+nd_unemp_rate_pc
+                double  %10.0g                
+nd_poverty_rate double  %10.0g                
+nd_median_income_k
+                double  %10.0g                
+wm_perc_female0 double  %10.0g                0 wm_perc_female
+wm_perc_white0  double  %10.0g                0 wm_perc_white
+wm_perc_hispanic0
+                double  %10.0g                0 wm_perc_hispanic
+wm_unemp_rate_pc0
+                double  %10.0g                0 wm_unemp_rate_pc
+wm_poverty_rate0
+                double  %10.0g                0 wm_poverty_rate
+wm_median_income_k0
+                double  %10.0g                0 wm_median_income_k
+wm_perc_female1 double  %10.0g                1 wm_perc_female
+wm_perc_white1  double  %10.0g                1 wm_perc_white
+wm_perc_hispanic1
+                double  %10.0g                1 wm_perc_hispanic
+wm_unemp_rate_pc1
+                double  %10.0g                1 wm_unemp_rate_pc
+wm_poverty_rate1
+                double  %10.0g                1 wm_poverty_rate
+wm_median_income_k1
+                double  %10.0g                1 wm_median_income_k
+wnd_perc_female double  %10.0g                
+wnd_perc_white  double  %10.0g                
+wnd_perc_hispanic
+                double  %10.0g                
+wnd_unemp_rate_pc
+                double  %10.0g                
+wnd_poverty_rate
+                double  %10.0g                
+wnd_median_income_k
+                double  %10.0g                
+m_d_perc_female0
+                double  %10.0g                0 m_d_perc_female
+m_d_perc_white0 double  %10.0g                0 m_d_perc_white
+m_d_perc_hispanic0
+                double  %10.0g                0 m_d_perc_hispanic
+m_d_unemp_rate_pc0
+                double  %10.0g                0 m_d_unemp_rate_pc
+m_d_poverty_rate0
+                double  %10.0g                0 m_d_poverty_rate
+m_d_median_income_k0
+                double  %10.0g                0 m_d_median_income_k
+m_d_perc_female1
+                double  %10.0g                1 m_d_perc_female
+m_d_perc_white1 double  %10.0g                1 m_d_perc_white
+m_d_perc_hispanic1
+                double  %10.0g                1 m_d_perc_hispanic
+m_d_unemp_rate_pc1
+                double  %10.0g                1 m_d_unemp_rate_pc
+m_d_poverty_rate1
+                double  %10.0g                1 m_d_poverty_rate
+m_d_median_income_k1
+                double  %10.0g                1 m_d_median_income_k
+nd_d_perc_female
+                double  %10.0g                
+nd_d_perc_white double  %10.0g                
+nd_d_perc_hispanic
+                double  %10.0g                
+nd_d_unemp_rate_pc
+                double  %10.0g                
+nd_d_poverty_rate
+                double  %10.0g                
+nd_d_median_income_k
+                double  %10.0g                
+wm_d_perc_female0
+                double  %10.0g                0 wm_d_perc_female
+wm_d_perc_white0
+                double  %10.0g                0 wm_d_perc_white
+wm_d_perc_hispanic0
+                double  %10.0g                0 wm_d_perc_hispanic
+wm_d_unemp_rate_pc0
+                double  %10.0g                0 wm_d_unemp_rate_pc
+wm_d_poverty_rate0
+                double  %10.0g                0 wm_d_poverty_rate
+wm_d_median_income_k0
+                double  %10.0g                0 wm_d_median_income_k
+wm_d_perc_female1
+                double  %10.0g                1 wm_d_perc_female
+wm_d_perc_white1
+                double  %10.0g                1 wm_d_perc_white
+wm_d_perc_hispanic1
+                double  %10.0g                1 wm_d_perc_hispanic
+wm_d_unemp_rate_pc1
+                double  %10.0g                1 wm_d_unemp_rate_pc
+wm_d_poverty_rate1
+                double  %10.0g                1 wm_d_poverty_rate
+wm_d_median_income_k1
+                double  %10.0g                1 wm_d_median_income_k
+wnd_d_perc_female
+                double  %10.0g                
+wnd_d_perc_white
+                double  %10.0g                
+wnd_d_perc_hispanic
+                double  %10.0g                
+wnd_d_unemp_rate_pc
+                double  %10.0g                
+wnd_d_poverty_rate
+                double  %10.0g                
+wnd_d_median_income_k
+                double  %10.0g                
+-------------------------------------------------------------------------------
+Sorted by: 
+     Note: Dataset has changed since last saved.
+
+. 
+.                    
+.         * ---- row labels ---------------------------------------------------
+> -
+.         local rowlbl  "% Female" "% White" "% Hispanic" ///
+>                                   "Unemployment Rate" "Poverty Rate" "Median 
+> Income"
+
+.         local outrows
+
+.         local i = 1
+
+.         foreach v in `covs' {
+  2.                 local outrows `"`outrows' `"`:word `i' of `rowlbl''"'"'
+  3.                 local ++i
+  4.         }
+
+. 
+.         /* ---- build the 12 × 6 matrix ----------------------------------- *
+> /
+.         matrix T = J(12,6,.)
+
+.         local r 0
+
+.         foreach v of local covs {
+  2.                 local ++r
+  3.                 * rows 1–6 : 2013 levels
+.                 matrix T[`r',1] = m_`v'0[1]         // un-wtd mean, Non-adopt
+  4.                 matrix T[`r',2] = m_`v'1[1]         // un-wtd mean, Adopt
+  5.                 matrix T[`r',3] = nd_`v'[1]         // un-wtd norm-diff
+  6.                 matrix T[`r',4] = wm_`v'0[1]        // wtd mean,  Non-adop
+> t
+  7.                 matrix T[`r',5] = wm_`v'1[1]        // wtd mean,  Adopt
+  8.                 matrix T[`r',6] = wnd_`v'[1]        // wtd norm-diff
+  9.         }
+
+. 
+.         foreach v of local covs {
+  2.                 local ++r
+  3.                 * rows 7–12 : 2014–2013 long-differences
+.                 matrix T[`r',1] = m_d_`v'0[1]        // un-wtd ∆, Non-adopt
+  4.                 matrix T[`r',2] = m_d_`v'1[1]        // un-wtd ∆, Adopt
+  5.                 matrix T[`r',3] = nd_d_`v'[1]        // un-wtd norm-diff
+  6.                 matrix T[`r',4] = wm_d_`v'0[1]       // **underscore added
+> **
+  7.                 matrix T[`r',5] = wm_d_`v'1[1]       // **underscore added
+> **
+  8.                 matrix T[`r',6] = wnd_d_`v'[1]       // wtd norm-diff
+  9.         }
+
+. 
+.         matrix rownames T = `outrows' `outrows'
+
+.         matrix colnames T = "Non-Adopt" "Adopt" "Norm. Diff." ///
+>                                                 "Non-Adopt" "Adopt" "Norm. Di
+> ff."
+
+.                                                 
+.         *send to LaTeX via esttab
+.         /*Give the matrix nice, final row-names ------------------------ */
+.         matrix rownames T = ///
+>         "\% Female" "\% White" "\% Hispanic" ///
+>         "Unemployment Rate" "Poverty Rate" "Median Income" ///
+>         "\% Female $\Delta$" "\% White $\Delta$" "\% Hispanic $\Delta$" ///
+>         "Unemployment Rate $\Delta$" "Poverty Rate $\Delta$" "Median Income $
+> \Delta$"
+
+. 
+.         local rowname : word `=`i'-6' of ///
+>           "\% Female $\Delta$" "\% White $\Delta$" "\% Hispanic $\Delta$" ///
+>           "Unemployment Rate $\Delta$" "Poverty Rate $\Delta$" "Median Income
+>  $\Delta$"
+
+.           
+.           
+.         /*LaTeX header / footer strings (single compound quote each) -- */
+.         local prehead  "\begin{tabular}{l*{6}{c}} \\hline\\hline " ///
+>                                    "\multicolumn{7}{c}{\textit{2013 Covariate
+>  Levels}} \\\\"
+
+.         local posthead "\hline"
+
+.         local prefoot  "\hline \multicolumn{7}{c}{\textit{2014 -- 2013 Covari
+> ate Differences}} \\\\ \hline"
+
+.         local postfoot "\hline\hline \end{tabular}"
+
+. 
+.         /*esttab -------------------------------------------------------- */
+.         cap mkdir "tables"
+
+.         esttab matrix(T) using "tables/table4_stata.tex", replace           /
+> //
+>                   title("Covariate Balance Statistics")                      
+>     ///
+>                   fragment booktabs nomtitles label                          
+>     ///
+>                   mgroups("Unweighted" "Weighted", pattern(1 1 1 1 1 1) span)
+>     ///
+>                   cells("b(fmt(%6.2f))")                                     
+>     ///  <-- two decimals everywhere
+>                   nonumber noobs alignment(c) incelldelimiter("")            
+>     ///
+>                   prehead(`"`prehead'"')   posthead(`"`posthead'"')          
+>     ///
+>                   prefoot(`"`prefoot'"')   postfoot(`"`postfoot'"')
+(output written to tables/table4_stata.tex)
+
+. 
+.         display "✓  LaTeX covariate-balance table written to tables/table4_st
+> ata.tex"
+✓  LaTeX covariate-balance table written to tables/table4_stata.tex
+
+. 
+.         *Write LaTeX manually via file write
+.         * Open LaTeX file
+.         file open tableout using "tables/table4_stata.tex", write replace
+
+.         file write tableout "\begin{tabular}{l*{6}{c}} \\" _n
+
+.         file write tableout "\hline\hline" _n
+
+.         file write tableout "\multicolumn{7}{c}{\textit{2013 Covariate Levels
+> }} \\" _n
+
+.         file write tableout "& \multicolumn{3}{c}{Unweighted} & \multicolumn{
+> 3}{c}{Weighted} \\" _n
+
+.         file write tableout "Variable & Non-Adopt & Adopt & Norm. Diff. & Non
+> -Adopt & Adopt & Norm. Diff. \\" _n
+
+.         file write tableout "\hline" _n
+
+. 
+.         * Write first 6 rows (2013 Levels)
+.         forvalues i = 1/6 {
+  2.                 local rowname : word `i' of ///
+>                         "\% Female" "\% White" "\% Hispanic" ///
+>                         "Unemployment Rate" "Poverty Rate" "Median Income"
+  3.                 
+.                 local line "`rowname'"
+  4.                 
+.                 forvalues j = 1/6 {
+  5.                         local val = T[`i', `j']
+  6.                         local val_fmt : display %4.2f `val'
+  7.                         local line "`line' & `val_fmt'"
+  8.                 }
+  9.                 
+.                 file write tableout "`line' \\" _n
+ 10.         }
+
+. 
+.         file write tableout "\hline" _n
+
+.         file write tableout "\multicolumn{7}{c}{\textit{2014 -- 2013 Covariat
+> e Differences}} \\" _n
+
+. 
+.         * Write last 6 rows (Differences)
+.         forvalues i = 7/12 {
+  2.                 local rowname : word `=`i'-6' of ///
+>                         "\% Female ($\Delta$)" "\% White ($\Delta$)" "\% Hisp
+> anic ($\Delta$)" ///
+>                         "Unemployment Rate ($\Delta$)" "Poverty Rate ($\Delta
+> $)" "Median Income ($\Delta$)"
+  3.                 
+.                 local line "`rowname'"
+  4.                 
+.                 forvalues j = 1/6 {
+  5.                         local val = T[`i', `j']
+  6.                         local val_fmt : display %4.2f `val'
+  7.                         local line "`line' & `val_fmt'"
+  8.                 }
+  9. 
+.                 file write tableout "`line' \\" _n
+ 10.         }
+
+. 
+.         * Close table
+.         file write tableout "\hline\hline" _n
+
+.         file write tableout "\end{tabular}" _n
+
+.         file close tableout
+
+. 
+.         display "✓  LaTeX covariate-balance table manually written to tables/
+> table4_stata.tex"
+✓  LaTeX covariate-balance table manually written to tables/table4_stata.tex
+
+. 
+. 
+. 
+. ***************************************************************
+. *4. Table 5: Regression 2 x 2 DiD with Covariates 
+. ***************************************************************
+.                 *read data in again and restrict to 2013/2014
+.                 use "data/did_jel_aca_replication_data", clear
+
+.                 keep if inlist(year, 2013, 2014) & inlist(yaca,2014,2020,2021
+> ,2023,.)
+(24,244 observations deleted)
+
+.                 gen Treat = (yaca==2014)                // 1 = ACA in 2014
+
+.                 gen Post = (year == 2014)       // 1 = post-expansion year
+
+. 
+.                 *local with covariate names
+.                 local covs perc_female perc_white perc_hispanic ///
+>                            unemp_rate_pc poverty_rate median_income_k
+
+. 
+.                 * Keep only relevant variables
+.                 keep county_code year Treat set_wt crude_rate_20_64 `covs'
+
+. 
+.                 * Reshape everything (outcome + covariates) at once
+.                 reshape wide crude_rate_20_64 `covs', i(county_code) j(year)
+(j = 2013 2014)
+
+Data                               Long   ->   Wide
+-----------------------------------------------------------------------------
+Number of observations            4,400   ->   2,200       
+Number of variables                  11   ->   17          
+j variable (2 values)              year   ->   (dropped)
+xij variables:
+                       crude_rate_20_64   ->   crude_rate_20_642013 crude_rate_
+> 20_642014
+                            perc_female   ->   perc_female2013 perc_female2014
+                             perc_white   ->   perc_white2013 perc_white2014
+                          perc_hispanic   ->   perc_hispanic2013 perc_hispanic2
+> 014
+                          unemp_rate_pc   ->   unemp_rate_pc2013 unemp_rate_pc2
+> 014
+                           poverty_rate   ->   poverty_rate2013 poverty_rate201
+> 4
+                        median_income_k   ->   median_income_k2013 median_incom
+> e_k2014
+-----------------------------------------------------------------------------
+
+. 
+.                 * Generate change in covariates
+.                 foreach v of local covs {
+  2.                         gen d_`v' = `v'2014 - `v'2013
+  3.                 }
+
+. 
+.                 * Generate outcome: change in crude mortality
+.                 gen long_y = crude_rate_20_642014 - crude_rate_20_642013
+
+. 
+.                 * Drop missing outcome
+.                 drop if missing(long_y)
+(0 observations deleted)
+
+. 
+. 
+.         eststo clear
+
+. 
+.         * (1) Unweighted: No covariates
+.         reg long_y Treat, vce(cluster county_code)
+
+Linear regression                               Number of obs     =      2,200
+                                                F(1, 2199)        =       0.00
+                                                Prob > F          =     0.9741
+                                                R-squared         =     0.0000
+                                                Root MSE          =     88.065
+
+                        (Std. err. adjusted for 2,200 clusters in county_code)
+------------------------------------------------------------------------------
+             |               Robust
+      long_y | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       Treat |      0.122      3.748     0.03   0.974       -7.228       7.472
+       _cons |      9.148      2.599     3.52   0.000        4.052      14.245
+------------------------------------------------------------------------------
+
+.         eststo m1
+
+. 
+.         * (2) Unweighted: 2013 covariates
+.         reg long_y Treat ///
+>                 perc_female2013 perc_white2013 perc_hispanic2013 ///
+>                 unemp_rate_pc2013 poverty_rate2013 median_income_k2013, ///
+>                 vce(cluster county_code)
+
+Linear regression                               Number of obs     =      2,200
+                                                F(7, 2199)        =       0.72
+                                                Prob > F          =     0.6571
+                                                R-squared         =     0.0033
+                                                Root MSE          =     88.037
+
+                        (Std. err. adjusted for 2,200 clusters in county_code)
+------------------------------------------------------------------------------
+             |               Robust
+      long_y | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       Treat |     -2.352      4.289    -0.55   0.584      -10.763       6.059
+perc_fe~2013 |      0.288      0.706     0.41   0.683       -1.096       1.672
+perc_wh~2013 |      0.228      0.195     1.17   0.243       -0.155       0.611
+perc_hi~2013 |     -0.141      0.140    -1.01   0.312       -0.415       0.133
+unemp_r~2013 |      1.698      1.117     1.52   0.129       -0.492       3.889
+poverty~2013 |      0.250      0.803     0.31   0.755       -1.324       1.825
+median_~2013 |      0.059      0.299     0.20   0.844       -0.527       0.645
+       _cons |    -42.608     55.991    -0.76   0.447     -152.410      67.193
+------------------------------------------------------------------------------
+
+.         eststo m2
+
+. 
+.         * (3) Unweighted: Changes in covariates
+.         reg long_y Treat ///
+>                 d_perc_female d_perc_white d_perc_hispanic ///
+>                 d_unemp_rate_pc d_poverty_rate d_median_income_k, ///
+>                 vce(cluster county_code)
+
+Linear regression                               Number of obs     =      2,200
+                                                F(7, 2199)        =       2.10
+                                                Prob > F          =     0.0406
+                                                R-squared         =     0.0079
+                                                Root MSE          =     87.834
+
+                        (Std. err. adjusted for 2,200 clusters in county_code)
+------------------------------------------------------------------------------
+             |               Robust
+      long_y | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       Treat |     -0.490      3.831    -0.13   0.898       -8.002       7.021
+d_perc_fem~e |     -3.647      8.687    -0.42   0.675      -20.683      13.389
+d_perc_white |     19.795      8.081     2.45   0.014        3.947      35.642
+d_perc_his~c |    -12.758      7.173    -1.78   0.075      -26.824       1.307
+d_unemp_ra~c |     -5.517      3.142    -1.76   0.079      -11.678       0.644
+d_poverty_~e |     -0.080      1.106    -0.07   0.943       -2.248       2.089
+d_median_i~k |     -0.537      0.858    -0.63   0.531       -2.219       1.145
+       _cons |      9.944      5.072     1.96   0.050       -0.002      19.890
+------------------------------------------------------------------------------
+
+.         eststo m3
+
+. 
+.         * (4) Weighted: No covariates
+.         reg long_y Treat [aw=set_wt], vce(cluster county_code)
+(sum of wgt is 149,593,010)
+
+Linear regression                               Number of obs     =      2,200
+                                                F(1, 2199)        =       2.96
+                                                Prob > F          =     0.0855
+                                                R-squared         =     0.0011
+                                                Root MSE          =     37.483
+
+                        (Std. err. adjusted for 2,200 clusters in county_code)
+------------------------------------------------------------------------------
+             |               Robust
+      long_y | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       Treat |     -2.563      1.490    -1.72   0.086       -5.485       0.359
+       _cons |      6.301      1.131     5.57   0.000        4.082       8.520
+------------------------------------------------------------------------------
+
+.         eststo m4
+
+. 
+.         * (5) Weighted: 2013 covariates
+.         reg long_y Treat ///
+>                 perc_female2013 perc_white2013 perc_hispanic2013 ///
+>                 unemp_rate_pc2013 poverty_rate2013 median_income_k2013 ///
+>                 [aw=set_wt], vce(cluster county_code)
+(sum of wgt is 149,593,010)
+
+Linear regression                               Number of obs     =      2,200
+                                                F(7, 2199)        =       3.18
+                                                Prob > F          =     0.0024
+                                                R-squared         =     0.0095
+                                                Root MSE          =     37.377
+
+                        (Std. err. adjusted for 2,200 clusters in county_code)
+------------------------------------------------------------------------------
+             |               Robust
+      long_y | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       Treat |     -2.565      1.783    -1.44   0.150       -6.061       0.931
+perc_fe~2013 |      0.217      0.493     0.44   0.659       -0.749       1.184
+perc_wh~2013 |      0.130      0.069     1.88   0.060       -0.006       0.265
+perc_hi~2013 |     -0.110      0.046    -2.40   0.017       -0.201      -0.020
+unemp_r~2013 |      0.781      0.460     1.70   0.090       -0.121       1.684
+poverty~2013 |     -0.256      0.327    -0.78   0.434       -0.897       0.385
+median_~2013 |     -0.141      0.123    -1.15   0.249       -0.382       0.099
+       _cons |     -6.984     30.936    -0.23   0.821      -67.651      53.683
+------------------------------------------------------------------------------
+
+.         eststo m5
+
+. 
+.         * (6) Weighted: Changes in covariates
+.         reg long_y Treat ///
+>                 d_perc_female d_perc_white d_perc_hispanic ///
+>                 d_unemp_rate_pc d_poverty_rate d_median_income_k ///
+>                 [aw=set_wt], vce(cluster county_code)
+(sum of wgt is 149,593,010)
+
+Linear regression                               Number of obs     =      2,200
+                                                F(7, 2199)        =       6.89
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.0168
+                                                Root MSE          =     37.239
+
+                        (Std. err. adjusted for 2,200 clusters in county_code)
+------------------------------------------------------------------------------
+             |               Robust
+      long_y | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       Treat |     -1.370      1.616    -0.85   0.397       -4.539       1.799
+d_perc_fem~e |     -7.563      5.553    -1.36   0.173      -18.452       3.326
+d_perc_white |     12.518      2.911     4.30   0.000        6.809      18.227
+d_perc_his~c |    -10.117      2.570    -3.94   0.000      -15.156      -5.077
+d_unemp_ra~c |     -0.947      1.642    -0.58   0.564       -4.167       2.273
+d_poverty_~e |      0.273      0.601     0.45   0.649       -0.905       1.452
+d_median_i~k |     -1.035      0.408    -2.54   0.011       -1.835      -0.235
+       _cons |     13.234      2.524     5.24   0.000        8.284      18.184
+------------------------------------------------------------------------------
+
+.         eststo m6
+
+. 
+.         cap mkdir "tables"
+
+.         esttab m1 m2 m3 m4 m5 m6 using "tables/table5_stata.tex", replace ///
+>                 title("Regression 2 \$\\times\$ 2 DiD with Covariates") ///
+>                 keep(Treat) b(%6.2f) se(%6.2f) star(* 0.10 ** 0.05 *** 0.01) 
+> ///
+>                 fragment booktabs label nomtitles ///
+>                 alignment(c) collabels(none) ///
+>                 mgroups("Unweighted" "Weighted", pattern(1 1 1 1 1 1) span) /
+> //
+>                 addnotes("Standard errors clustered by county. " ///
+>                                  "Columns 1–3 are unweighted. Columns 4–6 are
+>  weighted by 2013 population. " ///
+>                                  "Columns 2 & 5 include 2013 covariates; colu
+> mns 3 & 6 include 2014–2013 covariate differences.")
+(output written to tables/table5_stata.tex)
+
+.                                  
+.         display "✓  LaTeX 2x2 regression with covariates table manually writt
+> en to tables/table5_stata.tex"
+✓  LaTeX 2x2 regression with covariates table manually written to tables/table5
+> _stata.tex
+
+.                          
+. ***************************************************************
+. * Table 6: Outcome Regressions + Propensity Score Models
+. ***************************************************************
+.         *read data in again and restrict to 2013/2014
+.         use "data/did_jel_aca_replication_data", clear
+
+.         keep if inlist(year, 2013, 2014) & inlist(yaca,2014,2020,2021,2023,.)
+(24,244 observations deleted)
+
+.         gen Treat = (yaca==2014)                // 1 = ACA in 2014
+
+.         gen Post = (year == 2014)       // 1 = post-expansion year
+
+. 
+.         *local with covariate names
+.         local covs perc_female perc_white perc_hispanic ///
+>                    unemp_rate_pc poverty_rate median_income_k
+
+. 
+.         * Keep only relevant variables
+.         keep county_code year Treat set_wt crude_rate_20_64 `covs'
+
+. 
+.         * Reshape everything (outcome + covariates) at once
+.         reshape wide crude_rate_20_64 `covs', i(county_code) j(year)
+(j = 2013 2014)
+
+Data                               Long   ->   Wide
+-----------------------------------------------------------------------------
+Number of observations            4,400   ->   2,200       
+Number of variables                  11   ->   17          
+j variable (2 values)              year   ->   (dropped)
+xij variables:
+                       crude_rate_20_64   ->   crude_rate_20_642013 crude_rate_
+> 20_642014
+                            perc_female   ->   perc_female2013 perc_female2014
+                             perc_white   ->   perc_white2013 perc_white2014
+                          perc_hispanic   ->   perc_hispanic2013 perc_hispanic2
+> 014
+                          unemp_rate_pc   ->   unemp_rate_pc2013 unemp_rate_pc2
+> 014
+                           poverty_rate   ->   poverty_rate2013 poverty_rate201
+> 4
+                        median_income_k   ->   median_income_k2013 median_incom
+> e_k2014
+-----------------------------------------------------------------------------
+
+. 
+.         * Generate change in covariates
+.         foreach v of local covs {
+  2.                 gen d_`v' = `v'2014 - `v'2013
+  3.         }
+
+. 
+.         * Generate outcome: change in crude mortality
+.         gen long_y = crude_rate_20_642014 - crude_rate_20_642013
+
+. 
+.         * Drop missing outcome
+.         drop if missing(long_y)
+(0 observations deleted)
+
+.         
+.         eststo clear
+
+. 
+.         ** (1) Outcome Regression — Unweighted, Untreated Only
+.         reg long_y ///
+>                 perc_female2013 perc_white2013 perc_hispanic2013 ///
+>                 unemp_rate_pc2013 poverty_rate2013 median_income_k2013 if Tre
+> at==0, ///
+>                 vce(robust)
+
+Linear regression                               Number of obs     =      1,222
+                                                F(6, 1215)        =       0.14
+                                                Prob > F          =     0.9917
+                                                R-squared         =     0.0010
+                                                Root MSE          =     91.024
+
+------------------------------------------------------------------------------
+             |               Robust
+      long_y | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+perc_fe~2013 |      0.042      0.860     0.05   0.961       -1.644       1.729
+perc_wh~2013 |      0.150      0.253     0.59   0.554       -0.346       0.646
+perc_hi~2013 |     -0.079      0.187    -0.42   0.672       -0.445       0.287
+unemp_r~2013 |      1.139      1.987     0.57   0.567       -2.760       5.037
+poverty~2013 |      0.212      1.128     0.19   0.851       -2.000       2.424
+median_~2013 |      0.087      0.456     0.19   0.848       -0.807       0.981
+       _cons |    -20.909     74.560    -0.28   0.779     -167.191     125.372
+------------------------------------------------------------------------------
+
+.         eststo or1
+
+. 
+.         ** (2) Propensity Score Model — Unweighted Logit
+.         logit Treat ///
+>                 perc_female2013 perc_white2013 perc_hispanic2013 ///
+>                 unemp_rate_pc2013 poverty_rate2013 median_income_k2013, ///
+>                 vce(robust)
+
+Iteration 0:  Log pseudolikelihood =  -1511.365  
+Iteration 1:  Log pseudolikelihood = -1280.0308  
+Iteration 2:  Log pseudolikelihood = -1277.4818  
+Iteration 3:  Log pseudolikelihood = -1277.4773  
+Iteration 4:  Log pseudolikelihood = -1277.4773  
+
+Logistic regression                                     Number of obs =  2,200
+                                                        Wald chi2(6)  = 272.83
+                                                        Prob > chi2   = 0.0000
+Log pseudolikelihood = -1277.4773                       Pseudo R2     = 0.1548
+
+------------------------------------------------------------------------------
+             |               Robust
+       Treat | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+perc_fe~2013 |     -0.041      0.016    -2.53   0.012       -0.073      -0.009
+perc_wh~2013 |      0.059      0.005    10.93   0.000        0.048       0.069
+perc_hi~2013 |     -0.016      0.004    -4.13   0.000       -0.023      -0.008
+unemp_r~2013 |      0.320      0.026    12.25   0.000        0.269       0.371
+poverty~2013 |      0.035      0.019     1.86   0.062       -0.002       0.071
+median_~2013 |      0.082      0.010     8.59   0.000        0.064       0.101
+       _cons |    -10.003      1.339    -7.47   0.000      -12.628      -7.378
+------------------------------------------------------------------------------
+
+.         eststo ps1
+
+. 
+.         ** (3) Outcome Regression — Weighted, Untreated Only
+.         reg long_y ///
+>                 perc_female2013 perc_white2013 perc_hispanic2013 ///
+>                 unemp_rate_pc2013 poverty_rate2013 median_income_k2013 if Tre
+> at==0 ///
+>                 [aw = set_wt], vce(robust)
+(sum of wgt is 65,171,521)
+
+Linear regression                               Number of obs     =      1,222
+                                                F(6, 1215)        =       1.59
+                                                Prob > F          =     0.1478
+                                                R-squared         =     0.0057
+                                                Root MSE          =     42.918
+
+------------------------------------------------------------------------------
+             |               Robust
+      long_y | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+perc_fe~2013 |     -0.088      0.653    -0.13   0.893       -1.368       1.193
+perc_wh~2013 |      0.199      0.101     1.96   0.050        0.000       0.398
+perc_hi~2013 |     -0.081      0.060    -1.36   0.175       -0.198       0.036
+unemp_r~2013 |      0.879      0.949     0.93   0.354       -0.983       2.741
+poverty~2013 |     -0.131      0.464    -0.28   0.777       -1.042       0.779
+median_~2013 |     -0.054      0.192    -0.28   0.779       -0.431       0.323
+       _cons |     -4.615     41.882    -0.11   0.912      -86.784      77.554
+------------------------------------------------------------------------------
+
+.         eststo or2
+
+. 
+.         ** (4) Propensity Score — Weighted Logit
+.         logit Treat ///
+>                 perc_female2013 perc_white2013 perc_hispanic2013 ///
+>                 unemp_rate_pc2013 poverty_rate2013 median_income_k2013 ///
+>                 [iw = set_wt], vce(robust)
+
+Iteration 0:  Log pseudolikelihood = -1.024e+08  
+Iteration 1:  Log pseudolikelihood =  -74886660  
+Iteration 2:  Log pseudolikelihood =  -74174192  
+Iteration 3:  Log pseudolikelihood =  -74172489  
+Iteration 4:  Log pseudolikelihood =  -74172489  
+
+Logistic regression                                     Number of obs =  2,200
+                                                        Wald chi2(6)  =  95.65
+                                                        Prob > chi2   = 0.0000
+Log pseudolikelihood = -74172489                        Pseudo R2     = 0.2760
+
+------------------------------------------------------------------------------
+             |               Robust
+       Treat | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+perc_fe~2013 |     -0.188      0.057    -3.31   0.001       -0.299      -0.077
+perc_wh~2013 |      0.040      0.012     3.40   0.001        0.017       0.063
+perc_hi~2013 |     -0.018      0.009    -2.17   0.030       -0.035      -0.002
+unemp_r~2013 |      0.680      0.085     8.01   0.000        0.514       0.846
+poverty~2013 |      0.107      0.048     2.25   0.025        0.014       0.200
+median_~2013 |      0.155      0.025     6.23   0.000        0.106       0.204
+       _cons |     -8.167      4.382    -1.86   0.062      -16.756       0.422
+------------------------------------------------------------------------------
+
+.         eststo ps2
+
+. 
+.         cap mkdir "tables"
+
+.         *put results in a table
+.         esttab or1 ps1 or2 ps2 using "tables/table6_stata.tex", replace ///
+>                 title("Outcome Regression and Propensity Score Models") ///
+>                 b(%6.2f) se(%6.2f) star(* 0.10 ** 0.05 *** 0.01) ///
+>                 fragment booktabs label alignment(c) ///
+>                 coeflabels( ///
+>                         perc_female "\% Female" ///
+>                         perc_white "\% White" ///
+>                         perc_hispanic "\% Hispanic" ///
+>                         unemp_rate_pc "Unemployment Rate" ///
+>                         poverty_rate "Poverty Rate" ///
+>                         median_income_k "Median Income" ///
+>                         perc_female2013 "\% Female" ///
+>                         perc_white2013 "\% White" ///
+>                         perc_hispanic2013 "\% Hispanic" ///
+>                         unemp_rate_pc2013 "Unemployment Rate" ///
+>                         poverty_rate2013 "Poverty Rate" ///
+>                         median_income_k2013 "Median Income" ///
+>                 ) ///
+>                 mtitles("Regression" "Propensity Score" "Regression" "Propens
+> ity Score") ///
+>                 mgroups("Unweighted" "Weighted", pattern(1 1 1 1) span) ///
+>                 addnotes("This table reports the outcome and propensity score
+>  models that enter the doubly robust estimator. " ///
+>                                  "Outcome models regress long-difference mort
+> ality on 2013 covariates among untreated counties. " ///
+>                                  "Propensity score models logit regress Medic
+> aid expansion status on 2013 covariates. " ///
+>                                  "Standard errors are clustered by county.")
+(output written to tables/table6_stata.tex)
+
+.         
+.                 display "✓  LaTeX propensity score equation and outcome regre
+> ssion table manually written to tables/table6_stata.tex"
+✓  LaTeX propensity score equation and outcome regression table manually writte
+> n to tables/table6_stata.tex
+
+. 
+.                          
+. ***************************************************************
+. * Table 7: 2x2 DiD with covariates (Sant'Anna and Zhao 2020)
+. ***************************************************************
+.         *read data in again and restrict to 2013/2014
+.         use "data/did_jel_aca_replication_data", clear
+
+.         keep if inlist(year, 2013, 2014) & inlist(yaca,2014,2020,2021,2023,.)
+(24,244 observations deleted)
+
+.         gen Treat = (yaca==2014)                // 1 = ACA in 2014
+
+.         gen Post = (year == 2014)       // 1 = post-expansion year
+
+. 
+.         *local with covariate names
+.         local covs perc_female perc_white perc_hispanic ///
+>                    unemp_rate_pc poverty_rate median_income_k
+
+. 
+.         *create baseline covariates (drdid would do this but we do it explici
+> tly here)
+.         *drop the time-varying version of the covariate; not used here
+.         foreach x in `covs'{
+  2.                 egen `x'2013 =total(`x'*(year==2013)),by(county_code)
+  3.                 drop `x'
+  4.         }
+
+.         * rename the baseline covariates just created 
+.         rename (perc_female2013 perc_white2013 perc_hispanic2013 ///
+>                         unemp_rate_pc2013 poverty_rate2013 median_income_k201
+> 3) ///
+>                    (perc_female perc_white perc_hispanic ///
+>                         unemp_rate_pc poverty_rate median_income_k)
+
+. 
+.         * Set panel
+.         xtset county_code year
+
+Panel variable: county_code (strongly balanced)
+ Time variable: year, 2013 to 2014
+         Delta: 1 unit
+
+. 
+.         * Unweighted DRDID Estimation
+.         *request all estimators in one shot (we only use reg, stdipw, and dri
+> pw)
+.         drdid crude_rate_20_64 `covs', ///
+>                   ivar(county_code) time(year) tr(Treat) ///
+>                   all ///
+>                   pscoretrim(0.995) ///
+>                   wboot(reps(25000) rseed(20240924) wbtype(rademacher)) ///
+>                   cluster(county_code) 
+
+Doubly robust difference-in-differences estimator summary
+------------------------------------------------------------------------------
+             | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+ATET         |
+       dripw |     -1.226      4.920    -0.25   0.803      -10.870       8.418
+       drimp |     -0.332      5.282    -0.06   0.950      -10.685      10.021
+         reg |     -1.615      4.670    -0.35   0.729      -10.768       7.538
+         ipw |     -0.689      4.530    -0.15   0.879       -9.568       8.190
+      stdipw |     -0.859      4.584    -0.19   0.851       -9.842       8.125
+      sipwra |     -0.404      5.160    -0.08   0.938      -10.517       9.709
+------------------------------------------------------------------------------
+Note: This table is provided for comparison across estimations only. You cannot
+use it to compare estimates across different estimators
+dripw :Doubly Robust IPW
+drimp :Doubly Robust Improved estimator
+reg   :Outcome regression or Regression augmented estimator
+ipw   :Abadie(2005) IPW estimator
+stdipw:Standardized IPW estimator
+sipwra:IPW and Regression adjustment estimator.
+
+. 
+.         * Extract point estimates
+.         scalar reg     = e(b)[1,3]
+
+.         scalar ipw     = e(b)[1,5]
+
+.         scalar dripw   = e(b)[1,1]
+
+. 
+.         * Extract standard errors
+.         scalar se_reg   = sqrt(e(V)[3,3])
+
+.         scalar se_ipw   = sqrt(e(V)[5,5])
+
+.         scalar se_dripw = sqrt(e(V)[1,1])
+
+. 
+.         * Format for LaTeX export
+.         local reg_str     : display %6.2f reg
+
+.         local ipw_str     : display %6.2f ipw
+
+.         local dripw_str   : display %6.2f dripw
+
+. 
+.         local se_reg_str     : display %6.2f se_reg
+
+.         local se_ipw_str     : display %6.2f se_ipw
+
+.         local se_dripw_str   : display %6.2f se_dripw
+
+. 
+. 
+.         * Weighted DRDID Estimation
+.         *request all estimators in one shot (we only use reg, stdipw, and dri
+> pw)
+.         drdid crude_rate_20_64 `covs' [iweight = set_wt], ///
+>                   ivar(county_code) time(year) tr(Treat) ///
+>                   all ///
+>                   pscoretrim(0.995) ///
+>                   wboot(reps(25000) rseed(20240924) wbtype(rademacher)) ///
+>                   cluster(county_code) 
+
+Doubly robust difference-in-differences estimator summary
+------------------------------------------------------------------------------
+             | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+ATET         |
+       dripw |     -3.756      3.207    -1.17   0.241      -10.042       2.529
+       drimp |     -2.915      3.995    -0.73   0.466      -10.745       4.915
+         reg |     -3.459      2.372    -1.46   0.145       -8.108       1.189
+         ipw |     -4.650      4.153    -1.12   0.263      -12.790       3.490
+      stdipw |     -3.842      3.319    -1.16   0.247      -10.348       2.664
+      sipwra |     -8.022      4.480    -1.79   0.073      -16.802       0.757
+------------------------------------------------------------------------------
+Note: This table is provided for comparison across estimations only. You cannot
+use it to compare estimates across different estimators
+dripw :Doubly Robust IPW
+drimp :Doubly Robust Improved estimator
+reg   :Outcome regression or Regression augmented estimator
+ipw   :Abadie(2005) IPW estimator
+stdipw:Standardized IPW estimator
+sipwra:IPW and Regression adjustment estimator.
+
+.                     
+.         * Extract point estimates
+.         scalar reg_w     = e(b)[1,3]
+
+.         scalar ipw_w     = e(b)[1,5]
+
+.         scalar dripw_w   = e(b)[1,1]
+
+. 
+.         * Extract standard errors
+.         scalar se_reg_w   = sqrt(e(V)[3,3])
+
+.         scalar se_ipw_w   = sqrt(e(V)[5,5])
+
+.         scalar se_dripw_w = sqrt(e(V)[1,1])
+
+. 
+.         * Format for LaTeX export
+.         local reg_w_str     : display %6.2f reg_w
+
+.         local ipw_w_str     : display %6.2f ipw_w
+
+.         local dripw_w_str   : display %6.2f dripw_w
+
+. 
+.         local se_reg_w_str     : display %6.2f se_reg_w
+
+.         local se_ipw_w_str     : display %6.2f se_ipw_w
+
+.         local se_dripw_w_str   : display %6.2f se_dripw_w
+
+. 
+. 
+. 
+.         *put results in a table
+.         cap mkdir Tables
+
+.         file open fh using "tables/table7_stata.tex", write replace
+
+. 
+.         file write fh "\begin{table}[htbp]\centering" _n
+
+.         file write fh "\caption{DiD Estimates with Covariates}" _n
+
+.         file write fh "\label{tab:2x2_csdid_sc}" _n
+
+.         file write fh "\begin{threeparttable}" _n
+
+.         file write fh "\begin{tabular}{l*{6}{c}}" _n
+
+.         file write fh "\toprule" _n
+
+.         file write fh " & \multicolumn{3}{c}{Unweighted} & \multicolumn{3}{c}
+> {Weighted} \\\\" _n
+
+.         file write fh "\cmidrule(lr){2-4} \cmidrule(lr){5-7}" _n
+
+.         file write fh " & Regression & IPW & Doubly Robust & Regression & IPW
+>  & Doubly Robust \\\\" _n
+
+.         file write fh "\midrule" _n
+
+. 
+.         file write fh "Medicaid Expansion & `reg_str' & `ipw_str' & `dripw_st
+> r' & `reg_w_str' & `ipw_w_str' & `dripw_w_str' \\\\" _n
+
+.         file write fh " & (`se_reg_str') & (`se_ipw_str') & (`se_dripw_str') 
+> & (`se_reg_w_str') & (`se_ipw_w_str') & (`se_dripw_w_str') \\\\" _n
+
+. 
+.         file write fh "\bottomrule" _n
+
+.         file write fh "\end{tabular}" _n
+
+.         file write fh "\begin{tablenotes}[para]" _n
+
+.         file write fh "\footnotesize \singlespacing" _n
+
+.         file write fh "\item This table reports the 2 \$\\times\$ 2 DiD estim
+> ate comparing counties that expand Medicaid in 2014 to counties that do not e
+> xpand Medicaid, adjusting for the inclusion of 2013 covariates using the meth
+> odologies from \citet{SantAnna2020} and \citet{Callaway2021}. Each panel repo
+> rts regression adjustment (Column 1), inverse probability weighting (Column 2
+> ), and doubly robust estimators (Column 3). Standard errors in parentheses ar
+> e clustered at the county level." _n
+
+.         file write fh "\end{tablenotes}" _n
+
+.         file write fh "\end{threeparttable}" _n
+
+.         file write fh "\end{table}" _n
+
+. 
+.         file close fh
+
+. 
+.         display "✓  LaTeX conditional 2x2 DiD table manually written to table
+> s/table7_stata.tex"
+✓  LaTeX conditional 2x2 DiD table manually written to tables/table7_stata.tex
+
+. 
+. 
+. *************************************************
+. ** Figure 1: Distribution of Propensity Scores
+. *************************************************
+.         *read data in again and restrict to 2013/2014
+.         use "data/did_jel_aca_replication_data", clear  
+
+.         keep if inlist(year, 2013, 2014) & inlist(yaca,2014,2020,2021,2023,.)
+(24,244 observations deleted)
+
+.         gen Treat = (yaca==2014)                // 1 = ACA in 2014
+
+.         gen Post = (year == 2014)       // 1 = post-expansion year
+
+. 
+.         *local with covariate names
+.         local covs perc_female perc_white perc_hispanic ///
+>                    unemp_rate_pc poverty_rate median_income_k
+
+. 
+.         * Keep only relevant variables
+.         keep county_code year Treat set_wt crude_rate_20_64 `covs'
+
+. 
+.         * Reshape everything (outcome + covariates) at once
+.         reshape wide crude_rate_20_64 `covs', i(county_code) j(year)
+(j = 2013 2014)
+
+Data                               Long   ->   Wide
+-----------------------------------------------------------------------------
+Number of observations            4,400   ->   2,200       
+Number of variables                  11   ->   17          
+j variable (2 values)              year   ->   (dropped)
+xij variables:
+                       crude_rate_20_64   ->   crude_rate_20_642013 crude_rate_
+> 20_642014
+                            perc_female   ->   perc_female2013 perc_female2014
+                             perc_white   ->   perc_white2013 perc_white2014
+                          perc_hispanic   ->   perc_hispanic2013 perc_hispanic2
+> 014
+                          unemp_rate_pc   ->   unemp_rate_pc2013 unemp_rate_pc2
+> 014
+                           poverty_rate   ->   poverty_rate2013 poverty_rate201
+> 4
+                        median_income_k   ->   median_income_k2013 median_incom
+> e_k2014
+-----------------------------------------------------------------------------
+
+. 
+.         * Generate change in covariates
+.         foreach v of local covs {
+  2.                 gen d_`v' = `v'2014 - `v'2013
+  3.         }
+
+. 
+.         * Generate outcome: change in crude mortality
+.         gen long_y = crude_rate_20_642014 - crude_rate_20_642013
+
+. 
+.         * Drop missing outcome
+.         drop if missing(long_y)
+(0 observations deleted)
+
+.         
+.         
+.         *Unweighted p-score distributions
+.         eststo ps1: logit Treat ///
+>                 perc_female2013 perc_white2013 perc_hispanic2013 ///
+>                 unemp_rate_pc2013 poverty_rate2013 median_income_k2013, ///
+>                 vce(cluster county_code)
+
+Iteration 0:  Log pseudolikelihood =  -1511.365  
+Iteration 1:  Log pseudolikelihood = -1280.0308  
+Iteration 2:  Log pseudolikelihood = -1277.4818  
+Iteration 3:  Log pseudolikelihood = -1277.4773  
+Iteration 4:  Log pseudolikelihood = -1277.4773  
+
+Logistic regression                                     Number of obs =  2,200
+                                                        Wald chi2(6)  = 272.83
+                                                        Prob > chi2   = 0.0000
+Log pseudolikelihood = -1277.4773                       Pseudo R2     = 0.1548
+
+                        (Std. err. adjusted for 2,200 clusters in county_code)
+------------------------------------------------------------------------------
+             |               Robust
+       Treat | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+perc_fe~2013 |     -0.041      0.016    -2.53   0.012       -0.073      -0.009
+perc_wh~2013 |      0.059      0.005    10.93   0.000        0.048       0.069
+perc_hi~2013 |     -0.016      0.004    -4.13   0.000       -0.023      -0.008
+unemp_r~2013 |      0.320      0.026    12.25   0.000        0.269       0.371
+poverty~2013 |      0.035      0.019     1.86   0.062       -0.002       0.071
+median_~2013 |      0.082      0.010     8.59   0.000        0.064       0.101
+       _cons |    -10.003      1.339    -7.47   0.000      -12.628      -7.378
+------------------------------------------------------------------------------
+
+.         
+.         
+.         *estimates use ps1
+.         predict pscore_unw
+(option pr assumed; Pr(Treat))
+
+. 
+.         * Expansion counties
+.         summ pscore_unw if inlist(Treat,0,1)
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+  pscore_unw |      2,200    .4445455    .2186111    .003772   .9901927
+
+.         local min = r(min)
+
+.         local max = r(max)
+
+.         local w   = (`max' - `min')/30
+
+.         local s   = floor(`min'/`w')*`w'   // align start to a bin edge
+
+.         di `w'
+.03288069
+
+.         di `s'
+0
+
+.         
+.         twoway  histogram pscore_unw if Treat == 1 , width(`w') start(`s') fc
+> olor(none) lcolor(red) || ///
+>                         histogram pscore_unw if Treat == 0 , width(`w') start
+> (`s') fcolor(none) lcolor(blue) ///
+>                         ytitle("Density",angle(horizontal)) xtitle("") title(
+> "Unweighted") legend(off) ylabel(0(1)4.5) xlabel(,nogrid)
+
+. 
+.         cap mkdir "figures"             
+
+.         graph save "figures/pscore_uw.gph", replace
+(file figures/pscore_uw.gph not found)
+file figures/pscore_uw.gph saved
+
+.         
+. 
+.         *Weighted p-score distributions
+.         eststo ps2: logit Treat ///
+>                 perc_female2013 perc_white2013 perc_hispanic2013 ///
+>                 unemp_rate_pc2013 poverty_rate2013 median_income_k2013 [iw=se
+> t_wt], ///
+>                 vce(cluster county_code)
+
+Iteration 0:  Log pseudolikelihood = -1.024e+08  
+Iteration 1:  Log pseudolikelihood =  -74886660  
+Iteration 2:  Log pseudolikelihood =  -74174192  
+Iteration 3:  Log pseudolikelihood =  -74172489  
+Iteration 4:  Log pseudolikelihood =  -74172489  
+
+Logistic regression                                     Number of obs =  2,200
+                                                        Wald chi2(6)  =  95.65
+                                                        Prob > chi2   = 0.0000
+Log pseudolikelihood = -74172489                        Pseudo R2     = 0.2760
+
+                        (Std. err. adjusted for 2,200 clusters in county_code)
+------------------------------------------------------------------------------
+             |               Robust
+       Treat | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+perc_fe~2013 |     -0.188      0.057    -3.31   0.001       -0.299      -0.077
+perc_wh~2013 |      0.040      0.012     3.40   0.001        0.017       0.063
+perc_hi~2013 |     -0.018      0.009    -2.17   0.030       -0.035      -0.002
+unemp_r~2013 |      0.680      0.085     8.01   0.000        0.514       0.846
+poverty~2013 |      0.107      0.048     2.25   0.025        0.014       0.200
+median_~2013 |      0.155      0.025     6.23   0.000        0.106       0.204
+       _cons |     -8.167      4.382    -1.86   0.062      -16.756       0.422
+------------------------------------------------------------------------------
+
+.         
+.         
+.         *estimates use ps2
+.         predict pscore_w
+(option pr assumed; Pr(Treat))
+
+. 
+.         * Define group for legend
+.         gen group = cond(Treat == 1, "Expansion", "Non-Expansion")
+
+. 
+.         * Expansion counties
+.         summ pscore_w if inlist(Treat,0,1)
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+    pscore_w |      2,200    .4923434    .2812284   .0111045   .9999846
+
+.         local min = r(min)
+
+.         local max = r(max)
+
+.         local w   = (`max' - `min')/30
+
+.         local s   = floor(`min'/`w')*`w'   // align start to a bin edge
+
+. 
+.         twoway  histogram pscore_w if Treat == 1 [fw=set_wt], width(`w') star
+> t(`s') fcolor(none) lcolor(red) || ///
+>                         histogram pscore_w if Treat == 0 [fw=set_wt], width(`
+> w') start(`s') fcolor(none) lcolor(blue) ///
+>                         ytitle("") xtitle("Propensity Score") title("Weighted
+> ") legend( rows(1)) ylabel(0(1)4.5) xlabel(, nogrid)
+
+. 
+.         graph save "figures/pscore_w.gph", replace
+(file figures/pscore_w.gph not found)
+file figures/pscore_w.gph saved
+
+. 
+.         *combine graphs and use only one legend and y-axis title
+.         **NB: differences between the Stata and R histograms are purely down 
+> to 
+.         *some arcane disagreement between histogram and ggplot; as can be see
+> n from 
+.         *the actual p-score model estimates, the pscores themselves are ident
+> ical
+.         grc1leg2 "figures/pscore_uw.gph" "figures/pscore_w.gph", ///
+>                 title("") xtob1title xtitlefrom("figures/pscore_w.gph") ///
+>                 legendfrom("figures/pscore_w.gph") position(6) ring(2) ///
+>                 cols(2) imargin(4 4 4 4)
+-grc1leg2- working...
+
+.         graph display, xsize(10) ysize(5)
+
+. 
+.         *output to pdf if possible, if not do .emf (PC)
+.         cap graph export "figures/figure1_stata.pdf", replace
+
+.         if _rc~=0{
+.                 cap graph export "figures/figure1_stata.emf", replace
+.         }
+
+. 
+.         *clean up figure panels
+.         cap erase "figures/pscore_uw.gph" 
+
+.         cap erase "figures/pscore_w.gph"
+
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+end of do-file
+
+. 
+. di as result _n "===== STEP 3: event study (Figures 2-4) ====="
+
+===== STEP 3: event study (Figures 2-4) =====
+
+. do "scripts/Stata/3_stata_2xT.do"
+
+. /****************************************************************************
+>   File: 3.stata_2xT.do
+>   Project: JEL - DiD: A Practitioner's Guide
+>   Authors: Baker, Callaway, Cunningham, Goodman-Bacon, Sant'Anna
+>   Purpose: Replicates the 2xT results in the JEL paper
+>              
+>   Data Required:
+>     • "did_jel_aca_replication_data" — created by 0.stata_Make_data.do
+> 
+>   Output format:
+>     • If possible (ie. run on a Mac): Figures saved as `.pdf` in the Figures/
+>  directory, matching `ggsave()` in R
+>     • Else (ie. run on a PC): Figures saved as `.emf` in the Figures/ directo
+> ry
+>         • Tables written as .tex files in the Tables/ directory
+>         
+>   Output:
+>         1. Figure 2: 2014 versus non-expansion mortality trends ("figures/fig
+> ure2_stata.tex")
+>         2. Figure 3: 2xT event-study with no covariates                 ("fig
+> ures/figure3_stata.tex")
+>         3. Figure 4: 2xT event-study with covariates                    ("fig
+> ures/figure4_stata.tex")
+> 
+>   Author: Scott Cunningham
+>   Last updated: Bacon, Oct 5, 2025
+> ****************************************************************************/
+.         
+.         
+. ***************************************************************
+. *1. Figure 2: 2014 versus non-expansion mortality trends
+. *************************************************************** 
+.         *read data in again and restrict to 2013/2014
+.         use "data/did_jel_aca_replication_data", clear
+
+.         keep if inlist(yaca,2014,2020,2021,2023,.)
+(4,444 observations deleted)
+
+.         gen Treat = (yaca==2014)                // 1 = ACA in 2014
+
+. 
+.         *Collapse to means by group × year
+.         gen expand = cond(Treat==1, "Expansion Counties", "Non-Expansion Coun
+> ties")
+
+. 
+.         collapse (mean) crude_rate_20_64 [iw=set_wt], by(expand year)
+
+.         rename crude_rate_20_64 mortality
+
+. 
+.         * Create the plot
+.         twoway ///
+>           (line mortality year if expand == "Expansion Counties",      lcolor
+> (red)  lpattern(solid) lwidth(medium)) ///
+>           (line mortality year if expand == "Non-Expansion Counties",  lcolor
+> (blue) lpattern(solid)  lwidth(medium)) ///
+>           (scatter mortality year if expand == "Expansion Counties",   msymbo
+> l(O)   mcolor(red)) ///
+>           (scatter mortality year if expand == "Non-Expansion Counties", msym
+> bol(Oh) mcolor(blue))  , ///
+>           legend(order(1 "Expansion Counties" 2 "Non-Expansion Counties") ///
+>                          pos(6) ring(2) cols(2)) ///
+>           xtitle("") ///
+>           ytitle("Mortality (20–64)" "Per 100,000", orientation(horizontal)) 
+> ///
+>           ysize(5) xsize(10) ///
+>           xline(2013) ///
+>           xlabel(2009(1)2019, nogrid) ///
+>           graphregion(color(white)) ///
+>           plotregion(style(none))
+
+. 
+.         *output to pdf if possible, if not do .emf (PC)
+.         cap mkdir "figures"
+
+.         cap graph export "figures/figure2_stata.pdf", replace
+
+.         if _rc~=0{
+.                         graph export "figures/figure2_stata.emf", replace
+.         }               
+
+. 
+. 
+. 
+. 
+. ***************************************************************
+. *2. Figure 3: 2xT event-study with no covariates
+. *************************************************************** 
+.         *read data in again and restrict to 2013/2014
+.         use "data/did_jel_aca_replication_data", clear
+
+.         keep if inlist(yaca,2014,2020,2021,2023,.)
+(4,444 observations deleted)
+
+. 
+.         *Use csdid for simple ES estimation (uniform and non-uniform CIs); us
+> e long2!!
+.         csdid crude_rate_20_64 [iw=set_wt], ///
+>                 ivar(county_code) time(year) gvar(treat_year) ///
+>                 long2 ///
+>                 wboot(reps(25000) rseed(20240924) wbtype(rademacher)) ///
+>                 agg(event)
+..........
+Difference-in-difference with Multiple Time Periods
+
+                                                        Number of obs = 24,200
+Outcome model  : regression adjustment
+Treatment model: none
+---------------------------------------------------------------------
+            | Coefficient  Std. err.      t      [95% conf. interval]
+------------+--------------------------------------------------------
+    Pre_avg |   2.290291    1.70564     1.34    -2.258197    6.838779
+   Post_avg |  -.7035462    2.04325    -0.34    -6.152351    4.745259
+        Tm5 |   4.129204   2.726447     1.51    -3.141505    11.39991
+        Tm4 |  -.5016807   2.064131    -0.24    -6.006169    5.002808
+        Tm3 |   2.753179   1.613777     1.71    -1.550334    7.056692
+        Tm2 |   2.780463    1.52779     1.82    -1.293747    6.854672
+        Tp0 |  -2.562875   1.488983    -1.72    -6.533597    1.407848
+        Tp1 |  -1.697329   1.838907    -0.92    -6.601205    3.206547
+        Tp2 |    .218901   2.348795     0.09     -6.04471    6.482512
+        Tp3 |  -.8133358   2.787605    -0.29    -8.247138    6.620466
+        Tp4 |  -1.153295    2.79879    -0.41    -8.616924    6.310333
+        Tp5 |   1.786656   2.988445     0.60     -6.18273    9.756043
+---------------------------------------------------------------------
+Control: Never Treated
+
+See Callaway and Sant'Anna (2021) for details
+
+.                 
+.         *you do actually have to grab the uniform CIs from the posted output
+.         preserve
+
+.                 clear
+
+.                 matrix T  = r(table)
+
+.                 local cn : colnames T
+
+.                 matrix llu = T[5,1..colsof(T)]
+
+.                 matrix ulu = T[6,1..colsof(T)]
+
+.                 matrix uci = (llu', ulu')
+
+.                 matrix colnames uci = uci_lower uci_upper
+
+.                 svmat uci, names(col)
+number of observations will be reset to 12
+Press any key to continue, or Break to abort
+Number of observations (_N) was 0, now 12.
+
+.                 gen var = ""
+(12 missing values generated)
+
+.                 local i = 0
+
+.                 foreach r of local cn{
+  2.                         local ++i
+  3.                         replace var = "`r'" in `i'
+  4.                 }
+variable var was str1 now str7
+(1 real change made)
+variable var was str7 now str8
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+
+.                 save "testo", replace
+(file testo.dta not found)
+file testo.dta saved
+
+.         restore
+
+. 
+.         *save the posted output to a dataset and merge back on the uniform CI
+> s
+.         regsave, ci
+
+.         merge 1:1 var using "testo"
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             0
+    Matched                                12  (_merge==3)
+    -----------------------------------------
+
+.         keep if _merge==3
+(0 observations deleted)
+
+.         drop _merge
+
+.         
+.         *get average post coefficient, standard error, and CI
+.         qui sum coef if var=="Post_avg"
+
+.         local postcoef : display %03.2f r(mean)
+
+.         qui sum stderr if var=="Post_avg"
+
+.         local postse : display %03.2f r(mean)
+
+.         local postlci : display %03.2f `postcoef'-1.96*`postse'
+
+.         local postuci : display %03.2f `postcoef'+1.96*`postse'
+
+.         
+.         *now only keep the event-study estimates
+.         keep if substr(var,1,1)=="T"
+(2 observations deleted)
+
+.         keep coef ci* uci* var
+
+.         
+.         *extract timing components from event aggregation notation in csdid
+.         gen pre = substr(var,2,1)=="m"
+
+.         gen post = substr(var,2,1)=="p"
+
+.         gen e = real(substr(var,3,.))
+
+.         replace e = -e if pre
+(4 real changes made)
+
+.         
+.         *add omitted period
+.         local obs = _N+1
+
+.         set obs `obs'
+Number of observations (_N) was 10, now 11.
+
+.         replace coef = 0 in `obs'
+(1 real change made)
+
+.         replace e = -1 in `obs'
+(1 real change made)
+
+. 
+. 
+.         *plot the ATT(g,t) for g=2014
+.         twoway ///
+>                 (rcap uci_lower uci_upper e, ///
+>                 lcolor(red*1.2) msize(0)) ///
+>                 (rcap ci_lower ci_upper e, ///
+>                 lcolor(black) msize(0)) ///
+>                 (scatter coef e, ///
+>                 msym(O) mcolor(black)   ///
+>                 ), ///
+>                 legend(off) ///
+>                 xlabel(-5(1)5, nogrid) ///
+>                 ylabel(-5(5)10) ///     
+>                 yline(0, lpattern(dash)) ///
+>                 xline(-1, lpattern(dash)) ///
+>                 xtitle("Event-Time") ///
+>                 ytitle("Treatment Effect" "Mortality Per 100,000", orientatio
+> n(horizontal) size(small)) ///
+>                 text(10.5 3 "Estimate e ∈ {0,5}=`postcoef'", size(small)) ///
+>                 text(9 3 "Std. Error = `postse'" "Conf. Int = [`postlci',`pos
+> tuci']", size(small))      ///
+>                 xsize(10) ysize(5)
+
+. 
+. 
+.         *output to pdf if possible, if not do .emf (PC)
+.         cap mkdir "figures"
+
+.         cap graph export "figures/figure3_stata.pdf", replace
+
+.         if _rc~=0{
+.                         graph export "figures/figure3_stata.emf", replace
+.         }               
+
+. 
+.         *Sanity check: TWFE equivalence (point estimates only; CS reports boo
+> tstrapped SEs)
+.         *use "data/did_jel_aca_replication_data", clear
+.         *keep if inlist(yaca,2014,2020,2021,2023,.)
+.         *reg crude_rate_20_64 Treat##ib2013.year [iw=set_wt], cluster(county_
+> code)
+. 
+. 
+. 
+. ***************************************************************
+. *3. Figure 4: 2xT event-study with covariates
+. *************************************************************** 
+.         *read data in again and restrict to 2013/2014
+.         use "data/did_jel_aca_replication_data", clear
+
+.         keep if inlist(yaca,2014,2020,2021,2023,.)
+(4,444 observations deleted)
+
+.         
+.         *local with covariate names
+.         local covs perc_female perc_white perc_hispanic ///
+>                    unemp_rate_pc poverty_rate median_income_k
+
+. 
+.         *Estimate RA, IPW, and DR using csdid version 1.81 (Oct 2025)
+.         local reg_title "Regression"
+
+.         local stdipw_title "IPW"
+
+.         local dripw_title "Doubly Robust"
+
+.         foreach m in reg stdipw dripw{
+  2.                 csdid crude_rate_20_64 `covs' [iw=set_wt], ///
+>                         ivar(county_code) time(year) gvar(treat_year) ///
+>                         method(`m') ///
+>                         long2 ///
+>                         never ///
+>                         wboot(reps(25000) rseed(20240924) wbtype(rademacher))
+>  ///
+>                         pscoretrim(0.995) agg(event)
+  3. 
+.                 *you do actually have to grab the uniform CIs from the posted
+>  output
+.                 preserve
+  4.                         clear
+  5.                         matrix T  = r(table)
+  6.                         local cn : colnames T
+  7.                         matrix llu = T[5,1..colsof(T)]
+  8.                         matrix ulu = T[6,1..colsof(T)]
+  9.                         matrix uci = (llu', ulu')
+ 10.                         matrix colnames uci = uci_lower uci_upper
+ 11.                         svmat uci, names(col)
+ 12.                         gen var = ""
+ 13.                         local i = 0
+ 14.                         foreach r of local cn{
+ 15.                                 local ++i
+ 16.                                 replace var = "`r'" in `i'
+ 17.                         }
+ 18.                         save "testo", replace
+ 19.                 restore
+ 20. 
+.                 *save the posted output to a dataset and merge back on the un
+> iform CIs
+.                 preserve
+ 21.                         regsave, ci
+ 22.                         merge 1:1 var using "testo"
+ 23.                         keep if _merge==3
+ 24.                         drop _merge
+ 25.                         
+.                         *get average post coefficient, standard error, and CI
+.                         qui sum coef if var=="Post_avg"
+ 26.                         local postcoef : display %03.2f r(mean)
+ 27.                         qui sum stderr if var=="Post_avg"
+ 28.                         local postse : display %03.2f r(mean)
+ 29.                         local postlci : display %03.2f `postcoef'-1.96*`po
+> stse'
+ 30.                         local postuci : display %03.2f `postcoef'+1.96*`po
+> stse'
+ 31.                         
+.                         *now only keep the event-study estimates
+.                         keep if substr(var,1,1)=="T"
+ 32.                         keep coef ci* uci* var
+ 33.                         
+.                         *extract timing components from event aggregation not
+> ation in csdid
+.                         gen pre = substr(var,2,1)=="m"
+ 34.                         gen post = substr(var,2,1)=="p"
+ 35.                         gen e = real(substr(var,3,.))
+ 36.                         replace e = -e if pre
+ 37.                         
+.                         *add omitted period
+.                         local obs = _N+1
+ 38.                         set obs `obs'
+ 39.                         replace coef = 0 in `obs'
+ 40.                         replace e = -1 in `obs'
+ 41. 
+. 
+.                         *plot the ATT(g,t) for g=2014
+.                         twoway ///
+>                                 (rcap uci_lower uci_upper e, ///
+>                                 lcolor(red*1.2) msize(0)) ///
+>                                 (rcap ci_lower ci_upper e, ///
+>                                 lcolor(black) msize(0)) ///
+>                                 (scatter coef e, ///
+>                                 msym(O) mcolor(black)   ///
+>                                 ), ///
+>                                 legend(off) ///
+>                                 xlabel(-5(1)5, nogrid) ///
+>                                 ylabel(-20(10)20) ///   
+>                                 xline(-1, lpattern(dash)) ///
+>                                 yline(0, lpattern(dash)) ///
+>                                 xtitle("Event-Time") ///
+>                                 ytitle("") ///
+>                                 title("``m'_title'") ///
+>                                 xsize(10) ysize(5)
+ 42.                                 
+.                                 graph save "figures/`m'.gph", replace
+ 43.                 restore
+ 44.         }
+..........
+Difference-in-difference with Multiple Time Periods
+
+                                                        Number of obs = 24,200
+Outcome model  : regression adjustment
+Treatment model: none
+---------------------------------------------------------------------
+            | Coefficient  Std. err.      t      [95% conf. interval]
+------------+--------------------------------------------------------
+    Pre_avg |   .7855078   2.096188     0.37    -4.906462    6.477477
+   Post_avg |   .4580591   2.353402     0.19    -5.932348    6.848466
+        Tm5 |   1.570989   2.715725     0.58    -5.803266    8.945244
+        Tm4 |  -2.914938   2.582115    -1.13    -9.926388    4.096513
+        Tm3 |   1.871301   2.295188     0.82    -4.361031    8.103633
+        Tm2 |   2.614679   2.500284     1.05    -4.174569    9.403927
+        Tp0 |   -3.45922   2.361429    -1.46    -9.871422    2.952982
+        Tp1 |  -.4335419   2.653557    -0.16    -7.638987    6.771903
+        Tp2 |   .3153244   2.885487     0.11    -7.519901     8.15055
+        Tp3 |   .8374513   3.169733     0.26    -7.769613    9.444515
+        Tp4 |   .9166444   3.413034     0.27    -8.351075    10.18436
+        Tp5 |   4.571697   3.471423     1.32    -4.854573    13.99797
+---------------------------------------------------------------------
+Control: Never Treated
+
+See Callaway and Sant'Anna (2021) for details
+number of observations will be reset to 12
+Press any key to continue, or Break to abort
+Number of observations (_N) was 0, now 12.
+(12 missing values generated)
+variable var was str1 now str7
+(1 real change made)
+variable var was str7 now str8
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+file testo.dta saved
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             0
+    Matched                                12  (_merge==3)
+    -----------------------------------------
+(0 observations deleted)
+(2 observations deleted)
+(4 real changes made)
+Number of observations (_N) was 10, now 11.
+(1 real change made)
+(1 real change made)
+(file figures/reg.gph not found)
+file figures/reg.gph saved
+..........
+Difference-in-difference with Multiple Time Periods
+
+                                                        Number of obs = 24,200
+Outcome model  : weighted mean
+Treatment model: stabilized inverse probability
+---------------------------------------------------------------------
+            | Coefficient  Std. err.      t      [95% conf. interval]
+------------+--------------------------------------------------------
+    Pre_avg |   2.786484   3.265707     0.85    -5.607073    11.18004
+   Post_avg |   2.412118   3.076265     0.78    -5.494534    10.31877
+        Tm5 |   4.182106   3.549118     1.18    -4.939877    13.30409
+        Tm4 |   1.759236   4.065893     0.43    -8.690968    12.20944
+        Tm3 |   2.453613   3.322458     0.74    -6.085806    10.99303
+        Tm2 |   2.750982   5.012094     0.55    -10.13116    15.63312
+        Tp0 |  -3.841697   3.335575    -1.15    -12.41483    4.731437
+        Tp1 |   .1741438    4.44887     0.04    -11.26039    11.60868
+        Tp2 |   7.423316   5.234305     1.42    -6.029954    20.87659
+        Tp3 |  -.7918824   3.611014    -0.22    -10.07295    8.489186
+        Tp4 |    4.08604    4.28727     0.95    -6.933149    15.10523
+        Tp5 |    7.42279   4.032207     1.84    -2.940834    17.78641
+---------------------------------------------------------------------
+Control: Never Treated
+
+See Callaway and Sant'Anna (2021) for details
+number of observations will be reset to 12
+Press any key to continue, or Break to abort
+Number of observations (_N) was 0, now 12.
+(12 missing values generated)
+variable var was str1 now str7
+(1 real change made)
+variable var was str7 now str8
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+file testo.dta saved
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             0
+    Matched                                12  (_merge==3)
+    -----------------------------------------
+(0 observations deleted)
+(2 observations deleted)
+(4 real changes made)
+Number of observations (_N) was 10, now 11.
+(1 real change made)
+(1 real change made)
+(file figures/stdipw.gph not found)
+file figures/stdipw.gph saved
+..........
+Difference-in-difference with Multiple Time Periods
+
+                                                        Number of obs = 24,200
+Outcome model  : least squares
+Treatment model: inverse probability
+---------------------------------------------------------------------
+            | Coefficient  Std. err.      t      [95% conf. interval]
+------------+--------------------------------------------------------
+    Pre_avg |   1.617484   2.808491     0.58    -5.587635    8.822603
+   Post_avg |  -.6844759    3.74391    -0.18    -10.28939    8.920438
+        Tm5 |   1.745997   3.347799     0.52    -6.842704     10.3347
+        Tm4 |   .3398636   3.274909     0.10    -8.061839    8.741566
+        Tm3 |   2.872789    2.97791     0.96    -4.766971    10.51255
+        Tm2 |   1.511289    4.66249     0.32    -10.45022     13.4728
+        Tp0 |  -3.756105   3.167242    -1.19    -11.88159    4.369382
+        Tp1 |  -1.313456   4.619354    -0.28     -13.1643    10.53739
+        Tp2 |   3.280938   4.168033     0.79    -7.412054    13.97393
+        Tp3 |  -4.710991   5.372994    -0.88    -18.49528      9.0733
+        Tp4 |  -.0844913   5.285117    -0.02    -13.64334    13.47435
+        Tp5 |   2.477249   5.941008     0.42    -12.76427    17.71877
+---------------------------------------------------------------------
+Control: Never Treated
+
+See Callaway and Sant'Anna (2021) for details
+number of observations will be reset to 12
+Press any key to continue, or Break to abort
+Number of observations (_N) was 0, now 12.
+(12 missing values generated)
+variable var was str1 now str7
+(1 real change made)
+variable var was str7 now str8
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+file testo.dta saved
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             0
+    Matched                                12  (_merge==3)
+    -----------------------------------------
+(0 observations deleted)
+(2 observations deleted)
+(4 real changes made)
+Number of observations (_N) was 10, now 11.
+(1 real change made)
+(1 real change made)
+(file figures/dripw.gph not found)
+file figures/dripw.gph saved
+
+. 
+.         *combine graphs and use only one legend and y-axis title
+.         **NB: differences between the Stata and R come from the bootstrap unc
+> ertainty
+.         **analytic standard errors are identical
+.         grc1leg2 "figures/reg.gph" "figures/stdipw.gph" "figures/dripw.gph", 
+> ///
+>                 title("") xtob1title xtitlefrom("figures/reg.gph") ///
+>                 l1title("Treatment Effect" "Mortality Per 100,000", size(smal
+> l) orientation(horizontal)) ///
+>                 loff ///
+>                 ycommon ///
+>                 position(6) ring(2) ///
+>                 cols(3) imargin(4 4 4 4)
+-grc1leg2- working...
+
+. 
+.         graph display, xsize(12) ysize(5)
+
+. 
+.         *output to pdf if possible, if not do .emf (PC)
+.         cap mkdir "figures"
+
+.         cap graph export "figures/figure4_stata.pdf", replace
+
+.         if _rc~=0{
+.                         graph export "figures/figure4_stata.emf", replace
+.         }               
+
+. 
+. *clean up the temporary file
+. cap erase "testo.dta"
+
+. 
+. *clean up graph panels
+. cap erase "figures/reg.gph" 
+
+. cap erase "figures/stdipw.gph" 
+
+. cap erase "figures/dripw.gph"
+
+. 
+. exit
+
+end of do-file
+
+. 
+. timer off 1
+
+. di as result _n "===== DEMO RUN COMPLETE ====="
+
+===== DEMO RUN COMPLETE =====
+
+. timer list 1
+
+. 
+. log close
+no log file open
+r(606);
+
+end of do-file
+r(606);

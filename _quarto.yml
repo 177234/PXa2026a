@@ -30,6 +30,7 @@ book:
 
   chapters:
     - index.qmd
+    - usage.qmd
     - syllabus.qmd
     - settings.qmd
     - skills-guide.qmd
@@ -47,7 +48,22 @@ book:
     - appendix/C_datasets.qmd
     - appendix/D_reading_list.qmd
     - appendix/E_faq.qmd
-    - appendix/F_akcigit.qmd   # 回放期交付，占位先建
+    - part: "第 1 讲配套：Lane (2025) 阅读笔记"
+      chapters:
+        - examples/ch01/Lane_2025_reading_notes/01_overview.qmd
+        - examples/ch01/Lane_2025_reading_notes/02_methods.qmd
+        - examples/ch01/Lane_2025_reading_notes/03_replication.qmd
+        - examples/ch01/Lane_2025_reading_notes/04_literature.qmd
+        - appendix/F_akcigit.qmd   # 1-5 扩展案例：Akcigit（占位，回放期交付）
+    - part: "第 1 讲 · 进阶选读（助教多角度精读，选读）"
+      chapters:
+        - examples/ch01/Lane_2025_student_notes/index.qmd
+        - examples/ch01/Lane_2025_student_notes/framing.qmd
+        - examples/ch01/Lane_2025_student_notes/summary.qmd
+        - examples/ch01/Lane_2025_student_notes/methods.qmd
+        - examples/ch01/Lane_2025_student_notes/derivation.qmd
+        - examples/ch01/Lane_2025_student_notes/replication.qmd
+        - examples/ch01/Lane_2025_student_notes/codex-workflow.qmd
 
 format:
   html:

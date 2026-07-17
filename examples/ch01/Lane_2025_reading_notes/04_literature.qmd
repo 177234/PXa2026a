@@ -1,0 +1,100 @@
+---
+title: "迷你文献定位"
+---
+
+> **这份笔记回答什么**：这篇论文站在哪些文献之间 (它接续谁、反驳谁、补上什么空白)，以及怎么向前、向后、横向找到几篇密切相关的高水平文献，对这个话题在该领域的进展有个大致了解。
+>
+> 更重要的，是学会**借助 AI 与 agent 做文献检索**——尤其是识别出与自己研究密切相关、且发表在高水平期刊上的文献。
+
+---
+
+## 如何生成这份笔记
+
+::: {.callout-note title="提示词 A · 梳理这篇论文的文献坐标 (复制到任意 AI 助手，连同论文 PDF)"}
+
+> 这是一篇实证经济学论文。请帮我做一份中文「文献定位」笔记：
+>
+> a. 这篇论文主要接续或对话哪几支文献？每支用一句话说它建立了什么、又不能回答什么。
+> b. 这篇论文声称补上的空白到底是什么？
+> c. 从它的参考文献里，挑出五到八篇最值得我进一步了解的经典或近期文献，简述每篇与本文的关系。
+>
+> 要求：**只依据论文本身及其参考文献，不要编造不存在的文献**；不确定的地方标出来让我核对。
+
+:::
+
+**配套 skill**：`01-paper-context`(论文背景与文献定位)。用法与安装见《[AI 工作流与 skills 上手](https://lianxhcn.github.io/PXa2026a/skills-guide.html)》；不熟悉也没关系，直接用提示词即可。
+
+> 以下为示例笔记 (已人工核对)。
+
+---
+
+## 这篇论文站在哪些文献之间
+
+Lane (2025) 处在**四支文献的交汇点**——理解这四支，就理解了它为什么重要：
+
+| 文献分支 | 代表作 (本文引用) | 建立了什么 | 不能回答什么 |
+|---|---|---|---|
+| 古典产业政策与大推进理论 | Rosenstein-Rodan (1943)、Hirschman (1958)、Scitovsky (1954) | 产业政策作为工业化工具的理论基础 (big push、产业链联系) | 缺乏经验检验，没有产业层面的因果证据 |
+| 产业政策怀疑论与新古典批判 | Baldwin (1969)、Krueger (1990)、Pack (2000)、Noland & Pack (2003) | 质疑市场失灵证据不足、保护可能拖累生产率 | 多基于截面或加总数据，未用面板计量 |
+| 东亚发展型国家质性研究 | Johnson (1982)、Wade (1990)、Amsden (1989) | 产业政策的制度逻辑与历史叙事 | 缺乏因果推断 |
+| 当代产业政策因果推断 | Nunn & Trefler (2010)、Juhász (2018)、Criscuolo et al. (2019) | 用现代计量评估具体产业政策 | 未触及东亚奇迹核心案例，多为类政策冲击而非有目的的定向政策 |
+
+**它补的空白**：东亚奇迹里最关键的产业政策事件之一 (韩国 HCI drive)，一直缺乏用**现代因果推断方法加产业面板**的系统评估。Lane 把计量方法前沿和制度史前沿对接了起来。
+
+## 向前、向后、横向：几篇密切相关的高水平文献
+
+顺着这篇论文，可以沿三个方向铺开一小片文献地图。下面是**示例**，均为真实文献、按本课程 myAPA 格式记录 (**请以官方页面为准核对卷期页码**)：
+
+**向前——它站在谁的肩膀上 (理论与制度根基)**
+
+- Hirschman, A. O. (1958). The Strategy of Economic Development. Yale University Press. [Google](<https://scholar.google.com/scholar?q=The+Strategy+of+Economic+Development+Hirschman>).
+- Amsden, A. H. (1989). Asia's Next Giant: South Korea and Late Industrialization. Oxford University Press. [Google](<https://scholar.google.com/scholar?q=Asia's+Next+Giant+South+Korea+and+Late+Industrialization>).
+- Rodrik, D. (1995). Getting Interventions Right: How South Korea and Taiwan Grew Rich. Economic Policy, 10(20), 53–107. [Link](https://doi.org/10.2307/1344538), [Google](<https://scholar.google.com/scholar?q=Getting+Interventions+Right+How+South+Korea+and+Taiwan+Grew+Rich>).
+
+**横向——同一波「产业政策因果评估」的代表作**
+
+- Nunn, N., & Trefler, D. (2010). The Structure of Tariffs and Long-Term Growth. American Economic Journal: Macroeconomics, 2(4), 158–194. [Link](https://doi.org/10.1257/mac.2.4.158), [Google](<https://scholar.google.com/scholar?q=The+Structure+of+Tariffs+and+Long-Term+Growth>).
+- Juhász, R. (2018). Temporary Protection and Technology Adoption: Evidence from the Napoleonic Blockade. American Economic Review, 108(11), 3339–3376. [Link](https://doi.org/10.1257/aer.20151730), [Google](<https://scholar.google.com/scholar?q=Temporary+Protection+and+Technology+Adoption+Napoleonic+Blockade>).
+- Criscuolo, C., Martin, R., Overman, H. G., & Van Reenen, J. (2019). Some Causal Effects of an Industrial Policy. American Economic Review, 109(1), 48–85. [Link](https://doi.org/10.1257/aer.20160034), [Google](<https://scholar.google.com/scholar?q=Some+Causal+Effects+of+an+Industrial+Policy>).
+
+**向后与综述——快速掌握这一波研究的全貌**
+
+- Juhász, R., Lane, N., & Rodrik, D. (2024). The New Economics of Industrial Policy. Annual Review of Economics. [Google](<https://scholar.google.com/scholar?q=The+New+Economics+of+Industrial+Policy+Juhász+Lane+Rodrik>).
+
+> 这份小地图本身就是很好的入门书单：想了解产业政策争论，向前读根基、横向读同类因果研究、再用一篇综述收口，比漫无目的地搜索高效得多。
+
+## 怎么用 AI 与 agent 做文献检索
+
+目标是又快又准地找到**与自己研究密切相关、且发表在高水平期刊上**的文献。关键在于「检索工具查实 + AI 归纳」的分工。
+
+::: {.callout-warning title="最重要的一条纪律：不让 AI 凭空生成文献"}
+「哪些论文引用了 Lane (2025)」「这个方向最新的进展」属于**时效性事实**，会随时间变化。直接问 AI「列出引用这篇的论文」，它很可能**编造出看似合理、实则不存在的文献** (尤其是较新的论文)。正确做法是**用检索工具查实，再让 AI 帮你归纳和筛选**。
+:::
+
+**可核查的检索路径：**
+
+a. **Google Scholar 的「被引用」**：搜到论文后点「Cited by / 被引用」，就是引用它的文献列表；可再按年份、关键词筛，快速看向后的进展。
+b. **Connected Papers / Semantic Scholar / OpenAlex**：输入一篇论文，自动画出它的「引用与被引用」关系网，快速看清一个方向的地图 (向前、向后、横向一目了然)。
+c. **认准高水平期刊与作者**：识别 QJE、AER、ECMA、REStud、JPE 等顶刊，以及该方向的活跃作者 (如本例中的 Lane、Juhász、Rodrik)，顺着他们的主页和近作，往往能牵出一串密切相关的研究。
+
+::: {.callout-note title="提示词 B · 让 AI 归纳你查到的结果 (把从 Scholar 复制来的题录粘给它)"}
+
+> 下面是我从 Google Scholar 复制的、与 Lane (2025) 密切相关 (或引用了它) 的若干论文题录。请帮我按主题归类，并各用一句话说明它们大概在做什么、和 Lane (2025) 是什么关系；标出其中发表在高水平期刊上的。**只依据我提供的题录，不要新增文献，也不要补全我没给的信息。**
+
+:::
+
+## 把找到的文献记成规范格式 (myAPA)
+
+检索到值得留存的文献，用统一格式记下来，方便日后取用。本课程采用 **myAPA 格式**：`作者 (年份). 标题. 期刊, 卷(期), 页码.` 后接 `[Link]`(DOI，有复现包再加 `(rep)`)、`[PDF]`、`[Google]`(检索链接用尖括号包裹)。**URL 拿不准就留空 `[Google](<>)`，绝不编造。** 正式论文示例：
+
+> Lane, N. (2025). Manufacturing Revolutions: Industrial Policy and Industrialization in South Korea. The Quarterly Journal of Economics, 140(3), 1683–1741. [Link](https://doi.org/10.1093/qje/qjaf025) (rep), [PDF](https://academic.oup.com/qje/article-pdf/140/3/1683/63400136/qjaf025.pdf), [Google](<https://scholar.google.com/scholar?q=Manufacturing+Revolutions+Industrial+Policy+and+Industrialization+in+South+Korea>).
+
+> 若需要系统地检索并下载文献、导入 Zotero、生成文献矩阵，本课程另有 `literature-zotero-download` 技能可用；但对第 1 讲而言，能用 Scholar 的「被引用」查实、再让 AI 归纳，就已经够用了。
+
+## 这份笔记能帮你做什么
+
+- **判断方向**：读懂一篇代表作的文献坐标，就能低成本判断这一片文献是否值得投入。
+- **建书单**：前面两节的文献表，直接就是入门书单。
+- **守住底线**：找相关文献和被引，必须用检索工具查实，AI 只用来**归纳和筛选你查到的东西**，不用来凭空生成文献——这是使用 AI 做文献工作最重要的一条纪律。
+
+至此，四份角度笔记 ([整体](01_overview.qmd) → [方法](02_methods.qmd) → [复现](03_replication.qmd) → [文献](04_literature.qmd)) 就把 Lane (2025) 从背景、方法、代码到文献坐标，快速过了一遍。**这就是「任务切割」式阅读的完整演示。**

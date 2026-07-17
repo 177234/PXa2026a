@@ -5,7 +5,7 @@ number-sections: false
 # 🏠 前言 {.unnumbered}
 
 ::: {.callout-note title="这是一本什么书"}
-这是连享会 **2026 暑期班 · 初级班**（2026 年 7 月 21–23 日，三天）的配套讲义。
+这是连享会 **2026 暑期班 · 初级班** (2026 年 7 月 21–23 日，三天) 的配套讲义。
 书名《AI 时代的实证研究基础》，副题"连享会 2026 暑期班 · 初级班"。全书用
 [Quarto](https://quarto.org/) 编译，通过 GitHub Pages 发布，学员可在线阅读，也可克隆到
 本地边看边跑。
@@ -33,7 +33,7 @@ number-sections: false
 [**课程主页**]{.step} <span class="arrow">·</span> [**六讲讲义**]{.step} <span class="arrow">·</span> [**可复现项目**]{.step} <span class="arrow">·</span> [**skills 工具箱**]{.step}
 :::
 
-1. **课程主页**：三天课表与导航入口（见「[讲授计划](syllabus.qmd)」）；
+1. **课程主页**：三天课表与导航入口 (见「[讲授计划](syllabus.qmd)」)；
 2. **六讲讲义**：每半天一讲，严格对应已发布大纲，方法主线与 AI 工作流主线并行；
 3. **可复现项目**：`data/` + `examples/`，学员克隆后可在本地跑通每讲的 dofile 与 notebook；
 4. **skills 工具箱**：`skills/` 文件夹 + 一份「[skills 上手指南](skills-guide.qmd)」，把重复的
@@ -53,7 +53,7 @@ number-sections: false
 ## 如何使用本书
 
 - **报名学员**：[课前准备](settings.qmd) → [skills 上手](skills-guide.qmd) → 按天听课
-  （每天两讲）→ 课后练习；
+  (每天两讲)→ 课后练习；
 - **课后复习者**：按章顺序读，每章末的"小结与练习"作自查；
 - **只想要工具的读者**：`skills/README.md` → [skills 上手指南](skills-guide.qmd) → 按需取用。
 
@@ -64,16 +64,16 @@ number-sections: false
   [[链接]](https://doi.org/10.1093/qje/qjaf025)
   [[复现包]](https://doi.org/10.7910/DVN/VJECHN)。课堂以它为主案例，演示零经验学员如何
   借助 skills 在一天内读懂一篇顶刊的研究背景、贡献与实证策略。
-- **扩展案例**（课后）：Akcigit, U., Grigsby, J., Nicholas, T., & Stantcheva, S. (2022).
+- **扩展案例** (课后)：Akcigit, U., Grigsby, J., Nicholas, T., & Stantcheva, S. (2022).
   *Taxation and innovation in the twentieth century.* QJE, 137(1), 329–385.
   [[链接]](https://doi.org/10.1093/qje/qjab022)。复现文档与中文精要见
-  [附录 F](appendix/F_akcigit.qmd)（回放期交付）。
+  [附录 F](appendix/F_akcigit.qmd)(回放期交付)。
 
 ## 暑期班信息
 
-- **时间**：2026 年 7 月 21–23 日（三天），网络直播 + 30 天回放；
-- **授课教师**：连玉君（中山大学岭南学院）；
-- **授课时间**：上午 9:00–12:00，下午 14:30–17:30（17:30–18:00 答疑）；
+- **时间**：2026 年 7 月 21–23 日 (三天)，网络直播 + 30 天回放；
+- **授课教师**：连玉君 (中山大学岭南学院)；
+- **授课时间**：上午 9:00–12:00，下午 14:30–17:30(17:30–18:00 答疑)；
 - **课程总页面**：<https://www.lianxh.cn/PX.html>；
 - **暑期班总览**：<https://www.lianxh.cn/details/1803.html>。
 

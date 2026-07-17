@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>附录 F — 整体介绍 – AI 时代的实证研究基础</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../examples/ch01/Lane_2025_reading_notes/02_methods.html" rel="next">
+<link href="../../../appendix/E_faq.html" rel="prev">
+<link href="../../../images/book-logo.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-e8fb9d25728d58bfeac61b497e4a6629.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-57a92833092fd6dc0d7710b6bdfff9c5.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-7ef202e96c563d31d9e5226e4d6cabf9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-490ba4e843cb1303a232ed0c676384f2.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../appendix/A_prompt_templates.html">附录</a></li><li class="breadcrumb-item"><a href="../../../examples/ch01/Lane_2025_reading_notes/01_overview.html">第 1 讲配套：Lane (2025) 阅读笔记</a></li><li class="breadcrumb-item"><a href="../../../examples/ch01/Lane_2025_reading_notes/01_overview.html"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">整体介绍</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="https://lianxhcn.github.io/PXa2026a/" class="sidebar-logo-link">
+      <img src="../../../images/book-logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../../">暑期班 · 初级班</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
+    <a href="https://github.com/lianxhcn/PXa2026a" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🏠 前言</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../usage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📦 课件使用</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📌 讲授计划</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../settings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🚀 课前准备</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../skills-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🤖 AI 工作流与 skills 上手</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>讲义</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../lectures/01_replication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">从顶刊复现项目开始：实证研究的完整流程</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../lectures/02_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">数据处理、探索性分析与样本构造</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../lectures/03_framework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">从总体到推断：实证分析的五层框架</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../lectures/04_ols.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">线性回归的建模语言：CEF、OLS 与统计推断</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../lectures/05_FE_intFE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FWL、虚拟变量与固定效应：理解条件比较</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../lectures/06_practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">综合实操：从复现代码到自己的分析任务</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">附录</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../appendix/A_prompt_templates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">提示词与任务说明书模板</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../appendix/B_skills_index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">skills 索引</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../appendix/C_datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">课程数据集说明</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../appendix/D_reading_list.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">延伸阅读</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../appendix/E_faq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">FAQ：环境与 agent 常见问题</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">第 1 讲配套：Lane (2025) 阅读笔记</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_reading_notes/01_overview.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">整体介绍</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_reading_notes/02_methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">实证方法与识别</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_reading_notes/03_replication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">复现材料导览</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_reading_notes/04_literature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">迷你文献定位</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../appendix/F_akcigit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">扩展案例：Akcigit et al.&nbsp;(2022)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">第 1 讲 · 进阶选读（助教多角度精读，选读）</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_student_notes/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">K</span>&nbsp; <span class="chapter-title">进阶参照：一位博士生的 Lane (2025) 多角度精读</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_student_notes/framing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">L</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions: Industrial Policy and Industrialization in South Korea — 论文Framing分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_student_notes/summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">M</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions 综合分析摘要</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_student_notes/methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">N</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions — 研究方法拆解</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_student_notes/derivation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">O</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions — 研究设计与估计方程推导</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_student_notes/replication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">P</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions — 复现材料审计与运行说明</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../examples/ch01/Lane_2025_student_notes/codex-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">Q</span>&nbsp; <span class="chapter-title">codex-workflow.html</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#如何生成这份笔记" id="toc-如何生成这份笔记" class="nav-link active" data-scroll-target="#如何生成这份笔记"><span class="header-section-number">F.1</span> 如何生成这份笔记</a></li>
+  <li><a href="#论文基本信息" id="toc-论文基本信息" class="nav-link" data-scroll-target="#论文基本信息"><span class="header-section-number">F.2</span> 论文基本信息</a></li>
+  <li><a href="#研究背景" id="toc-研究背景" class="nav-link" data-scroll-target="#研究背景"><span class="header-section-number">F.3</span> 研究背景</a></li>
+  <li><a href="#研究问题" id="toc-研究问题" class="nav-link" data-scroll-target="#研究问题"><span class="header-section-number">F.4</span> 研究问题</a></li>
+  <li><a href="#研究思路" id="toc-研究思路" class="nav-link" data-scroll-target="#研究思路"><span class="header-section-number">F.5</span> 研究思路</a></li>
+  <li><a href="#主要结论" id="toc-主要结论" class="nav-link" data-scroll-target="#主要结论"><span class="header-section-number">F.6</span> 主要结论</a></li>
+  <li><a href="#研究边界-这篇文章_不_回答什么" id="toc-研究边界-这篇文章_不_回答什么" class="nav-link" data-scroll-target="#研究边界-这篇文章_不_回答什么"><span class="header-section-number">F.7</span> 研究边界 (这篇文章_不_回答什么)</a></li>
+  <li><a href="#怎么用这份笔记" id="toc-怎么用这份笔记" class="nav-link" data-scroll-target="#怎么用这份笔记"><span class="header-section-number">F.8</span> 怎么用这份笔记</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/lianxhcn/PXa2026a/edit/main/examples/ch01/Lane_2025_reading_notes/01_overview.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/lianxhcn/PXa2026a/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../appendix/A_prompt_templates.html">附录</a></li><li class="breadcrumb-item"><a href="../../../examples/ch01/Lane_2025_reading_notes/01_overview.html">第 1 讲配套：Lane (2025) 阅读笔记</a></li><li class="breadcrumb-item"><a href="../../../examples/ch01/Lane_2025_reading_notes/01_overview.html"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">整体介绍</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">附录 F — 整体介绍</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<blockquote class="blockquote">
+<p><strong>这份笔记回答什么</strong>：这篇论文的研究背景、研究问题、研究思路和主要结论。读完它，你应该能在几分钟内判断：这篇文章大概在做什么、和我的研究相不相关、值不值得继续精读。</p>
+<p><strong>它不回答</strong>：具体的计量方法与公式 (见 <a href="../../../examples/ch01/Lane_2025_reading_notes/02_methods.html">笔记 (2)</a>)、复现包怎么跑 (见 <a href="../../../examples/ch01/Lane_2025_reading_notes/03_replication.html">笔记 (3)</a>)。</p>
+</blockquote>
+<hr>
+<section id="如何生成这份笔记" class="level2" data-number="F.1">
+<h2 data-number="F.1" class="anchored" data-anchor-id="如何生成这份笔记"><span class="header-section-number">F.1</span> 如何生成这份笔记</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="提示词 (可直接复制到网页版 ChatGPT / Claude Code / Codex，连同论文 PDF 一起发送)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+提示词 (可直接复制到网页版 ChatGPT / Claude Code / Codex，连同论文 PDF 一起发送)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<blockquote class="blockquote">
+<p>我是一名实证研究初学者。附件是一篇经济学顶刊论文的 PDF。请<strong>只从「整体介绍」这一个角度</strong>帮我写一份简短的中文笔记，包含四部分：</p>
+<ol type="a">
+<li><strong>研究背景</strong>——这篇文章想回应什么长期争论或现实问题？</li>
+<li><strong>研究问题</strong>——作者具体想回答哪几个问题？</li>
+<li><strong>研究思路</strong>——作者大致用什么数据、什么比较策略来回答？(一两段讲清楚即可，<strong>不要展开计量公式</strong>)</li>
+<li><strong>主要结论</strong>——作者发现了什么？请给出关键的数量级。</li>
+</ol>
+<p>要求：控制在一页以内；<strong>只依据论文本身，不要编造</strong>；遇到数据或方法名词时保持克制，我现在只需要先看懂全貌。若引用某个结论，请标注它对应论文里的哪张图或哪张表。</p>
+</blockquote>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="两种用法，任选其一">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+两种用法，任选其一
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>只用提示词 (最简单，零门槛)</strong>：把上面这段提示词连同论文 PDF，一起发给任意一个 AI 助手——网页版 ChatGPT、Claude(含 Claude Code)、Codex、OpenCode 都可以。这就足以生成本笔记，<strong>不需要任何额外配置</strong>。第 1 讲的绝大多数任务，网页端复制提示词就能完成，初学者从这里起步即可。</li>
+<li><strong>进阶：调用 skill(可复用、结果更稳定)</strong>：本课程把这类「按固定角度解读论文」的提示词，封装成了一个可跨 agent 复用的 skill——<strong><code>01-paper-context</code></strong>(论文整体解读，位于课程仓库 <code>skills/core/</code>)。装好后，在 CC / Codex / OpenCode 里一句话就能触发，它会引导 agent 按固定角度产出、并保留图表编号引证，便于人工抽查。<strong>skill 是什么、怎么安装、怎么在不同 agent 里触发</strong>，见课程主页《<a href="https://lianxhcn.github.io/PXa2026a/skills-guide.html">AI 工作流与 skills 上手</a>》；每个 skill 的功能清单见<a href="https://lianxhcn.github.io/PXa2026a/appendix/B_skills_index.html">附录 B · skills 索引</a>。还不熟悉 skill 也完全不影响本讲学习——先用提示词，学有余力再回来把它固化成 skill。</li>
+</ul>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>下面是按上述提示词生成、并经人工核对的示例笔记。<strong>核对，是关键一步</strong>——AI 负责快速起草，你负责判断对错，这正是本讲反复强调的分工。</p>
+</blockquote>
+<hr>
+</section>
+<section id="论文基本信息" class="level2" data-number="F.2">
+<h2 data-number="F.2" class="anchored" data-anchor-id="论文基本信息"><span class="header-section-number">F.2</span> 论文基本信息</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>标题</td>
+<td>Manufacturing Revolutions: Industrial Policy and Industrialization in South Korea</td>
+</tr>
+<tr class="even">
+<td>作者</td>
+<td>Nathaniel Lane(牛津大学)</td>
+</tr>
+<tr class="odd">
+<td>期刊</td>
+<td><em>Quarterly Journal of Economics</em> (QJE), 2025, 140(3): 1683–1741</td>
+</tr>
+<tr class="even">
+<td>主题</td>
+<td>产业政策 (industrial policy) 对工业发展的因果效应</td>
+</tr>
+<tr class="odd">
+<td>研究对象</td>
+<td>韩国 1973–1979 年「重化工业驱动」(Heavy and Chemical Industry Drive, <strong>HCI drive</strong>)</td>
+</tr>
+<tr class="even">
+<td>主要数据</td>
+<td>韩国制造业普查 (MMS，作者手工数字化)、UN COMTRADE 贸易数据、韩国银行投入产出表、政策立法文书</td>
+</tr>
+<tr class="odd">
+<td>复现包</td>
+<td>Harvard Dataverse：<a href="https://doi.org/10.7910/DVN/VJECHN" class="uri">https://doi.org/10.7910/DVN/VJECHN</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>引文 (myAPA 格式)</strong>：</p>
+<blockquote class="blockquote">
+<p>Lane, N. (2025). Manufacturing Revolutions: Industrial Policy and Industrialization in South Korea. The Quarterly Journal of Economics, 140(3), 1683–1741. <a href="https://doi.org/10.1093/qje/qjaf025">Link</a> (rep), <a href="https://academic.oup.com/qje/article-pdf/140/3/1683/63400136/qjaf025.pdf">PDF</a>, <a href="https://scholar.google.com/scholar?q=Manufacturing+Revolutions+Industrial+Policy+and+Industrialization+in+South+Korea">Google</a>.</p>
+</blockquote>
+</section>
+<section id="研究背景" class="level2" data-number="F.3">
+<h2 data-number="F.3" class="anchored" data-anchor-id="研究背景"><span class="header-section-number">F.3</span> 研究背景</h2>
+<p>「东亚奇迹」中，政府主导的产业政策到底有没有用，是发展经济学争论了近半个世纪的问题：</p>
+<ul>
+<li>一派 (Amsden、Wade、Rodrik 等) 认为，韩国、日本、台湾等经济体的政府，通过<strong>定向扶持特定产业</strong>，成功培育了原本不具备比较优势的新产业；</li>
+<li>另一派 (Pack、Noland、Krueger 等) 则认为，政府干预往往扭曲资源配置，未必真的提升了生产率。</li>
+</ul>
+<p>争论长期停留在<strong>历史叙事和截面数据</strong>上，缺乏用现代因果推断方法、基于<strong>产业层面面板数据</strong>的系统证据。</p>
+<p>韩国 1973 年启动的 <strong>HCI drive</strong> 正是这场争论的核心案例：朴正熙政府在尼克松主义带来的国防安全压力下，集中扶持<strong>钢铁、有色金属、造船、机械、电子、石化</strong>六大战略产业；1979 年朴正熙遇刺后，政策转向自由化。这样一个被反复讨论、却始终缺乏现代经验评估的重大政策事件，正是本文要填补的空白。</p>
+<blockquote class="blockquote">
+<p>关于 HCI drive 更完整的政策背景 (国际背景、政策工具、终止原因、与财阀成长的关系)，可参阅连享会《因果推断》讲义附录：<a href="https://lianxhcn.github.io/ci-policy/lectures/appendix/A01_hci_policy_background.html">HCI 政策背景</a>。</p>
+</blockquote>
+</section>
+<section id="研究问题" class="level2" data-number="F.4">
+<h2 data-number="F.4" class="anchored" data-anchor-id="研究问题"><span class="header-section-number">F.4</span> 研究问题</h2>
+<p>论文的核心问题可以拆成三层：</p>
+<ol type="a">
+<li><strong>直接效应</strong>：HCI 政策是否提升了<strong>目标产业</strong>的产出、就业、生产率和出口竞争力？</li>
+<li><strong>溢出效应</strong>：政策是否通过<strong>投入产出网络</strong>，间接影响了非目标的<strong>下游产业</strong>？</li>
+<li><strong>作用机制</strong>：政策是通过什么渠道起作用的——定向信贷、投资激励，还是「干中学」(learning by doing)？</li>
+</ol>
+</section>
+<section id="研究思路" class="level2" data-number="F.5">
+<h2 data-number="F.5" class="anchored" data-anchor-id="研究思路"><span class="header-section-number">F.5</span> 研究思路</h2>
+<p>作者把 HCI drive 当作一次<strong>准自然实验</strong>，思路可以概括成一条链：</p>
+<blockquote class="blockquote">
+<p>政策事实 → 目标产业 → 行业面板 → 政策前后比较 → 结果与溢出</p>
+</blockquote>
+<ul>
+<li><strong>谁是处理组</strong>：政策文件里明确扶持的六大战略产业。作者把这些产业名称手工匹配到韩国的行业分类代码，再落到行业面板上；其他制造业行业作为对照组。</li>
+<li><strong>什么时间点</strong>：1973 年政策启动、1979 年政策转向，都由<strong>外生的政治事件</strong>驱动 (尼克松冲击、朴正熙遇刺)，这让「政策前 vs 政策后」的比较更可信。</li>
+<li><strong>用什么数据</strong>：作者手工数字化了韩国制造业普查 (覆盖 1967–1986 年)，再配上 UN COMTRADE 贸易数据 (看出口)、韩国银行投入产出表 (看产业链溢出)、政策立法文书 (定处理组和时间)。</li>
+<li><strong>怎么比较</strong>：比较处理组与对照组在政策前后的差异变化——也就是<strong>双重差分 (DID) 与事件研究</strong>的思路。具体方法、为什么可信、怎么处理内生性，见 <a href="../../../examples/ch01/Lane_2025_reading_notes/02_methods.html">笔记 (2)</a>，本讲不展开公式。</li>
+</ul>
+</section>
+<section id="主要结论" class="level2" data-number="F.6">
+<h2 data-number="F.6" class="anchored" data-anchor-id="主要结论"><span class="header-section-number">F.6</span> 主要结论</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>发现</th>
+<th>大致数量级</th>
+<th>对应原文</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>目标产业产出大幅扩张</td>
+<td>约 +100%(翻倍量级)</td>
+<td>主结果事件研究图 (Figure 2)</td>
+</tr>
+<tr class="even">
+<td>就业、投资显著增加</td>
+<td>就业约 +64%，投资约 +81%</td>
+<td>Figure 2 / Table 4</td>
+</tr>
+<tr class="odd">
+<td>劳动生产率、TFP 提升</td>
+<td>劳动生产率约 +17%</td>
+<td>Table 1</td>
+</tr>
+<tr class="even">
+<td>出口比较优势 (RCA) 提升</td>
+<td>约 +13%</td>
+<td>跨国比较图 (Figure 4)</td>
+</tr>
+<tr class="odd">
+<td>下游产业通过前向联系受益</td>
+<td>定性为正</td>
+<td>产业链联系图 (Figure 6–7)</td>
+</tr>
+</tbody>
+</table>
+<p>两个尤其值得记住的判断：</p>
+<ul>
+<li><strong>效应在政策退出后仍然持续</strong> (1979 年以后)，尤其是出口竞争力和生产率——这与「幼稚产业论」的预期一致：短期扶持帮助产业积累经验、站稳脚跟，扶持退出后仍能自立。</li>
+<li>作者反复强调，HCI 是一项<strong>有目的、定向的</strong>产业政策，与那些「碰巧类似产业政策的历史冲击」不同——这决定了本文结论对「政府该不该做产业政策」这一问题的现实意义。</li>
+</ul>
+</section>
+<section id="研究边界-这篇文章_不_回答什么" class="level2" data-number="F.7">
+<h2 data-number="F.7" class="anchored" data-anchor-id="研究边界-这篇文章_不_回答什么"><span class="header-section-number">F.7</span> 研究边界 (这篇文章_不_回答什么)</h2>
+<p>读顶刊时，看清作者划定的边界，和看懂结论一样重要：</p>
+<ul>
+<li><strong>不评估政策的总体福利与配置效率</strong>：政策在扶持目标产业的同时是否造成了全局层面的资源错配、信贷挤出，论文明确不作总量福利判断；</li>
+<li><strong>不讨论政治代价</strong>：威权体制作为政策实施条件，只作背景，不纳入分析；</li>
+<li><strong>干中学机制是相关性证据</strong>，不是严格的因果——这一点作者自己也坦承。</li>
+</ul>
+</section>
+<section id="怎么用这份笔记" class="level2" data-number="F.8">
+<h2 data-number="F.8" class="anchored" data-anchor-id="怎么用这份笔记"><span class="header-section-number">F.8</span> 怎么用这份笔记</h2>
+<p>花三分钟读完，你应该能做出这样的判断：</p>
+<ul>
+<li>这是一篇<strong>产业政策 / 政策因果评估 / 东亚发展</strong>主题、用<strong>面板 DID</strong> 的实证论文；</li>
+<li>如果你正在做<strong>政策评估</strong>或<strong>产业政策</strong>相关研究，它的「从政策事实到研究设计」的做法值得精读，方法可迁移 (继续看 <a href="../../../examples/ch01/Lane_2025_reading_notes/02_methods.html">笔记 (2)</a>)；</li>
+<li>如果主题不相关，你也已经用很低的成本了解了它的思路，可以放心跳过，去看下一篇。</li>
+</ul>
+<p>这，就是「任务切割」式阅读的价值：<strong>先花小成本看懂全貌，再决定要不要投入大成本精读。</strong></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/PXa2026a\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../appendix/E_faq.html" class="pagination-link" aria-label="FAQ：环境与 agent 常见问题">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">FAQ：环境与 agent 常见问题</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../examples/ch01/Lane_2025_reading_notes/02_methods.html" class="pagination-link" aria-label="实证方法与识别">
+        <span class="nav-page-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">实证方法与识别</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.lianxh.cn">lianxh.cn</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/lianxhcn/PXa2026a/edit/main/examples/ch01/Lane_2025_reading_notes/01_overview.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/lianxhcn/PXa2026a/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>基于 <a href="https://quarto.org/">Quarto</a> 构建</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
