@@ -1,0 +1,542 @@
+# 所得税的宏观作用效果
+
+作者在宏观州层级分析了个人所得税净税率-创新产出弹性和公司所得税-创新产出弹性。
+
+本部分由五个子部分构成：
+
+- A. 基准模型分析：TWFE + IV
+- B. 长差分模型
+- C. 稳健性检验
+- D. 事件分析法
+- E. 分布滞后模型 (ARDL)：长期效应和短期效应
+
+其中，
+
+- 平均效应：A - C
+- 动态效应：D - E
+
+## 基准回归分析
+
+### A 因变量：创新的四种度量
+
+- (1) 使用当年该州 **申请的专利数量** 衡量 **创新数量**；
+- (2) 使用当年该州 **专利引用数量** 作为衡量 **创新质量**；
+- (3) 当年定居该州的 **发明人数量**；
+- (4) 公司专利申请数占比，使用发明人转让所有权衡量。
+
+### B 自变量：个体所得税和公司所得税构建
+
+- **个人所得税**
+  - 在州层级，个人所得税率和税级常常发生变动，因此作者使用全国收入分配分布位于第 50 分位点的个体个人所得税率和第 90 分位点的个体个人所得税计算有效税率。
+  - 根据 [Bakijia (2006)](https://web.williams.edu/Economics/papers/bakijaDocumentation_IncTaxCalc.pdf) 税收计算公式，作者构建了第 90 分位点个人所得税税率 ($MTR90$)、第 90 分位点平均个人所得税税率 ($ATR90$) 和第 50 分位点平均个人所得税税率 ($ATR50$)。
+- **公司所得税**
+  - 以最高联邦公司税为基础，利用各州和联邦的税收抵扣规则，计算出州层级的公司所得税 ($MTR$)。
+
+### C 基准模型设定 (TWFE)
+
+$$
+\begin{aligned}
+Y_{s t}=& \alpha+\beta_{p} \ln \left(1-M T R 90_{s t-3}\right)+\beta_{c} \ln \left(1-\operatorname{Corp} . \mathrm{MTR}_{s t-3}\right) \\
+&+\gamma \mathbb{X}_{s t}+\delta_{t}+\delta_{s}+\varepsilon_{s t} \quad \text{(3)}
+\end{aligned}
+$$
+
+其中，
+
+- $Y_{s t}$：$s$ 州在 $t$ 时期的创新产出。四种不同的衡量创新指标能够避免显著性结果的择优选择
+- $MTR90_{s t-3}$：滞后 3 年期的个人所得税率
+- $Corp.MTR_{s t-3}$：滞后 3 年期作为公司所得税
+- $\delta_{t}$ 和 $\delta_{s}$：时间和州固定效应，以捕获不可观测的个体和时间趋势效应
+- $X_{s t}$ 代表随时间变化的州层级的变量，包括：
+  - 滞后 3 期的人口密度 (城市化程度)
+  - 滞后 3 期的人均收入水平 (经济发展水平)
+  - 滞后 3 期的研发支出抵免 (税收激励)
+
+```stata
+*********************
+*  Part A Benchmark
+*********************
+gen fiveyear = 5*floor(year/5)
+egen statenum_fiveyear = group(statenum fiveyear)
+
+global additional_controls "L.real_gdp_pc L.population_density"
+global       more_controls "base_index_lag3 c.base_index_lag3#c.top_corp_lag3"
+
+reghdfe lnpat  mtr90_lag3 top_corp_lag3    ///
+        $additional_controls rd_credit_lag3 [aw=pop1940],  ///
+        absorb(statenum year)   ///
+        vce(cluster statenum_fiveyear year)
+```
+
+> **扩展阅读：** 固定效应模型 (TWFE, HDFE)
+
+- [reghdfe：多维面板固定效应估计](https://www.lianxh.cn/news/8be6ff429cf93.html)，`reghdfe y x, absorb(v1 v2)`
+- [regife：面板交互固定效应模型-Interactive Fixed Effect](https://www.lianxh.cn/news/c96db291f9189.html)
+- [Stata：固定效应分析新命令-sumhdfe](https://www.lianxh.cn/news/d5796089a2113.html)
+- [面板数据](https://www.lianxh.cn/blogs/20.html) &rarr; [Stata: 面板数据模型一文读懂](https://www.lianxh.cn/news/bf27906144b4e.html)
+- [Stata：聚类调整后的标准误-Cluster-SE](https://www.lianxh.cn/news/a7a8e613b2699.html)，`vce(cluster varlist)`
+- [Stata 权重设定-fweight-pweight](https://www.lianxh.cn/news/4dbc40eb41c3d.html)，`reg y x [aw=pop1940], ...`
+
+![](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20220402231041.png)
+
+> **注：** by `李鑫-助教`  
+> $MTR90$ 和 $Corp.MTR$ 分别代表个人和企业所得所，相应的 $(1-MTR90)$ 和 $(1-Corp.MTR)$ 代表个人所得税净税率和公司所得税净税率，两种表述形式之间存在负相关关系。也可以直观地表述为所得税变动对创新的影响，即表中的正项系数阐述为所得税降低 $1%$，创新产出弹性提升 $m%$。这也是作者文中的一种表述方式。
+
+**Table Ⅱ** 是基准模型的结果。
+
+- Part A：使用基准模型 (双向固定效应模型) 的结果。在 Part A 基础上，
+- Part B 考虑了公司所得税的税基存在异质性和时变性的特征。因此，作者在公式 (3) 的控制变量中加入公司所得税税基，以及公司最高所得税税率与公司所得税税基的交互项：$\text{Tax base index}$，$\text { Base index } \times \ln (1-\operatorname{corp} . \text { MTR })$
+
+&emsp;
+
+> 补充说明：作者在 2018 年 [Work paper 版本](https://www.ecb.europa.eu/pub/conferences/shared/pdf/20190905_4th_ARC/Stantcheva_Stefanie.pdf) 中的模型设定
+> 
+
+The macro effect of taxation
+OLS:
+
+$$
+Y_{s t}=\alpha+\beta_{y} T_{s t-1}^{y j}+\beta_{c} T_{s t-1}^{c}+\gamma \mathbb{X}_{s t}+\delta_{t}+\delta_{s}+\varepsilon_{s t}
+$$
+
+$Y_{\text {st }}$ : Innovation outcomes
+$T_{s t-1}^{y j}$ : Personal income tax
+$T_{s t-1:}^{c}$ Company tax
+$\mathbb{X}_{\text {st }}$ : State condition
+$\delta_{t}+\delta_{s} \quad$ : Year and state fixed effects
+
+![](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20220426001144.png)
+
+
+<div STYLE="page-break-after: always;"></div>
+
+### D 内生性与 IV 估计
+
+> IV.B. IV Strategy Using Federal Tax Changes
+
+在给定控制变量和州层级的税率变动与其他因素 (创新政策和经济预测) 不相关的条件下，Part A 和 Part B 中的系数 $\beta_{p}$ 和 $\beta_{c}$ 是个人所得税净税率-创新产出弹性和公司所得税净税率-创新产出弹性的一致估计结果。但是，这一假设可能太过严格。因此，作者在 Part C 使用 IV 估计方法，检验放松上述假设条件的结果。
+
+> **a. 内生性的来源**
+
+- **A6**. 税收增加也会带来更多的基础设施投资，这有利于创造特别更好的创新环境。
+  - 州政府在调整本州税率时，可能出于多重因素的综合考虑：收入分配、经济增长、鼓励创新等。同时，在出台税率调整政策的同时，也可能同时推出其他政策。
+  - 混杂因素 &rarr; 税收和创新可能是共同决定的 &rarr; 需要排除混杂政策 &rarr; 找出 shock (只影响税收，但不直接影响创新) &rarr; IV
+
+> **b. IV 的构造思路** (p.358)
+
+**A. 个人综合税率与联邦税率和州税率的关系**
+
+- 联邦税率 ($f$)
+  - $\tau_{f t}^{p j}$：在 $s$ 州，$t$ 时点，收入位于第 $j$ 百分位的个人的联邦个税税率
+- 州税率 ($s$)
+  - $\tilde{\tau}_{s t}^{p j}$: the personal income tax at income percentile $j$ in state $s$ in year $t$
+- 个人综合税率
+  - **total tax rate** on individuals with income at the $j$ th percentile who live in state $s$ at time $t$ is denoted by $\tau_{s t}^{p j}$ and is equal to:
+
+$$
+\tau_{s t}^{p j}=\tau_{f t}^{p j}\left(1-\tilde{\tau}_{s t}^{p j}\right)+\tilde{\tau}_{s t}^{p j}\left(1-D_{s t}^{p} \cdot \tau_{f t}^{p j}\right) \quad (5)
+$$
+
+- $D_{s t}^{p}$：是否允许抵扣联邦税。是 = 1；否 = 0
+
+**B. 工具变量的构造**
+The instrument for the personal income tax of income group $j$ in state $s$ and year $t$, denoted by $\hat{\tau}_{s t}^{p j}$, can be written (heuristically) as:
+
+$$
+\hat{\tau}_{s t}^{p j}=\tau_{f t}^{p j}\left(1-\tilde{\tau}_{s t-k}^{p j}\right)+\tilde{\tau}_{s t-k}^{p j}\left(1-D_{s t-k}^{p} \cdot \tau_{f t}^{p j}\right) \quad (6)
+$$
+
+- 关键：
+  - $\tilde{\tau}_{s t}^{p j} \ \rightarrow $ $\tilde{\tau}_{s t-k}^{p j}$，即 $t$ 时点的州税率用其 $k$ 期滞后项 $\tilde{\tau}_{s t-k}^{p j}$ 代替。
+  - $\tau_{f t}^{p j}$ (联邦税率) 保持不变
+- 含义：
+  - 相当于维持 $k=5$ 年前的州税率不变，即假设收入分布等州层面的特征不变，用仅本期 ($t$) 联邦税率 $\tau_{f t}^{p j}$ 来预测本期州税率，即 $\hat{\tau}_{s t}^{p j}$。
+- **IV 的相关性和外生性：**
+  - **相关性：** IV 与 $x$ 相关？ YES !
+    - 联邦税收的变动对各州产生不同的税收负担源于各州的抵扣政策 (是否允许抵扣联邦税，以及抵扣程度) (文中 **Figure Ⅱ** 表明个人所得税率与联邦所得税率高度相关，相关系数超过 0.95)。
+  - **外生性：** 在 $t-k$ 到 $t$ 的 $k$ 年中，$\hat{\tau}_{s t}^{p j}$ 的变动反映的主要是联邦税率的变动，而**联邦税率**并不会因为特定的州要实施某些鼓励创新行为的税收政策而改变。如此以来，从各个州的角度来看，使用 $\hat{\tau}_{s t}^{p j}$ 做 IV 便具有外生性。
+  - **评述：** 这个比多数文献中使用的「全国平均xx」或「各行业平均xx」要好一些。 
+
+![](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/Akcigit_2022-Figure2A.png)
+
+> 其实，这个图的必要性不大，因为州层面的个税税率随时间变化非常缓慢。导致基于 (6) 式得到预测值与真实值之间高度相关，相关系数为 0.9654  
+> `. corr mtr90_lag3 mtr_inclag5_statelag590_lag3`
+
+公司所得税预测税率 (IV) 的构建过程相似：
+
+$$
+\tau_{s t}^{c}=\tau_{f t}^{c}\left(1-\tilde{\tau}_{s t}^{c}\right)+\tilde{\tau}_{s t}^{c}\left(1-D_{s t}^{c} \cdot \tau_{f t}^{c}\right) \qquad \qquad (7)
+$$
+
+$$
+\hat{\tau}_{s t}^{c}=\tau_{f t}^{c}\left(1-\tilde{\tau}_{s t-k}^{c}\right)+\tilde{\tau}_{s t-k}^{c}\left(1-D_{s t-k}^{c} \cdot \tau_{f t}^{c}\right) \quad (8)
+$$
+
+其中，
+
+- $\tau_{f t}^{c}$ 代表联邦公司所得税
+- $\widetilde{\tau}_{s t}^{c}$ 代表州层级公司所得税
+- $D_{s t}^{c}$ 代表 $s$ 州在 $t$ 时期是否允许抵扣联邦税。是 = 1；否 = 0
+
+
+**Table Ⅱ** 主要结论：
+
+- Part A 显示州层级个人所得税净税率上升 1%，
+  - 专利申请数增加 1.8%，专利引用数增加 1.5%
+- 州层级公司所得税净税率上升 1%，
+  - 专利数量增加 2.8%，专利引用数增加 2.4%
+- 第 (4) 列显示，公司授权专利数占比对公司所得税更加敏感
+  - 公司所得税净税率每增加 1%，公司专利授权数量占比将上升 0.6%
+  - 然而，个人所得税增加则不会显著降低公司专利授权数占比的变动
+- Part B：基本稳健
+- Part C：IV 结果也基本稳健，比 OLS 结果略高
+
+
+<div STYLE="page-break-after: always;"></div>
+
+## 长差分估计
+
+> 连享会推文：[长差分：Long Difference 及 Acemoglu AER 论文推介](https://www.lianxh.cn/news/35f95001f7da8.html)
+
+
+
+### 扩展阅读：长差分 (LD)
+
+对于如下固定效应模型：
+
+$$
+  y_{it} = \alpha_{i} + \mathbf{x}_{it}'\mathbf{\beta} + \varepsilon_{it}
+$$
+
+在 $t=1$ 和 $t=T$ 时分别表示为：
+
+$$
+\begin{aligned}
+&y_{i 1}=\alpha_{i}+\mathbf{x}_{i 1}^{\prime} \beta+\varepsilon_{i 1} \\
+&y_{i T}=\alpha_{i}+\mathbf{x}_{i T}^{\prime} \beta+\varepsilon_{i T}
+\end{aligned}
+$$
+
+两式相减可以去除个体效应 $\alpha_{i}$：
+
+$$
+	(y_{iT} - y_{i1}) = (\mathbf{x}_{iT}-\mathbf{x}_{i1})'\mathbf{\beta} + (\varepsilon_{iT}-\varepsilon_{i1}) \quad (1.15)
+$$
+
+我们可以通过如下指数型增长模型来理解 LD 的必要性和经济含义 (这个例子摘自 Sul, 2019, Section 1.1)。
+
+$$
+	Y_{i t}= \exp\left(a_{i}+g_{i} t + \mathbf{x}_{i t}'\mathbf{\beta} + \varepsilon_{it}\right)
+$$
+
+两边同时取对数可得：
+
+$$
+	y_{i t}=\ln Y_{i t}=a_{i}+g_{i} t + \mathbf{x}_{i t}'\mathbf{\beta} + \varepsilon_{it}
+$$
+
+通常重点关注的参数是 $g_{i}$ 和 $\mathbf{\beta}$。
+
+若 $N$ 不大，如省级数据，则可以用如如下等价命令估计该模型：
+
+```stata
+    . reg    y x  i.id  i.id#c.year
+    . xtreg  y x        i.id#c.year, fe
+```
+
+其中，交乘项 `i.id#c.year` 的系数便是每个省份的年度平均增长率。
+
+对 (1.15) 进行一阶差分变换，可得：
+
+$$
+\Delta y_{i t}= g_{i} + \Delta \mathbf{x}_{i t}'\mathbf{\beta} + \Delta \varepsilon_{it}
+$$
+
+此时，估计起来更为方便，
+
+```stata
+    . reg    D.y D.x  i.id
+    . xtreg  D.y D.x , fe
+    . predict gi, u
+```
+
+因此，若针对一阶差分后的变量执行 FE 估计，事实上是在估计模型 (1.15)，此时估计出的固定效应的系数的含义已经发生了变化。
+
+进一步，求取 $\Delta y_{i t}$ 的组内均值如下：
+
+$$
+  \begin{aligned}
+  \frac{1}{T-1} \sum_{t=2}^{T} \Delta y_{i t} &=\frac{1}{T-1}\left(y_{i 2}-y_{i 1}+y_{i 3}-y_{i 2}+\cdots+y_{i T}-y_{i T-1}\right) \\
+  &=\frac{y_{i T}-y_{i 1}}{T-1}
+  \end{aligned}
+$$
+
+这就是所谓的长差分 (long-run difference, LD)。
+
+在经济增长率领域，该模型常被用于估计长期平均增长率。
+- Acemoglu and Restrepo ([2017](http://sci-hub.ren/10.1257/aer.p20171101)) 研究机器人应用与增长关系时，便使用了这一设定思路，以便估计长期增长率。
+- Barro and Wheaton ([2020](https://doi.org/10.1086/708171), [PDF](http://sci-hub.ren/10.1086/708171)) 认为诸如「股权结构」，「税收制度」这类随时间变化非常缓慢的变量 (strong persistence)，若使用 FD 去除个体效应，往往会损失大量的信息。此时，采用 LD 则可以缓解这一问题。
+
+类似的研究还包括：
+- Zivin et al. ([2018](https://doi.org/10.1086/694177)) 使用 LD 研究了气候变化对人力资本积累的影响；
+- Akcigit et al. ([2022](https://doi.org/10.1093/qje/qjab022), [PDF](https://doi.org/10.7910/DVN/SR410I)) 使用 LD 研究了税收对创新的影响。
+
+LD 主要应用于如下几种情形：
+
+- 其一，$y_{it}$ 本身具有很强的持续性，如果直接做 FD，会导致
+- 其二，数据本身是调查数据，如人口普查数据，间隔为 5 年或更长。
+
+LD 在动态面板中的应用：
+- LD 由 Griliches and Hausman ([Link](https://www.sciencedirect.com/science/article/pii/S0304407606001485?via%3Dihub), [1986](http://sci-hub.ren/10.1016/J.JECONOM.2006.07.005)) 提出，
+- Hahn, Hausman, and Kuersteiner ([2007](http://sci-hub.ren/10.1016/J.JECONOM.2006.07.005)) 将其应用于动态面板估计中，发现可以克服弱工具变量问题。
+- Huang and Ritter (2009)，以及 Flannery and Hankins ([2013](http://sci-hub.ren/10.1016/j.jcorpfin.2012.09.004)) 用该模型估计了公司资本结构的动态调整速度，后者还通过 MC 对比了 LD 与 FD-GMM, SYS-GMM 等估计量的表现。
+
+
+### 为何使用 LD？
+
+- 如果州固定效应存在 **时变特征**，那么个人所得税净税率和公司所得税净税率估计结果中可能包含其他非税收因素变动的因素，如特定州的减税行动可能会伴随引发其他的创新改革进程。此时，系数 $\beta_{p}$ 和 $\beta_{c}$ 可能被高估。
+- 消除这一影响最为有效的措施是使用 **交互固定效应** 模型 (`reghdfe y x, absorb(statenum year statenum#year)`)，但是作者认为这样会完全吸收所得税的变动，因而采用长差分的形式 (10、15、20 年) 的形式予以控制。
+- 长差分模型设定：
+  $$
+  \begin{aligned}
+  Y_{s t}-Y_{s t-k}=& \beta_{p}\left[\ln \left(1-M T R 90_{s t}\right)-\ln \left(1-M T R 90_{s t-k}\right)\right] \\
+  &+\beta_{c}\left[\ln \left(1-\operatorname{Corp} . \operatorname{MTR}_{s t}\right)-\ln \left(1-\operatorname{Corp} . \operatorname{MTR}_{s t-k}\right)\right] \\
+  &+\gamma\left[\mathbb{X}_{s t}-\mathbb{X}_{s t-k}\right]+\tilde{\delta}_{t}+\tilde{\varepsilon}_{s t} \quad \text{(4)}
+  \end{aligned}
+  $$
+
+
+**说明：** 这里交互固定效应完全吸收所得税的变动可能来源于两种情形：
+
+- 其一，所得税的变动与潜在创新改革高度相关；
+- 其二，文中考虑的是州层级的所得税变动。因此，控制州层级的交互固定效应会导致与州层级所得税变动产生多重共线性问题。作者转而使用长差分的形式，消除在 10、15、20 年跨度范围内可能存在的创新改革固定效应的影响。
+- 简言之，但凡模型中的核心解释变量具有「随时间变化很缓慢」的特征，FD 和 FE 通常不如 LD，因为 FD 和 FE「去掉了」太多的信息。
+  - 以 $k=10$ 为例，LD 消除了在 $t-10$ 和 $t$ 年之间的固定效应 (这十年里没怎么变化的东西)。
+  - 当 $k=1$ 时，LD 就变成了 FD：两个年度之间没变的东西都会被消除。
+
+
+### LD 估计结果
+
+**Table Ⅲ** 汇报了使用长差分设定形式的结果。如上文所示，采用长差分处理后，由于消除了部分潜在固定效应的影响，个人所得税净税率和公司所得税净税率-创新产出弹性均小于 **Table Ⅱ** 中的基准结果 (Part A)，而且随着差分时间间隔的缩小，其作用效果亦同样降低。
+
+![](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20220402230951.png)
+
+(_推文作者注：**Table Ⅲ** 对标 **Table Ⅱ** 中 Part A 结果，差别在于 **Table Ⅲ** 中所有结果均取了差分形式。_)
+
+
+<div STYLE="page-break-after: always;"></div>
+
+
+## 稳健性检验
+
+在 [附录](https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/qje/137/1/10.1093_qje_qjab022/1/qjab022_onlineappendix.pdf?Expires=1651847340&Signature=HErEI-1ueX7nGgwroSFnr8pIg0tWpp0rUFZwDQUC2fGp12NVAiS2ThFvrF3VvWhaRKZCNjabRuvqJxrmywkXhdRThEd3g1nxEuyPn8IuaFWAc4OMAiyJ~D46Pwy9tIOUWcndd8ct6QUR-gbQci9oXkU6PMKMaQUxM1VucLOLpg51RJvQcAMO-rgaXB-S6JGCXHcA4GK-IqHH7yu6ZvJicsrJWqURWSILpCFTe-ZlDRKce4noYk7dsfnrLBUSj0mDIy9HFxbruse9C~229o~u-mA4vhO1BrSidlU-xfmd5DLXbfGJB49rXk0OJkk7Y1RgqAovJKzrjPpgZD2dJMgfqQ__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA) 中，作者通过如下几种方式来检验 **Table Ⅱ** 中模型估计的稳健性。
+
+- 改变创新衡量指标 (**Table C.6**)；
+- 改变个人所得税和公司所得税的度量标准 (**Table C.7**—**Table C.13**)；
+- 改变样本范围 (**Table C.14**，**Table C.15**)；
+- 改变控制变量的数量 (**Table C.16**，**Table C.17**)
+
+> 连享会推文：[稳健性检验！稳健性检验！](https://www.lianxh.cn/news/32ae13ec789a1.html)
+
+---
+
+## 系数可视化 - Figure I: Binned Scatters
+
+### 扩展阅读：FWL 定理与 binscatter
+
+```stata
+. help avplot
+. help binscatter
+```
+
+- 专题：[回归分析](https://www.lianxh.cn/blogs/32.html)
+  - [图示线性回归系数：Frisch-Waugh 定理与部分回归图](https://www.lianxh.cn/news/e346db1a68211.html)
+- 专题：[Stata 绘图](https://www.lianxh.cn/blogs/24.html)
+  - [Stata：分仓散点图绘制-binscatter-binscatter2](https://www.lianxh.cn/news/bd70ec133d209.html)
+
+![](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/Akcigit_2022-Figure1.png)
+
+```stata
+  global cx "L.real_gdp_pc L.population_density rd_credit_lag3 i.statenum"
+  global T_p "mtr90_lag3"    // 个人税
+  global T_c "top_corp_lag3" // 公司税
+
+  *-画图：Figure 1 (A)
+  binscatter lnpat    $T_p  [aw=pop1940],     ///
+             controls($T_c $cx)               ///
+             absorb(year) nquantiles(100)     ///
+             noaddmean                        ///
+             nofastxtile                      ///
+             savegraph("Fig1A.gph") replace
+```
+
+<div STYLE="page-break-after: always;"></div>
+
+## 事件研究法
+
+> IV.C. Event Studies around Large Tax Reforms
+
+**A. Why？**
+
+- 前面的分析：估计 **平均处理效应**
+- 事件研究方法：州层级的重大税收改革产生的 **动态影响**
+  - 若所得税计算过程中存在 **衡量偏误**，则 **Table Ⅱ** 和 **Ⅲ** 得到的平均政策效果很可能是个别年份的结果主导的
+
+**B. 重大税收改革的界定**
+
+- $\Delta \tau_{st} = \tau_{st} - \tau_{st-1}$ (1940-2000 年)
+- 挑选重大变动：若 $|\Delta \tau_{st}| <0.01$，则 $\Delta \tau_{st} = 0$
+- $Change^{Up} = I(\Delta \tau_{st}>q_{90}[\Delta \tau_{st}])$：所有「State-Year」观察中变动最大的前 $1/10$ 样本
+- $Change^{Down} = I(\Delta \tau_{st}<q_{10}[\Delta \tau_{st}])$
+
+**C. 事件窗口**
+
+- $t\in [-4, +4]$ 年
+- 删除窗口期内有重叠的事件 (overlapping)
+- 仅考虑税率增加的事件
+
+选取税收重大冲击时点前后各四年为窗口，同时删除在此区间内的其他税收改革冲击。作者使用合成控制法为每一个处理组州估计了一个合成处理组州，作为事件分析过程中的控制组。
+
+> 推文作者注：作者这里使用合成控制法估计每一个税收改革事件处理组州的可能目的：
+
+1. 在 1940-2000 年之间，存在较多的税收改革事件。因此，如果我们仅仅按照是否发生税收改革进行划分处理组州和控制组州，那么会出现各州事件研究窗口期存在重叠现象，以及纯粹的控制组州数量太少。
+2. 作者使用合成控制法为每一个处理组州估计一个“反事实”处理组州作为控制组，能够实现在每一个税收改革的时间窗口期内，存在纯粹的处理组和控制组，因而避免了时间窗口期的重叠问题。同时，该过程也增加了控制组在样本中的占比。
+
+**Figure Ⅲ** 显示的是个人所得税和公司所得税改革冲击的动态结果。
+
+- Panel A 和 Panel B 是针对边际税率位于 90 百分位数的个体，个人所得税对于专利申请数量和发明人定居的影响，
+- Panel C 和 Panel D 则是对于最高法定公司所得所率改革对专利申请数量和发明人定居数量的影响。
+- 结果显示，在发生税收改革之后的 3-4 年，发生税收改革的州相较于未发生税收改革州，其个人所得税净税率和公司所得税净税率显著提升专利申请数和发明人定居数大致为 12%-15%。
+
+> **扩展阅读**：事件研究法、倍分法、合成控制法
+
+> `. lianxh 事件研究 合成控制 回归控制 DID`
+
+- [Stata：短期事件研究法 (Event_Study) 教程](https://www.lianxh.cn/news/90de95e42e8ff.html)
+- [Stata：图示事件研究分析结果-eventcoefplot](https://www.lianxh.cn/news/819d4064f139c.html)
+- [Stata：多期倍分法 (DID) 详解及其图示](https://www.lianxh.cn/news/439e934fd68c9.html)
+- [Big Bad Banks：多期 DID 经典论文介绍](https://www.lianxh.cn/news/42611191cca93.html)
+- [合成控制法 (Synthetic Control Method) 及 Stata 实现](https://www.lianxh.cn/news/9e1bb97a57041.html)
+- [Stata：高效实现面板回归控制法-rcm](https://www.lianxh.cn/news/541e3ba2ff795.html)
+
+![](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20220403000733.png)
+
+<div STYLE="page-break-after: always;"></div>
+
+## 所得税变动的长期累积效应
+
+> 扩展阅读：ARDL 模型
+
+- ARDL 模型基础：Hansen B E . 2021. Econometrics. Princeton University Press. [Data and Contents](https://www.ssc.wisc.edu/~bhansen/econometrics/), [PDF](https://www.ssc.wisc.edu/~bhansen/econometrics/Econometrics.pdf), Section 14.41, 14.42
+- Levendis, J.D. (2018). Cointegration and VECMs. In: Time Series Econometrics. Springer Texts in Business and Economics. Springer, Cham. [Link](https://doi.org/10.1007/978-3-319-98282-3_12), [PDF](https://link.springer.com/content/pdf/10.1007/978-3-319-98282-3_12.pdf)
+- 连玉君讲义：「**T0-计量基础-连玉君.pdf**」
+  - 第三章&emsp; Panel ARDL 模型
+
+### ARDL 模型
+
+Panel-ARDL $(1,1)$ 模型设定为：
+
+$$
+y_{i, t}=\mu_{i}+\lambda y_{i, t-1}+\beta_{0} x_{i, t}+\beta_{1} x_{i, t-1}+u_{i, t}
+$$
+
+我们也可以在模型中加人时间虚拟变量、其他控制变量, 甚至是高阶滞后项。
+
+例如, Dell et al. (2012) 在研究气候变化与经济增长关系时, 设定了如下模型：
+
+$$
+\Delta y_{i t}=a_{i}+\sum_{\ell=1}^{p} \varphi_{\ell} \Delta y_{i, t-\ell}+\sum_{\ell=0}^{p+1} \psi_{\ell} T_{i t-\ell}+\varepsilon_{i t} .
+$$
+
+### 长期效应与短期效应
+
+这里, 先以最简单的 ARDL $(1,1)$ 模型为例进行说明:
+
+$$
+y_{t}=\alpha+\lambda y_{t-1}+\beta_{0} x_{t}+\beta_{1} x_{t-1}+u_{t}
+$$
+
+短期效应定义为：
+
+$$
+\frac{\partial y_{t}}{\partial x_{t}}=\beta_{0}, \quad \frac{\partial y_{t}}{\partial x_{t-1}}=\beta_{1}
+$$
+
+长期效应反映的是 $x$ 和 $y$ 的长期均衡值之间的关系。  
+
+可以把 (3-6) 式 中 $x$ 和 $y$ 的当期值和滞后项统一替换为 $\tilde{x}$ 和 $\tilde{y}$ (二者的长期均衡值), 即
+
+$$
+\tilde{y}(1-\lambda)=\alpha+\left(\beta_{0}+\beta_{1}\right) \tilde{x},
+$$
+
+求解 $\tilde{y}$
+
+$$
+\tilde{y}=\frac{\alpha}{1-\lambda}+\frac{\beta_{0}+\beta_{1}}{1-\lambda} \tilde{x} .
+$$
+
+因此, $x$ 单位变化对 $y$ 的长期影响由下式给出
+
+$$
+\frac{\partial \tilde{y}}{\partial \tilde{x}}=\frac{\beta_{0}+\beta_{1}}{1-\lambda} .
+$$
+
+对于如下 $\operatorname{ARDL}(p, q)$ 模型：
+
+$$
+y_{t}=\alpha+\sum_{\ell=1}^{p} \lambda_{\ell} y_{t-\ell}+\sum_{\ell=0}^{q} \beta_{\ell} x_{t-\ell}+\varepsilon_{t} .
+$$
+
+长期乘数一long-run multiplier (LM) 定义为：
+
+$$
+\mathrm{LM}=\frac{\beta_{0}+\cdots+\beta_{q}}{1-\lambda_{1}-\cdots-\lambda_{p}}
+$$
+
+&emsp;
+
+作者使用分布滞后模型继续研究所得税净税率-创新产出弹性的长期动态关系，并以此估计所得税净税率变动对于创新产出的累积效应。其目的与事件分析方法相似。
+
+公式 (10) 反映的是分布滞后模型的估计过程。
+
+$$
+\begin{aligned}
+Y_{s t}-Y_{s t-1}=\delta_{t} &+\sum_{l=-5}^{20} \beta_{l}\left[\ln \left(1-T_{s t-l}\right)-\ln \left(1-T_{s t-l-1}\right)\right] \\
+&+\Delta X_{s t-1}^{\prime} v+\epsilon_{s t}
+\end{aligned} \quad \text{(10)}
+$$
+
+其中，$\delta_{t}$ 是时间固定效应，$T$ 代表个人所得税或者企业所得说，X 是控制变量。
+
+```stata
+* x:= D.ln(1-T_{st-l})
+reghdfe D.Y                          ///
+        F(1/5).x   L(0/20).x         ///
+        $controls                    ///
+        [aw=pop1940],                ///
+        absorb(year)                 ///
+        vce(cluster statenum) 
+```
+
+作者使用公式 (11) 估计 **Figure Ⅳ** 中的累计处理效应，并且将累积效应在 $t-1$ 时期进行了中心化处理，目的是使得在 $t=0$ 时的累积效应等于 0。
+
+$$
+\mathcal{B}_{l}=\underbrace{\left[\sum_{\tau=-5}^{l} \beta_{l}\right]}_{\begin{array}{c}
+\text { Effect from } t-5 \\
+\text { through } t+l
+\end{array}}-\underbrace{\left[\sum_{\tau=-5}^{-1} \beta_{l}\right]}_{\begin{array}{c}
+\text { Renormalizing to be } \\
+\text { relative to year } t-1
+\end{array}} \quad \text{(11)}
+$$
+
+整体来看，在时期 $(-5, -1)$ 中并不存在显著的趋势效应，说明不存在所得税以外的其他因素对创新产生影响，因而我们所得到的显著效果是由所得税变动引致的结果。如果在 $t=0$ 时期增加 1%的个人所得税净税率 $(1-MTR90)$，20 年的累积效应使得专利申请数 (Panel A) 和发明人定居数量 (Panel B) 显著增加大约 2%。而如果在 $t=0$ 时期增加 1%的公司所得税净税率 $(1-Corp.TAX)$，那么 20 年的累计效应使得专利申请数 (Panel C) 和发明人定居该州数量 (Panel D) 显著增加大约 3%-4%。
+
+![](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20220403003703.png)
+
+综上所述，作者从静态模型 (基准模型、长差分模型、稳健性检验结果) 和动态模型 (事件分析法、分布滞后模型) 的角度，检验了州层级个人所得税和公司所得税的对创新弹性的影响，证明了降低个人所得税和公司所得税能够有效提升创新水平。本部分的研究结果将作宏观所得税净税率-创新产出弹性的基准结果，与第五部分微观所得税净税率-创新产出弹性加总值进行比较。
+
+&emsp;
+
+<div STYLE="page-break-after: always;"></div>

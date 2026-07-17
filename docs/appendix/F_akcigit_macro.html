@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>附录 M — 所得税的宏观作用效果 – AI 时代的实证研究基础</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../appendix/F_akcigit_ai.html" rel="next">
+<link href="../appendix/F_akcigit_data.html" rel="prev">
+<link href="../images/book-logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e8fb9d25728d58bfeac61b497e4a6629.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-57a92833092fd6dc0d7710b6bdfff9c5.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-7ef202e96c563d31d9e5226e4d6cabf9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-490ba4e843cb1303a232ed0c676384f2.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/A_prompt_templates.html">附录</a></li><li class="breadcrumb-item"><a href="../appendix/F_akcigit.html">扩展案例：Akcigit et al.&nbsp;(2022) 税收与创新 (进阶 · 课后自学)</a></li><li class="breadcrumb-item"><a href="../appendix/F_akcigit_macro.html"><span class="chapter-number">M</span>&nbsp; <span class="chapter-title">所得税的宏观作用效果</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="https://lianxhcn.github.io/PXa2026a/" class="sidebar-logo-link">
+      <img src="../images/book-logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">暑期班 · 初级班</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
+    <a href="https://github.com/lianxhcn/PXa2026a" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🏠 前言</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../usage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📦 课件使用</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📌 讲授计划</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../settings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🚀 课前准备</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../skills-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🤖 AI 工作流与 skills 上手</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>讲义</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/01_replication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">从顶刊复现项目开始：实证研究的完整流程</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/02_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">数据处理、探索性分析与样本构造</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/03_framework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">从总体到推断：实证分析的五层框架</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/04_ols.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">线性回归的建模语言：CEF、OLS 与统计推断</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/05_FE_intFE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FWL、虚拟变量与固定效应：理解条件比较</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/06_practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">综合实操：从复现代码到自己的分析任务</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">附录</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/A_prompt_templates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">提示词与任务说明书模板</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/B_skills_index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">skills 索引</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/C_datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">课程数据集说明</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/D_reading_list.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">延伸阅读</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/E_faq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">FAQ：环境与 agent 常见问题</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">第 1 讲配套：Lane (2025) 阅读笔记</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_reading_notes/01_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">整体介绍</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_reading_notes/02_methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">实证方法与识别</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_reading_notes/03_replication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">复现材料导览</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_reading_notes/04_literature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">迷你文献定位</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">扩展案例：Akcigit et al.&nbsp;(2022) 税收与创新 (进阶 · 课后自学)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/F_akcigit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">总览与复现指引</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/F_akcigit_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">K</span>&nbsp; <span class="chapter-title">导读</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/F_akcigit_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">L</span>&nbsp; <span class="chapter-title">研究设计和数据构建</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/F_akcigit_macro.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">M</span>&nbsp; <span class="chapter-title">所得税的宏观作用效果</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/F_akcigit_ai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">N</span>&nbsp; <span class="chapter-title">AI 复现与解读工作流</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">第 1 讲 · 进阶选读（助教多角度精读，选读）</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_student_notes/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">O</span>&nbsp; <span class="chapter-title">进阶参照：一位博士生的 Lane (2025) 多角度精读</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_student_notes/framing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">P</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions: Industrial Policy and Industrialization in South Korea — 论文Framing分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_student_notes/summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">Q</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions 综合分析摘要</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_student_notes/methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">R</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions — 研究方法拆解</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_student_notes/derivation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">S</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions — 研究设计与估计方程推导</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_student_notes/replication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">T</span>&nbsp; <span class="chapter-title">Manufacturing Revolutions — 复现材料审计与运行说明</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../examples/ch01/Lane_2025_student_notes/codex-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">U</span>&nbsp; <span class="chapter-title">codex-workflow.html</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#基准回归分析" id="toc-基准回归分析" class="nav-link active" data-scroll-target="#基准回归分析"><span class="header-section-number">M.1</span> 基准回归分析</a>
+  <ul class="collapse">
+  <li><a href="#a-因变量创新的四种度量" id="toc-a-因变量创新的四种度量" class="nav-link" data-scroll-target="#a-因变量创新的四种度量"><span class="header-section-number">M.1.1</span> A 因变量：创新的四种度量</a></li>
+  <li><a href="#b-自变量个体所得税和公司所得税构建" id="toc-b-自变量个体所得税和公司所得税构建" class="nav-link" data-scroll-target="#b-自变量个体所得税和公司所得税构建"><span class="header-section-number">M.1.2</span> B 自变量：个体所得税和公司所得税构建</a></li>
+  <li><a href="#c-基准模型设定-twfe" id="toc-c-基准模型设定-twfe" class="nav-link" data-scroll-target="#c-基准模型设定-twfe"><span class="header-section-number">M.1.3</span> C 基准模型设定 (TWFE)</a></li>
+  <li><a href="#d-内生性与-iv-估计" id="toc-d-内生性与-iv-估计" class="nav-link" data-scroll-target="#d-内生性与-iv-估计"><span class="header-section-number">M.1.4</span> D 内生性与 IV 估计</a></li>
+  </ul></li>
+  <li><a href="#长差分估计" id="toc-长差分估计" class="nav-link" data-scroll-target="#长差分估计"><span class="header-section-number">M.2</span> 长差分估计</a>
+  <ul class="collapse">
+  <li><a href="#扩展阅读长差分-ld" id="toc-扩展阅读长差分-ld" class="nav-link" data-scroll-target="#扩展阅读长差分-ld"><span class="header-section-number">M.2.1</span> 扩展阅读：长差分 (LD)</a></li>
+  <li><a href="#为何使用-ld" id="toc-为何使用-ld" class="nav-link" data-scroll-target="#为何使用-ld"><span class="header-section-number">M.2.2</span> 为何使用 LD？</a></li>
+  <li><a href="#ld-估计结果" id="toc-ld-估计结果" class="nav-link" data-scroll-target="#ld-估计结果"><span class="header-section-number">M.2.3</span> LD 估计结果</a></li>
+  </ul></li>
+  <li><a href="#稳健性检验" id="toc-稳健性检验" class="nav-link" data-scroll-target="#稳健性检验"><span class="header-section-number">M.3</span> 稳健性检验</a></li>
+  <li><a href="#系数可视化---figure-i-binned-scatters" id="toc-系数可视化---figure-i-binned-scatters" class="nav-link" data-scroll-target="#系数可视化---figure-i-binned-scatters"><span class="header-section-number">M.4</span> 系数可视化 - Figure I: Binned Scatters</a>
+  <ul class="collapse">
+  <li><a href="#扩展阅读fwl-定理与-binscatter" id="toc-扩展阅读fwl-定理与-binscatter" class="nav-link" data-scroll-target="#扩展阅读fwl-定理与-binscatter"><span class="header-section-number">M.4.1</span> 扩展阅读：FWL 定理与 binscatter</a></li>
+  </ul></li>
+  <li><a href="#事件研究法" id="toc-事件研究法" class="nav-link" data-scroll-target="#事件研究法"><span class="header-section-number">M.5</span> 事件研究法</a></li>
+  <li><a href="#所得税变动的长期累积效应" id="toc-所得税变动的长期累积效应" class="nav-link" data-scroll-target="#所得税变动的长期累积效应"><span class="header-section-number">M.6</span> 所得税变动的长期累积效应</a>
+  <ul class="collapse">
+  <li><a href="#ardl-模型" id="toc-ardl-模型" class="nav-link" data-scroll-target="#ardl-模型"><span class="header-section-number">M.6.1</span> ARDL 模型</a></li>
+  <li><a href="#长期效应与短期效应" id="toc-长期效应与短期效应" class="nav-link" data-scroll-target="#长期效应与短期效应"><span class="header-section-number">M.6.2</span> 长期效应与短期效应</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/lianxhcn/PXa2026a/edit/main/appendix/F_akcigit_macro.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/lianxhcn/PXa2026a/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/A_prompt_templates.html">附录</a></li><li class="breadcrumb-item"><a href="../appendix/F_akcigit.html">扩展案例：Akcigit et al.&nbsp;(2022) 税收与创新 (进阶 · 课后自学)</a></li><li class="breadcrumb-item"><a href="../appendix/F_akcigit_macro.html"><span class="chapter-number">M</span>&nbsp; <span class="chapter-title">所得税的宏观作用效果</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">附录 M — 所得税的宏观作用效果</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>作者在宏观州层级分析了个人所得税净税率-创新产出弹性和公司所得税-创新产出弹性。</p>
+<p>本部分由五个子部分构成：</p>
+<ul>
+<li>A. 基准模型分析：TWFE + IV</li>
+<li>B. 长差分模型</li>
+<li>C. 稳健性检验</li>
+<li>D. 事件分析法</li>
+<li>E. 分布滞后模型 (ARDL)：长期效应和短期效应</li>
+</ul>
+<p>其中，</p>
+<ul>
+<li>平均效应：A - C</li>
+<li>动态效应：D - E</li>
+</ul>
+<section id="基准回归分析" class="level2" data-number="M.1">
+<h2 data-number="M.1" class="anchored" data-anchor-id="基准回归分析"><span class="header-section-number">M.1</span> 基准回归分析</h2>
+<section id="a-因变量创新的四种度量" class="level3" data-number="M.1.1">
+<h3 data-number="M.1.1" class="anchored" data-anchor-id="a-因变量创新的四种度量"><span class="header-section-number">M.1.1</span> A 因变量：创新的四种度量</h3>
+<ul>
+<li><ol type="1">
+<li>使用当年该州 <strong>申请的专利数量</strong> 衡量 <strong>创新数量</strong>；</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>使用当年该州 <strong>专利引用数量</strong> 作为衡量 <strong>创新质量</strong>；</li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>当年定居该州的 <strong>发明人数量</strong>；</li>
+</ol></li>
+<li><ol start="4" type="1">
+<li>公司专利申请数占比，使用发明人转让所有权衡量。</li>
+</ol></li>
+</ul>
+</section>
+<section id="b-自变量个体所得税和公司所得税构建" class="level3" data-number="M.1.2">
+<h3 data-number="M.1.2" class="anchored" data-anchor-id="b-自变量个体所得税和公司所得税构建"><span class="header-section-number">M.1.2</span> B 自变量：个体所得税和公司所得税构建</h3>
+<ul>
+<li><strong>个人所得税</strong>
+<ul>
+<li>在州层级，个人所得税率和税级常常发生变动，因此作者使用全国收入分配分布位于第 50 分位点的个体个人所得税率和第 90 分位点的个体个人所得税计算有效税率。</li>
+<li>根据 <a href="https://web.williams.edu/Economics/papers/bakijaDocumentation_IncTaxCalc.pdf">Bakijia (2006)</a> 税收计算公式，作者构建了第 90 分位点个人所得税税率 (<span class="math inline">\(MTR90\)</span>)、第 90 分位点平均个人所得税税率 (<span class="math inline">\(ATR90\)</span>) 和第 50 分位点平均个人所得税税率 (<span class="math inline">\(ATR50\)</span>)。</li>
+</ul></li>
+<li><strong>公司所得税</strong>
+<ul>
+<li>以最高联邦公司税为基础，利用各州和联邦的税收抵扣规则，计算出州层级的公司所得税 (<span class="math inline">\(MTR\)</span>)。</li>
+</ul></li>
+</ul>
+</section>
+<section id="c-基准模型设定-twfe" class="level3" data-number="M.1.3">
+<h3 data-number="M.1.3" class="anchored" data-anchor-id="c-基准模型设定-twfe"><span class="header-section-number">M.1.3</span> C 基准模型设定 (TWFE)</h3>
+<p><span class="math display">\[
+\begin{aligned}
+Y_{s t}=&amp; \alpha+\beta_{p} \ln \left(1-M T R 90_{s t-3}\right)+\beta_{c} \ln \left(1-\operatorname{Corp} . \mathrm{MTR}_{s t-3}\right) \\
+&amp;+\gamma \mathbb{X}_{s t}+\delta_{t}+\delta_{s}+\varepsilon_{s t} \quad \text{(3)}
+\end{aligned}
+\]</span></p>
+<p>其中，</p>
+<ul>
+<li><span class="math inline">\(Y_{s t}\)</span>：<span class="math inline">\(s\)</span> 州在 <span class="math inline">\(t\)</span> 时期的创新产出。四种不同的衡量创新指标能够避免显著性结果的择优选择</li>
+<li><span class="math inline">\(MTR90_{s t-3}\)</span>：滞后 3 年期的个人所得税率</li>
+<li><span class="math inline">\(Corp.MTR_{s t-3}\)</span>：滞后 3 年期作为公司所得税</li>
+<li><span class="math inline">\(\delta_{t}\)</span> 和 <span class="math inline">\(\delta_{s}\)</span>：时间和州固定效应，以捕获不可观测的个体和时间趋势效应</li>
+<li><span class="math inline">\(X_{s t}\)</span> 代表随时间变化的州层级的变量，包括：
+<ul>
+<li>滞后 3 期的人口密度 (城市化程度)</li>
+<li>滞后 3 期的人均收入水平 (经济发展水平)</li>
+<li>滞后 3 期的研发支出抵免 (税收激励)</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>*********************</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>*  Part A Benchmark</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>*********************</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> fiveyear = 5*<span class="fu">floor</span>(<span class="fu">year</span>/5)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">egen</span> statenum_fiveyear = <span class="fu">group</span>(statenum fiveyear)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> additional_controls <span class="st">"L.real_gdp_pc L.population_density"</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span>       more_controls <span class="st">"base_index_lag3 c.base_index_lag3#c.top_corp_lag3"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>reghdfe lnpat  mtr90_lag3 top_corp_lag3    <span class="co">///</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="ot">$additional_controls</span> rd_credit_lag3 [aw=pop1940],  <span class="co">///</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        absorb(statenum <span class="fu">year</span>)   <span class="co">///</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="kw">vce</span>(<span class="kw">cluster</span> statenum_fiveyear <span class="fu">year</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p><strong>扩展阅读：</strong> 固定效应模型 (TWFE, HDFE)</p>
+</blockquote>
+<ul>
+<li><a href="https://www.lianxh.cn/news/8be6ff429cf93.html">reghdfe：多维面板固定效应估计</a>，<code>reghdfe y x, absorb(v1 v2)</code></li>
+<li><a href="https://www.lianxh.cn/news/c96db291f9189.html">regife：面板交互固定效应模型-Interactive Fixed Effect</a></li>
+<li><a href="https://www.lianxh.cn/news/d5796089a2113.html">Stata：固定效应分析新命令-sumhdfe</a></li>
+<li><a href="https://www.lianxh.cn/blogs/20.html">面板数据</a> → <a href="https://www.lianxh.cn/news/bf27906144b4e.html">Stata: 面板数据模型一文读懂</a></li>
+<li><a href="https://www.lianxh.cn/news/a7a8e613b2699.html">Stata：聚类调整后的标准误-Cluster-SE</a>，<code>vce(cluster varlist)</code></li>
+<li><a href="https://www.lianxh.cn/news/4dbc40eb41c3d.html">Stata 权重设定-fweight-pweight</a>，<code>reg y x [aw=pop1940], ...</code></li>
+</ul>
+<p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20220402231041.png" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p><strong>注：</strong> by <code>李鑫-助教</code><br>
+<span class="math inline">\(MTR90\)</span> 和 <span class="math inline">\(Corp.MTR\)</span> 分别代表个人和企业所得所，相应的 <span class="math inline">\((1-MTR90)\)</span> 和 <span class="math inline">\((1-Corp.MTR)\)</span> 代表个人所得税净税率和公司所得税净税率，两种表述形式之间存在负相关关系。也可以直观地表述为所得税变动对创新的影响，即表中的正项系数阐述为所得税降低 <span class="math inline">\(1%\)</span>，创新产出弹性提升 <span class="math inline">\(m%\)</span>。这也是作者文中的一种表述方式。</p>
+</blockquote>
+<p><strong>Table Ⅱ</strong> 是基准模型的结果。</p>
+<ul>
+<li>Part A：使用基准模型 (双向固定效应模型) 的结果。在 Part A 基础上，</li>
+<li>Part B 考虑了公司所得税的税基存在异质性和时变性的特征。因此，作者在公式 (3) 的控制变量中加入公司所得税税基，以及公司最高所得税税率与公司所得税税基的交互项：<span class="math inline">\(\text{Tax base index}\)</span>，<span class="math inline">\(\text { Base index } \times \ln (1-\operatorname{corp} . \text { MTR })\)</span></li>
+</ul>
+<p> </p>
+<blockquote class="blockquote">
+<p>补充说明：作者在 2018 年 <a href="https://www.ecb.europa.eu/pub/conferences/shared/pdf/20190905_4th_ARC/Stantcheva_Stefanie.pdf">Work paper 版本</a> 中的模型设定</p>
+</blockquote>
+<p>The macro effect of taxation OLS:</p>
+<p><span class="math display">\[
+Y_{s t}=\alpha+\beta_{y} T_{s t-1}^{y j}+\beta_{c} T_{s t-1}^{c}+\gamma \mathbb{X}_{s t}+\delta_{t}+\delta_{s}+\varepsilon_{s t}
+\]</span></p>
+<p><span class="math inline">\(Y_{\text {st }}\)</span> : Innovation outcomes <span class="math inline">\(T_{s t-1}^{y j}\)</span> : Personal income tax <span class="math inline">\(T_{s t-1:}^{c}\)</span> Company tax <span class="math inline">\(\mathbb{X}_{\text {st }}\)</span> : State condition <span class="math inline">\(\delta_{t}+\delta_{s} \quad\)</span> : Year and state fixed effects</p>
+<p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20220426001144.png" class="img-fluid"></p>
+<div style="page-break-after: always;">
+
+</div>
+</section>
+<section id="d-内生性与-iv-估计" class="level3" data-number="M.1.4">
+<h3 data-number="M.1.4" class="anchored" data-anchor-id="d-内生性与-iv-估计"><span class="header-section-number">M.1.4</span> D 内生性与 IV 估计</h3>
+<blockquote class="blockquote">
+<p>IV.B. IV Strategy Using Federal Tax Changes</p>
+</blockquote>
+<p>在给定控制变量和州层级的税率变动与其他因素 (创新政策和经济预测) 不相关的条件下，Part A 和 Part B 中的系数 <span class="math inline">\(\beta_{p}\)</span> 和 <span class="math inline">\(\beta_{c}\)</span> 是个人所得税净税率-创新产出弹性和公司所得税净税率-创新产出弹性的一致估计结果。但是，这一假设可能太过严格。因此，作者在 Part C 使用 IV 估计方法，检验放松上述假设条件的结果。</p>
+<blockquote class="blockquote">
+<p><strong>a. 内生性的来源</strong></p>
+</blockquote>
+<ul>
+<li><strong>A6</strong>. 税收增加也会带来更多的基础设施投资，这有利于创造特别更好的创新环境。
+<ul>
+<li>州政府在调整本州税率时，可能出于多重因素的综合考虑：收入分配、经济增长、鼓励创新等。同时，在出台税率调整政策的同时，也可能同时推出其他政策。</li>
+<li>混杂因素 → 税收和创新可能是共同决定的 → 需要排除混杂政策 → 找出 shock (只影响税收，但不直接影响创新) → IV</li>
+</ul></li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>b. IV 的构造思路</strong> (p.358)</p>
+</blockquote>
+<p><strong>A. 个人综合税率与联邦税率和州税率的关系</strong></p>
+<ul>
+<li>联邦税率 (<span class="math inline">\(f\)</span>)
+<ul>
+<li><span class="math inline">\(\tau_{f t}^{p j}\)</span>：在 <span class="math inline">\(s\)</span> 州，<span class="math inline">\(t\)</span> 时点，收入位于第 <span class="math inline">\(j\)</span> 百分位的个人的联邦个税税率</li>
+</ul></li>
+<li>州税率 (<span class="math inline">\(s\)</span>)
+<ul>
+<li><span class="math inline">\(\tilde{\tau}_{s t}^{p j}\)</span>: the personal income tax at income percentile <span class="math inline">\(j\)</span> in state <span class="math inline">\(s\)</span> in year <span class="math inline">\(t\)</span></li>
+</ul></li>
+<li>个人综合税率
+<ul>
+<li><strong>total tax rate</strong> on individuals with income at the <span class="math inline">\(j\)</span> th percentile who live in state <span class="math inline">\(s\)</span> at time <span class="math inline">\(t\)</span> is denoted by <span class="math inline">\(\tau_{s t}^{p j}\)</span> and is equal to:</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+\tau_{s t}^{p j}=\tau_{f t}^{p j}\left(1-\tilde{\tau}_{s t}^{p j}\right)+\tilde{\tau}_{s t}^{p j}\left(1-D_{s t}^{p} \cdot \tau_{f t}^{p j}\right) \quad (5)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(D_{s t}^{p}\)</span>：是否允许抵扣联邦税。是 = 1；否 = 0</li>
+</ul>
+<p><strong>B. 工具变量的构造</strong> The instrument for the personal income tax of income group <span class="math inline">\(j\)</span> in state <span class="math inline">\(s\)</span> and year <span class="math inline">\(t\)</span>, denoted by <span class="math inline">\(\hat{\tau}_{s t}^{p j}\)</span>, can be written (heuristically) as:</p>
+<p><span class="math display">\[
+\hat{\tau}_{s t}^{p j}=\tau_{f t}^{p j}\left(1-\tilde{\tau}_{s t-k}^{p j}\right)+\tilde{\tau}_{s t-k}^{p j}\left(1-D_{s t-k}^{p} \cdot \tau_{f t}^{p j}\right) \quad (6)
+\]</span></p>
+<ul>
+<li>关键：
+<ul>
+<li>$_{s t}^{p j} &nbsp;$ <span class="math inline">\(\tilde{\tau}_{s t-k}^{p j}\)</span>，即 <span class="math inline">\(t\)</span> 时点的州税率用其 <span class="math inline">\(k\)</span> 期滞后项 <span class="math inline">\(\tilde{\tau}_{s t-k}^{p j}\)</span> 代替。</li>
+<li><span class="math inline">\(\tau_{f t}^{p j}\)</span> (联邦税率) 保持不变</li>
+</ul></li>
+<li>含义：
+<ul>
+<li>相当于维持 <span class="math inline">\(k=5\)</span> 年前的州税率不变，即假设收入分布等州层面的特征不变，用仅本期 (<span class="math inline">\(t\)</span>) 联邦税率 <span class="math inline">\(\tau_{f t}^{p j}\)</span> 来预测本期州税率，即 <span class="math inline">\(\hat{\tau}_{s t}^{p j}\)</span>。</li>
+</ul></li>
+<li><strong>IV 的相关性和外生性：</strong>
+<ul>
+<li><strong>相关性：</strong> IV 与 <span class="math inline">\(x\)</span> 相关？ YES !
+<ul>
+<li>联邦税收的变动对各州产生不同的税收负担源于各州的抵扣政策 (是否允许抵扣联邦税，以及抵扣程度) (文中 <strong>Figure Ⅱ</strong> 表明个人所得税率与联邦所得税率高度相关，相关系数超过 0.95)。</li>
+</ul></li>
+<li><strong>外生性：</strong> 在 <span class="math inline">\(t-k\)</span> 到 <span class="math inline">\(t\)</span> 的 <span class="math inline">\(k\)</span> 年中，<span class="math inline">\(\hat{\tau}_{s t}^{p j}\)</span> 的变动反映的主要是联邦税率的变动，而<strong>联邦税率</strong>并不会因为特定的州要实施某些鼓励创新行为的税收政策而改变。如此以来，从各个州的角度来看，使用 <span class="math inline">\(\hat{\tau}_{s t}^{p j}\)</span> 做 IV 便具有外生性。</li>
+<li><strong>评述：</strong> 这个比多数文献中使用的「全国平均xx」或「各行业平均xx」要好一些。</li>
+</ul></li>
+</ul>
+<p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/Akcigit_2022-Figure2A.png" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>其实，这个图的必要性不大，因为州层面的个税税率随时间变化非常缓慢。导致基于 (6) 式得到预测值与真实值之间高度相关，相关系数为 0.9654<br>
+<code>. corr mtr90_lag3 mtr_inclag5_statelag590_lag3</code></p>
+</blockquote>
+<p>公司所得税预测税率 (IV) 的构建过程相似：</p>
+<p><span class="math display">\[
+\tau_{s t}^{c}=\tau_{f t}^{c}\left(1-\tilde{\tau}_{s t}^{c}\right)+\tilde{\tau}_{s t}^{c}\left(1-D_{s t}^{c} \cdot \tau_{f t}^{c}\right) \qquad \qquad (7)
+\]</span></p>
+<p><span class="math display">\[
+\hat{\tau}_{s t}^{c}=\tau_{f t}^{c}\left(1-\tilde{\tau}_{s t-k}^{c}\right)+\tilde{\tau}_{s t-k}^{c}\left(1-D_{s t-k}^{c} \cdot \tau_{f t}^{c}\right) \quad (8)
+\]</span></p>
+<p>其中，</p>
+<ul>
+<li><span class="math inline">\(\tau_{f t}^{c}\)</span> 代表联邦公司所得税</li>
+<li><span class="math inline">\(\widetilde{\tau}_{s t}^{c}\)</span> 代表州层级公司所得税</li>
+<li><span class="math inline">\(D_{s t}^{c}\)</span> 代表 <span class="math inline">\(s\)</span> 州在 <span class="math inline">\(t\)</span> 时期是否允许抵扣联邦税。是 = 1；否 = 0</li>
+</ul>
+<p><strong>Table Ⅱ</strong> 主要结论：</p>
+<ul>
+<li>Part A 显示州层级个人所得税净税率上升 1%，
+<ul>
+<li>专利申请数增加 1.8%，专利引用数增加 1.5%</li>
+</ul></li>
+<li>州层级公司所得税净税率上升 1%，
+<ul>
+<li>专利数量增加 2.8%，专利引用数增加 2.4%</li>
+</ul></li>
+<li>第 (4) 列显示，公司授权专利数占比对公司所得税更加敏感
+<ul>
+<li>公司所得税净税率每增加 1%，公司专利授权数量占比将上升 0.6%</li>
+<li>然而，个人所得税增加则不会显著降低公司专利授权数占比的变动</li>
+</ul></li>
+<li>Part B：基本稳健</li>
+<li>Part C：IV 结果也基本稳健，比 OLS 结果略高</li>
+</ul>
+<div style="page-break-after: always;">
+
+</div>
+</section>
+</section>
+<section id="长差分估计" class="level2" data-number="M.2">
+<h2 data-number="M.2" class="anchored" data-anchor-id="长差分估计"><span class="header-section-number">M.2</span> 长差分估计</h2>
+<blockquote class="blockquote">
+<p>连享会推文：<a href="https://www.lianxh.cn/news/35f95001f7da8.html">长差分：Long Difference 及 Acemoglu AER 论文推介</a></p>
+</blockquote>
+<section id="扩展阅读长差分-ld" class="level3" data-number="M.2.1">
+<h3 data-number="M.2.1" class="anchored" data-anchor-id="扩展阅读长差分-ld"><span class="header-section-number">M.2.1</span> 扩展阅读：长差分 (LD)</h3>
+<p>对于如下固定效应模型：</p>
+<p><span class="math display">\[
+  y_{it} = \alpha_{i} + \mathbf{x}_{it}'\mathbf{\beta} + \varepsilon_{it}
+\]</span></p>
+<p>在 <span class="math inline">\(t=1\)</span> 和 <span class="math inline">\(t=T\)</span> 时分别表示为：</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;y_{i 1}=\alpha_{i}+\mathbf{x}_{i 1}^{\prime} \beta+\varepsilon_{i 1} \\
+&amp;y_{i T}=\alpha_{i}+\mathbf{x}_{i T}^{\prime} \beta+\varepsilon_{i T}
+\end{aligned}
+\]</span></p>
+<p>两式相减可以去除个体效应 <span class="math inline">\(\alpha_{i}\)</span>：</p>
+<p><span class="math display">\[
+    (y_{iT} - y_{i1}) = (\mathbf{x}_{iT}-\mathbf{x}_{i1})'\mathbf{\beta} + (\varepsilon_{iT}-\varepsilon_{i1}) \quad (1.15)
+\]</span></p>
+<p>我们可以通过如下指数型增长模型来理解 LD 的必要性和经济含义 (这个例子摘自 Sul, 2019, Section 1.1)。</p>
+<p><span class="math display">\[
+    Y_{i t}= \exp\left(a_{i}+g_{i} t + \mathbf{x}_{i t}'\mathbf{\beta} + \varepsilon_{it}\right)
+\]</span></p>
+<p>两边同时取对数可得：</p>
+<p><span class="math display">\[
+    y_{i t}=\ln Y_{i t}=a_{i}+g_{i} t + \mathbf{x}_{i t}'\mathbf{\beta} + \varepsilon_{it}
+\]</span></p>
+<p>通常重点关注的参数是 <span class="math inline">\(g_{i}\)</span> 和 <span class="math inline">\(\mathbf{\beta}\)</span>。</p>
+<p>若 <span class="math inline">\(N\)</span> 不大，如省级数据，则可以用如如下等价命令估计该模型：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    . <span class="kw">reg</span>    <span class="fu">y</span> x  i.id  i.id#c.<span class="fu">year</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    . <span class="kw">xtreg</span>  <span class="fu">y</span> x        i.id#c.<span class="fu">year</span>, <span class="kw">fe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>其中，交乘项 <code>i.id#c.year</code> 的系数便是每个省份的年度平均增长率。</p>
+<p>对 (1.15) 进行一阶差分变换，可得：</p>
+<p><span class="math display">\[
+\Delta y_{i t}= g_{i} + \Delta \mathbf{x}_{i t}'\mathbf{\beta} + \Delta \varepsilon_{it}
+\]</span></p>
+<p>此时，估计起来更为方便，</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    . <span class="kw">reg</span>    D.<span class="fu">y</span> D.x  i.id</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    . <span class="kw">xtreg</span>  D.<span class="fu">y</span> D.x , <span class="kw">fe</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    . <span class="kw">predict</span> gi, u</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>因此，若针对一阶差分后的变量执行 FE 估计，事实上是在估计模型 (1.15)，此时估计出的固定效应的系数的含义已经发生了变化。</p>
+<p>进一步，求取 <span class="math inline">\(\Delta y_{i t}\)</span> 的组内均值如下：</p>
+<p><span class="math display">\[
+  \begin{aligned}
+  \frac{1}{T-1} \sum_{t=2}^{T} \Delta y_{i t} &amp;=\frac{1}{T-1}\left(y_{i 2}-y_{i 1}+y_{i 3}-y_{i 2}+\cdots+y_{i T}-y_{i T-1}\right) \\
+  &amp;=\frac{y_{i T}-y_{i 1}}{T-1}
+  \end{aligned}
+\]</span></p>
+<p>这就是所谓的长差分 (long-run difference, LD)。</p>
+<p>在经济增长率领域，该模型常被用于估计长期平均增长率。 - Acemoglu and Restrepo (<a href="http://sci-hub.ren/10.1257/aer.p20171101">2017</a>) 研究机器人应用与增长关系时，便使用了这一设定思路，以便估计长期增长率。 - Barro and Wheaton (<a href="https://doi.org/10.1086/708171">2020</a>, <a href="http://sci-hub.ren/10.1086/708171">PDF</a>) 认为诸如「股权结构」，「税收制度」这类随时间变化非常缓慢的变量 (strong persistence)，若使用 FD 去除个体效应，往往会损失大量的信息。此时，采用 LD 则可以缓解这一问题。</p>
+<p>类似的研究还包括： - Zivin et al.&nbsp;(<a href="https://doi.org/10.1086/694177">2018</a>) 使用 LD 研究了气候变化对人力资本积累的影响； - Akcigit et al.&nbsp;(<a href="https://doi.org/10.1093/qje/qjab022">2022</a>, <a href="https://doi.org/10.7910/DVN/SR410I">PDF</a>) 使用 LD 研究了税收对创新的影响。</p>
+<p>LD 主要应用于如下几种情形：</p>
+<ul>
+<li>其一，<span class="math inline">\(y_{it}\)</span> 本身具有很强的持续性，如果直接做 FD，会导致</li>
+<li>其二，数据本身是调查数据，如人口普查数据，间隔为 5 年或更长。</li>
+</ul>
+<p>LD 在动态面板中的应用： - LD 由 Griliches and Hausman (<a href="https://www.sciencedirect.com/science/article/pii/S0304407606001485?via%3Dihub">Link</a>, <a href="http://sci-hub.ren/10.1016/J.JECONOM.2006.07.005">1986</a>) 提出， - Hahn, Hausman, and Kuersteiner (<a href="http://sci-hub.ren/10.1016/J.JECONOM.2006.07.005">2007</a>) 将其应用于动态面板估计中，发现可以克服弱工具变量问题。 - Huang and Ritter (2009)，以及 Flannery and Hankins (<a href="http://sci-hub.ren/10.1016/j.jcorpfin.2012.09.004">2013</a>) 用该模型估计了公司资本结构的动态调整速度，后者还通过 MC 对比了 LD 与 FD-GMM, SYS-GMM 等估计量的表现。</p>
+</section>
+<section id="为何使用-ld" class="level3" data-number="M.2.2">
+<h3 data-number="M.2.2" class="anchored" data-anchor-id="为何使用-ld"><span class="header-section-number">M.2.2</span> 为何使用 LD？</h3>
+<ul>
+<li>如果州固定效应存在 <strong>时变特征</strong>，那么个人所得税净税率和公司所得税净税率估计结果中可能包含其他非税收因素变动的因素，如特定州的减税行动可能会伴随引发其他的创新改革进程。此时，系数 <span class="math inline">\(\beta_{p}\)</span> 和 <span class="math inline">\(\beta_{c}\)</span> 可能被高估。</li>
+<li>消除这一影响最为有效的措施是使用 <strong>交互固定效应</strong> 模型 (<code>reghdfe y x, absorb(statenum year statenum#year)</code>)，但是作者认为这样会完全吸收所得税的变动，因而采用长差分的形式 (10、15、20 年) 的形式予以控制。</li>
+<li>长差分模型设定： <span class="math display">\[
+\begin{aligned}
+Y_{s t}-Y_{s t-k}=&amp; \beta_{p}\left[\ln \left(1-M T R 90_{s t}\right)-\ln \left(1-M T R 90_{s t-k}\right)\right] \\
+&amp;+\beta_{c}\left[\ln \left(1-\operatorname{Corp} . \operatorname{MTR}_{s t}\right)-\ln \left(1-\operatorname{Corp} . \operatorname{MTR}_{s t-k}\right)\right] \\
+&amp;+\gamma\left[\mathbb{X}_{s t}-\mathbb{X}_{s t-k}\right]+\tilde{\delta}_{t}+\tilde{\varepsilon}_{s t} \quad \text{(4)}
+\end{aligned}
+\]</span></li>
+</ul>
+<p><strong>说明：</strong> 这里交互固定效应完全吸收所得税的变动可能来源于两种情形：</p>
+<ul>
+<li>其一，所得税的变动与潜在创新改革高度相关；</li>
+<li>其二，文中考虑的是州层级的所得税变动。因此，控制州层级的交互固定效应会导致与州层级所得税变动产生多重共线性问题。作者转而使用长差分的形式，消除在 10、15、20 年跨度范围内可能存在的创新改革固定效应的影响。</li>
+<li>简言之，但凡模型中的核心解释变量具有「随时间变化很缓慢」的特征，FD 和 FE 通常不如 LD，因为 FD 和 FE「去掉了」太多的信息。
+<ul>
+<li>以 <span class="math inline">\(k=10\)</span> 为例，LD 消除了在 <span class="math inline">\(t-10\)</span> 和 <span class="math inline">\(t\)</span> 年之间的固定效应 (这十年里没怎么变化的东西)。</li>
+<li>当 <span class="math inline">\(k=1\)</span> 时，LD 就变成了 FD：两个年度之间没变的东西都会被消除。</li>
+</ul></li>
+</ul>
+</section>
+<section id="ld-估计结果" class="level3" data-number="M.2.3">
+<h3 data-number="M.2.3" class="anchored" data-anchor-id="ld-估计结果"><span class="header-section-number">M.2.3</span> LD 估计结果</h3>
+<p><strong>Table Ⅲ</strong> 汇报了使用长差分设定形式的结果。如上文所示，采用长差分处理后，由于消除了部分潜在固定效应的影响，个人所得税净税率和公司所得税净税率-创新产出弹性均小于 <strong>Table Ⅱ</strong> 中的基准结果 (Part A)，而且随着差分时间间隔的缩小，其作用效果亦同样降低。</p>
+<p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20220402230951.png" class="img-fluid"></p>
+<p>(<em>推文作者注：<strong>Table Ⅲ</strong> 对标 <strong>Table Ⅱ</strong> 中 Part A 结果，差别在于 <strong>Table Ⅲ</strong> 中所有结果均取了差分形式。</em>)</p>
+<div style="page-break-after: always;">
+
+</div>
+</section>
+</section>
+<section id="稳健性检验" class="level2" data-number="M.3">
+<h2 data-number="M.3" class="anchored" data-anchor-id="稳健性检验"><span class="header-section-number">M.3</span> 稳健性检验</h2>
+<p>在 <a href="https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/qje/137/1/10.1093_qje_qjab022/1/qjab022_onlineappendix.pdf?Expires=1651847340&amp;Signature=HErEI-1ueX7nGgwroSFnr8pIg0tWpp0rUFZwDQUC2fGp12NVAiS2ThFvrF3VvWhaRKZCNjabRuvqJxrmywkXhdRThEd3g1nxEuyPn8IuaFWAc4OMAiyJ~D46Pwy9tIOUWcndd8ct6QUR-gbQci9oXkU6PMKMaQUxM1VucLOLpg51RJvQcAMO-rgaXB-S6JGCXHcA4GK-IqHH7yu6ZvJicsrJWqURWSILpCFTe-ZlDRKce4noYk7dsfnrLBUSj0mDIy9HFxbruse9C~229o~u-mA4vhO1BrSidlU-xfmd5DLXbfGJB49rXk0OJkk7Y1RgqAovJKzrjPpgZD2dJMgfqQ__&amp;Key-Pair-Id=APKAIE5G5CRDK6RD3PGA">附录</a> 中，作者通过如下几种方式来检验 <strong>Table Ⅱ</strong> 中模型估计的稳健性。</p>
+<ul>
+<li>改变创新衡量指标 (<strong>Table C.6</strong>)；</li>
+<li>改变个人所得税和公司所得税的度量标准 (<strong>Table C.7</strong>—<strong>Table C.13</strong>)；</li>
+<li>改变样本范围 (<strong>Table C.14</strong>，<strong>Table C.15</strong>)；</li>
+<li>改变控制变量的数量 (<strong>Table C.16</strong>，<strong>Table C.17</strong>)</li>
+</ul>
+<blockquote class="blockquote">
+<p>连享会推文：<a href="https://www.lianxh.cn/news/32ae13ec789a1.html">稳健性检验！稳健性检验！</a></p>
+</blockquote>
+<hr>
+</section>
+<section id="系数可视化---figure-i-binned-scatters" class="level2" data-number="M.4">
+<h2 data-number="M.4" class="anchored" data-anchor-id="系数可视化---figure-i-binned-scatters"><span class="header-section-number">M.4</span> 系数可视化 - Figure I: Binned Scatters</h2>
+<section id="扩展阅读fwl-定理与-binscatter" class="level3" data-number="M.4.1">
+<h3 data-number="M.4.1" class="anchored" data-anchor-id="扩展阅读fwl-定理与-binscatter"><span class="header-section-number">M.4.1</span> 扩展阅读：FWL 定理与 binscatter</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">help</span> <span class="kw">avplot</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>. <span class="kw">help</span> binscatter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>专题：<a href="https://www.lianxh.cn/blogs/32.html">回归分析</a>
+<ul>
+<li><a href="https://www.lianxh.cn/news/e346db1a68211.html">图示线性回归系数：Frisch-Waugh 定理与部分回归图</a></li>
+</ul></li>
+<li>专题：<a href="https://www.lianxh.cn/blogs/24.html">Stata 绘图</a>
+<ul>
+<li><a href="https://www.lianxh.cn/news/bd70ec133d209.html">Stata：分仓散点图绘制-binscatter-binscatter2</a></li>
+</ul></li>
+</ul>
+<p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/Akcigit_2022-Figure1.png" class="img-fluid"></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">global</span> cx <span class="st">"L.real_gdp_pc L.population_density rd_credit_lag3 i.statenum"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">global</span> T_p <span class="st">"mtr90_lag3"</span>    <span class="co">// 个人税</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">global</span> T_c <span class="st">"top_corp_lag3"</span> <span class="co">// 公司税</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  *-画图：Figure 1 (A)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  binscatter lnpat    <span class="ot">$T_p</span>  [aw=pop1940],     <span class="co">///</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>             controls(<span class="ot">$T_c</span> <span class="ot">$cx</span>)               <span class="co">///</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>             absorb(<span class="fu">year</span>) nquantiles(100)     <span class="co">///</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>             noaddmean                        <span class="co">///</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>             nofastxtile                      <span class="co">///</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>             savegraph(<span class="st">"Fig1A.gph"</span>) <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="page-break-after: always;">
+
+</div>
+</section>
+</section>
+<section id="事件研究法" class="level2" data-number="M.5">
+<h2 data-number="M.5" class="anchored" data-anchor-id="事件研究法"><span class="header-section-number">M.5</span> 事件研究法</h2>
+<blockquote class="blockquote">
+<p>IV.C. Event Studies around Large Tax Reforms</p>
+</blockquote>
+<p><strong>A. Why？</strong></p>
+<ul>
+<li>前面的分析：估计 <strong>平均处理效应</strong></li>
+<li>事件研究方法：州层级的重大税收改革产生的 <strong>动态影响</strong>
+<ul>
+<li>若所得税计算过程中存在 <strong>衡量偏误</strong>，则 <strong>Table Ⅱ</strong> 和 <strong>Ⅲ</strong> 得到的平均政策效果很可能是个别年份的结果主导的</li>
+</ul></li>
+</ul>
+<p><strong>B. 重大税收改革的界定</strong></p>
+<ul>
+<li><span class="math inline">\(\Delta \tau_{st} = \tau_{st} - \tau_{st-1}\)</span> (1940-2000 年)</li>
+<li>挑选重大变动：若 <span class="math inline">\(|\Delta \tau_{st}| &lt;0.01\)</span>，则 <span class="math inline">\(\Delta \tau_{st} = 0\)</span></li>
+<li><span class="math inline">\(Change^{Up} = I(\Delta \tau_{st}&gt;q_{90}[\Delta \tau_{st}])\)</span>：所有「State-Year」观察中变动最大的前 <span class="math inline">\(1/10\)</span> 样本</li>
+<li><span class="math inline">\(Change^{Down} = I(\Delta \tau_{st}&lt;q_{10}[\Delta \tau_{st}])\)</span></li>
+</ul>
+<p><strong>C. 事件窗口</strong></p>
+<ul>
+<li><span class="math inline">\(t\in [-4, +4]\)</span> 年</li>
+<li>删除窗口期内有重叠的事件 (overlapping)</li>
+<li>仅考虑税率增加的事件</li>
+</ul>
+<p>选取税收重大冲击时点前后各四年为窗口，同时删除在此区间内的其他税收改革冲击。作者使用合成控制法为每一个处理组州估计了一个合成处理组州，作为事件分析过程中的控制组。</p>
+<blockquote class="blockquote">
+<p>推文作者注：作者这里使用合成控制法估计每一个税收改革事件处理组州的可能目的：</p>
+</blockquote>
+<ol type="1">
+<li>在 1940-2000 年之间，存在较多的税收改革事件。因此，如果我们仅仅按照是否发生税收改革进行划分处理组州和控制组州，那么会出现各州事件研究窗口期存在重叠现象，以及纯粹的控制组州数量太少。</li>
+<li>作者使用合成控制法为每一个处理组州估计一个“反事实”处理组州作为控制组，能够实现在每一个税收改革的时间窗口期内，存在纯粹的处理组和控制组，因而避免了时间窗口期的重叠问题。同时，该过程也增加了控制组在样本中的占比。</li>
+</ol>
+<p><strong>Figure Ⅲ</strong> 显示的是个人所得税和公司所得税改革冲击的动态结果。</p>
+<ul>
+<li>Panel A 和 Panel B 是针对边际税率位于 90 百分位数的个体，个人所得税对于专利申请数量和发明人定居的影响，</li>
+<li>Panel C 和 Panel D 则是对于最高法定公司所得所率改革对专利申请数量和发明人定居数量的影响。</li>
+<li>结果显示，在发生税收改革之后的 3-4 年，发生税收改革的州相较于未发生税收改革州，其个人所得税净税率和公司所得税净税率显著提升专利申请数和发明人定居数大致为 12%-15%。</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>扩展阅读</strong>：事件研究法、倍分法、合成控制法</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><code>. lianxh 事件研究 合成控制 回归控制 DID</code></p>
+</blockquote>
+<ul>
+<li><a href="https://www.lianxh.cn/news/90de95e42e8ff.html">Stata：短期事件研究法 (Event_Study) 教程</a></li>
+<li><a href="https://www.lianxh.cn/news/819d4064f139c.html">Stata：图示事件研究分析结果-eventcoefplot</a></li>
+<li><a href="https://www.lianxh.cn/news/439e934fd68c9.html">Stata：多期倍分法 (DID) 详解及其图示</a></li>
+<li><a href="https://www.lianxh.cn/news/42611191cca93.html">Big Bad Banks：多期 DID 经典论文介绍</a></li>
+<li><a href="https://www.lianxh.cn/news/9e1bb97a57041.html">合成控制法 (Synthetic Control Method) 及 Stata 实现</a></li>
+<li><a href="https://www.lianxh.cn/news/541e3ba2ff795.html">Stata：高效实现面板回归控制法-rcm</a></li>
+</ul>
+<p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20220403000733.png" class="img-fluid"></p>
+<div style="page-break-after: always;">
+
+</div>
+</section>
+<section id="所得税变动的长期累积效应" class="level2" data-number="M.6">
+<h2 data-number="M.6" class="anchored" data-anchor-id="所得税变动的长期累积效应"><span class="header-section-number">M.6</span> 所得税变动的长期累积效应</h2>
+<blockquote class="blockquote">
+<p>扩展阅读：ARDL 模型</p>
+</blockquote>
+<ul>
+<li>ARDL 模型基础：Hansen B E . 2021. Econometrics. Princeton University Press. <a href="https://www.ssc.wisc.edu/~bhansen/econometrics/">Data and Contents</a>, <a href="https://www.ssc.wisc.edu/~bhansen/econometrics/Econometrics.pdf">PDF</a>, Section 14.41, 14.42</li>
+<li>Levendis, J.D. (2018). Cointegration and VECMs. In: Time Series Econometrics. Springer Texts in Business and Economics. Springer, Cham. <a href="https://doi.org/10.1007/978-3-319-98282-3_12">Link</a>, <a href="https://link.springer.com/content/pdf/10.1007/978-3-319-98282-3_12.pdf">PDF</a></li>
+<li>连玉君讲义：「<strong>T0-计量基础-连玉君.pdf</strong>」
+<ul>
+<li>第三章  Panel ARDL 模型</li>
+</ul></li>
+</ul>
+<section id="ardl-模型" class="level3" data-number="M.6.1">
+<h3 data-number="M.6.1" class="anchored" data-anchor-id="ardl-模型"><span class="header-section-number">M.6.1</span> ARDL 模型</h3>
+<p>Panel-ARDL <span class="math inline">\((1,1)\)</span> 模型设定为：</p>
+<p><span class="math display">\[
+y_{i, t}=\mu_{i}+\lambda y_{i, t-1}+\beta_{0} x_{i, t}+\beta_{1} x_{i, t-1}+u_{i, t}
+\]</span></p>
+<p>我们也可以在模型中加人时间虚拟变量、其他控制变量, 甚至是高阶滞后项。</p>
+<p>例如, Dell et al.&nbsp;(2012) 在研究气候变化与经济增长关系时, 设定了如下模型：</p>
+<p><span class="math display">\[
+\Delta y_{i t}=a_{i}+\sum_{\ell=1}^{p} \varphi_{\ell} \Delta y_{i, t-\ell}+\sum_{\ell=0}^{p+1} \psi_{\ell} T_{i t-\ell}+\varepsilon_{i t} .
+\]</span></p>
+</section>
+<section id="长期效应与短期效应" class="level3" data-number="M.6.2">
+<h3 data-number="M.6.2" class="anchored" data-anchor-id="长期效应与短期效应"><span class="header-section-number">M.6.2</span> 长期效应与短期效应</h3>
+<p>这里, 先以最简单的 ARDL <span class="math inline">\((1,1)\)</span> 模型为例进行说明:</p>
+<p><span class="math display">\[
+y_{t}=\alpha+\lambda y_{t-1}+\beta_{0} x_{t}+\beta_{1} x_{t-1}+u_{t}
+\]</span></p>
+<p>短期效应定义为：</p>
+<p><span class="math display">\[
+\frac{\partial y_{t}}{\partial x_{t}}=\beta_{0}, \quad \frac{\partial y_{t}}{\partial x_{t-1}}=\beta_{1}
+\]</span></p>
+<p>长期效应反映的是 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 的长期均衡值之间的关系。</p>
+<p>可以把 (3-6) 式 中 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 的当期值和滞后项统一替换为 <span class="math inline">\(\tilde{x}\)</span> 和 <span class="math inline">\(\tilde{y}\)</span> (二者的长期均衡值), 即</p>
+<p><span class="math display">\[
+\tilde{y}(1-\lambda)=\alpha+\left(\beta_{0}+\beta_{1}\right) \tilde{x},
+\]</span></p>
+<p>求解 <span class="math inline">\(\tilde{y}\)</span></p>
+<p><span class="math display">\[
+\tilde{y}=\frac{\alpha}{1-\lambda}+\frac{\beta_{0}+\beta_{1}}{1-\lambda} \tilde{x} .
+\]</span></p>
+<p>因此, <span class="math inline">\(x\)</span> 单位变化对 <span class="math inline">\(y\)</span> 的长期影响由下式给出</p>
+<p><span class="math display">\[
+\frac{\partial \tilde{y}}{\partial \tilde{x}}=\frac{\beta_{0}+\beta_{1}}{1-\lambda} .
+\]</span></p>
+<p>对于如下 <span class="math inline">\(\operatorname{ARDL}(p, q)\)</span> 模型：</p>
+<p><span class="math display">\[
+y_{t}=\alpha+\sum_{\ell=1}^{p} \lambda_{\ell} y_{t-\ell}+\sum_{\ell=0}^{q} \beta_{\ell} x_{t-\ell}+\varepsilon_{t} .
+\]</span></p>
+<p>长期乘数一long-run multiplier (LM) 定义为：</p>
+<p><span class="math display">\[
+\mathrm{LM}=\frac{\beta_{0}+\cdots+\beta_{q}}{1-\lambda_{1}-\cdots-\lambda_{p}}
+\]</span></p>
+<p> </p>
+<p>作者使用分布滞后模型继续研究所得税净税率-创新产出弹性的长期动态关系，并以此估计所得税净税率变动对于创新产出的累积效应。其目的与事件分析方法相似。</p>
+<p>公式 (10) 反映的是分布滞后模型的估计过程。</p>
+<p><span class="math display">\[
+\begin{aligned}
+Y_{s t}-Y_{s t-1}=\delta_{t} &amp;+\sum_{l=-5}^{20} \beta_{l}\left[\ln \left(1-T_{s t-l}\right)-\ln \left(1-T_{s t-l-1}\right)\right] \\
+&amp;+\Delta X_{s t-1}^{\prime} v+\epsilon_{s t}
+\end{aligned} \quad \text{(10)}
+\]</span></p>
+<p>其中，<span class="math inline">\(\delta_{t}\)</span> 是时间固定效应，<span class="math inline">\(T\)</span> 代表个人所得税或者企业所得说，X 是控制变量。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>* x:= D.<span class="fu">ln</span>(1-T_{<span class="kw">st</span>-<span class="ot">l</span>})</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>reghdfe D.Y                          <span class="co">///</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">F</span>(1/5).x   L(0/20).x         <span class="co">///</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="ot">$controls</span>                    <span class="co">///</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        [aw=pop1940],                <span class="co">///</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        absorb(<span class="fu">year</span>)                 <span class="co">///</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">vce</span>(<span class="kw">cluster</span> statenum) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>作者使用公式 (11) 估计 <strong>Figure Ⅳ</strong> 中的累计处理效应，并且将累积效应在 <span class="math inline">\(t-1\)</span> 时期进行了中心化处理，目的是使得在 <span class="math inline">\(t=0\)</span> 时的累积效应等于 0。</p>
+<p><span class="math display">\[
+\mathcal{B}_{l}=\underbrace{\left[\sum_{\tau=-5}^{l} \beta_{l}\right]}_{\begin{array}{c}
+\text { Effect from } t-5 \\
+\text { through } t+l
+\end{array}}-\underbrace{\left[\sum_{\tau=-5}^{-1} \beta_{l}\right]}_{\begin{array}{c}
+\text { Renormalizing to be } \\
+\text { relative to year } t-1
+\end{array}} \quad \text{(11)}
+\]</span></p>
+<p>整体来看，在时期 <span class="math inline">\((-5, -1)\)</span> 中并不存在显著的趋势效应，说明不存在所得税以外的其他因素对创新产生影响，因而我们所得到的显著效果是由所得税变动引致的结果。如果在 <span class="math inline">\(t=0\)</span> 时期增加 1%的个人所得税净税率 <span class="math inline">\((1-MTR90)\)</span>，20 年的累积效应使得专利申请数 (Panel A) 和发明人定居数量 (Panel B) 显著增加大约 2%。而如果在 <span class="math inline">\(t=0\)</span> 时期增加 1%的公司所得税净税率 <span class="math inline">\((1-Corp.TAX)\)</span>，那么 20 年的累计效应使得专利申请数 (Panel C) 和发明人定居该州数量 (Panel D) 显著增加大约 3%-4%。</p>
+<p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20220403003703.png" class="img-fluid"></p>
+<p>综上所述，作者从静态模型 (基准模型、长差分模型、稳健性检验结果) 和动态模型 (事件分析法、分布滞后模型) 的角度，检验了州层级个人所得税和公司所得税的对创新弹性的影响，证明了降低个人所得税和公司所得税能够有效提升创新水平。本部分的研究结果将作宏观所得税净税率-创新产出弹性的基准结果，与第五部分微观所得税净税率-创新产出弹性加总值进行比较。</p>
+<p> </p>
+<div style="page-break-after: always;">
+
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/PXa2026a\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../appendix/F_akcigit_data.html" class="pagination-link" aria-label="研究设计和数据构建">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">L</span>&nbsp; <span class="chapter-title">研究设计和数据构建</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../appendix/F_akcigit_ai.html" class="pagination-link" aria-label="AI 复现与解读工作流">
+        <span class="nav-page-text"><span class="chapter-number">N</span>&nbsp; <span class="chapter-title">AI 复现与解读工作流</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.lianxh.cn">lianxh.cn</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/lianxhcn/PXa2026a/edit/main/appendix/F_akcigit_macro.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/lianxhcn/PXa2026a/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>基于 <a href="https://quarto.org/">Quarto</a> 构建</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

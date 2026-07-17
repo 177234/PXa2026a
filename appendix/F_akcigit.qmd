@@ -1,23 +1,75 @@
-# 扩展案例：Akcigit et al. (2022) {#sec-F}
+# 总览与复现指引 {#sec-akcigit}
 
-::: {.callout-note title="交付时点"}
-本附录为**回放期交付** (07-22 之后)，当前为占位骨架。内容直接复用老师既有的手工复现文档与
-中文精要，并对齐本书体例。
+本组是初级班的**扩展案例**,兑现大纲承诺的「课后复现文档 + 中文精要 + 方法讲义」。它以一篇顶刊
+论文为对象,带你在**课后**用 AI 走一遍「读懂 → 复现 → 迁移」的完整流程。
+
+> Akcigit, U., Grigsby, J., Nicholas, T., & Stantcheva, S. (2022). Taxation and Innovation in the
+> Twentieth Century. *The Quarterly Journal of Economics*, 137(1), 329–385.
+> [Link](https://doi.org/10.1093/qje/qjab022) (rep),
+> [PDF](https://file-lianxh.oss-cn-shenzhen.aliyuncs.com/Refs/Paper2022/Akcigit-2022-QJE.pdf),
+> [Google](<https://scholar.google.com/scholar?q=Taxation+and+innovation+in+the+twentieth+century+Akcigit+Grigsby+Nicholas+Stantcheva>).
+> 复现包:[Harvard Dataverse](https://doi.org/10.7910/DVN/SR410I)。
+
+::: {.callout-important title="本组定位:进阶 · 课后自学 · 成品观摩"}
+这篇论文用到**合成控制、高维固定效应、事件研究、长差分、分布滞后 (ARDL) 长期效应**等**超出初级班
+范围的进阶方法**。所以本组明确定位为**课后自学的成品观摩**:目标是**借助 AI 把这些方法读懂**、把
+州级实证结果**在自己电脑上复现出来**,而**不要求初学者去手推或掌握**这些方法本身。课堂不讲这篇,
+它完全留给你课后按需探索。
 :::
 
-Akcigit, U., Grigsby, J., Nicholas, T., & Stantcheva, S. (2022). Taxation and innovation in
-the twentieth century. *Quarterly Journal of Economics*, 137(1), 329–385.
-[[链接]](https://doi.org/10.1093/qje/qjab022)
-[[复现包]](https://doi.org/10.7910/DVN/SR410I)。
+## 为什么选它作扩展案例
 
-**复现范围**：限州级数据实证部分 (前 1/3)，契合初级班背景。学员可课后结合 dofile、notebook 与
-online-book 深化理解，从中学习分仓散点图、加权回归、对数模型设定、聚类标准误、长差分和高维
-固定效应等常用实证工具。
+它和主案例 Lane (2025) 是一对很好的呼应:同样是把一个宏大的政策/制度问题 (二十世纪美国的税收
+如何影响创新),转化成可观察、可估计、可解释的研究设计。不同的是,它在**一篇文章里集中演示了一
+整套实证工具**——正好当作你课后"用一篇论文练全套手艺"的练习场。
 
-## 论文中文精要
+本组只聚焦它的**宏观部分 (州级数据实证)**;微观 (发明人层面) 部分依赖非公开数据,本组不展开。
 
-<!-- TODO(回放期): 复用老师中文精要，对齐体例 -->
+## 这篇文章用到的计量方法 (约 8 种)
 
-## 复现导航与方法讲义
+课后你可以借 AI 逐一读懂它们 (见 [AI 复现与解读工作流](F_akcigit_ai.qmd)):
 
-<!-- TODO(回放期): 州级前 1/3 复现文档 + 方法讲义 -->
+- **面板 OLS + 高维固定效应**(州、年及交互固定效应)——基准回归;
+- **工具变量 (IV)**——缓解税率的内生性;
+- **分仓散点图 (binned scatter)**——把海量样本压缩成一张能看清关系的图;
+- **事件研究法 (event study)**——看政策冲击前后的动态效应、检验平行趋势;
+- **长差分 (long differences)**——用较长时间跨度识别长期关系;
+- **分布滞后模型 / ARDL**——估计**长期累积效应** (long-run cumulative effect);
+- **聚类稳健标准误**——贯穿全文的推断口径;
+- (微观部分) **多项 Logit** 等——本组不展开。
+
+其中前几项 (分仓散点图、事件研究、长差分、高维固定效应) 正是大纲点名、值得课后掌握的常用工具;
+合成控制、ARDL 长期效应等属更进阶的观摩内容。
+
+## 材料在哪 · 如何自己复现
+
+复现材料已随仓库提供,在 **`examples/akcigit/`** 下:
+
+| 文件 | 说明 |
+|---|---|
+| `Akcigit_QJE_2022.do` | 整合后的主 do 文件 (州级宏观部分),你运行的就是它 |
+| `Appendix.do` | 附录结果的 do |
+| `Data/state_data.dta` | 州级面板数据 (已公开流传,可再分发) |
+| `myado/*.ado` | 论文用到的两个自定义命令 (`get_elasticities`、`make_cumul_effect_plot`) |
+| `dofile_original/` | **作者最初提供的原始代码与 README**,供你对照"原码 vs 整合版" |
+
+**在自己的 Stata 里复现 (州级结果)**:
+
+1. 把 `examples/akcigit/myado` 加进 Stata 的 ado 搜索路径:`adopath + "examples/akcigit/myado"`;
+2. 打开并运行 `examples/akcigit/Akcigit_QJE_2022.do` (它读取 `Data/state_data.dta`);
+3. 州级的基准回归、长差分、事件研究、分仓散点图等**主结果即可复现**;微观部分因数据非公开,只读
+   不跑。
+
+::: {.callout-tip title="更推荐:让 AI 陪你复现"}
+与其一行行啃代码,不如照 [AI 复现与解读工作流](F_akcigit_ai.qmd) 的提示词,让 agent 帮你生成复现
+路线图、解释每段代码、整理复现日志——这正是本课程"让 AI 干活、你来把关"的又一次实战。
+:::
+
+## 本组导航
+
+- [导读:主要发现与识别策略](F_akcigit_intro.qmd)——最快了解全文;
+- [研究设计与数据构建](F_akcigit_data.qmd)——变量、弹性定义与数据构造;
+- [所得税的宏观作用效果](F_akcigit_macro.qmd)——基准回归、长差分、事件研究、长期累积效应;
+- [AI 复现与解读工作流](F_akcigit_ai.qmd)——用提示词 + skills 自己读懂并复现。
+
+> 以下各页的中文精要由连玉君老师团队撰写打磨,本组按体例适配后收录。

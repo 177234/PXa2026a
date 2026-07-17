@@ -1,0 +1,127 @@
+# 导读
+
+> 美国于 2017 年颁布《减税和就业法案》，改革税法。人们不禁再次热议：**税收会影响创新吗？**
+>
+> 如果创新的目的是获取收益，而提高税率则降低了由此产生的预期净回报，那么这个问题的答案应该是肯定的：**高税率 &rarr; 低创新**。
+>
+> 回想历史上的发明巨星，如华莱士·卡罗瑟斯 (杜邦)、埃德温·兰德 (宝丽来) 或威廉·肖克利 (贝尔实验室和肖克利半导体)，你会发现，他们的动力主要源于兴趣和好奇心，而非钞票。
+>
+> 更一般地说，如果税收影响创新的数量，
+>
+> - 它们是否也会影响所产生的创新的质量？
+> - 它们是否会影响发明者工作方式 (自雇还是受雇) 及 工作地点 (本州还是跨州) ？
+> - 它们是否会影响公司对 R&D 资源的地域分配、对研究人员的雇用决策？
+
+
+<div STYLE="page-break-after: always;"></div>
+
+[TOC]
+
+<div STYLE="page-break-after: always;"></div>
+
+
+
+## 主要发现和结论
+
+- **宏观-州层面** &emsp; 个人和公司所得税净税率对于发明数量 (由专利数量表示)，以及引发明者定居数量存在显著的正向作用。
+- **个体-发明者层面** &emsp; 个人所得税净税率对于发明人是否进行发明创造、发明数量、发明质量 (专利引用数量) 存在显著正向影响。然而，公司所得税净税率仅仅对于受雇于公司的发明人产出存在正向影响，而对于自雇佣发明人不存在显著正向影响。
+- **人口流动和迁移** &emsp; 所得税净税率对于发明人存在正向迁移效应。其中，受雇于公司发明人的居住地选择取决于公司所得税，而自雇佣发明者的则需要同时考虑公司所得税和个人所得税。
+- 实际中，估计方法的局限性使得 **微观**「所得税净税率-创新产出弹性」加总值并不等价于 **宏观**「所得税净税率-创新产出弹性」。本文的研究过程有助于其分析估计偏差的来源。
+
+**by [John Grigsby](https://sites.google.com/view/john-grigsby/)** (2rd Author)
+
+- We study the effect of corporate and personal income taxes on patented innovations in the U.S. between 1940 and 2000
+- Large data collection:
+  - Panel data of the universe of patenting inventors back to 1920
+  - Corporate tax rates and rules through 1900
+  - Personal income tax rules/rates from Bakija (2017)
+- Show that patented innovations at state level decline in response to increases in personal income taxes (elasticity: 0.8-1.8) and corporate taxes (elasticity: 1.3-2.8)
+- Similar responses on quality of innovation and # of inventors. Share of patenting activity assigned to corporations decreases with corporate tax
+- Microdata shows that majority of macro corporate tax response comes from cross-state mobility: find limited effect in time series
+- But personal taxes affect quality and quantity of innovation at inventor level - not just relocation of activity.
+- State-level effects are persistent over at least a 20 year horizon.
+
+## 本文结构安排
+
+- 第二部分：研究设计和数据构建。
+- 第三部分：宏观-州层级的「所得税净税率-创新」**产出弹性**。
+  - 州层级估计过程中可能的估计偏误，以及模型设定中的不足。
+- 第四部分：微观个体层级的「所得税净税率-创新」**产出弹性**。
+  - 个人所得税对于创新数量、创新质量、个体发明人迁移决策和职业选择决策的影响。
+- 第五部分：计算微观个体弹性的宏观加总过程，以及分析潜在差异来源。
+- 第六部分：研究展望。
+ 
+<div STYLE="page-break-after: always;"></div>
+
+## 研究假设和识别策略
+
+> Source: [-Link-](https://voxeu.org/article/taxation-and-innovation-20th-century)
+
+> **基本观点：**
+
+- 税收会影响发明人的净回报，进而影响其是否工作，以及工作的努力程度
+- 若发明人受雇于公司，其报酬将取决于他们与公司的分成比例，此时其努力程度会同时受到个人所得税和企业所得税的影响。
+  - 补充：Stantcheva S. The Effects of Taxes on Innovation: Theory and Empirical Evidence[R]. NBER, 2021. [-PDF-](https://scholar.harvard.edu/files/stantcheva/files/the_effects_of_taxes_and_innovation.pdf)
+
+> **六个研究假设：**
+
+- **A1**. 个人和企业所得税会影响公司和发明者。
+- **A2**. 「创新-税收敏感性」可能会受到产生高质量发明所需资源的成本的影响。
+- **A3**. 税收的影响可能取决于创新活动所需的要素投入的强度，以及这些投入对净回报的敏感程度。
+- **A4**. 公司和非公司发明人可能会表现出不同的反应，因为他们对公司税率和个人税率的敞口不同，他们的创新动机也有差异。
+- **A5**. 发明人可能会选择忍受更高的税收，以换取其他因素。例如，他们可能更愿意留在一个发明人扎堆的地方，或者拥有更好实验设备和研究环境的地方。
+  - Tax 只是引起发明人迁移的一个因素
+- **A6**. 税收增加也会带来更多的基础设施投资，这有利于创造特别更好的创新环境。
+  - 混杂因素 &rarr; 税收和创新可能是共同决定的 &rarr; 需要排除混杂政策 &rarr; 找出 shock (只影响税收，但不直接影响创新) &rarr; **IV**
+
+> **识别策略**
+
+- **FEs**：加入各类固定效应以缓解遗漏变量和混淆因素问题 (州 FE，时间 FE 等)  
+- **IV**: 用滞后 5 期的**州税率** (州)，以及当期**联邦税率** (全国) 预测「**州综合税率**」，该指标只反映联邦税率的变动，对于单个州而言，可以视为外生冲击。
+- **Event Study**：类似于 DID，但 **shock** 是作者自己定义的 —— 税率的大幅变动。
+- **RDD**: 利用位于不同州的相邻县之间的税收差异。(?)
+
+> **扩展阅读：**
+  - [美国联邦税与州税及地方税的区别一览](https://yimin.liuxue86.com/y/3630703.html)
+    - 美国税务分为联邦税和州税，通俗来讲就相当于我们中国的国税和地税，联邦税是公司必须要缴纳的，21%，有营业就必须报税，但如果无利润则不需要缴纳。
+    - 对于州来说，个人所得税虽然是重要收入来源，但并非主要来源，这与联邦政府不同。在州政府税收中，房地产税、销售/营业税才是大头。
+    - 州税要看每个州的法律政策，美国有六个州免收州所得税：内华达州 / 华盛顿州 / 得克萨斯州 / 怀俄明州 / 俄亥俄州 / 南达科他州。
+    - 虽然税法改革只涉及联邦税，但仍然会对州税和地方税产生影响，尤其是在个人所得税方面。因为大多数州政府在征收个税时，是参照联邦个税确定税基的。
+  - [美国税收制度简介](https://www.hwgwb.com/study/5805571934.html?ivk_sa=1024320u)
+    - **个人税**：是 **联邦政府** 税收的主要来源，采用累进税率制，税率按收入的不同分为 10%, 15%, 25%, 28%、33% 和 35% 多个档次。
+    - **公司税**：是 **联邦政府** 继个税和社会安全福利保障税之后的第三大进项。该税采用累进税率制：15%, 25%, 34%, 和 35%。
+
+## 主要方法
+
+- 数据处理：
+  - `reshape`, `merge`, `append`, `collapse`, `xcollapse`, `xtile`, `destring`
+  - 循环语句：`forvalues`
+- 结果可视化：
+  - 回归系数-散点图：binned scatter plots
+  - 自行计算置信区间及图示
+- **HDFE** + weighting regressions by population + **二维聚类**调整 SE
+  - `reghdfe y x [aw=pop1940], absorb(statenum year) vce(cluster statenum_fiveyear year)`
+- 自定义 ado 程序，提升执行效率
+- **长差分-LD**：Long difference
+  - 适用于时间跨度长，被解释变量或核心解释变量随时间变化非常缓慢的情形
+  - 可以在一定程度上克服变量的衡量偏误 (Measurement error)
+  - 也可以用于估计被解释变量的长期时间趋势 (平均增长率)
+- **IV Strategy** Using Federal Tax Changes (Fig II)
+- **Event Studies** around Large Tax Reforms
+  - 合成控制法 (`synth`)
+- **Longer-Run Effects** of Tax Changes (Fig IV)
+  - AutoRegressional Distributed Lag model (**ARDL**, `计量基础-连玉君`, `dyn计量基础-连玉君`, `xtdcce2`)
+- **多元 Logit** + **Fixed effects** + **弹性系数**
+  - Appendix B Calculating **Multinomial Logit** Elasticities
+  - `cmclogit` -- Conditional logit (McFadden's) choice model
+
+## 主要命令
+
+- `reghdfe`, `areg`
+- `synth` (可以用更快捷的 `synth2`)
+- `xtile`
+- `coefplot`
+- `lincom`
+- `cmclogit`
+
+<div STYLE="page-break-after: always;"></div>

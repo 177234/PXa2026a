@@ -4,6 +4,8 @@ number-sections: false
 
 # 🏠 前言 {.unnumbered}
 
+<a href="https://www.lianxh.cn/details/1803.html"><img src="images/book-front.png" width="450"/></a>
+
 ::: {.callout-note title="这是一本什么书"}
 这是连享会 **2026 暑期班 · 初级班** (2026 年 7 月 21–23 日，三天) 的配套讲义。
 书名《AI 时代的实证研究基础》，副题"连享会 2026 暑期班 · 初级班"。全书用
