@@ -1,4 +1,8 @@
-# 讲授计划 {#sec-syllabus}
+---
+number-sections: false
+---
+
+# 📌 讲授计划 {.unnumbered}
 
 本页忠实呈现[课程大纲](https://www.lianxh.cn/details/1803.html)中初级班六讲的专题、要点与
 AI 协作训练清单。**大纲是契约**：正文各讲的专题、要点与承诺的 AI 实现只能来自这里，不擅自

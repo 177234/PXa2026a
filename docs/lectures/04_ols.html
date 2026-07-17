@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; 线性回归的建模语言：CEF、OLS 与统计推断 – AI 时代的实证研究基础</title>
+<title>4&nbsp; 线性回归的建模语言：CEF、OLS 与统计推断 – AI 时代的实证研究基础</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -85,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/01_replication.html"><strong>讲义</strong></a></li><li class="breadcrumb-item"><a href="../lectures/04_ols.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">线性回归的建模语言：CEF、OLS 与统计推断</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/01_replication.html"><strong>讲义</strong></a></li><li class="breadcrumb-item"><a href="../lectures/04_ols.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">线性回归的建模语言：CEF、OLS 与统计推断</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -126,25 +126,25 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">前言</span></a>
+ <span class="menu-text">🏠 前言</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">讲授计划</span></span></a>
+ <span class="menu-text">📌 讲授计划</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../settings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">课前准备</span></span></a>
+ <span class="menu-text">🚀 课前准备</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../skills-guide.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">AI 工作流与 skills 上手</span></span></a>
+ <span class="menu-text">🤖 AI 工作流与 skills 上手</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -159,37 +159,37 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/01_replication.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">从顶刊复现项目开始：实证研究的完整流程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">从顶刊复现项目开始：实证研究的完整流程</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/02_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">数据处理、探索性分析与样本构造</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">数据处理、探索性分析与样本构造</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/03_framework.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">从总体到推断：实证分析的五层框架</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">从总体到推断：实证分析的五层框架</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/04_ols.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">线性回归的建模语言：CEF、OLS 与统计推断</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">线性回归的建模语言：CEF、OLS 与统计推断</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/05_FE_intFE.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">FWL、虚拟变量、交乘项与固定效应：理解条件比较</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FWL、虚拟变量、交乘项与固定效应：理解条件比较</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/06_practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">综合实操：从复现代码到自己的分析任务</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">综合实操：从复现代码到自己的分析任务</span></span></a>
   </div>
 </li>
       </ul>
@@ -251,22 +251,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#案例情境" id="toc-案例情境" class="nav-link active" data-scroll-target="#案例情境"><span class="header-section-number">7.1</span> 案例情境</a></li>
-  <li><a href="#概念讲解" id="toc-概念讲解" class="nav-link" data-scroll-target="#概念讲解"><span class="header-section-number">7.2</span> 概念讲解</a></li>
-  <li><a href="#代码实操" id="toc-代码实操" class="nav-link" data-scroll-target="#代码实操"><span class="header-section-number">7.3</span> 代码实操</a></li>
-  <li><a href="#ai-协作" id="toc-ai-协作" class="nav-link" data-scroll-target="#ai-协作"><span class="header-section-number">7.4</span> AI 协作</a></li>
-  <li><a href="#python-附录" id="toc-python-附录" class="nav-link" data-scroll-target="#python-附录"><span class="header-section-number">7.5</span> Python 附录</a></li>
-  <li><a href="#小结与练习" id="toc-小结与练习" class="nav-link" data-scroll-target="#小结与练习"><span class="header-section-number">7.6</span> 小结与练习</a></li>
-  <li><a href="#延伸阅读" id="toc-延伸阅读" class="nav-link" data-scroll-target="#延伸阅读"><span class="header-section-number">7.7</span> 延伸阅读</a></li>
+  <li><a href="#案例情境" id="toc-案例情境" class="nav-link active" data-scroll-target="#案例情境"><span class="header-section-number">4.1</span> 案例情境</a></li>
+  <li><a href="#概念讲解" id="toc-概念讲解" class="nav-link" data-scroll-target="#概念讲解"><span class="header-section-number">4.2</span> 概念讲解</a></li>
+  <li><a href="#代码实操" id="toc-代码实操" class="nav-link" data-scroll-target="#代码实操"><span class="header-section-number">4.3</span> 代码实操</a></li>
+  <li><a href="#ai-协作" id="toc-ai-协作" class="nav-link" data-scroll-target="#ai-协作"><span class="header-section-number">4.4</span> AI 协作</a></li>
+  <li><a href="#python-附录" id="toc-python-附录" class="nav-link" data-scroll-target="#python-附录"><span class="header-section-number">4.5</span> Python 附录</a></li>
+  <li><a href="#小结与练习" id="toc-小结与练习" class="nav-link" data-scroll-target="#小结与练习"><span class="header-section-number">4.6</span> 小结与练习</a></li>
+  <li><a href="#延伸阅读" id="toc-延伸阅读" class="nav-link" data-scroll-target="#延伸阅读"><span class="header-section-number">4.7</span> 延伸阅读</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/lianxhcn/PXa2026a/edit/main/lectures/04_ols.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/lianxhcn/PXa2026a/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/01_replication.html"><strong>讲义</strong></a></li><li class="breadcrumb-item"><a href="../lectures/04_ols.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">线性回归的建模语言：CEF、OLS 与统计推断</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/01_replication.html"><strong>讲义</strong></a></li><li class="breadcrumb-item"><a href="../lectures/04_ols.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">线性回归的建模语言：CEF、OLS 与统计推断</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-04" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">线性回归的建模语言：CEF、OLS 与统计推断</span></span></h1>
+<h1 class="title"><span id="sec-04" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">线性回归的建模语言：CEF、OLS 与统计推断</span></span></h1>
 </div>
 
 
@@ -309,21 +309,21 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <!-- W2 写作窗口（接力）负责本章。以下为统一模板骨架，逐节填充。 -->
-<section id="案例情境" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="案例情境"><span class="header-section-number">7.1</span> 案例情境</h2>
+<section id="案例情境" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="案例情境"><span class="header-section-number">4.1</span> 案例情境</h2>
 <!-- TODO -->
 </section>
-<section id="概念讲解" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="概念讲解"><span class="header-section-number">7.2</span> 概念讲解</h2>
+<section id="概念讲解" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="概念讲解"><span class="header-section-number">4.2</span> 概念讲解</h2>
 <p>从 CEF 和线性投影入手讲 OLS 的基本含义；公式服务于直觉，不推导复杂公式。FWL 定理留下一讲。</p>
 <!-- TODO: 铺垫"加入控制变量后系数含义为何改变"（FWL partial out 直觉，参考 ci-policy 第 7 章） -->
 </section>
-<section id="代码实操" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="代码实操"><span class="header-section-number">7.3</span> 代码实操</h2>
+<section id="代码实操" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="代码实操"><span class="header-section-number">4.3</span> 代码实操</h2>
 <!-- TODO: 回归、稳健/聚类标准误、回归表阅读 -->
 </section>
-<section id="ai-协作" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="ai-协作"><span class="header-section-number">7.4</span> AI 协作</h2>
+<section id="ai-协作" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="ai-协作"><span class="header-section-number">4.4</span> AI 协作</h2>
 <blockquote class="blockquote">
 <p>契约边界：本节逐条覆盖大纲「AI 协作训练」清单，不删项。</p>
 </blockquote>
@@ -335,17 +335,17 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <!-- TODO -->
 </section>
-<section id="python-附录" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="python-附录"><span class="header-section-number">7.5</span> Python 附录</h2>
+<section id="python-附录" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="python-附录"><span class="header-section-number">4.5</span> Python 附录</h2>
 <p>载体 <code>examples/ch04/ch04_python.ipynb</code>。</p>
 <!-- TODO -->
 </section>
-<section id="小结与练习" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="小结与练习"><span class="header-section-number">7.6</span> 小结与练习</h2>
+<section id="小结与练习" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="小结与练习"><span class="header-section-number">4.6</span> 小结与练习</h2>
 <!-- TODO -->
 </section>
-<section id="延伸阅读" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="延伸阅读"><span class="header-section-number">7.7</span> 延伸阅读</h2>
+<section id="延伸阅读" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="延伸阅读"><span class="header-section-number">4.7</span> 延伸阅读</h2>
 <!-- TODO -->
 
 
@@ -921,12 +921,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../lectures/03_framework.html" class="pagination-link" aria-label="从总体到推断：实证分析的五层框架">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">从总体到推断：实证分析的五层框架</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">从总体到推断：实证分析的五层框架</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lectures/05_FE_intFE.html" class="pagination-link" aria-label="FWL、虚拟变量、交乘项与固定效应：理解条件比较">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">FWL、虚拟变量、交乘项与固定效应：理解条件比较</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FWL、虚拟变量、交乘项与固定效应：理解条件比较</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

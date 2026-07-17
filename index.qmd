@@ -1,4 +1,8 @@
-# 前言 {.unnumbered}
+---
+number-sections: false
+---
+
+# 🏠 前言 {.unnumbered}
 
 ::: {.callout-note title="这是一本什么书"}
 这是连享会 **2026 暑期班 · 初级班**（2026 年 7 月 21–23 日，三天）的配套讲义。

@@ -1,4 +1,8 @@
-# AI 工作流与 skills 上手 {#sec-skills-guide}
+---
+number-sections: false
+---
+
+# 🤖 AI 工作流与 skills 上手 {.unnumbered}
 
 ::: {.callout-note title="本页定位"}
 这是本次课程转型的核心页面，Day 1 上午第一讲现场走一遍，之后各讲只引用不重复。目标：让每位

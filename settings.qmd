@@ -1,4 +1,8 @@
-# 课前准备 {#sec-settings}
+---
+number-sections: false
+---
+
+# 🚀 课前准备 {.unnumbered}
 
 ::: {.callout-note title="本页定位"}
 本页只做**快速自查 + 推荐课堂环境 + AI 工具上手**。基础软件（Stata、Python、R、VS Code、
