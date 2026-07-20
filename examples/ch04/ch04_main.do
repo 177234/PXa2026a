@@ -17,7 +17,7 @@ capture mkdir "fig"
 global D "https://raw.githubusercontent.com/lianxhcn/PXa2026a/main/examples/ch04/data"
 
 *==============================================================================
-**# 1 案例情境：一个系数，三种读法
+**# 案例情境：一个系数，三种读法
 *==============================================================================
 
 webuse mroz, clear
@@ -31,10 +31,10 @@ reg wage educ
 
 
 *==============================================================================
-**# 2 概念讲解：回归到底在估计什么
+**# 概念讲解：回归到底在估计什么
 *==============================================================================
 
-**## 2.1 条件期望函数 (CEF)：按 X 分组求平均
+**## 条件期望函数 (CEF)：按 X 分组求平均
 bysort educ: egen wage_m = mean(wage)   // E(wage | educ)
 egen tag = tag(educ)
 format wage* %3.1f
@@ -42,7 +42,7 @@ list educ wage_m if tag==1, clean noobs
 
 * 某一组的 CEF = 条件均值（下面两条等价）
 sum wage if educ==12
-reg wage if educ==12
+reg wage if educ==12, noheader
 
 * CEF 散点图（灰点=个体，菱形=各组均值，红线=OLS 拟合）
 twoway (scatter wage educ, mcolor(gs10) msize(vsmall) jitter(2)) ///
@@ -53,7 +53,7 @@ twoway (scatter wage educ, mcolor(gs10) msize(vsmall) jitter(2)) ///
        xtitle("受教育年限 educ") ytitle("时薪 wage") xlabel(9(1)17)
 graph export "fig/g_cef_edu.png", replace width(1200)
 
-**## 2.2 回归估计的就是 CEF（个体 = 分组均值加权回归）
+**## 回归估计的就是 CEF（个体 = 分组均值加权回归）
 bysort educ: egen Nj = count(educ)
 eststo clear
 eststo m1: reg wage   educ                       // 个体回归
@@ -63,7 +63,7 @@ esttab m1 m2 m3, nogap mtitle(individual groupmean groupmean_aw) ///
        b(%5.3f) se(%5.3f) scalar(N r2)
 * 第 (1)(3) 列斜率相同(0.522)：OLS 拟合的就是那 8 个 CEF 点
 
-**## 2.3 线性投影 & 换一个 f(.) 就是换一个模型
+**## 线性投影 & 换一个 f(.) 就是换一个模型
 gen educ2 = educ^2
 eststo clear
 eststo s1: reg wage  educ             // (1) 线性
@@ -107,10 +107,10 @@ corr tenure ttl_exp
 
 
 *==============================================================================
-**# 3 代码实操
+**# 代码实操
 *==============================================================================
 
-**## 3.1 跑第一个回归：从命令到拟合值
+**## 跑第一个回归：从命令到拟合值
 webuse mroz, clear
 drop if wage==0 | wage>17
 replace educ = 9 if educ<=9
@@ -120,13 +120,13 @@ predict wage_hat            // 拟合值
 predict e_hat, residual     // 残差
 list wage wage_hat e_hat in 1/3, clean
 
-**## 3.2 读懂一张回归表（esttab）
+**## 读懂一张回归表（esttab）
 eststo clear
 eststo t1: reg wage educ
 eststo t2: reg wage educ exper
 esttab t1 t2, se star(* 0.10 ** 0.05 *** 0.01) r2 mtitle("模型1" "模型2")
 
-**## 3.3 换个单位，系数会变吗：变量的尺度
+**## 换个单位，系数会变吗：变量的尺度
 gen wage_cents  = wage*100
 gen educ_months = educ*12
 eststo clear
@@ -136,7 +136,7 @@ eststo a2: reg wage       educ_months
 esttab a0 a1 a2, nogap mtitle(wage wage_cents educ_months) ///
        b(%7.4f) se(%7.4f) scalar(r2)
 
-**## 3.4 对数与标准化：系数怎么读
+**## 对数与标准化：系数怎么读
 * 3.4a 对数-水平：半弹性（%）
 reg lwage educ
 * 3.4b 对数-对数：弹性（Cobb-Douglas）
@@ -147,7 +147,7 @@ webuse mroz, clear
 drop if wage==0 | wage>17
 reg lwage educ exper, beta
 
-**## 3.5 因子变量：把类别放进回归
+**## 因子变量：把类别放进回归
 sysuse auto, clear
 label define forlbl 0 "国产车" 1 "进口车"
 label values foreign forlbl
@@ -161,12 +161,12 @@ twoway (scatter price weight if foreign==0, mcolor(navy) msymbol(O) msize(small)
        xtitle("车重 weight") ytitle("价格 price")
 graph export "fig/g_dummy_shift.png", replace width(1200)
 
-**## 3.6 交叉项：让边际效应随另一个变量变
+**## 交叉项：让边际效应随另一个变量变
 use "$D/xtcs.dta", clear
 xtset code year
 global zz "tang fr ndts L.tobin i.year"
-reg tl npr size $zz, robust                  // 不含交叉项：npr 系数为负
-reg tl npr size c.npr#c.size $zz, robust      // 含交叉项：npr 系数翻正(size=0 处，无意义)
+reg tl npr size $zz, robust noheader       // 不含交叉项：npr 系数为负
+reg tl npr size c.npr#c.size $zz, robust noheader // 含交叉项：npr 系数翻正(size=0 处，无意义)
 * 边际效应 dtl/dnpr = 1.729 - 0.100*size
 qui reg tl npr size c.npr#c.size $zz, robust
 keep if e(sample)
@@ -178,10 +178,10 @@ graph export "fig/g_margins_npr.png", replace width(1200)
 * 中心化（可选）：让一阶项系数在 z 均值处、便于解释；不改变交叉项与推断
 use "$D/xtcs.dta", clear
 xtset code year
-capture center npr size, prefix(c_)    // 需 -center- 命令：ssc install center
-capture reg tl c_npr size c.c_npr#c.size tang fr ndts, robust
+center npr size, prefix(c_)    // 需 -center- 命令：ssc install center
+reg tl c_npr size c.c_npr#c.size tang fr ndts, robust
 
-**## 3.7 平方项：允许先升后降
+**## 平方项：允许先升后降
 sysuse nlsw88, clear
 gen ttl_exp2 = ttl_exp^2
 reg wage ttl_exp ttl_exp2 hours age tenure married south i.race
@@ -217,7 +217,7 @@ eststo r2: reg lnwage D40 hours_c hours_c_sq   // 允许两侧弯曲
 esttab r1 r2, nogap b(%6.4f) t(%5.2f) mtitle(linear quad)
 * D40 = hours=40 处的跳跃：线性 0.061(n.s.) vs 加平方项 0.163***
 
-**## 3.8 稳健标准误与聚类标准误
+**## 稳健标准误与聚类标准误
 sysuse nlsw88, clear
 global x "age ttl_exp union collgrad"
 qui reg wage $x i.industry i.occupation
@@ -227,14 +227,16 @@ eststo c1: reg wage $x                            // 同方差
 eststo c2: reg wage $x, robust                    // 异方差稳健
 eststo c3: reg wage $x, vce(cluster industry)     // 一维聚类
 * 二维聚类需 -reghdfe-：ssc install reghdfe
-capture eststo c4: reghdfe wage $x, noabsorb cluster(industry occupation)
+eststo c4: reghdfe wage $x, noabsorb cluster(industry occupation)
+
+* 结果对比
 esttab c1 c2 c3 c4, mtitle(OLS Robust Clus1 Clus2) s(N r2) ///
        b(%5.3f) se(%5.4f) star(* 0.1 ** 0.05 *** 0.01) nogap keep($x)
 * 系数完全相同，只有 SE 变；industry 仅 12 个聚类——聚类数偏少要当心
 
 
 *==============================================================================
-**# 4 结果解释与因果护栏（写作，无代码）
+**# 结果解释与因果护栏（写作，无代码）
 *==============================================================================
 * 统计显著 ≠ 经济显著：用变量实际单位说清"这个数在现实里多大"
 * 因果护栏：把"导致/提升/影响"改成"相关/更高/在控制…之后"

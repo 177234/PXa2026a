@@ -27,7 +27,7 @@ title: "复现材料导览"
 **两种用法**：直接用提示词即可 (任意 AI 助手)；想更稳定可调用课程 skill **`03-replication-navigator`**(复现包导航)。skill 说明见《[AI 工作流与 skills 上手](https://lianxhcn.github.io/PXa2026a/skills-guide.html)》。
 
 ::: {.callout-important title="关于数据"}
-Lane 的复现包公开在 [Harvard Dataverse](https://doi.org/10.7910/DVN/VJECHN)，请从官方渠道下载，**本课程不转发整包**。下面的导览只讲它的结构与读法，用到的都是 `README`、目录清单这类文本信息。
+Lane 的复现包官方来源是 [Harvard Dataverse](https://doi.org/10.7910/DVN/VJECHN)。为配合本次课程，仓库暂时保留完整副本，位于 `examples/Lane_2025_QJE_paper_codes/replicationpackage/`；课程结束后的公开范围由维护者另行决定。若克隆后数据不完整，见[课程数据集说明](../../../appendix/C_datasets.qmd)中的下载与放置步骤。下面的导览重点讲复现包的结构与读法。
 :::
 
 > 以下为示例笔记 (已人工核对)。

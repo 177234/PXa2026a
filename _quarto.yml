@@ -2,6 +2,9 @@ project:
   type: book
   output-dir: docs
 
+execute:
+  enabled: false
+
 book:
   title: "AI 时代的实证研究基础"
   subtitle: "连享会 2026 暑期班 · 初级班"

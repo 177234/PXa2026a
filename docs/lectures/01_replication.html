@@ -475,10 +475,23 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><strong>本讲用到的 skills</strong>：<a href="../appendix/B_skills_index.html"><code>core/01-paper-context</code></a> · <code>core/02-paper-strategy</code> · <code>core/03-replication-navigator</code> · <code>core/06-repro-logger</code>。skill 是什么、怎么安装、怎么在不同 agent(Claude Code / Codex / OpenCode) 里触发，见《<a href="../skills-guide.html">AI 工作流与 skills 上手</a>》。</li>
+<li><strong>本讲用到的 skills</strong>：<a href="../appendix/B_skills_index.html"><code>skills/core/01-paper-context</code></a> · <code>skills/core/02-paper-strategy</code> · <code>core/03-replication-navigator</code> · <code>skills/core/06-repro-logger</code>。skill 是什么、怎么安装、怎么在不同 agent(Claude Code / Codex / OpenCode) 里触发，见《<a href="../skills-guide.html">AI 工作流与 skills 上手</a>》。</li>
 <li><strong>配套阅读笔记</strong> (可在书内浏览，也可下载)：借助 AI 对主案例 Lane (2025) 生成的四份角度笔记——<a href="../examples/ch01/Lane_2025_reading_notes/01_overview.html">整体介绍</a>、<a href="../examples/ch01/Lane_2025_reading_notes/02_methods.html">实证方法与识别</a>、<a href="../examples/ch01/Lane_2025_reading_notes/03_replication.html">复现材料导览</a>、<a href="../examples/ch01/Lane_2025_reading_notes/04_literature.html">迷你文献定位</a>。</li>
 <li>本讲为解读型章节，以<strong>提示词与 skills 调用</strong>为主，绝大多数任务在网页版 AI 助手里即可完成，不涉及自研 Stata/Python 代码。</li>
 </ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="想运行完整 Lane 复现包？请用 GitHub Desktop 克隆">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+想运行完整 Lane 复现包？请用 GitHub Desktop 克隆
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Lane 的复现包含 Git LFS 管理的大型 <code>.dta</code> 文件。要在本地运行，请优先用 GitHub Desktop 克隆仓库，不要下载网页 ZIP；安装、克隆与更新步骤见<a href="../usage.html">课件使用说明</a>和<a href="https://www.lianxh.cn/details/1672.html">GitHub Desktop 教程</a>。若数据仍缺失，再按<a href="../appendix/C_datasets.html">附录 C</a>从 Dataverse 补齐。</p>
 </div>
 </div>
 <!-- 状态 (W1)：全章初稿完成 (完整流程 / 案例情境 / 概念讲解 / 任务切割 / AI 协作训练 / 小结练习 / 延伸阅读)，待老师整体审阅 + W0 挂载配套页后 render。 -->
@@ -487,9 +500,29 @@ ul.task-list li input[type="checkbox"] {
 <p>在动手复现一篇顶刊之前，先花点时间看清：<strong>一项实证研究，到底是怎么一步步做出来的</strong>。有了这张全局图，你才明白后面复现顶刊，究竟在练什么。</p>
 <section id="研究问题从哪里来现实观察与文献阅读" class="level3" data-number="1.1.1">
 <h3 data-number="1.1.1" class="anchored" data-anchor-id="研究问题从哪里来现实观察与文献阅读"><span class="header-section-number">1.1.1</span> 研究问题从哪里来：现实观察与文献阅读</h3>
-<p>好的实证研究，往往不是从方法开始的，而是从一个<strong>真问题</strong>开始。问题意识通常来自两个地方：<strong>对现实的观察</strong>，和<strong>对文献的阅读</strong>。更重要的是，问题不是一次想好的，而是在不断了解制度和数据的过程中<strong>逐步长出来、逐步修正</strong>的。举两个例子。</p>
+<p>好的实证研究，往往不是从方法开始的，而是从一个<strong>真问题</strong>开始。问题意识通常来自两个地方：<strong>对现实的观察</strong>，和<strong>对文献的阅读</strong>。更重要的是，问题不是一次想好的，而是在不断了解制度和数据的过程中<strong>逐步长出来、逐步修正</strong>的。举两个例子 (有关这两个例子的详情，参见 <a href="https://lianxhcn.github.io/ci-policy/lectures/01_policy_to_design.html">连玉君，2026，因果推断与政策评估，chapter 01</a>)。</p>
 <p><strong>例一：政府引导基金。</strong> 研究者最初可能只是拿到一份基金数据，自然的第一反应，是把它当成一种带政府背景的风险投资，去问：它是否促进了被投企业的创新、融资或成长？这条路能走，但未必抓住要害。等到进一步读地方政府的设立文件、管理办法和新闻报道，会发现它们反复强调本地优势产业、产业链补短板、供应链安全——于是问题可能升级为：政府引导基金是否推动了地方产业链协同与供应链韧性？<strong>同一份数据，问题却因为对政策理解的深入而变了。</strong></p>
+<div id="fig-cipolicy-background-government-fund" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cipolicy-background-government-fund-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/ci-policy-Lian-2026-Government-fund-topic-selection.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cipolicy-background-government-fund-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;1.1: 政府引导基金：研究问题如何形成
+</figcaption>
+</figure>
+</div>
 <p><strong>例二：韩国重化工业政策。</strong> 1970 年代，韩国政府在特定的安全与工业化背景下，集中扶持钢铁、造船、石化等六大产业。这段真实的历史，引出一个被经济学界争论了近半个世纪的问题：<strong>这种由政府定向扶持特定产业的产业政策，到底有没有用？</strong> 这，正是本讲主案例 Lane (2025) 要回答的问题。</p>
+<div id="fig-lane-outline" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lane-outline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/ci-policy-Lane-2025-intro-outline.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lane-outline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+图&nbsp;1.2: Lane (2025)：从政策背景到研究设计
+</figcaption>
+</figure>
+</div>
 <p>可见，问题意识来自<strong>把现实和文献先读厚、再读薄</strong>：读厚，是把制度细节、数据口径、已有研究都了解清楚；读薄，是从中提炼出一个别人还没讲清、而你有办法回答的问题。</p>
 </section>
 <section id="厘清问题之后研究设计在做什么" class="level3" data-number="1.1.2">
@@ -551,9 +584,9 @@ ul.task-list li input[type="checkbox"] {
 <h3 data-number="1.2.2" class="anchored" data-anchor-id="主案例lane-2025-qje"><span class="header-section-number">1.2.2</span> 主案例：Lane (2025, QJE)</h3>
 <p>本讲的主案例是一篇产业政策领域的顶刊论文：</p>
 <blockquote class="blockquote">
-<p>Lane, N. (2025). Manufacturing Revolutions: Industrial Policy and Industrialization in South Korea. The Quarterly Journal of Economics, 140(3), 1683–1741. <a href="https://doi.org/10.1093/qje/qjaf025">Link</a> (rep), <a href="https://academic.oup.com/qje/article-pdf/140/3/1683/63400136/qjaf025.pdf">PDF</a>, <a href="https://scholar.google.com/scholar?q=Manufacturing+Revolutions+Industrial+Policy+and+Industrialization+in+South+Korea">Google</a>.</p>
+<p>Lane, N. (2025). Manufacturing Revolutions: Industrial Policy and Industrialization in South Korea. The Quarterly Journal of Economics, 140(3), 1683–1741. <a href="https://doi.org/10.1093/qje/qjaf025">Link</a> (rep), <a href="../PDF/Lane_2025_QJE-Manufacturing_Revolutions_Industrial_Policy_and_Industrialization_in_South_Korea.pdf">PDF</a>, <a href="https://scholar.google.com/scholar?q=Manufacturing+Revolutions+Industrial+Policy+and+Industrialization+in+South+Korea">Google</a>, <a href="https://doi.org/10.7910/DVN/VJECHN">Replication</a>.</p>
 </blockquote>
-<p>它研究韩国 1973–1979 年的重化工业驱动 (Heavy and Chemical Industry Drive, <strong>HCI drive</strong>) 这项产业政策，是否真的促进了目标产业的发展。之所以选它做主案例，有三个原因：一是它的<strong>复现包组织得非常规范</strong>，公开在 <a href="https://doi.org/10.7910/DVN/VJECHN">Harvard Dataverse</a> 上，是学习「一个专业复现项目长什么样」的好范本；二是它同时用到 <strong>Stata 和 R</strong>、涉及<strong>多源数据</strong>，正好训练我们阅读多语言、多数据的复现材料；三是它的政策背景清楚、故事完整，适合初学者建立「从政策事实到研究设计」的整体认知。</p>
+<p>它研究韩国 1973–1979 年的重化工业驱动 (Heavy and Chemical Industry Drive, <strong>HCI drive</strong>) 这项产业政策，是否真的促进了目标产业的发展。之所以选它做主案例，有三个原因：一是它的<strong>复现包组织得非常规范</strong>，官方来源是 <a href="https://doi.org/10.7910/DVN/VJECHN">Harvard Dataverse</a>，课程期间的完整副本位于 <code>examples/Lane_2025_QJE_paper_codes/</code>，是学习「一个专业复现项目长什么样」的好范本；二是它同时用到 <strong>Stata 和 R</strong>、涉及<strong>多源数据</strong>，正好训练我们阅读多语言、多数据的复现材料；三是它的政策背景清楚、故事完整，适合初学者建立「从政策事实到研究设计」的整体认知。若克隆后数据不完整，按<a href="../appendix/C_datasets.html">课程数据集说明</a>从 Dataverse 下载并放回同一目录。</p>
 <div class="callout callout-style-default callout-warning callout-titled" title="本讲怎么用这个案例">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -564,7 +597,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>本讲把 Lane (2025) 定位为<strong>顶刊解读的演练场</strong>，<strong>不逐表复现</strong>。目标不是把论文的每张表都跑出来，而是让零基础的你，借助 AI 与 skills，<strong>在较短时间内读懂它的研究背景、主要贡献和实证策略</strong>，并学会把这套读法迁移到自己关心的论文上。真正想动手复现的同学，可参考<a href="../examples/ch01/Lane_2025_reading_notes/03_replication.html">复现材料导览</a> 一节，从官方 Dataverse 下载后按其指引进行。</p>
+<p>本讲把 Lane (2025) 定位为<strong>顶刊解读的演练场</strong>，<strong>不逐表复现</strong>。目标不是把论文的每张表都跑出来，而是让零基础的你，借助 AI 与 skills，<strong>在较短时间内读懂它的研究背景、主要贡献和实证策略</strong>，并学会把这套读法迁移到自己关心的论文上。真正想动手复现的同学，可参考<a href="../examples/ch01/Lane_2025_reading_notes/03_replication.html">复现材料导览</a>，再从课程仓库中的完整副本按其指引进行。</p>
 </div>
 </div>
 </section>
@@ -657,14 +690,14 @@ ul.task-list li input[type="checkbox"] {
 <blockquote class="blockquote">
 <p>政策法案 (点名的产业)→ 产业分类代码 (KSIC)→ 行业面板 / 贸易数据 / 投入产出表</p>
 </blockquote>
-<p><a href="#fig-lane-outline" class="quarto-xref">图&nbsp;<span>1.1</span></a> 概括了从政策背景一步步走向研究设计的思路：左侧是政策的历史背景与时间线，中间是目标产业与数据的映射，右侧是识别策略与结果变量。</p>
+<p><a href="#fig-lane-outline" class="quarto-xref">图&nbsp;<span>1.3</span></a> 概括了从政策背景一步步走向研究设计的思路：左侧是政策的历史背景与时间线，中间是目标产业与数据的映射，右侧是识别策略与结果变量。</p>
 <div id="fig-lane-outline" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-lane-outline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/ci-policy-Lane-2025-intro-outline.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lane-outline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;1.1: Lane (2025)：从政策背景到研究设计
+图&nbsp;1.3: Lane (2025)：从政策背景到研究设计
 </figcaption>
 </figure>
 </div>
@@ -735,7 +768,7 @@ ul.task-list li input[type="checkbox"] {
 <p>本节逐条覆盖大纲「AI 协作训练」清单，不删项、不缩范围。每条给一份可复制的提示词、标注对应的 core skill，并说明<strong>怎么人工核对</strong>。这些任务，网页版 AI 助手大多都能完成。</p>
 </div>
 </div>
-<p>下面四项训练，都围绕 Lane (2025) 的复现包展开。建议你先从官方 <a href="https://doi.org/10.7910/DVN/VJECHN">Dataverse</a> 下载复现包，把它的 <code>README.md</code> 和目录清单准备好。</p>
+<p>下面四项训练，都围绕 Lane (2025) 的复现包展开。课程期间，直接打开 <code>examples/Lane_2025_QJE_paper_codes/replicationpackage/</code> 中的 <code>README.md</code> 和目录清单即可；官方来源仍是 <a href="https://doi.org/10.7910/DVN/VJECHN">Dataverse</a>。</p>
 <section id="训练-1让-ai-根据-readme-生成复现路线图" class="level3" data-number="1.5.1">
 <h3 data-number="1.5.1" class="anchored" data-anchor-id="训练-1让-ai-根据-readme-生成复现路线图"><span class="header-section-number">1.5.1</span> 训练 1：让 AI 根据 README 生成复现路线图</h3>
 <p><strong>任务</strong>：把复现包的 <code>README.md</code> 交给 AI，让它给出一张「先跑什么、再跑什么」的路线图。</p>
@@ -835,7 +868,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="callout-body-container callout-body">
 <p>下面是某复现包的部分文件名，请判断哪个最可能是<strong>主程序</strong>、哪些是<strong>数据处理脚本</strong>、哪些是<strong>结果输出脚本</strong>，并说明理由：<code>0_master_run_analysis.do</code>、<code>build_industry_panel.do</code>、<code>Figure2.R</code>、<code>merge_trade_data.do</code>、<code>Table1.R</code>。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="参考答案">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -844,7 +877,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><strong>主程序</strong>：<code>0_master_run_analysis.do</code>——<code>0_</code> 前缀加 <code>master</code>、<code>run</code>，典型的总驱动脚本，内容多为按序调用别人。</li>
@@ -868,7 +901,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="callout-body-container callout-body">
 <p>用你自己的话，说清楚<strong>原始数据、中间数据、分析样本、图表结果</strong>四者的关系；并解释为什么 Lane 的复现包要专门预存一部分「非公开数据的中间结果」。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="参考答案">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -877,7 +910,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>四者是一条流水线：原始数据经清洗、合并、构造成为中间数据，再定好样本范围与核心变量成为分析样本，最后由模型产出图表结果。预存「非公开数据的中间结果」，是为了让没有微观数据访问权限的人，也能把依赖这些数据的图表复现出来——这是复现包「分级透明」的一种做法。</p>
 </div>
@@ -897,7 +930,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="callout-body-container callout-body">
 <p>任选一篇你自己研究领域的论文 (最好带复现包)，用本讲「训练 1」的提示词，让 AI 生成一张复现路线图；然后<strong>回到 <code>README</code> 核对</strong>，找出 AI 的路线图里至少一处不准确或存疑的地方，并说明你是怎么发现的。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="参考答案 (要点)">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -906,7 +939,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>本题没有标准答案，重点在「审计」这一步。合格的回答应能指出 AI 的具体错处 (如杜撰了一个不存在的脚本、把运行顺序排错、漏掉一个数据处理步骤)，并说明核对依据 (<code>README</code> 的脚本清单、目录实际文件、脚本对照表)。能稳定地发现并纠正 AI 的错误，正是本讲要练的能力。</p>
 </div>

@@ -11,9 +11,13 @@
 :::
 
 ::: {.callout-tip title="本讲配套材料"}
--   **本讲用到的 skills**：[`core/01-paper-context`](../appendix/B_skills_index.qmd) · `core/02-paper-strategy` · `core/03-replication-navigator` · `core/06-repro-logger`。skill 是什么、怎么安装、怎么在不同 agent(Claude Code / Codex / OpenCode) 里触发，见《[AI 工作流与 skills 上手](../skills-guide.qmd)》。
+-   **本讲用到的 skills**：[`skills/core/01-paper-context`](../appendix/B_skills_index.qmd) · `skills/core/02-paper-strategy` · `core/03-replication-navigator` · `skills/core/06-repro-logger`。skill 是什么、怎么安装、怎么在不同 agent(Claude Code / Codex / OpenCode) 里触发，见《[AI 工作流与 skills 上手](../skills-guide.qmd)》。
 -   **配套阅读笔记** (可在书内浏览，也可下载)：借助 AI 对主案例 Lane (2025) 生成的四份角度笔记——[整体介绍](../examples/ch01/Lane_2025_reading_notes/01_overview.qmd)、[实证方法与识别](../examples/ch01/Lane_2025_reading_notes/02_methods.qmd)、[复现材料导览](../examples/ch01/Lane_2025_reading_notes/03_replication.qmd)、[迷你文献定位](../examples/ch01/Lane_2025_reading_notes/04_literature.qmd)。
 -   本讲为解读型章节，以**提示词与 skills 调用**为主，绝大多数任务在网页版 AI 助手里即可完成，不涉及自研 Stata/Python 代码。
+:::
+
+::: {.callout-important title="想运行完整 Lane 复现包？请用 GitHub Desktop 克隆"}
+Lane 的复现包含 Git LFS 管理的大型 `.dta` 文件。要在本地运行，请优先用 GitHub Desktop 克隆仓库，不要下载网页 ZIP；安装、克隆与更新步骤见[课件使用说明](../usage.qmd)和[GitHub Desktop 教程](https://www.lianxh.cn/details/1672.html)。若数据仍缺失，再按[附录 C](../appendix/C_datasets.qmd)从 Dataverse 补齐。
 :::
 
 <!-- 状态 (W1)：全章初稿完成 (完整流程 / 案例情境 / 概念讲解 / 任务切割 / AI 协作训练 / 小结练习 / 延伸阅读)，待老师整体审阅 + W0 挂载配套页后 render。 -->
@@ -24,11 +28,15 @@
 
 ### 研究问题从哪里来：现实观察与文献阅读
 
-好的实证研究，往往不是从方法开始的，而是从一个**真问题**开始。问题意识通常来自两个地方：**对现实的观察**，和**对文献的阅读**。更重要的是，问题不是一次想好的，而是在不断了解制度和数据的过程中**逐步长出来、逐步修正**的。举两个例子。
+好的实证研究，往往不是从方法开始的，而是从一个**真问题**开始。问题意识通常来自两个地方：**对现实的观察**，和**对文献的阅读**。更重要的是，问题不是一次想好的，而是在不断了解制度和数据的过程中**逐步长出来、逐步修正**的。举两个例子 (有关这两个例子的详情，参见 [连玉君，2026，因果推断与政策评估，chapter 01](https://lianxhcn.github.io/ci-policy/lectures/01_policy_to_design.html))。
 
 **例一：政府引导基金。** 研究者最初可能只是拿到一份基金数据，自然的第一反应，是把它当成一种带政府背景的风险投资，去问：它是否促进了被投企业的创新、融资或成长？这条路能走，但未必抓住要害。等到进一步读地方政府的设立文件、管理办法和新闻报道，会发现它们反复强调本地优势产业、产业链补短板、供应链安全——于是问题可能升级为：政府引导基金是否推动了地方产业链协同与供应链韧性？**同一份数据，问题却因为对政策理解的深入而变了。**
 
+![政府引导基金：研究问题如何形成](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/ci-policy-Lian-2026-Government-fund-topic-selection.png){#fig-cipolicy-background-government-fund}
+
 **例二：韩国重化工业政策。** 1970 年代，韩国政府在特定的安全与工业化背景下，集中扶持钢铁、造船、石化等六大产业。这段真实的历史，引出一个被经济学界争论了近半个世纪的问题：**这种由政府定向扶持特定产业的产业政策，到底有没有用？** 这，正是本讲主案例 Lane (2025) 要回答的问题。
+
+![Lane (2025)：从政策背景到研究设计](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/ci-policy-Lane-2025-intro-outline.png){#fig-lane-outline}
 
 可见，问题意识来自**把现实和文献先读厚、再读薄**：读厚，是把制度细节、数据口径、已有研究都了解清楚；读薄，是从中提炼出一个别人还没讲清、而你有办法回答的问题。
 
@@ -85,12 +93,12 @@ AI 负责**快速起草**，你负责**判断对错**。研究问题、样本定
 
 本讲的主案例是一篇产业政策领域的顶刊论文：
 
-> Lane, N. (2025). Manufacturing Revolutions: Industrial Policy and Industrialization in South Korea. The Quarterly Journal of Economics, 140(3), 1683–1741. [Link](https://doi.org/10.1093/qje/qjaf025) (rep), [PDF](https://academic.oup.com/qje/article-pdf/140/3/1683/63400136/qjaf025.pdf), [Google](https://scholar.google.com/scholar?q=Manufacturing+Revolutions+Industrial+Policy+and+Industrialization+in+South+Korea).
+> Lane, N. (2025). Manufacturing Revolutions: Industrial Policy and Industrialization in South Korea. The Quarterly Journal of Economics, 140(3), 1683–1741. [Link](https://doi.org/10.1093/qje/qjaf025) (rep), [PDF](../PDF/Lane_2025_QJE-Manufacturing_Revolutions_Industrial_Policy_and_Industrialization_in_South_Korea.pdf), [Google](https://scholar.google.com/scholar?q=Manufacturing+Revolutions+Industrial+Policy+and+Industrialization+in+South+Korea), [Replication](https://doi.org/10.7910/DVN/VJECHN).
 
-它研究韩国 1973–1979 年的重化工业驱动 (Heavy and Chemical Industry Drive, **HCI drive**) 这项产业政策，是否真的促进了目标产业的发展。之所以选它做主案例，有三个原因：一是它的**复现包组织得非常规范**，公开在 [Harvard Dataverse](https://doi.org/10.7910/DVN/VJECHN) 上，是学习「一个专业复现项目长什么样」的好范本；二是它同时用到 **Stata 和 R**、涉及**多源数据**，正好训练我们阅读多语言、多数据的复现材料；三是它的政策背景清楚、故事完整，适合初学者建立「从政策事实到研究设计」的整体认知。
+它研究韩国 1973–1979 年的重化工业驱动 (Heavy and Chemical Industry Drive, **HCI drive**) 这项产业政策，是否真的促进了目标产业的发展。之所以选它做主案例，有三个原因：一是它的**复现包组织得非常规范**，官方来源是 [Harvard Dataverse](https://doi.org/10.7910/DVN/VJECHN)，课程期间的完整副本位于 `examples/Lane_2025_QJE_paper_codes/`，是学习「一个专业复现项目长什么样」的好范本；二是它同时用到 **Stata 和 R**、涉及**多源数据**，正好训练我们阅读多语言、多数据的复现材料；三是它的政策背景清楚、故事完整，适合初学者建立「从政策事实到研究设计」的整体认知。若克隆后数据不完整，按[课程数据集说明](../appendix/C_datasets.qmd)从 Dataverse 下载并放回同一目录。
 
 ::: {.callout-warning title="本讲怎么用这个案例"}
-本讲把 Lane (2025) 定位为**顶刊解读的演练场**，**不逐表复现**。目标不是把论文的每张表都跑出来，而是让零基础的你，借助 AI 与 skills，**在较短时间内读懂它的研究背景、主要贡献和实证策略**，并学会把这套读法迁移到自己关心的论文上。真正想动手复现的同学，可参考[复现材料导览](../examples/ch01/Lane_2025_reading_notes/03_replication.qmd) 一节，从官方 Dataverse 下载后按其指引进行。
+本讲把 Lane (2025) 定位为**顶刊解读的演练场**，**不逐表复现**。目标不是把论文的每张表都跑出来，而是让零基础的你，借助 AI 与 skills，**在较短时间内读懂它的研究背景、主要贡献和实证策略**，并学会把这套读法迁移到自己关心的论文上。真正想动手复现的同学，可参考[复现材料导览](../examples/ch01/Lane_2025_reading_notes/03_replication.qmd)，再从课程仓库中的完整副本按其指引进行。
 :::
 
 ### 关键手法：把「读一篇论文」切成几个任务
@@ -216,7 +224,7 @@ Lane 研究的 HCI drive，集中扶持**钢铁、有色金属、造船、机械
 本节逐条覆盖大纲「AI 协作训练」清单，不删项、不缩范围。每条给一份可复制的提示词、标注对应的 core skill，并说明**怎么人工核对**。这些任务，网页版 AI 助手大多都能完成。
 :::
 
-下面四项训练，都围绕 Lane (2025) 的复现包展开。建议你先从官方 [Dataverse](https://doi.org/10.7910/DVN/VJECHN) 下载复现包，把它的 `README.md` 和目录清单准备好。
+下面四项训练，都围绕 Lane (2025) 的复现包展开。课程期间，直接打开 `examples/Lane_2025_QJE_paper_codes/replicationpackage/` 中的 `README.md` 和目录清单即可；官方来源仍是 [Dataverse](https://doi.org/10.7910/DVN/VJECHN)。
 
 ### 训练 1：让 AI 根据 README 生成复现路线图
 

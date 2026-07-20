@@ -1,0 +1,22 @@
+Replication Package Information
+==============================
+Created: Thu Jul 10 13:56:40 PDT 2025
+Archive name: replicationpackage
+Created from: /var/folders/y6/d46ss4rj2qg6prxm839jlrh00000gn/T/tmp.9k3vnqRZWg/replicationpackage
+Total files:      173
+Data files:       37
+Code files:      105
+Operating System: Darwin
+User: nathanlane
+Creation log: Available in package creation directory
+
+Directory structure:
+- Main data: data/
+- Intermediate datasets: data/intermediate_datasets/ (empty)
+- Final outputs: data/output/ (empty)
+- Main figures: output/overleaf_figures/
+- Appendix figures: output/overleaf_figures_appendix/
+- Supplemental figures: output/overleaf_figures_supplementalappendix/
+- Main tables: output/overleaf_tables/
+- Appendix tables: output/overleaf_tables_appendix/
+- Supplemental tables: output/overleaf_tables_supplementalappendix/

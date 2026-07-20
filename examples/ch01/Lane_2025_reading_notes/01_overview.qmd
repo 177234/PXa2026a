@@ -48,7 +48,7 @@ title: "整体介绍"
 
 **引文 (myAPA 格式)**：
 
-> Lane, N. (2025). Manufacturing Revolutions: Industrial Policy and Industrialization in South Korea. The Quarterly Journal of Economics, 140(3), 1683–1741. [Link](https://doi.org/10.1093/qje/qjaf025) (rep), [PDF](https://academic.oup.com/qje/article-pdf/140/3/1683/63400136/qjaf025.pdf), [Google](<https://scholar.google.com/scholar?q=Manufacturing+Revolutions+Industrial+Policy+and+Industrialization+in+South+Korea>).
+> Lane, N. (2025). Manufacturing Revolutions: Industrial Policy and Industrialization in South Korea. The Quarterly Journal of Economics, 140(3), 1683–1741. [Link](https://doi.org/10.1093/qje/qjaf025) (rep), [PDF](../../../PDF/Lane_2025_QJE-Manufacturing_Revolutions_Industrial_Policy_and_Industrialization_in_South_Korea.pdf), [Google](<https://scholar.google.com/scholar?q=Manufacturing+Revolutions+Industrial+Policy+and+Industrialization+in+South+Korea>).
 
 ## 研究背景
 

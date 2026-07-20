@@ -30,6 +30,14 @@
 .DS_Store
 Thumbs.db
 *.log
+*.stswp
+*.stpr
+
+# --- 课堂示例运行时生成的中间数据 ---
+/examples/ch02/firm_finance_2021_2022.dta
+/examples/ch02/industry_lookup_upper.dta
+/examples/ch02/data/firm_finance_2021_2022.dta
+/examples/ch02/data/industry_lookup_upper.dta
 
 # --- Python ---
 __pycache__/

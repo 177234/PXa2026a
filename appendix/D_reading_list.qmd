@@ -32,7 +32,7 @@ Author (Year). Title. Journal, Vol(Issue), pp–pp. [Link](DOI) (rep), [PDF](url
 Lane, N. (2025). Manufacturing Revolutions: Industrial Policy and Industrialization in South Korea.
 The Quarterly Journal of Economics, 140(3), 1683–1741.
 [Link](https://doi.org/10.1093/qje/qjaf025) (rep),
-[PDF](https://academic.oup.com/qje/article-pdf/140/3/1683/63400136/qjaf025.pdf),
+[PDF](../PDF/Lane_2025_QJE-Manufacturing_Revolutions_Industrial_Policy_and_Industrialization_in_South_Korea.pdf),
 [Google](<https://scholar.google.com/scholar?q=Manufacturing+revolutions+industrial+policy+and+industrialization+in+South+Korea>).
 ```
 
@@ -46,7 +46,7 @@ The Quarterly Journal of Economics, 140(3), 1683–1741.
 - Lane, N. (2025). Manufacturing Revolutions: Industrial Policy and Industrialization in
   South Korea. *The Quarterly Journal of Economics*, 140(3), 1683–1741.
   [Link](https://doi.org/10.1093/qje/qjaf025) (rep),
-  [PDF](https://academic.oup.com/qje/article-pdf/140/3/1683/63400136/qjaf025.pdf),
+  [PDF](../PDF/Lane_2025_QJE-Manufacturing_Revolutions_Industrial_Policy_and_Industrialization_in_South_Korea.pdf),
   [Google](<https://scholar.google.com/scholar?q=Manufacturing+revolutions+industrial+policy+and+industrialization+in+South+Korea>).
 - Akcigit, U., Grigsby, J., Nicholas, T., & Stantcheva, S. (2022). Taxation and Innovation
   in the Twentieth Century. *The Quarterly Journal of Economics*, 137(1), 329–385.

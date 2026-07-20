@@ -4,9 +4,7 @@
 `webuse`) 与老师逐章提供的既有数据为主。
 
 ::: {.callout-important title="数据许可"}
-- 主案例 Lane (2025, QJE) 与扩展案例 Akcigit et al. (2022, QJE) 的复现数据来自
-  [Harvard Dataverse](https://dataverse.harvard.edu/)，本仓库**不整包再分发**，只提供官方
-  下载脚本与复现指引；
+- 主案例 Lane (2025, QJE) 的官方复现包来自 [Harvard Dataverse](https://doi.org/10.7910/DVN/VJECHN)。为配合 2026 年 7 月 21–23 日课程，仓库暂时保留该包的官方代码和输入数据；课程结束后的公开范围由维护者另行决定。扩展案例 Akcigit et al. (2022, QJE) 仍按其原始许可和复现指引使用；
 - 源自商业数据库 (CSMAR / Wind 等) 的数据未经许可不入库；确需时改用脱敏抽样、衍生汇总或
   "处理代码 + 学员自备数据"形式。
 :::
@@ -19,9 +17,36 @@
 ## 主案例 · Lane (2025, QJE)
 
 - 复现包：<https://doi.org/10.7910/DVN/VJECHN>
-- 课件提供下载脚本与复现导航，不再分发原始数据。
+- 课程期间的完整副本：`examples/Lane_2025_QJE_paper_codes/replicationpackage/`；论文 PDF：`PDF/Lane_2025_QJE-Manufacturing_Revolutions_Industrial_Policy_and_Industrialization_in_South_Korea.pdf`。
+- 课程结束后的公开范围由维护者另行确认；使用或转发前仍须核对官方许可。
 
-<!-- TODO: 下载脚本位置 (examples/ch01/) 待 T5 补 -->
+### 复现包没有下载完整时，怎样放置文件
+
+建议用 GitHub Desktop 克隆课程仓库，不要用网页的「Download ZIP」获取完整复现包。GitHub Desktop 通常会同时下载 Git LFS 管理的大文件；具体操作见[《用 GitHub Desktop 管理你的代码仓库》](https://www.lianxh.cn/details/1672.html)与[课件使用说明](../usage.qmd)。若 `data/input/` 中的 `.dta` 文件缺失，先在仓库根目录执行 `git lfs pull`。若仍无法下载，就从 [Harvard Dataverse](https://doi.org/10.7910/DVN/VJECHN) 下载官方复现包并解压。
+
+解压后，把官方包中的 `replicationpackage/` 整个文件夹放到下面的位置；不要改动文件夹名、文件名或 `data/input/` 的层级：
+
+```text
+PXa2026a/
+└── examples/
+    └── Lane_2025_QJE_paper_codes/
+        └── replicationpackage/
+            ├── README.md
+            ├── code/
+            ├── data/
+            │   └── input/
+            │       └── mms_merged_harmonized_panel_cleaned4reg_5digit.dta
+            └── master.R
+```
+
+常见错误是多套了一层目录，形成 `replicationpackage/replicationpackage/`。从仓库根目录运行第 2 讲示例时，应能直接执行：
+
+```stata
+cd "examples/Lane_2025_QJE_paper_codes/replicationpackage"
+use "data/input/mms_merged_harmonized_panel_cleaned4reg_5digit.dta", clear
+```
+
+<!-- TODO: 课程结束后根据公开范围，更新本节和仓库说明。 -->
 
 ## 扩展案例 · Akcigit et al. (2022, QJE)
 

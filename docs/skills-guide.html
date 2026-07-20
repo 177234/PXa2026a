@@ -455,11 +455,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>这是本次课程转型的核心页面，Day 1 上午第一讲现场走一遍，之后各讲只引用不重复。目标：让每位 学员在课程结束时，能<strong>看懂、安装、使用并自己写一个跨 agent 的 skill</strong>。</p>
+<p>这是本次课程转型的核心页面，Day 1 上午第一讲现场走一遍，之后各讲只引用不重复。目标：让每位学员在课程结束时，能<strong>看懂、安装、使用并自己写一个跨 agent 的 skill</strong>。</p>
+<p>若相对 Skills 有个全面了解，建议阅读 <a href="https://www.lianxh.cn/details/1790.html">从 Prompt 到 Skills</a> 和 <a href="https://www.lianxh.cn/search.html?s=Agent+Skills+%E6%8C%87%E5%8D%97">Agent Skills 指南 · 系列推文</a></p>
 </div>
 </div>
 <div class="keypoint">
-<p>从第一个 skill 开始，就把 skills 当作<strong>个人长期资产</strong>，而不是某个 agent 的附属配置。</p>
+<ul>
+<li>从第一个 skill 开始，就把 skills 当作<strong>个人长期资产</strong>，而不是某个 agent 的附属配置。</li>
+<li>有关 skills 的详细介绍和安装方法，参见如下 <a href="https://www.lianxh.cn/search.html?s=Agent+Skills+%E6%8C%87%E5%8D%97">系列推文</a>：
+<ul>
+<li>林芷涵, 2026, <a href="https://www.lianxh.cn/details/1791.html">Claude Code Skills 写作指南：如何写好一个可复用的 SKILL.md</a>.</li>
+<li>连小白, 2026, <a href="https://www.lianxh.cn/details/1861.html">Agent Skills 指南(1)：别再囤技能，为什么越多反而越难用</a>.</li>
+<li>连小白, 2026, <a href="https://www.lianxh.cn/details/1862.html">Agent Skills 指南(2)：用 npx skills 管好所有 Agent 的技能库</a>.</li>
+<li>连小白, 2026, <a href="https://www.lianxh.cn/details/1863.html">Agent Skills 指南(3)：用 Router 分层管理海量 Skills</a>.</li>
+<li>连小白, 2026, <a href="https://www.lianxh.cn/details/1864.html">Agent Skills 指南(4)：skills.sh——技能界的淘宝，淘到称手的技能</a>.</li>
+</ul></li>
+</ul>
 </div>
 <section id="skills-是什么" class="level2">
 <h2 class="anchored" data-anchor-id="skills-是什么">1. skills 是什么</h2>
@@ -506,7 +517,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="写一个最小的跨-agent-skill" class="level2">
 <h2 class="anchored" data-anchor-id="写一个最小的跨-agent-skill">4. 写一个最小的跨 agent skill</h2>
-<p>课堂现场演练：新建 <code>skills/extra/hello-check/SKILL.md</code>，写上 <code>name</code> 与 <code>description</code>，正文给 一段”检查清单”式指令；重新运行 setup 脚本生成入口后，分别在 Claude Code 与 Codex 中各触发 一次，确认<strong>自动触发、显式调用、执行结果</strong>三项都正常。</p>
+<p>大家可以做个练习：新建 <code>skills/extra/hello-check/SKILL.md</code>，写上 <code>name</code> 与 <code>description</code>，正文给 一段”检查清单”式指令；重新运行 setup 脚本生成入口后，分别在 Claude Code 与 Codex 中各触发 一次，确认<strong>自动触发、显式调用、执行结果</strong>三项都正常。</p>
 <!-- TODO: 待第一个 core skill 定稿后，补一段完整的最小 skill 实录 (截图或文字) -->
 </section>
 <section id="课堂速查表每讲用到哪些-core-skills" class="level2">

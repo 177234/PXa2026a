@@ -1,0 +1,5 @@
+outcome,outcome_label,panel,estimator,estimator_label,coef,stderr,pval,ci_lower,ci_upper,tstat,var,N,model_id
+l_ship,Log shipments,4d,dr,Doubly robust: DR-IPW,.59230345,.2041622,.0037180572734867,.1921529050345147,.9924540047173773,2.90114168263802,Post_avg,1711,3
+l_ship,Log shipments,4d,ols,Regression DID: method(reg),.54524899,.22231418,.0141825770781248,.1095212013084119,.9809767692726428,2.452605532770678,Post_avg,1711,4
+l_ship,Log shipments,5d,dr,Doubly robust: DR-IPW,.83784425,.19307773,.0000142862972272,.4594188591910904,1.216269645981639,4.339414289801359,Post_avg,4046,1
+l_ship,Log shipments,5d,ols,Regression DID: method(reg),.82348442,.18459125,8.15309541835e-06,.4616922215973931,1.185276619955341,4.461123844610816,Post_avg,4046,2

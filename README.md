@@ -56,9 +56,11 @@ PXa2026a/
 - **代码与 skills**（`skills/`、`scripts/`、`examples/`、`data/` 中的可执行部分）：
   [MIT](LICENSE-CODE)。
 
-主案例 Lane (2025, QJE) 与扩展案例 Akcigit et al. (2022, QJE) 的复现数据来自
-Harvard Dataverse，本仓库**不再分发原始数据包**，只提供下载脚本与复现指引；请遵守
-原始数据的许可条款。
+主案例 Lane (2025, QJE) 的官方复现包来自 Harvard Dataverse。为配合 2026 年 7 月
+21–23 日课程，本仓库暂时保留其官方代码、输入数据和论文 PDF，分别位于
+`examples/Lane_2025_QJE_paper_codes/` 与 `PDF/`；课程结束后的公开范围由维护者另行决定。
+扩展案例 Akcigit et al. (2022, QJE) 仍按其原始数据许可与复现指引使用。使用或转发这些材料前，
+请核对原始许可条款。
 
 ## 关于连享会
 

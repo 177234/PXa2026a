@@ -1,0 +1,148 @@
+﻿Act,Korean,Translation
+Steel Industry,제선,Iron making
+Steel Industry,제강,Steel making
+Steel Industry,압연,Rolling
+Steel Industry,주물용 선철 생산,Production of pig iron for casting
+Steel Industry,합금철 생산,Ferro alloy production
+Steel Industry,강괴 생산,Steel ingot production
+Steel Industry,압연재(제품 포함) 생산,Production of rolled materials (including products)
+Steel Industry,주물 생산,Casting production
+Steel Industry,주단강품 생산,Casting and forging production
+Steel Industry,스텐레스강판 생산,Production of stainless steel plates
+Steel Industry,스텐레스봉강 생산,Production of stainless steel bars
+Steel Industry,고탄소강 생산,High carbon steel production
+Steel Industry,합금강(소재 포함) 생산,Production of alloy steel (including material)
+Steel Industry,전자연철판 생산,Electronic wrought iron plate production
+Nonferrous Metal Industry,동광,Copper ore
+Nonferrous Metal Industry,연광,Lead ore
+Nonferrous Metal Industry,아연광,Zinc ore
+Nonferrous Metal Industry,금광,Gold ore
+Nonferrous Metal Industry,은광,Silver ore
+Shipbuilding Industry,선박 건조,Shipbuilding
+Shipbuilding Industry,선박 개조,Ship renovation
+Shipbuilding Industry,선박 수리,Ship repair
+Shipbuilding Industry,선박 부분품 제조,mfg. parts for ships
+Shipbuilding Industry,선박 부분품 수리,Repairing parts of the ship
+Shipbuilding Industry,구명기구,Life equipment
+Shipbuilding Industry,항해기구,Navigation equipment
+Shipbuilding Industry,갑판기계,Deck machinery
+Chemical Industry,나프타 분해공업,Naphtha decomposition industry
+Chemical Industry,폴리에틸렌 제조공업,Polyethylene mfg. industry
+Chemical Industry,V.C.M. 제조공업,Vinyl Chloride Monomer mfg. industry
+Chemical Industry,스틸렌보노바 제조공업,Styrenebonova mfg. industry
+Chemical Industry,에탄올(합성) 제조공업,Ethanol (synthetic) mfg. industry
+Chemical Industry,아세트 알데히트 제조공업,Acetaldehyde mfg. industry
+Chemical Industry,부탄올 제조공업,Butanol mfg. industry
+Chemical Industry,옥탄올 제조공업,Octanol mfg. industry
+Chemical Industry,빙초산 제조공업,Glacial acetic acid mfg. industry
+Chemical Industry,아크릴로니트릴 제조공업,Acrylonitrile mfg. industry
+Chemical Industry,알킬벤젠 제조공업,Alkylbenzene mfg. industry
+Chemical Industry,폴리푸로필렌 제조공업,Polypropylene mfg. industry
+Chemical Industry,합성고무(S.B.R.) 제조공업,Styrene Butadiene Rubber mfg. industry
+Chemical Industry,씨크로헥산 제조공업,Cyclohexane mfg. industry
+Chemical Industry,훼놀 제조공업,Phenol mfg. industry
+Chemical Industry,아니린 제조공업,Aniline mfg. industry
+Chemical Industry,무수푸탈산 제조공업,Phthalic anhydride mfg. industry
+Chemical Industry,메탄올 제조공업,Methanol mfg. industry
+Chemical Industry,카본불랙 제조공업,Carbon black mfg. Industry
+Chemical Industry,포리스틸랜 제조공업,Polystyrene mfg. industry
+Chemical Industry,카프로락탐 제조공업,Caprolactam mfg. industry
+Chemical Industry,암모니아 제조공업(석유화학공업연료로 공급하는 것에 한함),Ammonia mfg. industry (limited to supply as petrochemical fuel)
+Chemical Industry,D.M.T. 제조공업,Dimethyl Terephthalate mfg. industry
+Chemical Industry,에틸렌그리클 제조공업,Ethylene glycol mfg. industry
+Chemical Industry,폴리푸로필렌그리콜 제조공업,Polypropylene glycol mfg. industry
+Chemical Industry,테레프탈산(T.P.A.) 제조공업,Terephthalic Acid mfg. industry
+Chemical Industry,무수마레인산 제조공업,Maleic anhydride mfg. industry
+Chemical Industry,큐멘 제조공업,Cumene mfg. industry
+Chemical Industry,아세톤 제조공업,Acetone mfg. industry
+Chemical Industry,2염화 에틸렌(E.D.C.) 제조공업,Ethylene Dichloride mfg. industry
+Chemical Industry,펜타에리스리틀 제조공업,Pentaerythrityl mfg. industry
+Chemical Industry,키시렌분유공업,Xylene milk powder industry
+Chemical Industry,산화푸로필렌제조공업,Propylene oxide mfg. industry
+Chemical Industry,산화에틸렌제조공업,Ethylene oxide mfg. industry
+Chemical Industry,염소제조공업(석유화학 원료로 공급하는 것에 한한다),Chlorine mfg. industry (limited to supply as petrochemical fuel)
+Chemical Industry,톨루엔 디 이소시아네이트제조공업,Toluene diisocyanate mfg. industry
+Chemical Industry,메틸메타 아그레이트모노 마제조공업(중간체인 시안화합물을 포함한다),Methyl methacrylate monomer mfg. industry (including intermediate cyanide compound)
+Chemical Industry,합성고무(폴리부타디엔 고무에 한한다) 제조공업,Synthetic rubber (limited to polybutadiene rubber) mfg. industry
+Chemical Industry,초산비닐모노마제조공업,Vinyl acetate monomer mfg. industry
+Chemical Industry,염화비니리딘수지제조공업,Viniridine chloride resin mfg. industry
+Chemical Industry,석유수지제조공업,Petroleum resin mfg. industry
+Chemical Industry,정파라핀(노루말 파라핀에 한한다)제조공업,Regular paraffin (limited to normal paraffin) mfg. industry
+Chemical Industry,폴리비닐 알콜제조공업,Polyvinyl alcohol mfg. industry
+Chemical Industry,초산에틸제조공업,Ethyl acetate mfg. industry
+Machine Industry,보일러 및 원자로,Boiler and reactor
+Machine Industry,내연기관 및 터빈,Internal combustion engine and turbine
+Machine Industry,축수,Bearing
+Machine Industry,동력전달장치,Power transmission device
+Machine Industry,볼트 및 너트,Bolt and nut
+Machine Industry,금속공작기계,Metal machine tools
+Machine Industry,금속1차제품제조기,Metal primary product mfg. machine
+Machine Industry,제2차금속가공기계,Secondary metal processing machine
+Machine Industry,용접기계,Welding machine
+Machine Industry,금형,Mold
+Machine Industry,공구,Tool
+Machine Industry,전구,Electric bulb
+Machine Industry,"펌프, 송풍기, 압축기","Pump, blower, compressor"
+Machine Industry,유압기계,Hydraulic machine
+Machine Industry,냉동기 및 공기조절장치,Refrigerator and air conditioner
+Machine Industry,화학기계,Chemical instruments
+Machine Industry,하역운반기계,Unloading machine
+Machine Industry,광산기계,Mining machine
+Machine Industry,토목건설기계,Civil construction machine
+Machine Industry,플라스틱 성형가공기계,Plastic molding machine
+Machine Industry,섬유기계,Textile machine
+Machine Industry,팔프 제지 지공기계,Pulp paper making machine
+Machine Industry,포장 하조기계,Packaging machine
+Machine Industry,인쇄제본기계,Machine for printing and binding
+Machine Industry,목공기계,Woodworking machine
+Machine Industry,식료 및 음료가공기계,Food and beverage processing machine
+Machine Industry,농업용기계,Agricultural machine
+Machine Industry,공업용 로 및 발열기기,Industrial furnaces and heating device
+Machine Industry,주조장치,Casting machine
+Machine Industry,밸브 및 관이음쇠,Valve and pipe joints
+Machine Industry,계측기계,Measuring machine
+Machine Industry,시계,Clock
+Machine Industry,광학기계,Optical machine
+Machine Industry,사무용기계,Office machine
+Machine Industry,재봉기,Sewing machine
+Machine Industry,제약 및 의료용기기,Pharmaceutical and medical device
+Machine Industry,중전기 장치,Heavy electric device
+Machine Industry,가정용 전기기기,Home appliance
+Machine Industry,조명기기,Lighting equipment
+Machine Industry,전지 및 축전기,Battery and capacitor
+Machine Industry,유무선 통신장치,Wired and wireless communication device
+Machine Industry,방송 및 수신장치,Broadcasting and receiving device
+Machine Industry,전자응용장치,Electronic application device
+Machine Industry,전선 및 케이블,Wires and cables
+Machine Industry,자동차,Car
+Machine Industry,자전차,Bicycle
+Machine Industry,산업차량,Industrial vehicle
+Machine Industry,철도차량,Railway vehicle
+Machine Industry,선박,Vessel
+Machine Industry,항공기,Aircraft
+Machine Industry,교통 신호보안 관제장치,Traffic signal security control system
+Machine Industry,민수용 총기,Civil gun
+Machine Industry,주물,Casting
+Machine Industry,기계기구용 비철금속 단조품과 프레스제품,Nonferrous metal forging and press products for machinery
+Machine Industry,방위산업용기기 및 장비,Equipment for the defense industry
+Machine Industry,특수강제품,Special steel product
+Electronics Industry,라듸오수신기,Radio receiver
+Electronics Industry,텔레비죤수상기,Television
+Electronics Industry,음성주파장치,Voice frequency device
+Electronics Industry,통신기계기구,Communication equipment
+Electronics Industry,무선응용장치,Wireless application device
+Electronics Industry,전자응용장치,Electronic application device
+Electronics Industry,전기계측기,Electrical measuring instrument
+Electronics Industry,전자관,Electronic tube
+Electronics Industry,반도체소자,Semiconductor device
+Electronics Industry,직접회로,Integrated crcuit
+Electronics Industry,회로부품,Circuit parts
+Electronics Industry,음향부품,Sound components
+Electronics Industry,기구부품,Equipment parts
+Electronics Industry,집합부품,Assembly parts
+Electronics Industry,기타 기계·금속·화공계열부품,"Other mechanical, metal, and chemical parts"
+Electronics Industry,자기재료,Magnetic material
+Electronics Industry,절연재료,Insulating material
+Electronics Industry,도전재료,Conductive material
+Electronics Industry,반도체재료,Semiconductor material
+Electronics Industry,특수재료,Special material

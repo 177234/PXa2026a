@@ -1,0 +1,27 @@
+v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11
+,(1),(2),(3),(4),(5),(6),(7),(8),(9),(10)
+,output_l_ucr_,output_tfp_acf_1,output_tfp_lp_2,output_tfp_w_3,output_tfp_op_4,output_l_ucr_1,output_tfp_acf_2,output_tfp_lp_3,output_tfp_w_4,output_tfp_op_5
+Plant Experience,-0.072***,0.485***,0.484***,0.484***,0.486***,-0.076***,0.493***,0.491***,0.497***,0.492***
+,(0.002),(0.011),(0.011),(0.011),(0.011),(0.003),(0.012),(0.013),(0.012),(0.012)
+Targeted x Plant Experience,-0.007***,0.014*,0.024***,0.030***,0.020***,-0.005**,0.004,0.013,0.005,0.012
+,(0.002),(0.008),(0.008),(0.008),(0.007),(0.002),(0.010),(0.011),(0.011),(0.011)
+Industry Experience,-0.011***,0.022,0.037**,0.037**,0.030*,0.000,-0.006,0.001,-0.001,-0.004
+,(0.003),(0.014),(0.016),(0.017),(0.016),(0.003),(0.012),(0.015),(0.016),(0.015)
+Targeted x Industry Experience,-0.004**,0.030***,0.018**,0.016**,0.021***,-0.010***,0.070***,0.062***,0.070***,0.061***
+,(0.001),(0.009),(0.007),(0.007),(0.007),(0.003),(0.012),(0.011),(0.011),(0.011)
+Control for Plant Size,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+Control for Capital,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+Control for Skill Ratio,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+Control for Investment,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+Control for Intermediates,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+Polynomial Controls,No,No,No,No,No,No,No,No,No,No
+Plant Effect,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+Year Effect,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+Industry Effect,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+\(R^2\),0.890,0.691,0.682,0.678,0.600,0.890,0.689,0.680,0.675,0.597
+Observations,250853,235940,235940,235940,235940,250853,235940,235940,235940,235940
+Clusters (Industry and Plant),489 x 59978,489 x 57942,489 x 57942,489 x 57942,489 x 57942,489 x 59978,489 x 57942,489 x 57942,489 x 57942,489 x 57942
+Linear Combination (Plant-Level),-0.078,0.499,0.508,0.514,0.506,-0.081,0.497,0.504,0.502,0.504
+(St.Err.),(0.003),(0.013),(0.013),(0.013),(0.012),(0.003),(0.014),(0.014),(0.015),(0.014)
+Linear Combination (Industry-Level),-0.014,0.052,0.056,0.053,0.051,-0.010,0.064,0.063,0.069,0.058
+(St.Err.),(0.003),(0.014),(0.017),(0.018),(0.017),(0.003),(0.016),(0.018),(0.018),(0.018)

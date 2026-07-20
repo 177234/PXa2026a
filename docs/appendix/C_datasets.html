@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -381,7 +415,10 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#stata-自带数据" id="toc-stata-自带数据" class="nav-link active" data-scroll-target="#stata-自带数据"><span class="header-section-number">C.1</span> Stata 自带数据</a></li>
-  <li><a href="#主案例-lane-2025-qje" id="toc-主案例-lane-2025-qje" class="nav-link" data-scroll-target="#主案例-lane-2025-qje"><span class="header-section-number">C.2</span> 主案例 · Lane (2025, QJE)</a></li>
+  <li><a href="#主案例-lane-2025-qje" id="toc-主案例-lane-2025-qje" class="nav-link" data-scroll-target="#主案例-lane-2025-qje"><span class="header-section-number">C.2</span> 主案例 · Lane (2025, QJE)</a>
+  <ul class="collapse">
+  <li><a href="#复现包没有下载完整时怎样放置文件" id="toc-复现包没有下载完整时怎样放置文件" class="nav-link" data-scroll-target="#复现包没有下载完整时怎样放置文件"><span class="header-section-number">C.2.1</span> 复现包没有下载完整时，怎样放置文件</a></li>
+  </ul></li>
   <li><a href="#扩展案例-akcigit-et-al.-2022-qje" id="toc-扩展案例-akcigit-et-al.-2022-qje" class="nav-link" data-scroll-target="#扩展案例-akcigit-et-al.-2022-qje"><span class="header-section-number">C.3</span> 扩展案例 · Akcigit et al.&nbsp;(2022, QJE)</a></li>
   <li><a href="#各讲数据清单" id="toc-各讲数据清单" class="nav-link" data-scroll-target="#各讲数据清单"><span class="header-section-number">C.4</span> 各讲数据清单</a></li>
   </ul>
@@ -421,7 +458,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>主案例 Lane (2025, QJE) 与扩展案例 Akcigit et al.&nbsp;(2022, QJE) 的复现数据来自 <a href="https://dataverse.harvard.edu/">Harvard Dataverse</a>，本仓库<strong>不整包再分发</strong>，只提供官方 下载脚本与复现指引；</li>
+<li>主案例 Lane (2025, QJE) 的官方复现包来自 <a href="https://doi.org/10.7910/DVN/VJECHN">Harvard Dataverse</a>。为配合 2026 年 7 月 21–23 日课程，仓库暂时保留该包的官方代码和输入数据；课程结束后的公开范围由维护者另行决定。扩展案例 Akcigit et al.&nbsp;(2022, QJE) 仍按其原始许可和复现指引使用；</li>
 <li>源自商业数据库 (CSMAR / Wind 等) 的数据未经许可不入库；确需时改用脱敏抽样、衍生汇总或 “处理代码 + 学员自备数据”形式。</li>
 </ul>
 </div>
@@ -434,9 +471,28 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="C.2" class="anchored" data-anchor-id="主案例-lane-2025-qje"><span class="header-section-number">C.2</span> 主案例 · Lane (2025, QJE)</h2>
 <ul>
 <li>复现包：<a href="https://doi.org/10.7910/DVN/VJECHN" class="uri">https://doi.org/10.7910/DVN/VJECHN</a></li>
-<li>课件提供下载脚本与复现导航，不再分发原始数据。</li>
+<li>课程期间的完整副本：<code>examples/Lane_2025_QJE_paper_codes/replicationpackage/</code>；论文 PDF：<code>PDF/Lane_2025_QJE-Manufacturing_Revolutions_Industrial_Policy_and_Industrialization_in_South_Korea.pdf</code>。</li>
+<li>课程结束后的公开范围由维护者另行确认；使用或转发前仍须核对官方许可。</li>
 </ul>
-<!-- TODO: 下载脚本位置 (examples/ch01/) 待 T5 补 -->
+<section id="复现包没有下载完整时怎样放置文件" class="level3" data-number="C.2.1">
+<h3 data-number="C.2.1" class="anchored" data-anchor-id="复现包没有下载完整时怎样放置文件"><span class="header-section-number">C.2.1</span> 复现包没有下载完整时，怎样放置文件</h3>
+<p>建议用 GitHub Desktop 克隆课程仓库，不要用网页的「Download ZIP」获取完整复现包。GitHub Desktop 通常会同时下载 Git LFS 管理的大文件；具体操作见<a href="https://www.lianxh.cn/details/1672.html">《用 GitHub Desktop 管理你的代码仓库》</a>与<a href="../usage.html">课件使用说明</a>。若 <code>data/input/</code> 中的 <code>.dta</code> 文件缺失，先在仓库根目录执行 <code>git lfs pull</code>。若仍无法下载，就从 <a href="https://doi.org/10.7910/DVN/VJECHN">Harvard Dataverse</a> 下载官方复现包并解压。</p>
+<p>解压后，把官方包中的 <code>replicationpackage/</code> 整个文件夹放到下面的位置；不要改动文件夹名、文件名或 <code>data/input/</code> 的层级：</p>
+<pre class="text"><code>PXa2026a/
+└── examples/
+    └── Lane_2025_QJE_paper_codes/
+        └── replicationpackage/
+            ├── README.md
+            ├── code/
+            ├── data/
+            │   └── input/
+            │       └── mms_merged_harmonized_panel_cleaned4reg_5digit.dta
+            └── master.R</code></pre>
+<p>常见错误是多套了一层目录，形成 <code>replicationpackage/replicationpackage/</code>。从仓库根目录运行第 2 讲示例时，应能直接执行：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cd <span class="st">"examples/Lane_2025_QJE_paper_codes/replicationpackage"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"data/input/mms_merged_harmonized_panel_cleaned4reg_5digit.dta"</span>, <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!-- TODO: 课程结束后根据公开范围，更新本节和仓库说明。 -->
+</section>
 </section>
 <section id="扩展案例-akcigit-et-al.-2022-qje" class="level2" data-number="C.3">
 <h2 data-number="C.3" class="anchored" data-anchor-id="扩展案例-akcigit-et-al.-2022-qje"><span class="header-section-number">C.3</span> 扩展案例 · Akcigit et al.&nbsp;(2022, QJE)</h2>

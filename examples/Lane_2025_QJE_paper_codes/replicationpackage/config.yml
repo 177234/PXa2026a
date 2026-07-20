@@ -1,0 +1,31 @@
+default:
+  project_dir_name: "replicationpackage"
+dirs:
+  code_dir:                              "code"
+  analysiscode_dir:                      "code/0_analysis"
+  figurescode_dir:                       "code/1_figures"
+  tablescode_dir:                        "code/2_tables"
+  appendixcode_dir:                      "code/3_appendix"
+  supplementalcode_dir:                  "code/4_suppappendix"
+  log_dir:                               "log"
+  setup_dir:                             "setup"
+  data_dir:                              "data"
+  input_dir:                             "data/input"
+  intermediate_dir:                      "data/intermediate_datasets"
+  included_dir:                          "data/included_datasets"
+  policy_dir:                            "data/policydata"
+  ngram_dir:                             "data/ngrams"
+  defense_dir:                           "data/defensedata"
+  naver_dir:                             "data/naverdata"
+  output_dir:                            "output"
+  figures_dir:                           "output/overleaf_figures"
+  tables_dir:                            "output/overleaf_tables"
+  figures_appendix_dir:                  "output/overleaf_figures_appendix"
+  tables_appendix_dir:                   "output/overleaf_tables_appendix"
+  figures_supplementalappendix_dir:      "output/overleaf_figures_supplementalappendix"
+  tables_supplementalappendix_dir:       "output/overleaf_tables_supplementalappendix"
+user_settings:
+  skip_stata:                            FALSE
+user_dirs:
+  stata_path:                            "/Applications/Stata/StataMP.app/Contents/MacOs/stata-mp"
+  stata_version:                         17

@@ -742,29 +742,27 @@ Y = m(X) + e, \qquad \mathbb{E}[e \mid X] = 0, \qquad \mathbb{E}[e^{2} \mid X] =
 <p><span class="math display">\[
 \mathbb{E}[Y \mid X] = \alpha + \beta X \tag{1}
 \]</span></p>
-<ol type="1">
-<li>式是假设，没法直接拿数据去估。结合前面 <span class="math inline">\(Y = m(X)+e\)</span>，把 (1) 代进去，就得到我们天天写的<strong>回归模型</strong>：</li>
-</ol>
+<p>注意，(1) 式是假设，没法直接拿数据去估。结合前面 <span class="math inline">\(Y = m(X)+e\)</span>，把 (1) 代进去，就得到常见的<strong>回归模型</strong>的设定：</p>
 <p><span class="math display">\[
 Y_i = \alpha + \beta X_i + e_i \tag{2}
 \]</span></p>
 <p>到这里还只是模型。怎么把其中的 <span class="math inline">\(\alpha\)</span>、<span class="math inline">\(\beta\)</span> 估出来，有很多办法：</p>
 <ul>
 <li><strong>OLS</strong>：假设 <span class="math inline">\(x\)</span> 与 <span class="math inline">\(e\)</span> 不相关，最小化残差平方和 <span class="math inline">\(\sum e_i^2\)</span>；</li>
-<li><strong>MLE</strong>：假设 <span class="math inline">\(e\)</span> 服从正态分布，最大化似然函数；</li>
-<li><strong>GMM</strong>：构造矩条件 <span class="math inline">\(\mathbb{E}[x\,e]=0\)</span> 去求解。</li>
+<li><strong>MLE</strong>：假设 <span class="math inline">\(e\)</span> 服从正态分布，即 <span class="math inline">\(e_i \sim N(0, \sigma^2)\)</span>，最大化似然函数 <span class="math inline">\(\prod_i \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{e_i^2}{2\sigma^2}\right)\)</span>；</li>
+<li><strong>GMM</strong>：构造矩条件 <span class="math inline">\(\mathbb{E}[x\,e]=0\)</span>，进而得到样本矩条件 <span class="math inline">\(\frac{1}{n}\sum x_i e_i = 0\)</span>，最小化加权矩条件的平方和或加权平方和。</li>
 </ul>
 <p>它们是三种不同的<strong>估计方法</strong>，估的却是同一个模型 (2)。所以「OLS」和「线性回归模型」是两件事：一个是路径，一个是目的地。想清楚这一点，后面遇到「同一个模型换一种估计方法」(比如面板里的固定效应、工具变量) 时，就不会打结。</p>
 </section>
 <section id="系数的含义与局限" class="level3" data-number="4.2.6">
 <h3 data-number="4.2.6" class="anchored" data-anchor-id="系数的含义与局限"><span class="header-section-number">4.2.6</span> 系数的含义与局限</h3>
 <p>回到那个 <span class="math inline">\(\beta\)</span>。它到底是什么？</p>
-<p><span class="math inline">\(\beta\)</span> 是线性投影的斜率，含义是：<strong>X 每增加一单位，Y 的平均值大约变化 <span class="math inline">\(\beta\)</span>。</strong> 注意落点在「平均值」——它说的不是某一个具体个体，而是「X 相差一单位的两群人之间，Y 的平均差异」。</p>
+<p><span class="math inline">\(\beta\)</span> 是线性投影的斜率，含义是：<strong><span class="math inline">\(X\)</span> 每增加一单位，<span class="math inline">\(Y\)</span> 的平均值大约变化 <span class="math inline">\(\beta\)</span>。</strong> 注意落点在「平均值」——它说的不是某一个具体个体，而是「X 相差一单位的两群人之间，Y 的平均差异」。</p>
 <p>但这个解释有前提。OLS 要把 <span class="math inline">\(\beta\)</span> 估得没有系统偏差，靠的是一个关键假设：</p>
 <p><span class="math display">\[
 \mathbb{E}[e \mid X] = 0
 \]</span></p>
-<p>即那些没进模型的因素 <span class="math inline">\(e\)</span>，与 X 不相关。一旦 X 和 <span class="math inline">\(e\)</span> 相关 (比如「能力」既影响教育、又影响工资，却没进模型)，估出的 <span class="math inline">\(\hat\beta\)</span> 就不再是我们想要的那条 CEF 斜率了。<strong>这正是「内生性」的起点</strong>，也是后面几讲要反复处理的核心问题；本讲先把系数在「干净情形」下的含义讲透。</p>
+<p>即那些没进模型的因素 <span class="math inline">\(e\)</span>，与 <span class="math inline">\(X\)</span> 不相关。一旦 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(e\)</span> 相关 (比如「能力」既影响教育、又影响工资，却没进模型)，估出的 <span class="math inline">\(\hat\beta\)</span> 就不再是我们想要的那条 CEF 斜率了。<strong>这正是「内生性」的起点</strong>，也是后面几讲要反复处理的核心问题；本讲先把系数在「干净情形」下的含义讲透。</p>
 </section>
 <section id="系数是比较不是影响" class="level3" data-number="4.2.7">
 <h3 data-number="4.2.7" class="anchored" data-anchor-id="系数是比较不是影响"><span class="header-section-number">4.2.7</span> 系数是「比较」，不是「影响」</h3>

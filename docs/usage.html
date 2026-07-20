@@ -415,7 +415,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#在线讲义-主课件" id="toc-在线讲义-主课件" class="nav-link active" data-scroll-target="#在线讲义-主课件">1. 在线讲义 = 主课件</a></li>
-  <li><a href="#把讲义仓库下载到本地-四选一" id="toc-把讲义仓库下载到本地-四选一" class="nav-link" data-scroll-target="#把讲义仓库下载到本地-四选一">2. 把讲义仓库下载到本地 (四选一)</a></li>
+  <li><a href="#把讲义仓库下载到本地" id="toc-把讲义仓库下载到本地" class="nav-link" data-scroll-target="#把讲义仓库下载到本地">2. 把讲义仓库下载到本地</a>
+  <ul class="collapse">
+  <li><a href="#github-desktop-推荐" id="toc-github-desktop-推荐" class="nav-link" data-scroll-target="#github-desktop-推荐">GitHub Desktop (推荐)</a></li>
+  <li><a href="#命令行-已装-git-的同学" id="toc-命令行-已装-git-的同学" class="nav-link" data-scroll-target="#命令行-已装-git-的同学">命令行 (已装 Git 的同学)</a></li>
+  <li><a href="#下载-zip-只用于阅读或小型示例" id="toc-下载-zip-只用于阅读或小型示例" class="nav-link" data-scroll-target="#下载-zip-只用于阅读或小型示例">下载 ZIP (只用于阅读或小型示例)</a></li>
+  </ul></li>
   <li><a href="#examples-文件夹可运行的代码与数据" id="toc-examples-文件夹可运行的代码与数据" class="nav-link" data-scroll-target="#examples-文件夹可运行的代码与数据">3. <code>examples/</code> 文件夹：可运行的代码与数据</a></li>
   <li><a href="#批量安装课程-skills重要" id="toc-批量安装课程-skills重要" class="nav-link" data-scroll-target="#批量安装课程-skills重要">4. 批量安装课程 skills(重要)</a></li>
   </ul>
@@ -463,33 +468,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>上课主要看这个网站：<strong><a href="https://lianxhcn.github.io/PXa2026a/" class="uri">https://lianxhcn.github.io/PXa2026a/</a></strong>。它包含全部六讲讲义、附录与配套 材料，手机、平板、电脑都能看，随课程更新自动刷新。</p>
 <p><strong>想在本地跑代码、离线复习、使用课程 skills</strong>，再按下面把讲义仓库下载到自己电脑。</p>
 </section>
-<section id="把讲义仓库下载到本地-四选一" class="level2">
-<h2 class="anchored" data-anchor-id="把讲义仓库下载到本地-四选一">2. 把讲义仓库下载到本地 (四选一)</h2>
-<p>仓库地址：<strong><a href="https://github.com/lianxhcn/PXa2026a" class="uri">https://github.com/lianxhcn/PXa2026a</a></strong>。下面四种方式效果一样，任选其一。</p>
-<p><strong>方式一 · 下载 ZIP(最省事，不装任何软件)</strong></p>
-<p>右击下面链接 →「链接另存为」，或直接点开下载，解压即可： <a href="https://github.com/lianxhcn/PXa2026a/archive/refs/heads/main.zip" class="uri">https://github.com/lianxhcn/PXa2026a/archive/refs/heads/main.zip</a></p>
-<p><strong>方式二 · 命令行 (已装 git 的同学)</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/lianxhcn/PXa2026a.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>方式三 · GitHub Desktop(图形界面，便于持续跟进更新)</strong></p>
-<p>安装与使用见连享会推文 <a href="https://www.lianxh.cn/details/1672.html">《用 GitHub Desktop 管理你的代码仓库》</a>。</p>
-<div class="callout callout-style-default callout-note callout-titled" title="方式四 · 让 AI 帮你克隆 (推荐)">
+<section id="把讲义仓库下载到本地" class="level2">
+<h2 class="anchored" data-anchor-id="把讲义仓库下载到本地">2. 把讲义仓库下载到本地</h2>
+<p>仓库地址：<strong><a href="https://github.com/lianxhcn/PXa2026a" class="uri">https://github.com/lianxhcn/PXa2026a</a></strong>。</p>
+<div class="callout callout-style-default callout-important callout-titled" title="要运行完整复现包：优先用 GitHub Desktop 克隆">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-方式四 · 让 AI 帮你克隆 (推荐)
+要运行完整复现包：优先用 GitHub Desktop 克隆
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>最省心的一种：把仓库地址交给 AI 助手 (Claude Code / Codex / 网页版均可)，一句话让它帮你完成。 示例提示词 (复制、按需改路径)：</p>
+<p>第 1、2 讲的 Lane (2025) 复现包含 Git LFS 管理的大文件。请用 <strong>GitHub Desktop</strong> 克隆仓库；不要把网页的「Download ZIP」当作完整复现包，因为 ZIP 默认可能只含大文件的指针，而没有实际 <code>.dta</code> 数据。</p>
+<p>打开 GitHub Desktop 后，选择 <code>File</code> → <code>Clone repository</code> → <code>URL</code>，粘贴仓库地址并选定本地位置。克隆完成后，应能看到 <code>examples/Lane_2025_QJE_paper_codes/replicationpackage/</code>。安装与操作细节见连享会推文：<a href="https://www.lianxh.cn/details/1672.html">《用 GitHub Desktop 管理你的代码仓库》</a>。若该目录中的数据仍不完整，按<a href="./appendix/C_datasets.html">附录 C · 数据集说明</a>用 Dataverse 补齐。</p>
+</div>
+</div>
+<section id="github-desktop-推荐" class="level3">
+<h3 class="anchored" data-anchor-id="github-desktop-推荐">GitHub Desktop (推荐)</h3>
+<p>图形界面适合第一次使用 Git、希望持续接收课程更新、或需要运行完整 Lane 复现包的同学。克隆完成后，以后点击 <code>Fetch origin</code> 即可检查和获取更新。</p>
+</section>
+<section id="命令行-已装-git-的同学" class="level3">
+<h3 class="anchored" data-anchor-id="命令行-已装-git-的同学">命令行 (已装 Git 的同学)</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/lianxhcn/PXa2026a.git</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> PXa2026a</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> lfs pull</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>若 <code>git lfs pull</code> 提示未找到命令，改用 GitHub Desktop，或按附录 C 从 Dataverse 下载官方复现包。</p>
+</section>
+<section id="下载-zip-只用于阅读或小型示例" class="level3">
+<h3 class="anchored" data-anchor-id="下载-zip-只用于阅读或小型示例">下载 ZIP (只用于阅读或小型示例)</h3>
+<p>右击下面链接并选择「链接另存为」，下载后解压即可： <a href="https://github.com/lianxhcn/PXa2026a/archive/refs/heads/main.zip" class="uri">https://github.com/lianxhcn/PXa2026a/archive/refs/heads/main.zip</a></p>
+<p>ZIP 适合离线阅读讲义和查看普通示例代码；它不适合获取完整 Lane 复现包。</p>
+<div class="callout callout-style-default callout-note callout-titled" title="让 AI 协助克隆 (可选)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+让 AI 协助克隆 (可选)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>不熟悉命令行时，可以把仓库地址交给 AI 助手 (Claude Code / Codex / 网页版)，请它协助安装 Git 或解释 GitHub Desktop 的操作。示例提示词如下： 示例提示词 (复制、按需改路径)：</p>
 <pre class="text"><code>请帮我把这个 GitHub 仓库克隆到本地：
 https://github.com/lianxhcn/PXa2026a.git
 克隆到我的「课程」文件夹下。完成后告诉我本地完整路径，并列出仓库顶层的文件夹。
 如果我电脑上还没安装 git，请先一步步教我安装，再继续克隆。</code></pre>
-<p>即使你完全不熟悉命令行，AI 也会带你把仓库拿到本地——这本身就是本课程”让 AI 干活、你来把关”的 一次小练习。</p>
+<p>AI 可以协助操作，但下载是否完整仍要自己检查 <code>examples/Lane_2025_QJE_paper_codes/replicationpackage/</code> 是否存在。</p>
 </div>
 </div>
+</section>
 </section>
 <section id="examples-文件夹可运行的代码与数据" class="level2">
 <h2 class="anchored" data-anchor-id="examples-文件夹可运行的代码与数据">3. <code>examples/</code> 文件夹：可运行的代码与数据</h2>
