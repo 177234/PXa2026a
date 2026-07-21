@@ -5,11 +5,13 @@
 * examples/Lane_2025_QJE_paper_codes/。本 do 文件依赖 cleanplots；winsor2 仅用于可选示例。
 * --------------------------------------------------------------------------
 
-version 19
+version 17
 clear all
 set more off
 global GITHUB_RAW "https://raw.githubusercontent.com"
 global D "$GITHUB_RAW/lianxhcn/PXa2026a/main/examples/ch02/data"
+
+cd D:\github_lianxh\PXa2026a\examples\ch02\data
 
 // 建议先在 Stata 中 cd 到 examples/ch02，再运行本文件；生成的中间数据会保存在该目录。
 // 若使用本地数据，可将上方 global D 改为：

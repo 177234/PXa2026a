@@ -168,6 +168,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="../">暑期班 · 初级班</a> 
         <div class="sidebar-tools-main tools-wide">
+    <a href="../PXa2026a-Lecture.pdf" title="下载课程 PDF" class="quarto-navigation-tool px-1" aria-label="下载课程 PDF"><i class="bi bi-file-earmark-pdf"></i></a>
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://github.com/lianxhcn/PXa2026a" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -633,6 +634,15 @@ window.Quarto = {
 <p>先看结果变量 <span class="math inline">\(Y\)</span>。想衡量「企业绩效」，用 ROA、ROE 还是 Tobin’s Q？三者口径不同、侧重不同，同一份数据、同一个自变量，换一个 <span class="math inline">\(Y\)</span> 跑出来的结论完全可能不一致。选哪一个，取决于你的研究问题问的是哪一种绩效，而不是哪个变量跑出来更显著。</p>
 <p>再看处理变量 <span class="math inline">\(D\)</span>，也就是「谁算受了影响」。这一步的口径尤其容易和前面的总体、样本对不上。以一项环保督察为例：把处理组定义为「被督察省份的所有企业」，还是「被督察地区里的高污染企业」，是两个差别很大的 <span class="math inline">\(D\)</span>。前者把大量本就与政策无关的企业也算作处理组，会把真实效应稀释掉。政策作用在哪一层，<span class="math inline">\(D\)</span> 就该定义在哪一层，否则模型比较的根本不是政策本身。</p>
 <p>最后是控制变量 <span class="math inline">\(X\)</span>。控制变量并非越多越好。如果你控制了一个本身也受处理变量影响的变量 (它其实是结果的一部分)，就会把真实效应挡掉一截——这类变量被称为「坏控制」。该控制什么、不该控制什么，取决于你对这些变量之间关系的判断，而不是把手边所有变量不加甄别地放进回归。</p>
+<p>有关控制变量的讨论，参见如下推文：</p>
+<ul>
+<li>付一帆, 2022, <a href="https://www.lianxh.cn/details/1019.html">Stata：控制变量与核心解释变量地位对等吗？</a>.</li>
+<li>张雪娇, 2022, <a href="https://www.lianxh.cn/details/1011.html">控制变量如何选？大牛们的10条建议</a>.</li>
+<li>曹昊煜, 2022, <a href="https://www.lianxh.cn/details/1037.html">A-理论部分：控制变量！控制变量！Good-Controls-Bad-Controls</a>.</li>
+<li>李烨阳, 2022, <a href="https://www.lianxh.cn/details/1056.html">B-Stata模拟：控制变量！控制变量！Good-Controls-Bad-Controls</a>.</li>
+<li>秦利宾, 2021, <a href="https://www.lianxh.cn/details/713.html">控制变量！控制变量！</a>.</li>
+<li>连玉君, 张静瑶, 2020, <a href="https://www.lianxh.cn/details/135.html">加入控制变量后结果悲催了！</a>.</li>
+</ul>
 <p>一句话：<strong><span class="math inline">\(Y\)</span>、<span class="math inline">\(D\)</span>、<span class="math inline">\(X\)</span> 的口径都是研究者定的，定的时候就要回头对齐总体与样本——口径一变，整条链的含义都会跟着变。</strong></p>
 </section>
 <section id="model模型要和前面几层对得上" class="level3" data-number="3.2.5">

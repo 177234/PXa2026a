@@ -122,6 +122,15 @@
 
 最后是控制变量 $X$。控制变量并非越多越好。如果你控制了一个本身也受处理变量影响的变量 (它其实是结果的一部分)，就会把真实效应挡掉一截——这类变量被称为「坏控制」。该控制什么、不该控制什么，取决于你对这些变量之间关系的判断，而不是把手边所有变量不加甄别地放进回归。
 
+有关控制变量的讨论，参见如下推文：
+
+  - 付一帆, 2022, [Stata：控制变量与核心解释变量地位对等吗？](https://www.lianxh.cn/details/1019.html).
+  - 张雪娇, 2022, [控制变量如何选？大牛们的10条建议](https://www.lianxh.cn/details/1011.html).
+  - 曹昊煜, 2022, [A-理论部分：控制变量！控制变量！Good-Controls-Bad-Controls](https://www.lianxh.cn/details/1037.html).
+  - 李烨阳, 2022, [B-Stata模拟：控制变量！控制变量！Good-Controls-Bad-Controls](https://www.lianxh.cn/details/1056.html).
+  - 秦利宾, 2021, [控制变量！控制变量！](https://www.lianxh.cn/details/713.html).
+  - 连玉君, 张静瑶, 2020, [加入控制变量后结果悲催了！](https://www.lianxh.cn/details/135.html).
+
 一句话：**$Y$、$D$、$X$ 的口径都是研究者定的，定的时候就要回头对齐总体与样本——口径一变，整条链的含义都会跟着变。**
 
 ### Model：模型要和前面几层对得上

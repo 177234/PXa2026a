@@ -23,6 +23,9 @@ book:
     search: true
     background: light
     tools:
+      - icon: file-earmark-pdf
+        href: PXa2026a-Lecture.pdf
+        text: "下载课程 PDF"
       - icon: house-fill
         href: https://www.lianxh.cn
   favicon: images/book-logo.png
